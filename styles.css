@@ -1,0 +1,83 @@
+:root {
+  color-scheme: dark;
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #151817;
+  color: #f4f7f4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #151817;
+}
+
+button {
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 8px 12px;
+}
+
+button:hover, button[aria-current="page"] {
+  background: #bde3a9;
+  border-color: #bde3a9;
+  color: #1e2520;
+}
+
+.replica-shell { min-height: 100vh; padding: 24px; }
+
+.replica-toolbar {
+  align-items: center;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  margin: 0 auto 20px;
+  max-width: 1920px;
+}
+
+.eyebrow { color: #bde3a9; font-size: 11px; letter-spacing: .16em; margin: 0 0 4px; }
+h1 { font-size: 18px; font-weight: 700; letter-spacing: .04em; margin: 0; }
+.toolbar-actions { align-items: center; display: flex; gap: 8px; }
+#counter { color: rgba(255,255,255,.65); font-size: 13px; margin-right: 4px; }
+
+.stage { display: grid; min-height: 0; place-items: center; }
+
+.artboard {
+  background: #fff;
+  box-shadow: 0 24px 80px rgba(0,0,0,.36);
+  line-height: 0;
+  margin: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.artboard img { display: block; height: auto; max-height: calc(100vh - 190px); max-width: 100%; object-fit: contain; width: auto; }
+
+.screen-list {
+  display: flex;
+  gap: 8px;
+  margin: 18px auto 0;
+  max-width: 1920px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.screen-list button { flex: 0 0 auto; font-size: 12px; white-space: nowrap; }
+
+:fullscreen { background: #000; }
+:fullscreen .replica-toolbar, :fullscreen .screen-list { display: none; }
+:fullscreen .stage { height: 100vh; }
+:fullscreen .artboard img { max-height: 100vh; }
+
+@media (max-width: 700px) {
+  .replica-shell { padding: 14px; }
+  .replica-toolbar { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .toolbar-actions { flex-wrap: wrap; }
+  .artboard img { max-height: calc(100vh - 235px); }
+}

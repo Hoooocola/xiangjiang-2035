@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>将来的江来 · Figma 页面复刻</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="replica-shell" aria-label="Figma 页面复刻">
+      <header class="replica-toolbar">
+        <div>
+          <p class="eyebrow">FIGMA → CODE</p>
+          <h1 id="screen-title">地图探索 / 默认状态</h1>
+        </div>
+        <div class="toolbar-actions">
+          <output id="counter" aria-live="polite"></output>
+          <button id="previous" type="button" aria-label="上一页">←</button>
+          <button id="next" type="button" aria-label="下一页">→</button>
+          <button id="fullscreen" type="button">全屏查看</button>
+        </div>
+      </header>
+
+      <section class="stage" aria-label="当前 Figma 页面">
+        <figure class="artboard" id="artboard">
+          <img id="screen-image" alt="" draggable="false" />
+        </figure>
+      </section>
+
+      <nav id="screen-list" class="screen-list" aria-label="页面列表"></nav>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
