@@ -1,0 +1,13 @@
+{
+  "features": 21232,
+  "buildings": 16004,
+  "roads": 5032,
+  "water": 1,
+  "parks": 119,
+  "excludedIncompleteWater": [
+    "relation/16731304",
+    "relation/5940862",
+    "relation/2308803",
+    "relation/14964262"
+  ]
+}

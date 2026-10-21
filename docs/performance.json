@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-21",
+  "environment": "Local production Next.js build, Codex in-app browser, current host; not a cross-device benchmark",
+  "sampling": "Renderer info + real elapsed requestAnimationFrame interval, approx. 1.5 seconds per sample",
+  "dprCap": 1.5,
+  "samples": [
+    {
+      "state": "core day / night before tributary completeness repair",
+      "viewport": [
+        1440,
+        900
+      ],
+      "fps": [
+        57,
+        56
+      ],
+      "drawCalls": 11,
+      "triangles": 646916,
+      "geometries": 11
+    },
+    {
+      "state": "overview after source completeness repair",
+      "viewport": [
+        1440,
+        900
+      ],
+      "fps": [
+        65,
+        66
+      ],
+      "drawCalls": 8,
+      "triangles": 406663,
+      "geometries": 13
+    },
+    {
+      "state": "core day final production",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "fps": 53,
+      "drawCalls": 11,
+      "triangles": 644624,
+      "geometries": 12
+    },
+    {
+      "state": "place focus, mobile viewport on desktop GPU",
+      "viewport": [
+        390,
+        844
+      ],
+      "fps": 66,
+      "drawCalls": 13,
+      "triangles": 644880,
+      "geometries": 12
+    },
+    {
+      "state": "second overview-to-place cycle",
+      "viewport": [
+        1440,
+        900
+      ],
+      "fps": 62,
+      "drawCalls": 13,
+      "triangles": 644880,
+      "geometries": 13
+    }
+  ],
+  "scene": {
+    "buildingPolygons": 16086,
+    "polygonsWithHeightOrLevels": 1041,
+    "instancedTrees": 3147
+  },
+  "validation": {
+    "build": "pass",
+    "typecheck": "pass",
+    "unitTestsPassed": 11,
+    "databaseTestsSkipped": 26,
+    "lintErrors": 0,
+    "existingLintWarnings": 2,
+    "browserConsoleWarningsOrErrors": 0
+  },
+  "limits": [
+    "Not real mobile hardware",
+    "Safari not tested",
+    "Cold cache/network timing not measured",
+    "No long-duration JS/GPU heap profiling",
+    "Geometry count first rises when the far mesh and focus ring are rendered; not by itself a leak test"
+  ],
+  "resourceCycleObservation": "After rendering overview and focus ring, geometry count reached 13. A subsequent overview → Orange Isle → back cycle remained at 13. This is a short renderer counter check, not a heap/leak proof."
+}

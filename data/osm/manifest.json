@@ -1,0 +1,76 @@
+{
+  "sourceCRS": "EPSG:4326",
+  "retrieved": "2026-10-20",
+  "license": "ODbL-1.0",
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "requests": [
+    {
+      "file": "city-0.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.93,28.16,112.955,28.19"
+    },
+    {
+      "file": "city-1.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.955,28.16,112.98,28.19"
+    },
+    {
+      "file": "city-2.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.98,28.16,113.005,28.19"
+    },
+    {
+      "file": "city-3.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.93,28.19,112.955,28.22"
+    },
+    {
+      "file": "city-4.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.955,28.19,112.98,28.22"
+    },
+    {
+      "file": "city-5.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.98,28.19,113.005,28.22"
+    },
+    {
+      "file": "city-6.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.93,28.22,112.955,28.25"
+    },
+    {
+      "file": "city-7.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.955,28.22,112.98,28.25"
+    },
+    {
+      "file": "city-8.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.98,28.22,113.005,28.25"
+    },
+    {
+      "file": "outer-0.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.93,28.25,112.955,28.28"
+    },
+    {
+      "file": "outer-1.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.955,28.25,112.98,28.28"
+    },
+    {
+      "file": "outer-2.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.98,28.25,113.005,28.28"
+    },
+    {
+      "file": "outer-3.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.93,28.13,112.955,28.16"
+    },
+    {
+      "file": "outer-4.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.955,28.13,112.98,28.16"
+    },
+    {
+      "file": "outer-5.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.98,28.13,113.005,28.16"
+    },
+    {
+      "file": "core.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=112.955,28.18,112.975,28.205"
+    },
+    {
+      "file": "river.json",
+      "url": "https://api.openstreetmap.org/api/0.6/relation/8727387/full.json"
+    }
+  ]
+}
