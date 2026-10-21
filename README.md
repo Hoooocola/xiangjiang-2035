@@ -1,5 +1,26 @@
 # 将来的江来 / 湘江 2035
 
+## 三维空间体验 Demo
+
+默认首页进入 `/experience`：Three.js + 真实 OSM 湘江河道/洲岛/建筑占地，自定义镜头、沿江巡游、地点聚焦、全段概览及日夜主题。此页面无需数据库或地图 Token。
+
+```bash
+pnpm install
+pnpm dev
+# http://localhost:3000/experience
+```
+
+生产演示：`pnpm build` 后运行 `pnpm start --hostname 127.0.0.1 --port 3001`，访问 `http://127.0.0.1:3001/experience`。
+
+- [完整交付与限制](docs/delivery.md)
+- [参考研究](docs/reference-analysis.md) · [视觉对照](docs/visual-review.md)
+- [地理来源、许可与坐标契约](docs/data-sources.md)
+- 地理数据重新生成：`pnpm scene:prepare`，使用已保存在 `data/osm/` 的源数据。
+- 旧版安全检查点：`legacy-before-3d`（`3bf2d3e`）；开发分支 `feat/xiangjiang-immersive`。
+- 原研究平台仍位于 `/create-research`，以下为保留的数据库工作流。
+
+## 原研究平台
+
 M2 Research Vertical Slice：从 Research Session 进入手机田野采集，将 Field Record 与图片真实写入 PostgreSQL / Storage，再由桌面 Session Map 查询并打开 Record Detail。
 
 ## 技术栈

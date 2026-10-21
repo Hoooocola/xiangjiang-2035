@@ -12,3 +12,6 @@ tsconfig.tsbuildinfo
 
 # Keep the environment contract, never secrets.
 !.env.example
+
+# Local package cache, not project source.
+.pnpm-store/
