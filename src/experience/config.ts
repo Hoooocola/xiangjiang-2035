@@ -12,8 +12,8 @@ export const PLACES: Place[] = [
  {id:'yuelu',name:'岳麓山',en:'YUELU MOUNTAIN',coordinate:[112.929,28.186],index:'02',category:'山水 / 文化景观',description:'从湘江西岸向山麓延伸，山、城、洲与江构成长沙的空间关系。这里预留山麓生态与文化研究的入口。',note:'全球公开高程模型 · 河岸做了视觉平顺处理',distance:62},
  {id:'city',name:'长沙东岸',en:'THE CITY WATERFRONT',coordinate:[112.975,28.197],index:'03',category:'城市 / 滨水生活',description:'街巷、桥梁与沿江空间共同塑造城市的边界。从真实道路和建筑轮廓出发，观察城市如何面向湘江。',note:'OSM 建筑轮廓 · 未知高度为估算体量',distance:43},
  {id:'ezhou',name:'鹅洲',en:'E ZHOU',coordinate:[112.874,28.057],index:'04',category:'洲岛 / 待校准场域',description:'保留旧项目的鹅洲研究入口。原有地点坐标是开发演示值，需要实地与权威 GIS 数据校准后，才可用于定位研究记录。',note:'DEMO：标记坐标未校准，不代表精确位置',distance:100,overview:true},
- {id:'tongguan',name:'铜官窑附近',en:'TONGGUAN · NORTH',coordinate:[112.811,28.434],index:'05',category:'研究范围 / 北端',description:'本轮研究范围的北端参考。沿湘江向南，串联城市、洲岛与沿岸文化景观。',note:'范围示意点 · 非遗址精确边界',distance:85,overview:true},
- {id:'zhaoshan',name:'昭山附近',en:'ZHAOSHAN · SOUTH',coordinate:[112.939,27.963],index:'06',category:'研究范围 / 南端',description:'本轮研究范围的南端参考，与铜官窑附近共同界定湘江研究长廊。',note:'范围示意点 · 非景区精确边界',distance:85,overview:true},
+ {id:'tongguan',name:'铜官窑附近',en:'TONGGUAN · NORTH',coordinate:[112.811,28.434],index:'05',category:'研究范围 / 北端',description:'本轮研究范围的北端参考。沿湘江向南，串联城市、洲岛与沿岸文化景观。',note:'范围示意点 · 非遗址精确边界',distance:65,overview:true},
+ {id:'zhaoshan',name:'昭山附近',en:'ZHAOSHAN · SOUTH',coordinate:[112.939,27.963],index:'06',category:'研究范围 / 南端',description:'本轮研究范围的南端参考，与铜官窑附近共同界定湘江研究长廊。',note:'范围示意点 · 非景区精确边界',distance:65,overview:true},
 ];
-export function placePose(place:Place):CameraPose {const [x,z]=project(place.coordinate);if(place.id==='zhaoshan')return {target:[x+11,0,z-16],distance:110,azimuth:-.45,polar:.65};return {target:[x,0,z],distance:place.distance,azimuth:0.45,polar:0.65};}
+export function placePose(place:Place):CameraPose {const [x,z]=project(place.coordinate);if(place.id==='zhaoshan')return {target:[x+11,0,z-16],distance:110,azimuth:-.45,polar:.65};return {target:[x+place.distance*.09,0,z-place.distance*.04],distance:place.distance,azimuth:0.45,polar:0.88};}
 export const CAMERA_LIMITS = {minDistance:23,maxDistance:1200,minPolar:0.18,maxPolar:1.02};

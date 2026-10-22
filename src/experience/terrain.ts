@@ -17,11 +17,9 @@ export function terrainSampler(grid:TerrainGrid) {
   // Floodplain compression and shoreline flattening are visual adjustments.
   return Math.max(0,(elevation-42)/100)*MathUtils.smoothstep(river,2.5,5.5);
  };
- // The detailed band follows the real river, rather than a rectangular world mask.
+ // One continuous river corridor, independent of data source and latitude.
  const importance=(x:number,z:number)=>{
-  const across=1-MathUtils.smoothstep(distance(x,z),10,32);
-  const along=1-MathUtils.smoothstep(Math.abs(z+5),38,80);
-  return across*along;
+  return 1-MathUtils.smoothstep(distance(x,z),9,26);
  };
  return {height,distance,importance,forest:(x:number,z:number)=>grid.forest?sample(grid.forest,x,z):0};
 }
