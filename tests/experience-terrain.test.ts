@@ -15,9 +15,9 @@ describe('terrain and persistent context',()=>{
   expect(terrain.height(...project([112.962,28.19]))).toBe(0);
   expect(terrain.height(...project([112.929,28.186]))).toBeGreaterThan(.5);
  });
- it('retains a full-height terrain at context locations without a camera-distance switch',()=>{
+ it('retains terrain and river emphasis beyond the original core rectangle',()=>{
   const a=terrain.height(...project(PLACES[4].coordinate));expect(a).toBeGreaterThanOrEqual(0);
-  expect(terrain.importance(...project(PLACES[4].coordinate))).toBe(0);
+  expect(terrain.importance(...project(PLACES[4].coordinate))).toBeGreaterThan(.8);
   expect(terrain.importance(...project([112.975,28.197]))).toBeGreaterThan(.8);
  });
 });

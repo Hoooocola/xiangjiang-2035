@@ -34,19 +34,23 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  const root=new THREE.Group(),city=new THREE.Group(),detail=new THREE.Group();root.add(city,detail);
  const terrain=terrainSampler(grid),height=terrain.height;
  const groundGeo=new THREE.PlaneGeometry(6000,6000);groundGeo.rotateX(-Math.PI/2);groundGeo.translate(0,-.08,0);groundGeo.setAttribute('color',new THREE.Float32BufferAttribute(new Float32Array(groundGeo.attributes.position.count*3).fill(1),3));
+ groundGeo.setAttribute('importance',new THREE.Float32BufferAttribute(new Float32Array(groundGeo.attributes.position.count),1));
  const ground=new THREE.Mesh(groundGeo,materials.ground);ground.receiveShadow=true;root.add(ground);
  const cols=Math.floor((grid.width-1)/2),rows=Math.floor((grid.height-1)/2);
  const relief=new THREE.PlaneGeometry(grid.dx*(grid.width-1),grid.dz*(grid.height-1),cols,rows);relief.rotateX(-Math.PI/2);relief.translate(grid.x0+grid.dx*(grid.width-1)/2,0,grid.z0+grid.dz*(grid.height-1)/2);
  const rp=relief.attributes.position;for(let i=0;i<rp.count;i++)rp.setY(i,height(rp.getX(i),rp.getZ(i))-.025);relief.computeVertexNormals();
- const groundColors=new Float32Array(rp.count*3),groundTint=new THREE.Color(),forestCore=new THREE.Color('#a1b095'),forestContext=new THREE.Color('#e2e6dc'),white=new THREE.Color('white');
+ const groundColors=new Float32Array(rp.count*3),groundTint=new THREE.Color(),forestCore=new THREE.Color('#9db18d'),forestContext=new THREE.Color('#ffffff'),white=new THREE.Color('white');
  for(let i=0;i<rp.count;i++){
   const x=rp.getX(i),z=rp.getZ(i),weight=terrain.forest(x,z);
-  groundTint.copy(forestContext).lerp(forestCore,terrain.importance(x,z)).lerp(white,1-weight);
+  const importance=terrain.importance(x,z);
+  groundTint.copy(forestContext).lerp(forestCore,importance).lerp(white,1-weight);
+  groundTint.multiplyScalar(1-importance*.13);
   groundColors.set([groundTint.r,groundTint.g,groundTint.b],i*3);
  }
  relief.setAttribute('color',new THREE.BufferAttribute(groundColors,3));
+ relief.setAttribute('importance',new THREE.Float32BufferAttribute(Array.from({length:rp.count},(_,i)=>terrain.importance(rp.getX(i),rp.getZ(i))),1));
  const mountain=new THREE.Mesh(relief,materials.ground);mountain.receiveShadow=true;root.add(mountain);
- const waterGs:THREE.BufferGeometry[]=[],shoreGs:THREE.BufferGeometry[]=[],parks:THREE.BufferGeometry[][]=[[],[]],roads:THREE.BufferGeometry[][]=[[],[]],bridgeGs:THREE.BufferGeometry[]=[];
+ const waterGs:THREE.BufferGeometry[]=[],shoreGs:THREE.BufferGeometry[]=[],parks:THREE.BufferGeometry[][]=[[],[]],roads:THREE.BufferGeometry[][]=[[],[]],bridgeGs:THREE.BufferGeometry[]=[],bridgeRails:THREE.BufferGeometry[]=[];
  const chunks=new Map<string,THREE.BufferGeometry[]>(),treePositions:[number,number,number,number][]=[];
  const selection=new THREE.Group();selection.visible=false;root.add(selection);
  const waterRings:[number,number][][][]=data.features.filter(f=>f.properties.water==='river'||f.properties.waterway==='riverbank').flatMap(f=>polygons(f).map(r=>r.map(r=>r.map(project))));
@@ -100,9 +104,11 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
   }else if(p.highway&&f.geometry.type==='LineString'){
    const pts=f.geometry.coordinates.map(project);if(pts.length<2)continue;
    const mid=pts[Math.floor(pts.length/2)],context=terrain.importance(...mid)<.2?1:0;
-   const foot=['footway','path','cycleway'].includes(p.highway),width=foot?.025:/motorway|trunk|primary/.test(p.highway)?.18:/secondary|tertiary/.test(p.highway)?.11:.055;
+   const foot=['footway','path','cycleway'].includes(p.highway),width=foot?.035:/motorway|trunk|primary/.test(p.highway)?.18:/secondary|tertiary/.test(p.highway)?.11:.055;
    if(p.bridge&&p.bridge!=='no'){
     const y=Math.max(.25,height(...pts[0]),height(...pts[pts.length-1]))+.06;bridgeGs.push(ribbon(pts,width,()=>y));
+    const crossesRiver=pts.some(([x,z])=>onWater(x,z))||pts.some((p,i)=>i>0&&onWater((p[0]+pts[i-1][0])/2,(p[1]+pts[i-1][1])/2));
+    if(crossesRiver)for(const side of [-1,1]){const rail=pts.map((p,i)=>{const a=pts[Math.max(0,i-1)],b=pts[Math.min(pts.length-1,i+1)],d=Math.hypot(b[0]-a[0],b[1]-a[1])||1;return [p[0]-(b[1]-a[1])/d*width*.45*side,p[1]+(b[0]-a[0])/d*width*.45*side] as [number,number];});bridgeRails.push(ribbon(rail,.018,()=>y+.025));}
     for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i],length=Math.hypot(b[0]-a[0],b[1]-a[1]);for(let t=.5;t<length;t+=1){const x=THREE.MathUtils.lerp(a[0],b[0],t/length),z=THREE.MathUtils.lerp(a[1],b[1],t/length);if(onWater(x,z))bridgePiers.push([x,z,y]);}}
 
    }else roads[context].push(ribbon(pts,width,(x,z)=>height(x,z)+.035));
@@ -116,7 +122,7 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  }
  combine(waterGs,materials.water,root);combine(shoreGs,materials.shore,root);
  for(let i=0;i<2;i++){combine(parks[i].map(g=>{if(!g.index)return g;const unindexed=g.toNonIndexed();g.dispose();return unindexed;}),i?materials.contextPark:materials.park,city);combine(roads[i],i?materials.contextRoad:materials.road,city);}
- combine(bridgeGs,materials.road,root,true);
+ combine(bridgeGs,materials.bridge,root,true);combine(bridgeRails,materials.bridgeLight,root);
  for(const gs of chunks.values())combine(gs,materials.building,city,true);
  const supports=new THREE.InstancedMesh(new THREE.BoxGeometry(.055,1,.07),materials.shore,bridgePiers.length),supportTransform=new THREE.Object3D();
  bridgePiers.forEach(([x,z,h],i)=>{supportTransform.position.set(x,h/2,z);supportTransform.scale.set(1,h,1);supportTransform.updateMatrix();supports.setMatrixAt(i,supportTransform.matrix);});supports.castShadow=true;supports.receiveShadow=true;supports.computeBoundingSphere();root.add(supports);
@@ -127,11 +133,13 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  }
  const boxGeometry=new THREE.BoxGeometry(1,1,1),contextTransform=new THREE.Object3D();let contextCount=0;
  for(const items of contextChunks.values()){
-  const mesh=new THREE.InstancedMesh(boxGeometry,materials.contextBuilding,items.length);
+  const geometry=boxGeometry.clone();geometry.setAttribute('instanceImportance',new THREE.InstancedBufferAttribute(new Float32Array(items.map(([x,z])=>terrain.importance(x,z))),1));
+  const mesh=new THREE.InstancedMesh(geometry,materials.contextBuilding,items.length);
   items.forEach(([x,z,width,depth,angle,meters],i)=>{
    const h=Math.max(.03,Math.min(6,meters/100));contextTransform.position.set(x,height(x,z)+h/2+.01,z);contextTransform.scale.set(Math.max(.02,width),h,Math.max(.02,depth));contextTransform.rotation.set(0,-angle,0);contextTransform.updateMatrix();mesh.setMatrixAt(i,contextTransform.matrix);
   });mesh.castShadow=true;mesh.receiveShadow=true;mesh.computeBoundingSphere();city.add(mesh);contextCount+=items.length;
  }
+ boxGeometry.dispose();
  // Additional trees follow the downloaded forest mask over the entire reach.
  for(let x=grid.x0;x<grid.x0+grid.dx*(grid.width-1);x+=1.05)for(let z=grid.z0;z<grid.z0+grid.dz*(grid.height-1);z+=1.15){
   const tx=x+Math.sin(x*11+z*17)*.35,tz=z+Math.cos(x*13-z*23)*.35;
@@ -141,7 +149,7 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  const treeChunks=new Map<string,typeof treePositions>();
  for(const p of treePositions){const key=`${Math.floor(p[0]/40)},${Math.floor(p[2]/40)}`;if(!treeChunks.has(key))treeChunks.set(key,[]);treeChunks.get(key)!.push(p);}
  const treeGeo=new THREE.IcosahedronGeometry(1,0),transform=new THREE.Object3D();
- const treeCore=new THREE.Color('#778d69'),treeContext=new THREE.Color('#d0d8cb'),treeColor=new THREE.Color();
+ const treeCore=new THREE.Color('#506e47'),treeContext=new THREE.Color('#f0f4f3'),treeColor=new THREE.Color();
  for(const positions of treeChunks.values()){
   const trees=new THREE.InstancedMesh(treeGeo,materials.tree,positions.length);
   positions.forEach(([x,y,z,importance],i)=>{const h=.08+(Math.sin(x*31+z*19)*.5+.5)*.07;transform.position.set(x,y+h*.6,z);transform.scale.set(h*.7,h,h*.7);transform.rotation.y=i;transform.updateMatrix();trees.setMatrixAt(i,transform.matrix);treeColor.copy(treeContext).lerp(treeCore,importance);trees.setColorAt(i,treeColor);});
