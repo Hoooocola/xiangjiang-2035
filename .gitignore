@@ -15,3 +15,6 @@ tsconfig.tsbuildinfo
 
 # Local package cache, not project source.
 .pnpm-store/
+
+# Reproducible public map download cache.
+.cache/xiangjiang/

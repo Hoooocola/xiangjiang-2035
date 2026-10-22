@@ -7,6 +7,7 @@ export class CameraRig {
  pose=clonePose(CAMERA_PRESETS[0].pose);
  desired=clonePose(this.pose);
  transition:{from:CameraPose;to:CameraPose;start:number;duration:number;done?:()=>void}|null=null;
+ route:{points:CameraPose[];start:number;duration:number;done?:()=>void}|null=null;
  pointers=new Map<number,{x:number;y:number}>();
  lastPinch=0; reducedMotion=false; onInteract=()=>{};
  private cleanups:(()=>void)[]=[];
@@ -46,13 +47,24 @@ export class CameraRig {
  }
  zoom(f:number){this.desired.distance=clamp(this.desired.distance*f,CAMERA_LIMITS.minDistance,CAMERA_LIMITS.maxDistance);}
  orbit(delta:number){this.cancel();this.desired.azimuth+=delta;}
- cancel(){this.transition=null;this.desired=clonePose(this.pose);}
+ cancel(){this.route=null;this.transition=null;this.desired=clonePose(this.pose);}
  fly(to:CameraPose,duration=2400,done?:()=>void){
-  this.transition={from:clonePose(this.pose),to:clonePose(to),start:performance.now(),duration:this.reducedMotion?0:duration,done};
+  this.route=null;this.transition={from:clonePose(this.pose),to:clonePose(to),start:performance.now(),duration:this.reducedMotion?0:duration,done};
   this.desired=clonePose(to);
  }
+ cruise(points:CameraPose[],duration:number,done?:()=>void){
+  this.transition=null;this.route={points:[clonePose(this.pose),...points.map(clonePose)],start:performance.now(),duration,done};this.desired=clonePose(points[points.length-1]);
+ }
  update(now:number,dt:number){
-  if(this.transition){
+  if(this.route){
+   const r=this.route,t=clamp((now-r.start)/r.duration,0,1),u=smooth(t)*(r.points.length-1),i=Math.min(Math.floor(u),r.points.length-2),f=u-i;
+   const values=[r.points[Math.max(0,i-1)],r.points[i],r.points[i+1],r.points[Math.min(r.points.length-1,i+2)]];
+   const interpolate=(read:(p:CameraPose)=>number)=>{
+    const [a,b,c,d]=values.map(read);return .5*((2*b)+(-a+c)*f+(2*a-5*b+4*c-d)*f*f+(-a+3*b-3*c+d)*f*f*f);
+   };
+   this.pose={target:[0,1,2].map(n=>interpolate(p=>p.target[n])) as [number,number,number],distance:interpolate(p=>p.distance),azimuth:interpolate(p=>p.azimuth),polar:interpolate(p=>p.polar)};
+   if(t===1){this.route=null;r.done?.();}
+  }else if(this.transition){
    const tr=this.transition,t=tr.duration?clamp((now-tr.start)/tr.duration,0,1):1,k=smooth(t);
    this.pose={target:tr.from.target.map((v,i)=>THREE.MathUtils.lerp(v,tr.to.target[i],k)) as [number,number,number],distance:THREE.MathUtils.lerp(tr.from.distance,tr.to.distance,k),azimuth:THREE.MathUtils.lerp(tr.from.azimuth,tr.to.azimuth,k),polar:THREE.MathUtils.lerp(tr.from.polar,tr.to.polar,k)};
    if(t===1){this.transition=null;tr.done?.();}

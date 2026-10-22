@@ -2,8 +2,9 @@ import * as THREE from 'three';
 import { CameraRig, clonePose } from './camera';
 import { CAMERA_PRESETS, OVERVIEW_POSE, PLACES, placePose, type CameraPose } from './config';
 import { makeMaterials, THEMES } from './materials';
-import { buildScene } from './scene';
+import { buildScene,type ContextData } from './scene';
 import { project, type SceneData } from './geo';
+import type {TerrainGrid} from './terrain';
 export interface ExperienceCallbacks {
  progress:(n:number,label:string)=>void;
  ready:()=>void;
@@ -27,15 +28,16 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
  renderer.shadowMap.enabled=true;renderer.shadowMap.autoUpdate=false;renderer.shadowMap.needsUpdate=true;renderer.shadowMap.type=THREE.PCFShadowMap;
  const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','三维湘江地图。拖动平移，Shift 加拖动或右键旋转，滚轮缩放。键盘方向键转动，Home 返回。');canvas.style.cursor='grab';host.appendChild(canvas);
  const rig=new CameraRig(camera,canvas);
- const hemi=new THREE.HemisphereLight('#fff7e8','#9ca9ab',1.5);scene.add(hemi);
- const sun=new THREE.DirectionalLight('#fff0d9',2.5);sun.position.set(-45,70,28);sun.castShadow=true;
+ const hemi=new THREE.HemisphereLight('#ffffff','#a1a7a8',1.25);scene.add(hemi);
+ const sun=new THREE.DirectionalLight('#fffaf0',2.7);sun.position.set(-45,70,28);sun.castShadow=true;
  sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-70,right:70,top:70,bottom:-70,near:1,far:180});sun.shadow.bias=-0.0003;sun.shadow.normalBias=.035;scene.add(sun,sun.target);
  const fill=new THREE.DirectionalLight('#c2dae1',0.5);fill.position.set(35,20,-40);scene.add(fill);
- const focusMaterial=new THREE.MeshBasicMaterial({color:'#d3af73',transparent:true,opacity:.8,depthWrite:false,side:THREE.DoubleSide});
+ const focusMaterial=new THREE.MeshBasicMaterial({color:'#9276bd',transparent:true,opacity:.8,depthWrite:false,side:THREE.DoubleSide});
  const ring=new THREE.Mesh(new THREE.RingGeometry(0.5,0.54,64),focusMaterial);ring.rotation.x=-Math.PI/2;ring.visible=false;scene.add(ring);
- let nightTarget=0,night=0,last=performance.now(),frames=0,frameTime=0,metricsTime=0,touring=false;
- let previous:CameraPose|undefined;
- const stop=()=>{touring=false;rig.cancel();callbacks.motion(false);};rig.onInteract=stop;
+ let nightTarget=0,night=0,last=performance.now(),frames=0,frameTime=0,metricsTime=0;
+ let previous:CameraPose|undefined,selectedId:string|undefined;
+ const select=(id?:string)=>{selectedId=id;built?.select(id);const place=PLACES.find(p=>p.id===id);const [x,z]=place?project(place.coordinate):[0,0];materials.contextFocus.value.set(x,z,place?1:0);};
+ const stop=()=>{rig.cancel();callbacks.motion(false);};rig.onInteract=stop;
  const dispose=()=>{
   if(disposed)return;disposed=true;cancelAnimationFrame(frame);rig.dispose();cleanups.forEach(f=>f());
   const geometries=new Set<THREE.BufferGeometry>(),mats=new Set<THREE.Material>();scene.traverse(o=>{const mesh=o as THREE.Mesh;if(mesh.geometry)geometries.add(mesh.geometry);if(mesh.material)(Array.isArray(mesh.material)?mesh.material:[mesh.material]).forEach(m=>mats.add(m));});
@@ -43,10 +45,10 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
  };
  try{
   callbacks.progress(12,'读取湘江地理数据');
-  const response=await fetch('/data/xiangjiang.geojson',{signal});if(!response.ok)throw new Error('地理数据加载失败，请重试。');const data:SceneData=await response.json();
+  const [response,terrainResponse,contextResponse,environmentResponse]=await Promise.all([fetch('/data/xiangjiang.geojson',{signal}),fetch('/data/terrain.json',{signal}),fetch('/data/context.json',{signal}),fetch('/data/environment.json',{signal})]);if(!response.ok||!terrainResponse.ok||!contextResponse.ok||!environmentResponse.ok)throw new Error('地理数据加载失败，请重试。');const data:SceneData=await response.json();const grid:TerrainGrid=await terrainResponse.json();const context:ContextData=await contextResponse.json();const environment:SceneData&{forest:number[]}=await environmentResponse.json();data.features.push(...environment.features);grid.forest=environment.forest;
   if(signal.aborted)throw new DOMException('Aborted','AbortError');
   callbacks.progress(35,'构建河岸、街区与洲岛');
-  built=await buildScene(data,materials,n=>callbacks.progress(Math.round(n),'构建河岸、街区与洲岛'));
+  built=await buildScene(data,grid,context,materials,n=>callbacks.progress(Math.round(n),'构建河岸、街区与洲岛'));
   scene.add(built.root);
   if(signal.aborted)throw new DOMException('Aborted','AbortError');
   callbacks.progress(88,'准备光影与镜头');
@@ -58,7 +60,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   renderer.compile(scene,camera);
   renderer.render(scene,camera);
   if(signal.aborted)throw new DOMException('Aborted','AbortError');
-  const projectPoint=new THREE.Vector3();
+  const projectPoint=new THREE.Vector3(),shadowTarget=new THREE.Vector3(Infinity,0,Infinity);
   const compass=host.parentElement?.querySelector<HTMLElement>('[data-compass]');
   function render(now:number){
    if(disposed)return;frame=requestAnimationFrame(render);const elapsed=(now-last)/1000,dt=Math.min(elapsed,.05);last=now;
@@ -67,17 +69,19 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    night=THREE.MathUtils.lerp(night,nightTarget,1-Math.exp(-dt*2.2));materials.updateTheme(night);
    (scene.background as THREE.Color).set(THEMES.day.background).lerp(new THREE.Color(THEMES.night.background),night);
    const fog=scene.fog as THREE.Fog;fog.color.copy(scene.background as THREE.Color);
-   const d=rig.pose.distance;fog.near=d*0.82;fog.far=d*2.6;
-   hemi.intensity=THREE.MathUtils.lerp(1.5,1.35,night);sun.intensity=THREE.MathUtils.lerp(2.5,1.8,night);sun.color.set(THEMES.day.sun).lerp(new THREE.Color(THEMES.night.sun),night);
+   const d=rig.pose.distance;const near=Math.max(.3,d*.01);if(Math.abs(camera.near-near)>.05){camera.near=near;camera.updateProjectionMatrix();}fog.near=d*.9+80;fog.far=d*3+220;
+   hemi.intensity=THREE.MathUtils.lerp(1.25,.85,night);sun.intensity=THREE.MathUtils.lerp(2.7,1.15,night);sun.color.set(THEMES.day.sun).lerp(new THREE.Color(THEMES.night.sun),night);
    renderer.toneMappingExposure=THREE.MathUtils.lerp(1.03,1.05,night);
-   if(built){built.detail.visible=d<220;const fade=THREE.MathUtils.smoothstep(d,250,350);materials.building.opacity=1-fade;materials.farBuilding.opacity=fade;built.city.visible=fade<1;built.overview.visible=fade>0;}
    sun.castShadow=d<240;
+   if(sun.castShadow&&Math.hypot(rig.pose.target[0]-shadowTarget.x,rig.pose.target[2]-shadowTarget.z)>8){
+    shadowTarget.set(rig.pose.target[0],0,rig.pose.target[2]);sun.target.position.copy(shadowTarget);sun.position.copy(shadowTarget).add(new THREE.Vector3(-45,70,28));renderer.shadowMap.needsUpdate=true;
+   }
    const w=host.clientWidth,h=host.clientHeight;
    for(const place of PLACES){
     const el=markers.get(place.id);if(!el)continue;
-    const [x,z]=project(place.coordinate);projectPoint.set(x,place.id==='yuelu'?3.7:.6,z).project(camera);
+    const [x,z]=project(place.coordinate);projectPoint.set(x,(built?.terrain.height(x,z)??0)+.6,z).project(camera);
     const px=(projectPoint.x*.5+.5)*w,py=(-projectPoint.y*.5+.5)*h;
-    const show=projectPoint.z<1&&projectPoint.z>-1&&px>35&&px<w-35&&py>100&&py<h-120&&(!place.overview||d>170)&&!(d>300&&['yuelu','city'].includes(place.id));
+    const show=projectPoint.z<1&&projectPoint.z>-1&&px>35&&px<w-35&&py>100&&py<h-120&&(!place.overview||d>170||selectedId===place.id)&&!(d>300&&['yuelu','city'].includes(place.id));
     el.dataset.edge=px>w-200?'right':'left';el.style.transform=`translate3d(${px}px,${py}px,0)`;el.style.visibility=show?'visible':'hidden';
    }
    ring.scale.setScalar(1+(media.matches?0:Math.sin(now*.0015)*.05));
@@ -85,15 +89,15 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    if(metricsTime>1.5&&built){callbacks.metrics({fps:Math.round(frames/frameTime),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,...built.stats});frames=0;frameTime=0;metricsTime=0;}
   }
   frame=requestAnimationFrame(render);callbacks.progress(100,'准备就绪');callbacks.ready();
-  const fly=(pose:CameraPose,duration=2600)=>{touring=false;callbacks.motion(true);rig.fly(pose,duration,()=>callbacks.motion(false));};
+  const fly=(pose:CameraPose,duration=2600)=>{callbacks.motion(true);rig.fly(pose,duration,()=>callbacks.motion(false));};
   const tour=()=>{
    if(media.matches){fly(CAMERA_PRESETS[0].pose,0);return;}
-   touring=true;callbacks.motion(true);ring.visible=false;
+   callbacks.motion(true);ring.visible=false;select();
    const sequence:CameraPose[]=[{target:[0,0,11],distance:66,azimuth:.40,polar:.83},{target:[1,0,-12],distance:73,azimuth:.29,polar:.76},CAMERA_PRESETS[0].pose];
-   let i=0;const next=()=>{if(!touring)return;if(i===sequence.length){touring=false;callbacks.motion(false);return;}rig.fly(sequence[i++],i===3?3400:4200,next);};next();
+   rig.cruise(sequence,11800,()=>{callbacks.motion(false);});
   };
-  return {start:tour,tour,stop,reset:()=>{previous=undefined;ring.visible=false;fly(CAMERA_PRESETS[0].pose);},overview:()=>{ring.visible=false;fly(OVERVIEW_POSE,3600);},focus:(id)=>{
-   const p=PLACES.find(p=>p.id===id);if(!p)return;previous??=clonePose(rig.pose);const [x,z]=project(p.coordinate);ring.position.set(x,.1,z);ring.visible=true;fly(placePose(p));
-  },back:()=>{ring.visible=false;fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},preset:(i)=>{ring.visible=false;fly(CAMERA_PRESETS[i].pose);},dispose};
+  return {start:tour,tour,stop,reset:()=>{previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{
+   const p=PLACES.find(p=>p.id===id);if(!p)return;previous??=clonePose(rig.pose);const [x,z]=project(p.coordinate);ring.position.set(x,(built?.terrain.height(x,z)??0)+.08,z);select(id);ring.visible=id!=='juzizhou';fly(placePose(p));
+  },back:()=>{ring.visible=false;select();fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},preset:(i)=>{ring.visible=false;select();fly(CAMERA_PRESETS[i].pose);},dispose};
  }catch(e){dispose();throw e;}
 }
