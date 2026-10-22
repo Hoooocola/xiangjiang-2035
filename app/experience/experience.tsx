@@ -11,7 +11,7 @@ export default function Experience(){
  const [error,setError]=useState(''),[started,setStarted]=useState(false),[night,setNight]=useState(false),[moving,setMoving]=useState(false);
  const [overview,setOverview]=useState(false),[drawer,setDrawer]=useState<'places'|'views'|'about'|null>(null),[selected,setSelected]=useState<string|null>(null),[preset,setPreset]=useState(0);
  const [metrics,setMetrics]=useState<{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number}|null>(null);
- const closeRef=useRef<HTMLButtonElement>(null);
+ const closeRef=useRef<HTMLButtonElement>(null),drawerCloseRef=useRef<HTMLButtonElement>(null);
  useEffect(()=>{
   if(!host.current)return;const target=host.current,controller=new AbortController();let disposed=false,instance:ExperienceEngine|null=null;
   import('@/src/experience/engine').then(({createExperience})=>createExperience(target,markers.current,{
@@ -19,7 +19,7 @@ export default function Experience(){
   },controller.signal)).then(e=>{instance=e;if(disposed)e.dispose();else engine.current=e;}).catch(e=>{if(!disposed&&e.name!=='AbortError')setError(e.message||'三维场景载入失败，请刷新后重试。');});
   return()=>{disposed=true;controller.abort();instance?.dispose();engine.current=null;};
  },[]);
- useEffect(()=>{if(drawer||selected)closeRef.current?.focus({preventScroll:true});},[drawer,selected]);
+ useEffect(()=>{if(drawer)drawerCloseRef.current?.focus({preventScroll:true});else if(selected)closeRef.current?.focus({preventScroll:true});},[drawer,selected]);
  const begin=()=>{setStarted(true);setDrawer(null);engine.current?.start();};
  const reset=()=>{setSelected(null);setOverview(false);setDrawer(null);setPreset(0);engine.current?.reset();};
  const focus=(id:string)=>{setStarted(true);setSelected(id);setDrawer(null);engine.current?.focus(id);};
@@ -56,10 +56,10 @@ export default function Experience(){
    <p className={styles.dataNote}>{place.note}</p><button className={styles.textButton} onClick={closePlace}><ChevronLeft size={16}/> 返回原视角</button>
   </aside>}
   {drawer&&<aside className={styles.drawer} aria-label={drawer==='places'?'地点列表':drawer==='views'?'镜头预设':'关于此地图'}>
-   <button ref={closeRef} className={styles.close} onClick={()=>setDrawer(null)} aria-label="关闭面板"><X size={20}/></button>
+   <button ref={drawerCloseRef} className={styles.close} onClick={()=>setDrawer(null)} aria-label="关闭面板"><X size={20}/></button>
    <p className={styles.eyebrow}>{drawer==='places'?'PLACES ALONG THE RIVER':drawer==='views'?'A DIFFERENT PERSPECTIVE':'ABOUT THIS ATLAS'}</p>
    <h2>{drawer==='places'?'沿江，遇见。':drawer==='views'?'看江的方式。':'一条持续生长的江。'}</h2>
-   {drawer==='places'?<div className={styles.placeList}>{PLACES.map(p=><button key={p.id} onClick={()=>focus(p.id)}><span>{p.index}</span><div>{p.name}<small>{p.category}</small></div><ArrowUpRight size={20}/></button>)}</div>:drawer==='views'?<div className={styles.placeList}>{CAMERA_PRESETS.map((p,i)=><button key={p.id} aria-pressed={preset===i} onClick={()=>{setPreset(i);setStarted(true);setSelected(null);setOverview(false);engine.current?.preset(i);setDrawer(null);}}><span>0{i+1}</span><div>{p.name}<small>{p.description}</small></div>{preset===i?<span className={styles.current}>当前</span>:<ArrowUpRight size={20}/>}</button>)}</div>:<div className={styles.about}><p>以真实地点为索引，连接湘江的生态、文化与社会创新。此版本是三维空间体验 Demo，研究内容将逐步接入。</p><p>河岸、洲岛、道路与建筑轮廓来自 OpenStreetMap。未知建筑高度、立面、植被与山体为艺术化表达；鹅洲标记沿用未校准演示坐标。</p><p>坐标来源 WGS84。尚未完成 CGCS2000 基准校准，不用于测绘。拖动平移，右键或 Shift 拖动旋转，滚轮缩放；方向键旋转，Home 重置，Esc 关闭面板。</p><a href="/create-research">进入原有研究平台 <ArrowUpRight size={17}/></a></div>}
+   {drawer==='places'?<div className={styles.placeList}>{PLACES.map(p=><button key={p.id} onClick={()=>focus(p.id)}><span>{p.index}</span><div>{p.name}<small>{p.category}</small></div><ArrowUpRight size={20}/></button>)}</div>:drawer==='views'?<div className={styles.placeList}>{CAMERA_PRESETS.map((p,i)=><button key={p.id} aria-pressed={preset===i} onClick={()=>{setPreset(i);setStarted(true);setSelected(null);setOverview(false);engine.current?.preset(i);setDrawer(null);}}><span>0{i+1}</span><div>{p.name}<small>{p.description}</small></div>{preset===i?<span className={styles.current}>当前</span>:<ArrowUpRight size={20}/>}</button>)}</div>:<div className={styles.about}><p>以真实地点为索引，连接湘江的生态、文化与社会创新。此版本是三维空间体验 Demo，研究内容将逐步接入。</p><p>河岸与核心建筑轮廓来自 OpenStreetMap；外围建筑与道路补充自 Overture Maps。外围采用轮廓推导的简化白模，未知高度为估算。树木根据 OSM 与 ESA WorldCover 林地范围布置；山体来自公开高程瓦片，并做了河岸平顺处理。鹅洲标记仍待校准。</p><p>数据署名：© OpenStreetMap contributors, Overture Maps Foundation；East Asian Buildings。© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium。地形：Mapzen / USGS。</p><p>坐标来源 WGS84。尚未完成 CGCS2000 基准校准，不用于测绘。拖动平移，右键或 Shift 拖动旋转，滚轮缩放；方向键旋转，Home 重置，Esc 关闭面板。</p><a href="/create-research">进入原有研究平台 <ArrowUpRight size={17}/></a></div>}
   </aside>}
   {loaded&&!error&&<>
    <div className={styles.cameraControls} aria-label="镜头控制">
@@ -73,8 +73,8 @@ export default function Experience(){
    <div className={styles.hint}><MousePointer2 size={13}/><span>拖动探索</span><i/><span>滚轮缩放</span><i/><span>Shift + 拖动旋转</span></div>
    <div className={styles.footerActions}><button disabled={!loaded} aria-label={moving?'停止镜头运动':'播放沿江巡游'} onClick={()=>{setStarted(true);if(moving)engine.current?.stop();else {setSelected(null);setDrawer(null);setOverview(false);engine.current?.tour();}}}>{moving?<Pause size={14}/>:<Play size={14}/>}<span>{moving?'停止镜头':'沿江巡游'}</span></button><button disabled={!loaded} onClick={()=>setDrawer(drawer==='views'?null:'views')} aria-label="选择镜头预设"><Layers size={15}/></button><button onClick={()=>setDrawer(drawer==='about'?null:'about')} aria-label="关于地图与数据"><Info size={15}/></button></div>
   </footer>
-  <a className={styles.attribution} href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors · ODbL</a>
-  <span className={styles.edition}>XIANGJIANG 2035 / SPATIAL EXPERIENCE 01</span>
+  <div className={styles.attribution}><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap</a><span> · </span><a href="https://docs.overturemaps.org/attribution/" target="_blank" rel="noreferrer">Overture Maps</a><span> · </span><a href="https://esa-worldcover.org/en" target="_blank" rel="noreferrer">ESA WorldCover</a><span> · </span><a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noreferrer">Mapzen / USGS</a></div>
+  <span className={styles.edition}>XIANGJIANG 2035 / SPATIAL EXPERIENCE 02</span>
   <output className={styles.metrics} data-testid="scene-metrics" aria-hidden="true">{metrics?JSON.stringify(metrics):'loading'}</output>
   <span className={styles.motionStatus} role="status" aria-live="polite">{moving?'镜头移动中，可拖动打断':loaded?'场景已就绪':''}</span>
  </main>;

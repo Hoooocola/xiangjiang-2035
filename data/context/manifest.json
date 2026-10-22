@@ -1,0 +1,28 @@
+{
+  "source": "https://tiles.overturemaps.org/2026-09-23.1/buildings.pmtiles",
+  "release": "2026-09-23.1",
+  "retrieved": "2026-10-21",
+  "license": "ODbL-1.0",
+  "attribution": "Overture Maps Foundation; OpenStreetMap contributors; upstream geometry providers listed below",
+  "geometrySources": {
+    "doi:10.5281/zenodo.8174931": 130122,
+    "OpenStreetMap": 12035
+  },
+  "bounds": [
+    112.73,
+    27.92,
+    113.08,
+    28.49
+  ],
+  "riverBufferMeters": 7000,
+  "representation": "Oriented bounding volumes from source footprints. Simplified context only; not exact building models. No inferred landmark detail. OSM core excluded to avoid overlap.",
+  "unknownHeightMeters": 12,
+  "buildings": 142157,
+  "counts": {
+    "north": 61597,
+    "coreContext": 34432,
+    "south": 46128,
+    "knownHeight": 290
+  },
+  "unmergedMultiPolygons": 0
+}

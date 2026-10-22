@@ -1,62 +1,86 @@
 import * as THREE from 'three';
 
 export const THEMES = {
- day:{background:'#e7e5dc',ground:'#d6d7cb',building:'#8f9b98',road:'#efeee7',park:'#819778',water:'#4f827c',shore:'#c7d0bc',sun:'#fff0d9'},
- night:{background:'#101f29',ground:'#293e46',building:'#728d92',road:'#637e85',park:'#36574d',water:'#37616b',shore:'#6d8075',sun:'#b6cfdf'},
+ day:{background:'#f0f0ed',ground:'#e5e6e2',building:'#838a8d',context:'#f2f2ef',road:'#d4d6d4',contextRoad:'#d9dcda',park:'#7f9472',contextPark:'#d5ddd0',water:'#779c98',shore:'#e2e5dc',sun:'#fffaf0',tree:'#ffffff'},
+ night:{background:'#101f26',ground:'#23333a',building:'#65757c',context:'#31444b',road:'#778387',contextRoad:'#354951',park:'#364e43',contextPark:'#2b403b',water:'#3a6269',shore:'#53686b',sun:'#dce8ef',tree:'#5c7771'},
 };
 export function makeMaterials() {
- const time={value:0}, night={value:0};
- const ground=new THREE.MeshStandardMaterial({color:THEMES.day.ground,roughness:0.98});
+ const time={value:0},night={value:0};
+ const coreColor={value:new THREE.Color(THEMES.day.building)},contextColor={value:new THREE.Color(THEMES.day.context)};
+ const contextBuilding=new THREE.MeshStandardMaterial({color:'white',roughness:.92});
+ const contextFocus={value:new THREE.Vector3(0,0,0)};
+ contextBuilding.onBeforeCompile=s=>{
+  Object.assign(s.uniforms,{uContextFocus:contextFocus,uCoreColor:coreColor,uContextColor:contextColor});
+  s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec2 vContextPoint;').replace('#include <worldpos_vertex>',`#include <worldpos_vertex>
+   vec4 contextWorld=vec4(transformed,1.0);
+   #ifdef USE_INSTANCING
+    contextWorld=instanceMatrix*contextWorld;
+   #endif
+   vContextPoint=(modelMatrix*contextWorld).xz;
+  `);
+  s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nvarying vec2 vContextPoint; uniform vec3 uContextFocus; uniform vec3 uCoreColor; uniform vec3 uContextColor;').replace('#include <color_fragment>',`#include <color_fragment>
+   float focus=(1.0-smoothstep(8.0,22.0,distance(vContextPoint,uContextFocus.xy)))*uContextFocus.z;
+   diffuseColor.rgb=mix(uContextColor,uCoreColor,focus*0.65);
+  `);
+ };
+ const ground=new THREE.MeshStandardMaterial({color:THEMES.day.ground,roughness:1,vertexColors:true});
  const park=new THREE.MeshStandardMaterial({color:THEMES.day.park,roughness:1});
- const road=new THREE.MeshStandardMaterial({color:THEMES.day.road,roughness:0.95});
- const shore=new THREE.MeshStandardMaterial({color:THEMES.day.shore,roughness:0.9});
- const building=new THREE.MeshStandardMaterial({transparent:true,color:THEMES.day.building,vertexColors:true,roughness:0.72,metalness:0.06});
- const farBuilding=new THREE.MeshStandardMaterial({color:THEMES.day.building,roughness:1,transparent:true,opacity:0});
- // World-space facade detail: geometry stays honest, window pattern is illustrative.
- building.onBeforeCompile=(s)=>{
-   s.uniforms.uNight=night;
-   s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vWorld; varying vec3 vFace;').replace('#include <worldpos_vertex>','#include <worldpos_vertex>\nvWorld=(modelMatrix*vec4(transformed,1.0)).xyz; vFace=normal;');
-   s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vWorld; varying vec3 vFace; uniform float uNight;');
-   s.fragmentShader=s.fragmentShader.replace('#include <fog_fragment>',`#include <fog_fragment>
-     float boundary=max(abs((vWorld.x-2.0)/39.0),abs((vWorld.z+12.0)/96.0));
-     gl_FragColor.rgb=mix(gl_FragColor.rgb,fogColor,smoothstep(0.64,1.08,boundary)*0.95);
-   `);
-   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
-     float side=1.0-smoothstep(0.25,0.75,abs(vFace.y));
-     float axis=abs(vFace.x)>abs(vFace.z)?vWorld.z:vWorld.x;
-     vec2 cell=vec2(axis*22.0,vWorld.y*26.0);
-     vec2 f=fract(cell);
-     float windowMask=step(0.23,f.x)*step(f.x,0.74)*step(0.24,f.y)*step(f.y,0.72)*side;
-     float lit=step(0.34,fract(sin(dot(floor(cell),vec2(12.98,78.23)))*43758.54));
-     float detail=1.0-smoothstep(100.0,185.0,length(vViewPosition));
-     diffuseColor.rgb*=1.0-windowMask*0.42*detail;
-     diffuseColor.rgb=mix(diffuseColor.rgb,vec3(1.8,1.31,0.69),windowMask*lit*uNight*detail*0.85);
-   `);
+ const contextPark=new THREE.MeshStandardMaterial({color:THEMES.day.contextPark,roughness:1});
+ const road=new THREE.MeshStandardMaterial({color:THEMES.day.road,roughness:1});
+ const contextRoad=new THREE.MeshStandardMaterial({color:THEMES.day.contextRoad,roughness:1});
+ const tree=new THREE.MeshStandardMaterial({color:THEMES.day.tree,roughness:1});
+ const shore=new THREE.MeshStandardMaterial({color:THEMES.day.shore,roughness:1});
+ const building=new THREE.MeshStandardMaterial({color:'white',vertexColors:true,roughness:.84,metalness:.02});
+ building.onBeforeCompile=s=>{
+  Object.assign(s.uniforms,{uNight:night,uCoreColor:coreColor,uContextColor:contextColor});
+  s.vertexShader=s.vertexShader.replace('#include <common>',`#include <common>
+    attribute float importance;
+    varying vec3 vWorld; varying vec3 vFace; varying float vImportance;`)
+   .replace('#include <worldpos_vertex>',`#include <worldpos_vertex>
+    vWorld=(modelMatrix*vec4(transformed,1.0)).xyz; vFace=normal; vImportance=importance;`);
+  s.fragmentShader=s.fragmentShader.replace('#include <common>',`#include <common>
+    varying vec3 vWorld; varying vec3 vFace; varying float vImportance;
+    uniform float uNight; uniform vec3 uCoreColor; uniform vec3 uContextColor;`);
+  s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
+    float side=1.0-smoothstep(0.25,0.75,abs(vFace.y));
+    vec3 base=mix(uContextColor,uCoreColor,vImportance);
+    vec3 roof=mix(vec3(0.86),vec3(0.17,0.22,0.25),uNight);
+    diffuseColor.rgb*=mix(base,mix(base,roof,0.60),1.0-side);
+    float axis=abs(vFace.x)>abs(vFace.z)?vWorld.z:vWorld.x;
+    vec2 cell=vec2(axis*24.0,vWorld.y*29.0);
+    vec2 aa=max(fwidth(cell),vec2(0.001)); vec2 f=fract(cell);
+    vec2 pane=smoothstep(vec2(0.22)-aa,vec2(0.22)+aa,f)*(1.0-smoothstep(vec2(0.75)-aa,vec2(0.75)+aa,f));
+    float resolution=1.0-smoothstep(0.45,1.5,max(aa.x,aa.y));
+    float windows=pane.x*pane.y*side*vImportance*resolution;
+    float lit=step(0.57,fract(sin(dot(floor(cell),vec2(12.98,78.23)))*43758.54));
+    diffuseColor.rgb*=1.0-windows*0.44;
+  `);
+  s.fragmentShader=s.fragmentShader.replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
+    totalEmissiveRadiance+=vec3(0.92,0.66,0.34)*(windows*lit*0.90+side*vImportance*(1.0-resolution)*0.025)*uNight;
+  `);
  };
- const water=new THREE.MeshStandardMaterial({color:THEMES.day.water,roughness:0.36,metalness:0.25});
- water.onBeforeCompile=(s)=>{
-   s.uniforms.uTime=time;s.uniforms.uNight=night;
-   s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vWater;').replace('#include <worldpos_vertex>','#include <worldpos_vertex>\nvWater=(modelMatrix*vec4(transformed,1.0)).xyz;');
-   s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vWater; uniform float uTime; uniform float uNight;');
-   s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>
-     float ripple=sin(vWater.z*22.0+vWater.x*3.0-uTime*0.55)*sin(vWater.x*18.0+uTime*0.32);
-     normal=normalize(normal+vec3(ripple*0.009,0.0,cos(vWater.z*11.0+uTime*0.3)*0.007));
-   `);
-   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
-     float current=sin(vWater.x*3.4+sin(vWater.z*0.5-uTime*0.03))*0.018;
-     float glint=pow(max(0.0,sin(vWater.z*22.0+vWater.x*2.0-uTime*0.38)),32.0);
-     diffuseColor.rgb+=glint*0.009;
-   `);
+ const water=new THREE.MeshStandardMaterial({color:THEMES.day.water,roughness:.31,metalness:.16});
+ water.onBeforeCompile=s=>{
+  s.uniforms.uTime=time;
+  s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vWater;')
+   .replace('#include <worldpos_vertex>','#include <worldpos_vertex>\nvWater=(modelMatrix*vec4(transformed,1.0)).xyz;');
+  s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vWater; uniform float uTime;');
+  s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>
+    float ripple=sin(vWater.z*18.0+vWater.x*3.0-uTime*0.45)*sin(vWater.x*15.0+uTime*0.25);
+    normal=normalize(normal+vec3(ripple*0.012,0.0,cos(vWater.z*9.0+uTime*0.25)*0.008));
+  `);
  };
- function updateTheme(t:number) {
-   night.value=t;
-   farBuilding.color.set(THEMES.day.building).lerp(new THREE.Color(THEMES.night.building),t);
-   const entries={ground,building,road,park,water,shore};
-   for(const [k,m] of Object.entries(entries)) {
-     const key=k as keyof typeof THEMES.day;
-     m.color.set(THEMES.day[key]).lerp(new THREE.Color(THEMES.night[key]),t);
-   }
+ const selection=new THREE.MeshBasicMaterial({color:'#c1b3e1',transparent:true,opacity:.18,depthWrite:false,side:THREE.DoubleSide});
+ const selectionEdge=new THREE.MeshBasicMaterial({color:'#9276bd',transparent:true,opacity:.8,depthWrite:false,side:THREE.DoubleSide});
+ const entries={ground,road,contextRoad,park,contextPark,water,shore,tree};
+ const dayColors=Object.fromEntries(Object.keys(entries).map(k=>[k,new THREE.Color(THEMES.day[k as keyof typeof entries])])) as Record<keyof typeof entries,THREE.Color>;
+ const nightColors=Object.fromEntries(Object.keys(entries).map(k=>[k,new THREE.Color(THEMES.night[k as keyof typeof entries])])) as Record<keyof typeof entries,THREE.Color>;
+ const coreDay=new THREE.Color(THEMES.day.building),coreNight=new THREE.Color(THEMES.night.building);
+ const contextDay=new THREE.Color(THEMES.day.context),contextNight=new THREE.Color(THEMES.night.context);
+ function updateTheme(t:number){
+  night.value=t;coreColor.value.copy(coreDay).lerp(coreNight,t);contextColor.value.copy(contextDay).lerp(contextNight,t);
+  for(const key of Object.keys(entries) as (keyof typeof entries)[])entries[key].color.copy(dayColors[key]).lerp(nightColors[key],t);
  }
- return {ground,building,farBuilding,road,park,water,shore,time,night,updateTheme};
+ return {ground,contextFocus,contextBuilding,tree,building,road,contextRoad,park,contextPark,water,shore,selection,selectionEdge,time,updateTheme};
 }
-export type Materials = ReturnType<typeof makeMaterials>;
+export type Materials=ReturnType<typeof makeMaterials>;

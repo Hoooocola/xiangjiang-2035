@@ -1,0 +1,32 @@
+{
+  "source": "https://registry.opendata.aws/terrain-tiles/",
+  "attribution": "Mapzen; SRTM and GMTED2010 terrain data courtesy of the U.S. Geological Survey",
+  "license": "Source-specific public-domain datasets; see https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+  "retrieved": "2026-10-21",
+  "bounds": [
+    112.7,
+    27.86,
+    113.18,
+    28.58
+  ],
+  "format": "Terrarium RGB, EPSG:3857 XYZ; decoded to local WGS84 grid",
+  "tiles": [
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1665/854.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1665/855.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1665/856.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1665/857.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1665/858.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1666/854.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1666/855.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1666/856.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1666/857.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1666/858.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1667/854.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1667/855.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1667/856.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1667/857.png",
+    "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/11/1667/858.png"
+  ],
+  "minMeters": -190,
+  "maxMeters": 752
+}

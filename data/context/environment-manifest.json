@@ -1,0 +1,21 @@
+{
+  "release": "2026-09-23.1",
+  "retrieved": "2026-10-21",
+  "roads": 30085,
+  "forestPolygons": 2597,
+  "forestCells": 21076,
+  "forestGrid": [
+    320,
+    512
+  ],
+  "sources": [
+    "https://tiles.overturemaps.org/2026-09-23.1/base.pmtiles",
+    "https://tiles.overturemaps.org/2026-09-23.1/transportation.pmtiles"
+  ],
+  "attribution": "© OpenStreetMap contributors; Overture Maps Foundation; ESA WorldCover 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+  "licenses": [
+    "ODbL-1.0",
+    "CC-BY-4.0"
+  ],
+  "note": "Vegetation is rasterized land-cover context, not a single-tree survey. Roads are public vector tiles; coverage can be incomplete."
+}
