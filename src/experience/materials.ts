@@ -62,13 +62,16 @@ export function makeMaterials() {
  const ground=new THREE.MeshStandardMaterial({color:THEMES.day.ground,roughness:1,vertexColors:true});
  ground.onBeforeCompile=s=>{
   s.uniforms.uNight=night;
-  s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nattribute float importance; varying float vGroundImportance;').replace('#include <begin_vertex>','#include <begin_vertex>\nvGroundImportance=importance;');
-  s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nuniform float uNight; varying float vGroundImportance;').replace('#include <color_fragment>',`#include <color_fragment>
-   vec3 litGround=mix(vec3(.014,.035,.042),vec3(.14,.16,.13),vGroundImportance);
-   diffuseColor.rgb*=mix(vec3(1.0),litGround,uNight);
+  s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nattribute float importance; varying float vGroundImportance; varying vec3 vGroundPosition;').replace('#include <begin_vertex>','#include <begin_vertex>\nvGroundImportance=importance; vGroundPosition=position;');
+  s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nuniform float uNight; varying float vGroundImportance; varying vec3 vGroundPosition;').replace('#include <color_fragment>',`#include <color_fragment>
+   float district=smoothstep(.15,.85,vGroundImportance);
+   vec3 dayGround=mix(vec3(1.0),vec3(.43,.46,.42),district);
+   vec3 litGround=mix(vec3(.012,.026,.032),vec3(.22,.20,.15),district);
+   diffuseColor.rgb*=mix(dayGround,litGround,uNight);
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
-   totalEmissiveRadiance+=vec3(.012,.014,.011)*vGroundImportance*uNight;
+   float pool=.62+.38*pow(.5+.5*sin(vGroundPosition.x*.65)*cos(vGroundPosition.z*.55),2.0);
+   totalEmissiveRadiance+=vec3(.27,.20,.105)*district*pool*uNight;
   `);
  };
  const park=new THREE.MeshStandardMaterial({color:THEMES.day.park,roughness:1});
