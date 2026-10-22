@@ -1,6 +1,12 @@
-# 将来的江来 / 湘江 2035
+# 湘江生态文化与社会创新地图
 
-## 三维空间体验 Demo
+## 湘江 2035 / 将来的江来 · 功能 Demo
+
+本轮已完成鹅洲功能样板：地点详情、六类空间图层、按年份浏览研究、证据与问题关联、设计机会及 Today / 2035 概念情景。公开资料与演示内容逐条区分，目录为只读 TypeScript 数据，不读取私有团队记录。
+
+- [功能演示操作指南](docs/functional-demo-guide.md)
+- [完整功能状态与 Sprint 验收](docs/functional-demo-status.md)
+- [本轮功能审计](docs/functional-audit.md)
 
 默认首页进入 `/experience`：Three.js + 真实 OSM 湘江河道/洲岛/建筑占地，自定义镜头、沿江巡游、地点聚焦、全段概览及日夜主题。此页面无需数据库或地图 Token。
 
@@ -16,7 +22,7 @@ pnpm dev
 - [参考研究](docs/reference-analysis.md) · [视觉对照](docs/visual-review.md)
 - [地理来源、许可与坐标契约](docs/data-sources.md)
 - 地理数据重新生成：`pnpm scene:prepare`，使用已保存在 `data/osm/` 的源数据。
-- 旧版安全检查点：`legacy-before-3d`（`3bf2d3e`）；开发分支 `feat/xiangjiang-immersive`。
+- 旧版安全检查点：`legacy-before-3d`（`3bf2d3e`）；当前开发分支 `feat/xiangjiang-functional-demo`；本轮安全标签 `before-functional-demo-20261022`（`2fd7f95`）。
 - 原研究平台仍位于 `/create-research`，以下为保留的数据库工作流。
 
 ## 原研究平台

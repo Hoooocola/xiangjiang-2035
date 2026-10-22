@@ -1,3 +1,6 @@
+import {buildOverlays} from './overlays';
+import {MAP_OBJECTS,visibleObjects} from '../atlas/objects';
+import type {OverlayState} from '../atlas/types';
 import * as THREE from 'three';
 import { CameraRig, clonePose } from './camera';
 import { CAMERA_PRESETS, OVERVIEW_POSE, PLACES, placePose, type CameraPose } from './config';
@@ -15,7 +18,7 @@ export interface ExperienceCallbacks {
 }
 export interface ExperienceEngine {
  start:()=>void; tour:()=>void; stop:()=>void; reset:()=>void;
- navigate:(x:number,z:number)=>void; overview:()=>void; focus:(id:string)=>void; back:()=>void;
+ setOverlays:(state:OverlayState)=>void; navigate:(x:number,z:number)=>void; overview:()=>void; focus:(id:string)=>void; back:()=>void;
  theme:(night:boolean)=>void; zoom:(f:number)=>void; orbit:(v:number)=>void; preset:(index:number)=>void;dispose:()=>void;
 }
 export async function createExperience(host:HTMLDivElement,markers:Map<string,HTMLButtonElement>,callbacks:ExperienceCallbacks,signal:AbortSignal):Promise<ExperienceEngine>{
@@ -53,6 +56,8 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   callbacks.progress(35,'构建河岸、街区与洲岛');
   built=await buildScene(data,grid,context,materials,n=>callbacks.progress(Math.round(n),'构建河岸、街区与洲岛'));
   scene.add(built.root);
+  const overlays=buildOverlays(built.terrain.height);scene.add(overlays.root);
+  let overlayState:OverlayState={layers:[],scenario:"today",selectedObjectIds:[],placeId:null,proposalVisible:true};
   if(signal.aborted)throw new DOMException('Aborted','AbortError');
   callbacks.progress(88,'准备光影与镜头');
   function resize(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h);camera.aspect=w/h;camera.fov=w<700?52:38;camera.updateProjectionMatrix();}
@@ -100,6 +105,11 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
     const show=projectPoint.z<1&&projectPoint.z>-1&&px>35&&px<w-35&&py>100&&py<h-120&&(!place.overview||d>170||selectedId===place.id)&&!(d>300&&['yuelu','city'].includes(place.id));
     el.dataset.edge=px>w-200?'right':'left';el.style.transform=`translate3d(${px}px,${py}px,0)`;el.style.visibility=show?'visible':'hidden';
    }
+   const visibleIds=new Set(visibleObjects(overlayState).map(o=>o.id));
+   for(const o of MAP_OBJECTS){const el=markers.get('object:'+o.id);if(!el)continue;const [x,z]=project(o.anchor);projectPoint.set(x,(built?.terrain.height(x,z)??0)+1,z).project(camera);const px=(projectPoint.x*.5+.5)*w,py=(-projectPoint.y*.5+.5)*h;
+    const show=visibleIds.has(o.id)&&projectPoint.z<1&&projectPoint.z>-1&&px>24&&px<w-24&&py>110&&py<h-130&&(d<230||overlayState.selectedObjectIds.includes(o.id));
+    el.style.transform=`translate3d(${px}px,${py}px,0)`;el.style.visibility=show?'visible':'hidden';el.dataset.edge=px>w-220?'right':'left';
+   }
    ring.scale.setScalar(1+(media.matches?0:Math.sin(now*.0015)*.05));
    renderer.render(scene,camera);frames++;frameTime+=elapsed;metricsTime+=elapsed;
    if(metricsTime>1.5&&built){callbacks.metrics({fps:Math.round(frames/frameTime),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,...built.stats});frames=0;frameTime=0;metricsTime=0;}
@@ -113,7 +123,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    const sequence:CameraPose[]=[{target:[0,0,11],distance:66,azimuth:.40,polar:.83},{target:[1,0,-12],distance:73,azimuth:.29,polar:.76},CAMERA_PRESETS[0].pose];
    rig.cruise(sequence,11800,()=>{callbacks.motion(false);});
   };
-  return {start:tour,tour,stop,navigate:(x,z)=>{previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{
+  return {setOverlays:(state)=>{overlayState=state;overlays.update(state);},start:tour,tour,stop,navigate:(x,z)=>{previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{
    const p=PLACES.find(p=>p.id===id);if(!p)return;previous??=clonePose(rig.pose);const [x,z]=project(p.coordinate);ring.position.set(x,(built?.terrain.height(x,z)??0)+.08,z);select(id);ring.visible=false;fly(placePose(p));
   },back:()=>{ring.visible=false;select();fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},preset:(i)=>{previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[i].pose);},dispose};
  }catch(e){dispose();throw e;}
