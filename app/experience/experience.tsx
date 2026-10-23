@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import Link from 'next/link';
-import {ArrowUpRight,ArrowRight,Plus,Minus,RotateCcw,Sun,Moon,X,Compass,Play,Pause,Info,ChevronLeft,ChevronRight,MapPin,Layers,BookOpen,SlidersHorizontal} from 'lucide-react';
+import {ArrowUpRight,ArrowRight,RotateCcw,Sun,Moon,X,Compass,Play,Pause,Info,ChevronLeft,MapPin,Layers,BookOpen,SlidersHorizontal} from 'lucide-react';
 import {CAMERA_PRESETS,PLACES} from '@/src/experience/config';
 import {MINI_MAP,miniPoint,worldPoint} from '@/src/experience/minimap';
 import {project} from '@/src/experience/geo';
@@ -9,6 +9,7 @@ import type {ExperienceEngine} from '@/src/experience/engine';
 import styles from './experience.module.css';
 import {PlaceDetail,AtlasLibrary,type DetailTab} from './place-detail';
 import {LayerPanel} from './layer-panel';
+import {CameraControls} from './camera-controls';
 import {LAYERS,recordById} from '@/src/atlas/catalog';
 import {MAP_OBJECTS,layersForObjects,visibleObjects} from '@/src/atlas/objects';
 import type {LayerId,OverlayState,ProposalScenario} from '@/src/atlas/types';
@@ -21,7 +22,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
  const [overview,setOverview]=useState(false),[freeExplore,setFreeExplore]=useState(false),[drawer,setDrawer]=useState<'places'|'views'|'about'|null>(null),[selected,setSelected]=useState<string|null>(null);
  const [detailOpen,setDetailOpen]=useState(false),[detailTab,setDetailTab]=useState<DetailTab>('overview'),[recordId,setRecordId]=useState<string|null>(null);
  const [atlasPanel,setAtlasPanel]=useState<'layers'|'library'|null>(null),[layers,setLayers]=useState<LayerId[]>([]),[proposal,setProposal]=useState<ProposalScenario|null>(null),[objectIds,setObjectIds]=useState<string[]>([]);
- const [preset,setPreset]=useState(0),[mapPaths,setMapPaths]=useState<string[]>([]),[toolsOpen,setToolsOpen]=useState(false);
+ const [preset,setPreset]=useState(0),[mapPaths,setMapPaths]=useState<string[]>([]);
  const [metrics,setMetrics]=useState<{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number}|null>(null);
  const closeRef=useRef<HTMLButtonElement>(null),drawerCloseRef=useRef<HTMLButtonElement>(null),previousOverview=useRef(false);
  useEffect(()=>{
@@ -108,11 +109,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
    <button disabled={!loaded} onClick={showOverview} aria-pressed={overview}><span>湘江全段<small>THE RIVER CORRIDOR</small></span><i><Compass size={20} strokeWidth={1}/></i></button>
    <button disabled={!loaded} aria-expanded={drawer==='places'} onClick={()=>{setAtlasPanel(null);setDrawer(drawer==='places'?null:'places');}}><span>地点探索<small>EXPLORE THE PLACES</small></span><i><MapPin size={20} strokeWidth={1}/></i></button>
   </nav>
-  {loaded&&!error&&<div className={styles.cameraControls} aria-label="镜头控制">
-   <button className={styles.compassButton} onClick={()=>setToolsOpen(!toolsOpen)} aria-expanded={toolsOpen} aria-label="展开镜头控制"><span>N</span><Compass size={30} strokeWidth={1} data-compass/></button>
-   {toolsOpen&&<div className={styles.cameraTools}><button onClick={()=>engine.current?.orbit(-.22)} aria-label="向左旋转"><ChevronLeft size={18}/></button><button onClick={()=>engine.current?.orbit(.22)} aria-label="向右旋转"><ChevronRight size={18}/></button><button onClick={()=>engine.current?.zoom(.8)} aria-label="放大"><Plus size={18}/></button><button onClick={()=>engine.current?.zoom(1.25)} aria-label="缩小"><Minus size={18}/></button></div>}
-   <button onClick={reset} aria-label="重置镜头"><RotateCcw size={17} strokeWidth={1.3}/></button>
-  </div>}
+  {loaded&&!error&&<CameraControls onReset={reset} actions={{pan:(x,y)=>engine.current?.pan(x,y),orbit:v=>engine.current?.orbit(v),zoom:f=>engine.current?.zoom(f),dragMode:mode=>engine.current?.dragMode(mode)}}/>}
   <div className={styles.attribution}><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap</a> · <a href="https://docs.overturemaps.org/attribution/" target="_blank" rel="noreferrer">Overture Maps</a> · <a href="https://esa-worldcover.org/en" target="_blank" rel="noreferrer">ESA WorldCover</a> · <a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noreferrer">Mapzen / USGS</a></div>
   <div className={styles.edition}>XIANGJIANG 2035 / FUNCTIONAL DEMO 04</div>
   <div className={styles.metrics} data-testid="scene-metrics">{JSON.stringify(metrics)}</div><div className={styles.motionStatus} role="status" aria-live="polite">{moving?'镜头移动中，可拖动打断':loaded?'场景已就绪':loadingLabel}</div>

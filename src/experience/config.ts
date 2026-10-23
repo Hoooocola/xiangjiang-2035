@@ -15,6 +15,10 @@ export const PLACES: Place[] = [
  {id:'ezhou',name:'鹅洲',en:'E ZHOU',coordinate:EZHOU_COORDINATE,index:'04',category:'洲岛 / 研究样板',description:'从洲岛的公开资料出发，查看研究、证据与设计构想。公开资料与演示内容分别标记，可沿关联自由探索。',note:'公开地名近似定位 · 非测绘边界',distance:36,overview:true},
  {id:'tongguan',name:'铜官窑附近',en:'TONGGUAN · NORTH',coordinate:[112.811,28.434],index:'05',category:'研究范围 / 北端',description:'本轮研究范围的北端参考。沿湘江向南，串联城市、洲岛与沿岸文化景观。',note:'范围示意点 · 非遗址精确边界',distance:65,overview:true},
  {id:'zhaoshan',name:'昭山附近',en:'ZHAOSHAN · SOUTH',coordinate:[112.939,27.963],index:'06',category:'研究范围 / 南端',description:'本轮研究范围的南端参考，与铜官窑附近共同界定湘江研究长廊。',note:'范围示意点 · 非景区精确边界',distance:65,overview:true},
+ {id:'moon-island',name:'月亮岛',en:'MOON ISLAND',coordinate:[112.9325093,28.3018335],index:'07',category:'洲岛 / 北段生态',description:'以月亮岛的开放地理轮廓观察北段河流与周边城市空间。西岸大泽湖尚待可靠边界核验，当前未将它划为已验证重点范围。',note:'导航点由 OSM 多边形采样推导 · 非精确测绘中心',distance:95,overview:true},
+ {id:'yanghu',name:'洋湖湿地',en:'YANGHU WETLAND',coordinate:[112.9344092,28.1302825],index:'08',category:'生态自然 / 湿地',description:'沿开放地理数据中的湿地与公园边界组织展示，保留水体、生态地块和周边道路的空间联系。',note:'OSM 公园多边形 · 不代表湿地保护红线',distance:70,overview:true},
+ {id:'baxi',name:'巴溪洲',en:'BAXI ISLAND',coordinate:[112.9203838,28.0697485],index:'09',category:'洲岛 / 南段生态',description:'从完整洲岛轮廓观察南段岸线与城市环境。相邻大王山尚缺核验边界，其背景地形保留，不伪造景区范围。',note:'OSM 洲岛轮廓 · 周边背景与研究范围分别管理',distance:95,overview:true},
+ {id:'xingma',name:'兴马洲',en:'XINGMA ISLAND',coordinate:[112.9682084,27.9977257],index:'10',category:'洲岛 / 南段生态',description:'与鹅洲相邻的南段洲岛。展示保持岛屿整体，并保留江岸与周边地理背景，尚未编入田野研究档案。',note:'OSM 洲岛轮廓 · 无研究资料不表示未被研究',distance:85,overview:true},
 ];
 export function placePose(place:Place):CameraPose {const [x,z]=project(place.coordinate);if(place.id==='zhaoshan')return {target:[x+11,0,z-16],distance:110,azimuth:-.45,polar:.65};return {target:[x+place.distance*.09,0,z-place.distance*.04],distance:place.distance,azimuth:0.45,polar:0.88};}
 export const CAMERA_LIMITS = {minDistance:23,maxDistance:1200,minPolar:0.18,maxPolar:1.02};
