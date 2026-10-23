@@ -5,13 +5,13 @@ import {X,ArrowUpRight,MapPin,ChevronLeft} from 'lucide-react';
 import type {Place} from '@/src/experience/config';
 import {profileFor,sourceById,STATUS_LABEL} from '@/src/atlas/places';
 import {RECORDS,KIND_LABEL,recordById,recordsFor,researchYears} from '@/src/atlas/catalog';
-import type {AtlasRecord,Scenario} from '@/src/atlas/types';
+import type {AtlasRecord,ProposalScenario} from '@/src/atlas/types';
 import styles from './atlas.module.css';
 export type DetailTab='overview'|'research'|'evidence'|'questions'|'design';
 const tabs:[DetailTab,string][]=[['overview','地点概况'],['research','已有研究'],['evidence','田野证据'],['questions','问题与缺口'],['design','设计方案']];
 export function Sources({ids}:{ids:string[]}){return <div>{ids.map(id=>{const s=sourceById(id);return <p key={id} className={styles.source}><small>{STATUS_LABEL[s.status]} · {s.year}</small>{s.url?<a href={s.url} target="_blank" rel="noreferrer">{s.title}<ArrowUpRight size={13}/></a>:s.title}<small>{s.author}</small></p>;})}</div>;}
 export function RecordCard({record,onOpen}:{record:AtlasRecord;onOpen:(id:string)=>void}){return <button className={styles.recordCard} onClick={()=>onOpen(record.id)}><small>{record.year} · {KIND_LABEL[record.kind]} · {record.dataStatus==='demo'?'演示':'公开资料'}</small><strong>{record.title}</strong><span>{record.summary}</span><em>查看资料 →</em></button>;}
-export function PlaceDetail({place,onClose,onMap,tab,onTab,recordId,onRecord,scenario,onScenario,proposalVisible,onProposalVisible}:{place:Place;onClose:()=>void;onMap:()=>void;tab:DetailTab;onTab:(tab:DetailTab)=>void;recordId:string|null;onRecord:(id:string|null)=>void;scenario:Scenario['id'];onScenario:(id:Scenario['id'])=>void;proposalVisible:boolean;onProposalVisible:()=>void}){
+export function PlaceDetail({place,onClose,onMap,tab,onTab,recordId,onRecord,proposal,onProposal}:{place:Place;onClose:()=>void;onMap:()=>void;tab:DetailTab;onTab:(tab:DetailTab)=>void;recordId:string|null;onRecord:(id:string|null)=>void;proposal:ProposalScenario|null;onProposal:(view:ProposalScenario['view'])=>void}){
  const [year,setYear]=useState('all');const p=profileFor(place.id),record=recordId?recordById(recordId):undefined,body=useRef<HTMLDivElement>(null),close=useRef<HTMLButtonElement>(null);
  useEffect(()=>{close.current?.focus({preventScroll:true});},[]);
  useEffect(()=>{body.current?.scrollTo(0,0);},[recordId,tab,year]);
@@ -25,7 +25,7 @@ export function PlaceDetail({place,onClose,onMap,tab,onTab,recordId,onRecord,sce
     <small>{KIND_LABEL[record.kind]} · {record.year}{record.gapType?` · ${record.gapType}`:''}</small><h3 className={styles.recordTitle}>{record.title}</h3>
     <p>{record.summary}</p><p className={styles.notice}>{record.state}</p><dl className={styles.meta}><dt>作者 / 团队</dt><dd>{record.author}</dd>{record.course&&<><dt>课程 / 项目</dt><dd>{record.course}</dd></>}{record.proposalType&&<><dt>设计类型</dt><dd>{record.proposalType}</dd></>}<dt>主题</dt><dd>{record.themes.join('、')||'地点研究与设计'}</dd></dl>
     {record.body.map((t,i)=><p key={i}>{t}</p>)}
-    {record.kind==='Proposal'&&<section className={styles.scenarioBox}><h3>在地图中查看设计介入</h3><p>到达说明 → 轻行导览 → 维护反馈</p><button className={styles.primary} onClick={()=>onScenario(scenario==='2035'?'today':'2035')}>{scenario==='2035'?'恢复 Today 现状':'查看 2035 设计愿景'}</button>{scenario==='2035'&&<button className={styles.back} onClick={onProposalVisible}>{proposalVisible?'隐藏方案叠加':'显示方案叠加'}</button>}<p className={styles.notice}>概念服务触点与路线，不是未来预测或施工方案。</p></section>}
+    {record.kind==='Proposal'&&<section className={styles.scenarioBox}><h3>方案情景比较</h3><p>仅叠加当前方案的概念触点与路线。基础地理及研究资料保持可见。</p><div role="group" aria-label="当前方案情景"><button className={styles.primary} aria-pressed={proposal?.proposalId!==record.id||proposal.view==='baseline'} onClick={()=>onProposal('baseline')}>基线场景</button><button className={styles.primary} aria-pressed={proposal?.proposalId===record.id&&proposal.view==='intervention'} onClick={()=>onProposal('intervention')}>方案介入</button></div><p className={styles.notice}>概念演示 · 非未来预测或施工方案。切换地点或离开此资料后退出方案情景。</p></section>}
     {record.objectIds.length>0&&<button className={styles.primary} onClick={onMap}><MapPin size={14}/>定位关联空间</button>}
     {record.evidenceIds.length>0&&<><h3>关联证据</h3>{renderCards(record.evidenceIds.map(recordById).filter((r):r is AtlasRecord=>!!r))}</>}
     {record.relatedIds.length>0&&<><h3>继续探索</h3>{renderCards(record.relatedIds.map(recordById).filter((r):r is AtlasRecord=>!!r))}</>}

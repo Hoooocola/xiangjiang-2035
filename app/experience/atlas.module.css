@@ -9,3 +9,5 @@
 
 @media(min-width:1051px){.panel{bottom:52px}.leftPanel{bottom:178px}}
 @media(min-width:701px) and (max-width:1050px){.panel{top:145px;bottom:145px}.leftPanel{bottom:175px}}
+
+.scenarioBox [role=group]{display:flex;gap:20px}.scenarioBox [role=group] button{background:transparent!important;border-bottom:1px solid var(--line)!important;min-height:44px!important;color:var(--muted)!important;padding:8px 0!important}.scenarioBox [role=group] button[aria-pressed=true]{color:var(--accent)!important;border-color:var(--accent)!important}
