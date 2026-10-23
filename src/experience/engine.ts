@@ -6,9 +6,9 @@ import { CameraRig, clonePose } from './camera';
 import { CAMERA_PRESETS, OVERVIEW_POSE, PLACES, placePose, type CameraPose } from './config';
 import { makeMaterials } from './materials';
 import {createEnvironment} from './lighting';
-import { buildScene,type ContextData } from './scene';
-import { project, type SceneData } from './geo';
-import type {TerrainGrid} from './terrain';
+import { buildScene } from './scene';
+import {loadExperienceAssets} from './assets';
+import { project } from './geo';
 import {miniPoint,miniViewport,riverMiniPaths} from './minimap';
 export interface ExperienceCallbacks {
  progress:(n:number,label:string)=>void;
@@ -49,7 +49,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
  };
  try{
   callbacks.progress(12,'读取湘江地理数据');
-  const [response,terrainResponse,contextResponse,environmentResponse]=await Promise.all([fetch('/data/xiangjiang.geojson',{signal}),fetch('/data/terrain.json',{signal}),fetch('/data/context.json',{signal}),fetch('/data/environment.json',{signal})]);if(!response.ok||!terrainResponse.ok||!contextResponse.ok||!environmentResponse.ok)throw new Error('地理数据加载失败，请重试。');const data:SceneData=await response.json();const grid:TerrainGrid=await terrainResponse.json();const context:ContextData=await contextResponse.json();const environment:SceneData&{forest:number[]}=await environmentResponse.json();data.features.push(...environment.features);grid.forest=environment.forest;
+  const {data,grid,context}=await loadExperienceAssets(signal);
   if(signal.aborted)throw new DOMException('Aborted','AbortError');
   callbacks.minimap(riverMiniPaths(data));
   callbacks.progress(35,'构建河岸、街区与洲岛');

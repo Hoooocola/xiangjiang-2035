@@ -1,3 +1,4 @@
+import {vegetationSpacing} from './assets';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { TessellateModifier } from 'three/addons/modifiers/TessellateModifier.js';
@@ -60,7 +61,7 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  function plant(rings:Coordinate[][],island=false){
   const projected=rings.map(r=>r.map(project)),pts=projected[0],xs=pts.map(v=>v[0]),zs=pts.map(v=>v[1]);
   const minx=Math.min(...xs),maxx=Math.max(...xs),minz=Math.min(...zs),maxz=Math.max(...zs);
-  const focus=terrain.importance((minx+maxx)/2,(minz+maxz)/2),step=island?.32:focus>.2?.65:1.8;
+  const step=vegetationSpacing(terrain.distance((minx+maxx)/2,(minz+maxz)/2),island);
   // A geographic sampling grid within source vegetation polygons, including holes.
   for(let x=Math.floor(minx/step)*step;x<=maxx;x+=step)for(let z=Math.floor(minz/step)*step;z<=maxz;z+=step){
    if(x<grid.x0||x>grid.x0+grid.dx*(grid.width-1)||z<grid.z0||z>grid.z0+grid.dz*(grid.height-1))continue;
