@@ -1,4 +1,5 @@
 import {MathUtils} from 'three';
+import {createAoiSampler} from './aoi';
 export interface TerrainGrid {
  width:number; height:number; x0:number; z0:number; dx:number; dz:number;
  elevations:number[]; riverDistance:number[]; water:number[]; forest?:number[];
@@ -17,9 +18,7 @@ export function terrainSampler(grid:TerrainGrid) {
   // Floodplain compression and shoreline flattening are visual adjustments.
   return Math.max(0,(elevation-42)/100)*MathUtils.smoothstep(river,2.5,5.5);
  };
- // One continuous river corridor, independent of data source and latitude.
- const importance=(x:number,z:number)=>{
-  return 1-MathUtils.smoothstep(distance(x,z),9,26);
- };
+ // AOI weights never modify elevation or source geography.
+ const importance=createAoiSampler(distance);
  return {height,distance,importance,forest:(x:number,z:number)=>grid.forest?sample(grid.forest,x,z):0};
 }

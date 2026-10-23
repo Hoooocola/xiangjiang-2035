@@ -33,7 +33,7 @@ export function makeMaterials() {
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    float side=1.0-smoothstep(.25,.75,abs(vFace.y));
    float focus=1.0-smoothstep(.75,1.25,length((vWorld.xz-uFocusRegion.xy)/uFocusRegion.zw));
-   float detail=max(vImportance,focus*uFocusActive*.85)*mix(1.0,.22+.78*focus,uFocusActive);
+   float detail=clamp(vImportance,0.0,1.0);
    float block=fract(sin(dot(floor(vWorld.xz*.45),vec2(12.98,78.23)))*43758.54);
    vec3 base=mix(uContextColor,uCoreColor,detail);
    base*=1.0-detail*block*.13;
@@ -64,7 +64,7 @@ export function makeMaterials() {
   s.uniforms.uNight=night;
   s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nattribute float importance; varying float vGroundImportance; varying vec3 vGroundPosition;').replace('#include <begin_vertex>','#include <begin_vertex>\nvGroundImportance=importance; vGroundPosition=position;');
   s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nuniform float uNight; varying float vGroundImportance; varying vec3 vGroundPosition;').replace('#include <color_fragment>',`#include <color_fragment>
-   float district=smoothstep(.15,.85,vGroundImportance);
+   float district=clamp(vGroundImportance,0.0,1.0);
    vec3 dayGround=mix(vec3(1.0),vec3(.43,.46,.42),district);
    vec3 litGround=mix(vec3(.012,.026,.032),vec3(.22,.20,.15),district);
    diffuseColor.rgb*=mix(dayGround,litGround,uNight);
@@ -78,6 +78,19 @@ export function makeMaterials() {
  const contextPark=new THREE.MeshStandardMaterial({color:THEMES.day.contextPark,roughness:1});
  const road=new THREE.MeshStandardMaterial({color:THEMES.day.road,roughness:1});
  const contextRoad=new THREE.MeshStandardMaterial({color:THEMES.day.contextRoad,roughness:1});
+
+ // A single material per surface, with the same geographic weights in both themes.
+ function spatialSurface(material:THREE.MeshStandardMaterial,kind:'road'|'park'){
+  const context=kind==='road'?'contextRoad':'contextPark';
+  material.onBeforeCompile=s=>{
+   Object.assign(s.uniforms,{uNight:night,uSurfaceDay:{value:new THREE.Color(THEMES.day[kind])},uSurfaceDayContext:{value:new THREE.Color(THEMES.day[context])},uSurfaceNight:{value:new THREE.Color(THEMES.night[kind])},uSurfaceNightContext:{value:new THREE.Color(THEMES.night[context])}});
+   s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nattribute float importance; varying float vSurfaceImportance;').replace('#include <begin_vertex>','#include <begin_vertex>\nvSurfaceImportance=importance;');
+   s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nuniform float uNight; uniform vec3 uSurfaceDay; uniform vec3 uSurfaceDayContext; uniform vec3 uSurfaceNight; uniform vec3 uSurfaceNightContext; varying float vSurfaceImportance;').replace('#include <color_fragment>',`#include <color_fragment>
+    float weight=clamp(vSurfaceImportance,0.0,1.0);
+    diffuseColor.rgb=mix(mix(uSurfaceDayContext,uSurfaceDay,weight),mix(uSurfaceNightContext,uSurfaceNight,weight),uNight);`);
+  };
+ }
+ spatialSurface(road,'road');spatialSurface(park,'park');
  const tree=new THREE.MeshStandardMaterial({color:THEMES.day.tree,roughness:1});
  const shore=new THREE.MeshStandardMaterial({color:THEMES.day.shore,roughness:.9});
  const bridge=new THREE.MeshStandardMaterial({color:THEMES.day.bridge,roughness:.65});
