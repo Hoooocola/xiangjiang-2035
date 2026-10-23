@@ -27,3 +27,5 @@
 @media(max-width:700px){.atlasToolbar{left:22px;right:22px;top:88px;justify-content:space-between;font-size:10px}.atlasToolbar>button{padding:3px 6px}.atlasToolbar>div button{padding:3px 9px}.scenarioNotice{left:22px;top:142px;font-size:9px}.scenarioNotice button{font-size:9px}.objectMarker>span{font-size:10px}.objectMarker small{font-size:8px}}
 
 .reading .mainNav,.reading .cameraControls{visibility:hidden;pointer-events:none}
+
+.siteEntry{display:flex;align-items:center;gap:9px;flex-wrap:wrap;border-block:1px solid var(--line);padding:12px 0;margin:13px 0;font-size:13px;color:var(--accent)}.siteEntry small{display:block;flex-basis:100%;font-size:10px;color:var(--muted)}

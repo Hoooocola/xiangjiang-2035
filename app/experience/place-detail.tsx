@@ -1,5 +1,6 @@
 'use client';
 import {useState,useRef,useEffect} from 'react';
+import Link from 'next/link';
 import {X,ArrowUpRight,MapPin,ChevronLeft} from 'lucide-react';
 import type {Place} from '@/src/experience/config';
 import {profileFor,sourceById,STATUS_LABEL} from '@/src/atlas/places';
@@ -30,7 +31,7 @@ export function PlaceDetail({place,onClose,onMap,tab,onTab,recordId,onRecord,sce
     {record.relatedIds.length>0&&<><h3>继续探索</h3>{renderCards(record.relatedIds.map(recordById).filter((r):r is AtlasRecord=>!!r))}</>}
     <h3>来源与数据状态</h3><Sources ids={record.sourceIds}/>
    </article>:<>
-    {tab==='overview'&&<><div className={styles.tags}>{p.tags.map(t=><span key={t}>{t}</span>)}</div><h3>地点概况</h3><p>{p.overview}</p>{[['自然生态',p.ecology],['历史文化',p.culture],['社会活动',p.society]].map(([title,text])=><details className={styles.topic} key={title}><summary>{title}</summary><p>{text}</p></details>)}<p className={styles.notice}>{p.locationNote}</p><button className={styles.primary} onClick={()=>onTab('research')}>查看已有研究 <ArrowUpRight size={14}/></button><h3>资料来源</h3><Sources ids={p.sourceIds}/></>}
+    {tab==='overview'&&<>{place.id==='ezhou'&&<Link className={styles.external} href="/experience/sites/ezhou">进入三维研究现场 · 概念场景 <ArrowUpRight size={14}/></Link>}<div className={styles.tags}>{p.tags.map(t=><span key={t}>{t}</span>)}</div><h3>地点概况</h3><p>{p.overview}</p>{[['自然生态',p.ecology],['历史文化',p.culture],['社会活动',p.society]].map(([title,text])=><details className={styles.topic} key={title}><summary>{title}</summary><p>{text}</p></details>)}<p className={styles.notice}>{p.locationNote}</p><button className={styles.primary} onClick={()=>onTab('research')}>查看已有研究 <ArrowUpRight size={14}/></button><h3>资料来源</h3><Sources ids={p.sourceIds}/></>}
     {tab==='research'&&<><h3>研究时间轴</h3><p className={styles.hint}>公开材料与演示项目分别标记；没有虚构未来届次。</p><label className={styles.filter}>研究年份<select aria-label="研究年份" value={year} onChange={e=>setYear(e.target.value)}><option value="all">全部年份</option>{researchYears(place.id).map(y=><option key={y} value={y}>{y}</option>)}</select></label>{renderCards(recordsFor(place.id,'ResearchProject').filter(r=>year==='all'||r.year===Number(year)).sort((a,b)=>b.year-a.year))}<h3>关联研究活动</h3>{renderCards(recordsFor(place.id,'ResearchSession').filter(r=>year==='all'||r.year===Number(year)))}</>}
     {tab==='evidence'&&<><h3>田野记录与文献证据</h3><p className={styles.hint}>文献报道、待采集模板和真实现场记录不能互相替代。本样板没有导入私有田野数据。</p>{renderCards(recordsFor(place.id,'FieldRecord'))}<a className={styles.external} href="/create-research">进入原研究平台开展采集 <ArrowUpRight size={13}/></a></>}
     {tab==='questions'&&<>{(['ResearchGap','Issue','Conflict','Insight'] as const).map(kind=><section key={kind}><h3>{KIND_LABEL[kind]}</h3>{renderCards(recordsFor(place.id,kind))}</section>)}</>}

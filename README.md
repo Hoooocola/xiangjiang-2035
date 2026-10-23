@@ -1,5 +1,15 @@
 # 湘江生态文化与社会创新地图
 
+## Spatial Research Explorer V1.0
+
+新增鹅洲概念研究现场：五层空间信息、证据追溯、资源叠加比较、五步引导与方案介入。主地图默认暗模式，小地图使用旋转矩形定位框。
+
+- [交付、运行、数据、浏览器测试与截图](docs/spatial-research-explorer-status.md)
+- [开发前审计与复用架构](docs/spatial-research-audit.md)
+- 入口：`/experience` 选择鹅洲 → 进入三维研究现场；或 `/experience/sites/ezhou`。
+- 当前分支 `feat/spatial-research-explorer`；修改前检查点 `before-spatial-explorer-20261022`（`7579154`）。
+- 场景和研究链均为 Mock，不是真实扫描或田野研究结论。
+
 ## 湘江 2035 / 将来的江来 · 功能 Demo
 
 本轮已完成鹅洲功能样板：地点详情、六类空间图层、按年份浏览研究、证据与问题关联、设计机会及 Today / 2035 概念情景。公开资料与演示内容逐条区分，目录为只读 TypeScript 数据，不读取私有团队记录。
@@ -22,7 +32,7 @@ pnpm dev
 - [参考研究](docs/reference-analysis.md) · [视觉对照](docs/visual-review.md)
 - [地理来源、许可与坐标契约](docs/data-sources.md)
 - 地理数据重新生成：`pnpm scene:prepare`，使用已保存在 `data/osm/` 的源数据。
-- 旧版安全检查点：`legacy-before-3d`（`3bf2d3e`）；当前开发分支 `feat/xiangjiang-functional-demo`；本轮安全标签 `before-functional-demo-20261022`（`2fd7f95`）。
+- 旧版安全检查点：`legacy-before-3d`（`3bf2d3e`）；此前开发分支 `feat/xiangjiang-functional-demo`；本轮安全标签 `before-functional-demo-20261022`（`2fd7f95`）。
 - 原研究平台仍位于 `/create-research`，以下为保留的数据库工作流。
 
 ## 原研究平台

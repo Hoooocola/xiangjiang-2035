@@ -8,7 +8,7 @@ import { makeMaterials, THEMES } from './materials';
 import { buildScene,type ContextData } from './scene';
 import { project, type SceneData } from './geo';
 import type {TerrainGrid} from './terrain';
-import {miniPoint,riverMiniPaths} from './minimap';
+import {miniPoint,miniViewport,riverMiniPaths} from './minimap';
 export interface ExperienceCallbacks {
  progress:(n:number,label:string)=>void;
  ready:()=>void;
@@ -26,7 +26,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
  let renderer:THREE.WebGLRenderer;
  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});}catch{throw new Error('当前浏览器未能创建 WebGL 2 场景，请开启硬件加速，或使用支持 WebGL 的 Chrome / Safari。');}
  let disposed=false,frame=0;let built:Awaited<ReturnType<typeof buildScene>>|undefined;
- const scene=new THREE.Scene();scene.background=new THREE.Color(THEMES.day.background);scene.fog=new THREE.Fog(THEMES.day.background,90,200);
+ const scene=new THREE.Scene();scene.background=new THREE.Color(THEMES.night.background);scene.fog=new THREE.Fog(THEMES.night.background,90,200);
  const camera=new THREE.PerspectiveCamera(38,1,0.3,4500);
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(host.clientWidth,host.clientHeight);
  renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
@@ -39,7 +39,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
  const fill=new THREE.DirectionalLight('#c2dae1',0.5);fill.position.set(35,20,-40);scene.add(fill);
  const focusMaterial=new THREE.MeshBasicMaterial({color:'#9276bd',transparent:true,opacity:.8,depthWrite:false,side:THREE.DoubleSide});
  const ring=new THREE.Mesh(new THREE.RingGeometry(0.5,0.54,64),focusMaterial);ring.rotation.x=-Math.PI/2;ring.visible=false;scene.add(ring);
- let nightTarget=0,night=0,last=performance.now(),frames=0,frameTime=0,metricsTime=0;
+ let nightTarget=1,night=1,last=performance.now(),frames=0,frameTime=0,metricsTime=0;
  let previous:CameraPose|undefined,selectedId:string|undefined;
  const select=(id?:string)=>{selectedId=id;built?.select(id);const place=PLACES.find(p=>p.id===id);const [x,z]=place?project(place.coordinate):[0,0];materials.focusRegion.value.set(x,z,id==='juzizhou'?5:16,id==='juzizhou'?24:16);};
  const stop=()=>{rig.cancel();callbacks.motion(false);};rig.onInteract=stop;
@@ -65,13 +65,14 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   const media=matchMedia('(prefers-reduced-motion: reduce)');const motionChange=()=>{rig.reducedMotion=media.matches;};media.addEventListener('change',motionChange);cleanups.push(()=>media.removeEventListener('change',motionChange));
   const lost=(e:Event)=>{e.preventDefault();stop();callbacks.progress(-1,'图形上下文已中断，请刷新页面重新载入。');};canvas.addEventListener('webglcontextlost',lost);cleanups.push(()=>canvas.removeEventListener('webglcontextlost',lost));
   rig.update(performance.now(),0);
+  materials.updateTheme(1);hemi.intensity=.62;sun.intensity=.88;fill.intensity=.25;sun.color.set(THEMES.night.sun);renderer.toneMappingExposure=1.10;
   renderer.compile(scene,camera);
   renderer.render(scene,camera);
   if(signal.aborted)throw new DOMException('Aborted','AbortError');
   const projectPoint=new THREE.Vector3(),shadowTarget=new THREE.Vector3(Infinity,0,Infinity);
   const miniView=host.parentElement?.querySelector<SVGPathElement>('[data-minimap-view]');
   const miniCenter=host.parentElement?.querySelector<SVGCircleElement>('[data-minimap-center]');
-  const ray=new THREE.Vector3();let mapTime=0;
+  let mapTime=0;
   const compass=host.parentElement?.querySelector<HTMLElement>('[data-compass]');
   function render(now:number){
    if(disposed)return;frame=requestAnimationFrame(render);const elapsed=(now-last)/1000,dt=Math.min(elapsed,.05);last=now;
@@ -90,11 +91,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    const w=host.clientWidth,h=host.clientHeight;
    mapTime+=dt;
    if(mapTime>.08){
-    mapTime=0;const vertices=[[-1,-1],[1,-1],[1,1],[-1,1]].map(([x,y])=>{
-     ray.set(x,y,.5).unproject(camera).sub(camera.position).normalize();
-     const t=Math.min(2200,Math.max(0,-camera.position.y/Math.min(-.001,ray.y)));
-     return miniPoint(camera.position.x+ray.x*t,camera.position.z+ray.z*t);
-    });
+    mapTime=0;const vertices=miniViewport(rig.pose.target,d,rig.pose.azimuth,rig.pose.polar,camera.fov,camera.aspect);
     miniView?.setAttribute('d',vertices.map(([x,y],i)=>`${i?'L':'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ')+'Z');
     const [mx,my]=miniPoint(rig.pose.target[0],rig.pose.target[2]);miniCenter?.setAttribute('cx',String(mx));miniCenter?.setAttribute('cy',String(my));
    }

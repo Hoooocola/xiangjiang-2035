@@ -1,3 +1,5 @@
+> 2026-10-23 新增交付：[Spatial Research Explorer V1.0](spatial-research-explorer-status.md)。以下保留此前主地图交付记录。
+
 > 2026-10-22 功能 Demo：最新完成状态以 [功能验收](functional-demo-status.md) 和 [演示指南](functional-demo-guide.md) 为准。本轮完成鹅洲研究与方案浏览，并局部修正昼夜地块材质；大规模视觉复刻暂停。
 
 > 2026-10-22 第三轮已更新：当前变化、验证和限制以 [第三轮说明](visual-rebuild-2026-10-22.md) 为准。以下保留早期交付历史，不代表当前数据与完成状态。
