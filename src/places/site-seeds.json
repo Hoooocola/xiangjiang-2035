@@ -1,0 +1,367 @@
+[
+  {
+    "id": "site-001",
+    "name": "蔡家洲",
+    "category": "island",
+    "aliases": []
+  },
+  {
+    "id": "site-002",
+    "name": "冯家洲",
+    "category": "island",
+    "aliases": []
+  },
+  {
+    "id": "site-003",
+    "name": "香炉洲",
+    "category": "island",
+    "aliases": []
+  },
+  {
+    "id": "site-004",
+    "name": "月亮岛",
+    "category": "island",
+    "aliases": []
+  },
+  {
+    "id": "site-005",
+    "name": "傅家洲",
+    "category": "island",
+    "aliases": []
+  },
+  {
+    "id": "site-006",
+    "name": "橘子洲",
+    "category": "island",
+    "aliases": []
+  },
+  {
+    "id": "site-007",
+    "name": "巴溪洲",
+    "category": "island",
+    "aliases": []
+  },
+  {
+    "id": "site-008",
+    "name": "鹅洲",
+    "category": "island",
+    "aliases": []
+  },
+  {
+    "id": "site-009",
+    "name": "兴马洲",
+    "category": "island",
+    "aliases": []
+  },
+  {
+    "id": "site-010",
+    "name": "霞凝港（社区）",
+    "category": "waterfront",
+    "aliases": [
+      "霞凝港"
+    ],
+    "notes": "PDF 原文字样保留；简称、范围或同名对象需进一步核验。"
+  },
+  {
+    "id": "site-011",
+    "name": "渔人码头",
+    "category": "waterfront",
+    "aliases": []
+  },
+  {
+    "id": "site-012",
+    "name": "文津码头",
+    "category": "waterfront",
+    "aliases": []
+  },
+  {
+    "id": "site-013",
+    "name": "麻谭山",
+    "category": "ecology",
+    "aliases": [
+      "麻潭山"
+    ],
+    "notes": "PDF 原文字样保留；简称、范围或同名对象需进一步核验。"
+  },
+  {
+    "id": "site-014",
+    "name": "大泽湖近自然湿地公园",
+    "category": "ecology",
+    "aliases": []
+  },
+  {
+    "id": "site-015",
+    "name": "鹅羊山",
+    "category": "ecology",
+    "aliases": [],
+    "preferredOsmId": null,
+    "notes": "PDF 原文字样保留；简称、范围或同名对象需进一步核验。"
+  },
+  {
+    "id": "site-016",
+    "name": "咸嘉湖",
+    "category": "ecology",
+    "aliases": []
+  },
+  {
+    "id": "site-017",
+    "name": "西湖公园",
+    "category": "ecology",
+    "aliases": []
+  },
+  {
+    "id": "site-018",
+    "name": "岳麓山",
+    "category": "ecology",
+    "aliases": []
+  },
+  {
+    "id": "site-019",
+    "name": "凤凰山",
+    "category": "ecology",
+    "aliases": []
+  },
+  {
+    "id": "site-020",
+    "name": "天马山",
+    "category": "ecology",
+    "aliases": []
+  },
+  {
+    "id": "site-021",
+    "name": "后湖",
+    "category": "ecology",
+    "aliases": [
+      "后湖国际艺术区"
+    ]
+  },
+  {
+    "id": "site-022",
+    "name": "南郊公园",
+    "category": "ecology",
+    "aliases": []
+  },
+  {
+    "id": "site-023",
+    "name": "洋湖湿地",
+    "category": "ecology",
+    "aliases": [
+      "洋湖湿地公园"
+    ]
+  },
+  {
+    "id": "site-024",
+    "name": "狮峰山森林公园",
+    "category": "ecology",
+    "aliases": []
+  },
+  {
+    "id": "site-025",
+    "name": "大王山",
+    "category": "ecology",
+    "aliases": []
+  },
+  {
+    "id": "site-026",
+    "name": "昭山风景区",
+    "category": "ecology",
+    "aliases": []
+  },
+  {
+    "id": "site-027",
+    "name": "铜官窑",
+    "category": "heritage",
+    "aliases": []
+  },
+  {
+    "id": "site-028",
+    "name": "汉长沙国考古遗址公园",
+    "category": "heritage",
+    "aliases": []
+  },
+  {
+    "id": "site-029",
+    "name": "开福寺",
+    "category": "heritage",
+    "aliases": [],
+    "preferredOsmId": "way/448727040"
+  },
+  {
+    "id": "site-030",
+    "name": "文昌阁",
+    "category": "heritage",
+    "aliases": [],
+    "preferredOsmId": null,
+    "notes": "同名 OSM 候选为地铁车站，不能替代街区或文化场域定位；待核验。"
+  },
+  {
+    "id": "site-031",
+    "name": "潮宗街",
+    "category": "heritage",
+    "aliases": [
+      "潮宗街历史文化街区"
+    ]
+  },
+  {
+    "id": "site-032",
+    "name": "太平老街",
+    "category": "heritage",
+    "aliases": []
+  },
+  {
+    "id": "site-033",
+    "name": "天鹅塘社区",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-034",
+    "name": "桃花井社区",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-035",
+    "name": "黄狮岭社区",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-036",
+    "name": "史家坡社区",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-037",
+    "name": "福元路社区",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-038",
+    "name": "双河社区",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-039",
+    "name": "陈家渡社区",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-040",
+    "name": "解放西",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-041",
+    "name": "南门口",
+    "category": "community",
+    "aliases": [],
+    "preferredOsmId": null,
+    "notes": "同名 OSM 候选为地铁车站，不能替代街区或文化场域定位；待核验。"
+  },
+  {
+    "id": "site-042",
+    "name": "城南",
+    "category": "community",
+    "aliases": [],
+    "notes": "PDF 原文字样保留；简称、范围或同名对象需进一步核验。"
+  },
+  {
+    "id": "site-043",
+    "name": "靳江社区",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-044",
+    "name": "兰亭社区",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-045",
+    "name": "白鹭府社区",
+    "category": "community",
+    "aliases": []
+  },
+  {
+    "id": "site-046",
+    "name": "峡山口",
+    "category": "community",
+    "aliases": [],
+    "notes": "PDF 原文字样保留；简称、范围或同名对象需进一步核验。"
+  },
+  {
+    "id": "site-047",
+    "name": "中南林",
+    "category": "infrastructure",
+    "aliases": [],
+    "notes": "PDF 原文字样保留；简称、范围或同名对象需进一步核验。"
+  },
+  {
+    "id": "site-048",
+    "name": "湖南外国语职业学院",
+    "category": "infrastructure",
+    "aliases": []
+  },
+  {
+    "id": "site-049",
+    "name": "湖南外贸职业学院",
+    "category": "infrastructure",
+    "aliases": []
+  },
+  {
+    "id": "site-050",
+    "name": "岳麓污水处理厂",
+    "category": "infrastructure",
+    "aliases": []
+  },
+  {
+    "id": "site-051",
+    "name": "大学城",
+    "category": "infrastructure",
+    "aliases": [],
+    "notes": "PDF 原文字样保留；简称、范围或同名对象需进一步核验。"
+  },
+  {
+    "id": "site-052",
+    "name": "烈士陵园",
+    "category": "infrastructure",
+    "aliases": [
+      "湖南革命烈士陵园"
+    ]
+  },
+  {
+    "id": "site-053",
+    "name": "湘江欢乐城",
+    "category": "infrastructure",
+    "aliases": []
+  },
+  {
+    "id": "site-054",
+    "name": "湖师大科创港",
+    "category": "infrastructure",
+    "aliases": [],
+    "notes": "PDF 原文字样保留；简称、范围或同名对象需进一步核验。"
+  },
+  {
+    "id": "site-055",
+    "name": "湖大科创港",
+    "category": "infrastructure",
+    "aliases": [],
+    "notes": "PDF 原文字样保留；简称、范围或同名对象需进一步核验。"
+  },
+  {
+    "id": "site-056",
+    "name": "湘潭理工",
+    "category": "infrastructure",
+    "aliases": [
+      "湘潭理工学院"
+    ]
+  }
+]

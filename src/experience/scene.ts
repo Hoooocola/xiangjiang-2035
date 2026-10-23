@@ -33,6 +33,7 @@ export interface ContextData {buildings:number[][];counts:{knownHeight:number}}
 export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:ContextData,materials:Materials,onProgress:(value:number)=>void){
  const root=new THREE.Group(),city=new THREE.Group(),detail=new THREE.Group();root.add(city,detail);
  const terrain=terrainSampler(grid),height=terrain.height;
+ const weighted=(g:THREE.BufferGeometry,constant?:number)=>{const p=g.attributes.position;g.setAttribute('importance',new THREE.Float32BufferAttribute(Array.from({length:p.count},(_,i)=>constant??terrain.importance(p.getX(i),p.getZ(i))),1));return g;};
  const groundGeo=new THREE.PlaneGeometry(6000,6000);groundGeo.rotateX(-Math.PI/2);groundGeo.translate(0,-.08,0);groundGeo.setAttribute('color',new THREE.Float32BufferAttribute(new Float32Array(groundGeo.attributes.position.count*3).fill(1),3));
  groundGeo.setAttribute('importance',new THREE.Float32BufferAttribute(new Float32Array(groundGeo.attributes.position.count),1));
  const ground=new THREE.Mesh(groundGeo,materials.ground);ground.receiveShadow=true;root.add(ground);
@@ -78,7 +79,7 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
     waterGs.push(flat(rings,.015));
     for(let ri=0;ri<rings.length;ri++){
      shoreGs.push(ribbon(rings[ri].map(project),.065,()=>.035));
-     if(ri>0){parks[0].push(flat([rings[ri]],.028));plant([rings[ri]],true);}
+     if(ri>0){parks[0].push(weighted(flat([rings[ri]],.028),.88));plant([rings[ri]],true);}
     }
    }continue;
   }
@@ -103,7 +104,7 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
    }
   }else if(p.highway&&f.geometry.type==='LineString'){
    const pts=f.geometry.coordinates.map(project);if(pts.length<2)continue;
-   const mid=pts[Math.floor(pts.length/2)],context=terrain.importance(...mid)<.2?1:0;
+   // Roads keep continuous vertex weights across the entire source line.
    const foot=['footway','path','cycleway'].includes(p.highway),width=foot?.035:/motorway|trunk|primary/.test(p.highway)?.18:/secondary|tertiary/.test(p.highway)?.11:.055;
    if(p.bridge&&p.bridge!=='no'){
     const y=Math.max(.25,height(...pts[0]),height(...pts[pts.length-1]))+.06;bridgeGs.push(ribbon(pts,width,()=>y));
@@ -111,12 +112,12 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
     if(crossesRiver)for(const side of [-1,1]){const rail=pts.map((p,i)=>{const a=pts[Math.max(0,i-1)],b=pts[Math.min(pts.length-1,i+1)],d=Math.hypot(b[0]-a[0],b[1]-a[1])||1;return [p[0]-(b[1]-a[1])/d*width*.45*side,p[1]+(b[0]-a[0])/d*width*.45*side] as [number,number];});bridgeRails.push(ribbon(rail,.018,()=>y+.025));}
     for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i],length=Math.hypot(b[0]-a[0],b[1]-a[1]);for(let t=.5;t<length;t+=1){const x=THREE.MathUtils.lerp(a[0],b[0],t/length),z=THREE.MathUtils.lerp(a[1],b[1],t/length);if(onWater(x,z))bridgePiers.push([x,z,y]);}}
 
-   }else roads[context].push(ribbon(pts,width,(x,z)=>height(x,z)+.035));
+   }else roads[0].push(weighted(ribbon(pts,width,(x,z)=>height(x,z)+.035)));
   }else if(p.leisure==='park'||p.natural==='wood'||p.landuse==='forest'){
    for(const rings of polygons(f)){
-    const center=project(rings[0][0]),context=terrain.importance(...center)<.2?1:0;
+    // Natural objects no longer switch materials from one arbitrary vertex.
     const base=flat(rings,0),pg=new TessellateModifier(1.8,5).modify(base);base.dispose();
-    const a=pg.attributes.position;for(let i=0;i<a.count;i++)a.setY(i,height(a.getX(i),a.getZ(i))+.025);pg.computeVertexNormals();parks[context].push(pg);plant(rings);
+    const a=pg.attributes.position;for(let i=0;i<a.count;i++)a.setY(i,height(a.getX(i),a.getZ(i))+.025);pg.computeVertexNormals();parks[0].push(weighted(pg));plant(rings);
    }
   }
  }
