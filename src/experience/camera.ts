@@ -8,6 +8,7 @@ export interface CameraRigOptions {
  limits?:typeof CAMERA_LIMITS;
  boundTarget?:(target:[number,number,number])=>void;
  leftOrbit?:boolean;
+ minimumCameraY?:(x:number,z:number)=>number;
 }
 export class CameraRig {
  pose=clonePose(CAMERA_PRESETS[0].pose);
@@ -15,9 +16,11 @@ export class CameraRig {
  transition:{from:CameraPose;to:CameraPose;start:number;duration:number;done?:()=>void}|null=null;
  route:{points:CameraPose[];start:number;duration:number;done?:()=>void}|null=null;
  pointers=new Map<number,{x:number;y:number}>();
+ dragMode:'pan'|'orbit'='pan';
  lastPinch=0; reducedMotion=false; onInteract=()=>{};
  private cleanups:(()=>void)[]=[];
  constructor(readonly camera:THREE.PerspectiveCamera,readonly canvas:HTMLCanvasElement,readonly options:CameraRigOptions={}) {
+  this.dragMode=options.leftOrbit?'orbit':'pan';
   this.pose=clonePose(options.initial??CAMERA_PRESETS[0].pose);this.desired=clonePose(this.pose);
   this.reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const on=(type:string,fn:EventListener,opts?:AddEventListenerOptions)=>{canvas.addEventListener(type,fn,opts);this.cleanups.push(()=>canvas.removeEventListener(type,fn,opts));};
@@ -27,8 +30,8 @@ export class CameraRig {
    const dx=e.clientX-prev.x,dy=e.clientY-prev.y;
    this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
    if(this.pointers.size===2){const p=[...this.pointers.values()];const d=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);if(this.lastPinch)this.zoom(this.lastPinch/d);this.lastPinch=d;return;}
-   if(this.options.leftOrbit?!e.shiftKey&&e.buttons!==2:e.button===2 || e.buttons===2 || e.shiftKey){this.desired.azimuth-=dx*0.003;this.desired.polar=clamp(this.desired.polar+dy*0.002,(this.options.limits??CAMERA_LIMITS).minPolar,(this.options.limits??CAMERA_LIMITS).maxPolar);}
-   else {const k=this.desired.distance*0.00075;const a=this.desired.azimuth;this.desired.target[0]-=(dx*Math.cos(a)+dy*Math.sin(a))*k;this.desired.target[2]+=(dx*Math.sin(a)-dy*Math.cos(a))*k;this.boundTarget();}
+   if(this.dragMode==='orbit'?!e.shiftKey&&e.buttons!==2:e.buttons===2||e.shiftKey){this.desired.azimuth-=dx*0.003;this.desired.polar=clamp(this.desired.polar+dy*0.002,(this.options.limits??CAMERA_LIMITS).minPolar,(this.options.limits??CAMERA_LIMITS).maxPolar);}
+   else {const k=this.desired.distance*0.00075;this.pan(-dx*k,dy*k);}
   }) as EventListener);
   const up=((e:PointerEvent)=>{this.pointers.delete(e.pointerId);this.lastPinch=0;if(!this.pointers.size)canvas.style.cursor='grab';}) as EventListener;
   on('pointerup',up);on('pointercancel',up);on('lostpointercapture',up);
@@ -40,6 +43,7 @@ export class CameraRig {
    if(e.key==='Home')this.fly(this.options.initial??CAMERA_PRESETS[0].pose);
    else if(e.key==='+'||e.key==='=')this.zoom(0.85);
    else if(e.key==='-')this.zoom(1.18);
+   else if(e.shiftKey&&e.key.startsWith('Arrow'))this.pan((e.key==='ArrowLeft'?-1:e.key==='ArrowRight'?1:0)*this.desired.distance*.06,(e.key==='ArrowUp'?1:e.key==='ArrowDown'?-1:0)*this.desired.distance*.06);
    else if(e.key==='ArrowLeft')this.orbit(-0.12);
    else if(e.key==='ArrowRight')this.orbit(0.12);
    else this.desired.polar=clamp(this.desired.polar+(e.key==='ArrowUp'?-0.06:0.06),(this.options.limits??CAMERA_LIMITS).minPolar,(this.options.limits??CAMERA_LIMITS).maxPolar);
@@ -53,8 +57,14 @@ export class CameraRig {
   const riverX=t[2]<-60?Math.max(-130,t[2]*0.43+17):t[2]>80?-45:0;
   t[0]=clamp(t[0],riverX-65,riverX+65);
  }
+ pan(right:number,forward:number){
+  const a=this.desired.azimuth;
+  this.desired.target[0]+=right*Math.cos(a)-forward*Math.sin(a);
+  this.desired.target[2]-=right*Math.sin(a)+forward*Math.cos(a);
+  this.boundTarget();
+ }
  zoom(f:number){this.desired.distance=clamp(this.desired.distance*f,(this.options.limits??CAMERA_LIMITS).minDistance,(this.options.limits??CAMERA_LIMITS).maxDistance);}
- orbit(delta:number){this.cancel();this.desired.azimuth+=delta;}
+ orbit(delta:number){if(this.route||this.transition)this.cancel();this.desired.azimuth+=delta;}
  cancel(){this.route=null;this.transition=null;this.desired=clonePose(this.pose);}
  fly(to:CameraPose,duration=2400,done?:()=>void){
   this.route=null;this.transition={from:clonePose(this.pose),to:clonePose(to),start:performance.now(),duration:this.reducedMotion?0:duration,done};
@@ -85,6 +95,7 @@ export class CameraRig {
   }
   const p=this.pose,d=p.distance;
   this.camera.position.set(p.target[0]+d*Math.sin(p.polar)*Math.sin(p.azimuth),p.target[1]+d*Math.cos(p.polar),p.target[2]+d*Math.sin(p.polar)*Math.cos(p.azimuth));
+  if(this.options.minimumCameraY)this.camera.position.y=Math.max(this.camera.position.y,this.options.minimumCameraY(this.camera.position.x,this.camera.position.z));
   this.camera.lookAt(...p.target);
  }
  dispose(){this.cleanups.forEach(f=>f());this.pointers.clear();}
