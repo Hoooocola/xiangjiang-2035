@@ -4,7 +4,8 @@ import type {OverlayState} from '../atlas/types';
 import * as THREE from 'three';
 import { CameraRig, clonePose } from './camera';
 import { CAMERA_PRESETS, OVERVIEW_POSE, PLACES, placePose, type CameraPose } from './config';
-import { makeMaterials, THEMES } from './materials';
+import { makeMaterials } from './materials';
+import {createEnvironment} from './lighting';
 import { buildScene,type ContextData } from './scene';
 import { project, type SceneData } from './geo';
 import type {TerrainGrid} from './terrain';
@@ -26,17 +27,14 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
  let renderer:THREE.WebGLRenderer;
  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});}catch{throw new Error('当前浏览器未能创建 WebGL 2 场景，请开启硬件加速，或使用支持 WebGL 的 Chrome / Safari。');}
  let disposed=false,frame=0;let built:Awaited<ReturnType<typeof buildScene>>|undefined;
- const scene=new THREE.Scene();scene.background=new THREE.Color(THEMES.night.background);scene.fog=new THREE.Fog(THEMES.night.background,90,200);
+ const scene=new THREE.Scene();
  const camera=new THREE.PerspectiveCamera(38,1,0.3,4500);
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(host.clientWidth,host.clientHeight);
  renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
  renderer.shadowMap.enabled=true;renderer.shadowMap.autoUpdate=false;renderer.shadowMap.needsUpdate=true;renderer.shadowMap.type=THREE.PCFShadowMap;
  const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','三维湘江地图。拖动平移，Shift 加拖动或右键旋转，滚轮缩放。键盘方向键转动，Home 返回。');canvas.style.cursor='grab';host.appendChild(canvas);
  const rig=new CameraRig(camera,canvas);
- const hemi=new THREE.HemisphereLight('#ffffff','#a7b6bf',1.0);scene.add(hemi);
- const sun=new THREE.DirectionalLight('#ffffff',2.25);sun.position.set(-45,70,28);sun.castShadow=true;
- sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-70,right:70,top:70,bottom:-70,near:1,far:180});sun.shadow.bias=-0.0003;sun.shadow.normalBias=.035;scene.add(sun,sun.target);
- const fill=new THREE.DirectionalLight('#c2dae1',0.5);fill.position.set(35,20,-40);scene.add(fill);
+ const sceneEnvironment=createEnvironment(scene,renderer),{sun}=sceneEnvironment;
  const focusMaterial=new THREE.MeshBasicMaterial({color:'#9276bd',transparent:true,opacity:.8,depthWrite:false,side:THREE.DoubleSide});
  const ring=new THREE.Mesh(new THREE.RingGeometry(0.5,0.54,64),focusMaterial);ring.rotation.x=-Math.PI/2;ring.visible=false;scene.add(ring);
  let nightTarget=1,night=1,last=performance.now(),frames=0,frameTime=0,metricsTime=0;
@@ -65,7 +63,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   const media=matchMedia('(prefers-reduced-motion: reduce)');const motionChange=()=>{rig.reducedMotion=media.matches;};media.addEventListener('change',motionChange);cleanups.push(()=>media.removeEventListener('change',motionChange));
   const lost=(e:Event)=>{e.preventDefault();stop();callbacks.progress(-1,'图形上下文已中断，请刷新页面重新载入。');};canvas.addEventListener('webglcontextlost',lost);cleanups.push(()=>canvas.removeEventListener('webglcontextlost',lost));
   rig.update(performance.now(),0);
-  materials.updateTheme(1);hemi.intensity=.62;sun.intensity=.88;fill.intensity=.25;sun.color.set(THEMES.night.sun);renderer.toneMappingExposure=1.10;
+  materials.updateTheme(1);sceneEnvironment.update(1,rig.pose.distance);
   renderer.compile(scene,camera);
   renderer.render(scene,camera);
   if(signal.aborted)throw new DOMException('Aborted','AbortError');
@@ -79,11 +77,8 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    if(document.hidden)return;
    rig.update(now,dt);if(compass)compass.style.transform=`rotate(${-rig.pose.azimuth*180/Math.PI}deg)`;materials.time.value=media.matches?0:now/1000;
    night=THREE.MathUtils.lerp(night,nightTarget,1-Math.exp(-dt*2.2));materials.updateTheme(night);materials.focusActive.value=THREE.MathUtils.lerp(materials.focusActive.value,selectedId?1:0,1-Math.exp(-dt*3));
-   (scene.background as THREE.Color).set(THEMES.day.background).lerp(new THREE.Color(THEMES.night.background),night);
-   const fog=scene.fog as THREE.Fog;fog.color.copy(scene.background as THREE.Color);
-   const d=rig.pose.distance;const near=Math.max(.3,d*.01);if(Math.abs(camera.near-near)>.05){camera.near=near;camera.updateProjectionMatrix();}fog.near=d*.9+80;fog.far=d*3+220;
-   hemi.intensity=THREE.MathUtils.lerp(.95,.62,night);sun.intensity=THREE.MathUtils.lerp(2.25,.88,night);fill.intensity=THREE.MathUtils.lerp(.4,.25,night);sun.color.set(THEMES.day.sun).lerp(new THREE.Color(THEMES.night.sun),night);
-   renderer.toneMappingExposure=THREE.MathUtils.lerp(1.0,1.10,night);
+   const d=rig.pose.distance;sceneEnvironment.update(night,d);
+   const near=Math.max(.3,d*.01);if(Math.abs(camera.near-near)>.05){camera.near=near;camera.updateProjectionMatrix();}
    sun.castShadow=d<240;
    if(sun.castShadow&&Math.hypot(rig.pose.target[0]-shadowTarget.x,rig.pose.target[2]-shadowTarget.z)>8){
     shadowTarget.set(rig.pose.target[0],0,rig.pose.target[2]);sun.target.position.copy(shadowTarget);sun.position.copy(shadowTarget).add(new THREE.Vector3(-45,70,28));renderer.shadowMap.needsUpdate=true;

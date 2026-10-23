@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 export const THEMES = {
  day:{background:'#f1f4f6',ground:'#f5f7f8',building:'#647780',context:'#f3f6f7',road:'#717c7e',contextRoad:'#e4e9eb',park:'#637f59',contextPark:'#edf1ee',water:'#568a91',shore:'#becbc9',sun:'#ffffff',tree:'#ffffff',bridge:'#b5c0c1'},
- night:{background:'#07191e',ground:'#ffffff',building:'#a0afb5',context:'#142f35',road:'#253c41',contextRoad:'#152d33',park:'#3b5848',contextPark:'#122b2b',water:'#315b6b',shore:'#31545b',sun:'#cbdde9',tree:'#65877a',bridge:'#778e92'},
+ night:{background:'#07191e',ground:'#ffffff',building:'#a0afb5',context:'#294550',road:'#3d5961',contextRoad:'#1d363f',park:'#627c70',contextPark:'#263e40',water:'#315b6b',shore:'#31545b',sun:'#cbdde9',tree:'#b9cfc5',bridge:'#778e92'},
 };
 export function makeMaterials() {
  const time={value:0},night={value:0},focusActive={value:0},focusRegion={value:new THREE.Vector4(0,0,12,12)};
@@ -37,9 +37,9 @@ export function makeMaterials() {
    float block=fract(sin(dot(floor(vWorld.xz*.45),vec2(12.98,78.23)))*43758.54);
    vec3 base=mix(uContextColor,uCoreColor,detail);
    base*=1.0-detail*block*.13;
-   vec3 roof=mix(vec3(.62,.67,.69),vec3(.19,.28,.30),uNight);
+   vec3 roof=mix(vec3(.62,.67,.69),vec3(.36,.43,.46),uNight);
    diffuseColor.rgb=mix(base,mix(base,roof,detail*.7),1.0-side);
-   diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.50,.34,.72),focus*uFocusActive*.5);
+   diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.50,.34,.72),focus*uFocusActive*.12);
    float axis=abs(vFace.x)>abs(vFace.z)?vWorld.z:vWorld.x;
    vec2 cell=vec2(axis*25.0,vWorld.y*30.0);
    vec2 aa=max(fwidth(cell),vec2(.001)); vec2 f=fract(cell);
@@ -52,8 +52,8 @@ export function makeMaterials() {
    diffuseColor.rgb+=vec3(.09)*floors*side*detail*resolution*(1.0-uNight);
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
-   float distantGlow=side*detail*(1.0-resolution)*(.16+block*.08);
-   totalEmissiveRadiance+=mix(vec3(1.0,.78,.46),vec3(.78,.88,1.0),step(.72,block))*(windows*lit*2.1+distantGlow)*uNight;
+   float distantGlow=side*detail*(1.0-resolution)*(.11+block*.08);
+   totalEmissiveRadiance+=mix(vec3(1.0,.78,.46),vec3(.78,.88,1.0),step(.72,block))*(windows*lit*2.6+distantGlow)*uNight;
    totalEmissiveRadiance+=vec3(.55,.28,.85)*focus*uFocusActive*detail*.12;
   `);
  };
@@ -65,13 +65,12 @@ export function makeMaterials() {
   s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nattribute float importance; varying float vGroundImportance; varying vec3 vGroundPosition;').replace('#include <begin_vertex>','#include <begin_vertex>\nvGroundImportance=importance; vGroundPosition=position;');
   s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nuniform float uNight; varying float vGroundImportance; varying vec3 vGroundPosition;').replace('#include <color_fragment>',`#include <color_fragment>
    float district=clamp(vGroundImportance,0.0,1.0);
-   vec3 dayGround=mix(vec3(1.0),vec3(.43,.46,.42),district);
-   vec3 litGround=mix(vec3(.012,.026,.032),vec3(.22,.20,.15),district);
+   vec3 dayGround=mix(vec3(1.0),vec3(.40,.46,.47),district);
+   vec3 litGround=mix(vec3(.022,.042,.052),vec3(.12,.18,.19),district);
    diffuseColor.rgb*=mix(dayGround,litGround,uNight);
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
-   float pool=.62+.38*pow(.5+.5*sin(vGroundPosition.x*.65)*cos(vGroundPosition.z*.55),2.0);
-   totalEmissiveRadiance+=vec3(.27,.20,.105)*district*pool*uNight;
+   totalEmissiveRadiance+=vec3(.022,.038,.042)*district*uNight;
   `);
  };
  const park=new THREE.MeshStandardMaterial({color:THEMES.day.park,roughness:1});
@@ -120,7 +119,7 @@ export function makeMaterials() {
  function updateTheme(t:number){
   night.value=t;coreColor.value.copy(coreDay).lerp(coreNight,t);contextColor.value.copy(contextDay).lerp(contextNight,t);
   for(const key of Object.keys(entries) as (keyof typeof entries)[])entries[key].color.copy(dayColors[key]).lerp(nightColors[key],t);
-  bridgeLight.emissiveIntensity=t*.65;water.emissiveIntensity=t*.5;
+  bridgeLight.emissiveIntensity=t*.65;water.emissiveIntensity=t*.28;
  }
  return {ground,focusRegion,focusActive,contextBuilding,tree,building,road,contextRoad,park,contextPark,water,shore,bridge,bridgeLight,selection,selectionEdge,time,updateTheme};
 }
