@@ -7,6 +7,6 @@ export interface AtlasRecord {
  dataStatus:'public'|'demo';state:string;sourceIds:string[];evidenceIds:string[];relatedIds:string[];objectIds:string[];
  gapType?:'Knowledge Gap'|'Spatial Gap';proposalType?:ProposalType;legacyId?:string;
 }
-export interface MapObject {id:string;title:string;placeId:string;layer:LayerId;recordId?:string;sourceIds:string[];dataStatus:'public'|'demo';geometry:{type:'Point'|'LineString'|'Polygon';coordinates:Coordinate[]};anchor:Coordinate;precision:string;scenario:'both'|'2035';}
-export interface Scenario {id:'today'|'2035';title:string;description:string;proposalIds:string[];status:'current'|'concept'}
-export interface OverlayState {layers:LayerId[];scenario:Scenario['id'];selectedObjectIds:string[];placeId:string|null;proposalVisible:boolean}
+export interface MapObject {id:string;title:string;placeId:string;layer:LayerId;recordId?:string;sourceIds:string[];dataStatus:'public'|'demo';geometry:{type:'Point'|'LineString'|'Polygon';coordinates:Coordinate[]};anchor:Coordinate;precision:string;proposalId?:string;}
+export interface ProposalScenario {proposalId:string;view:'baseline'|'intervention'}
+export interface OverlayState {layers:LayerId[];proposal:ProposalScenario|null;selectedObjectIds:string[];placeId:string|null}

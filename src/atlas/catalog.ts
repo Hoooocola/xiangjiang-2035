@@ -1,4 +1,4 @@
-import type {AtlasRecord,LayerId,Scenario} from './types';
+import type {AtlasRecord,LayerId} from './types';
 export const LAYERS:{id:LayerId;label:string;color:string;description:string}[]=[
  {id:'geography',label:'基础地理',color:'#70b4c4',description:'地点边界与地理参考（保留基础三维底图）'},
  {id:'ecology',label:'生态',color:'#8db688',description:'生态议题参考范围，不代表保护红线'},
@@ -8,7 +8,6 @@ export const LAYERS:{id:LayerId;label:string;color:string;description:string}[]=
  {id:'proposal',label:'设计方案',color:'#64c8bf',description:'2035 概念服务触点及连接路线'},
 ];
 export const KIND_LABEL={ResearchProject:'研究项目',ResearchSession:'研究活动',FieldRecord:'田野与文献证据',ResearchGap:'研究缺口',Insight:'研究洞察',Issue:'已记录问题',Conflict:'待检验关系',DesignOpportunity:'设计机会',Proposal:'设计方案'};
-export const SCENARIOS:Scenario[]=[{id:'today',title:'Today · 现状',description:'现有地理底图；叠加资料并非实时监测。',proposalIds:[],status:'current'},{id:'2035',title:'2035 · 设计愿景',description:'概念方案演示，不是建设承诺或未来预测。触点与线路均为示意。',proposalIds:['proposal-care'],status:'concept'}];
 const base={placeId:'ezhou',year:2026,author:'Demo 编辑团队',themes:[],dataStatus:'demo' as const,state:'概念演示 / 待验证',sourceIds:['demo'],evidenceIds:[],relatedIds:[],objectIds:[]};
 export const RECORDS:AtlasRecord[]=[
  {...base,id:'research-2018',kind:'ResearchProject',title:'2018 · 砂石行业与洲岛环境调研',year:2018,author:'长沙理工大学汽机学院社会实践团',course:'守护一江碧水 · 社会实践',themes:['行业转型','洲岛环境'],dataStatus:'public',state:'公开活动报道，非完整研究档案',sourceIds:['study2018'],summary:'公开报道记录了团队赴鹅洲及坪塘砂石基地调研。作为历史材料收录，不将当年的情况视为今日现状。',body:['仅收录可核验的活动信息及来源。原始访谈、照片授权与完整研究报告尚未导入。'],evidenceIds:['document-2018'],relatedIds:['gap-history'],objectIds:['research-index']},

@@ -55,7 +55,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   built=await buildScene(data,grid,context,materials,n=>callbacks.progress(Math.round(n),'构建河岸、街区与洲岛'));
   scene.add(built.root);
   const overlays=buildOverlays(built.terrain.height);scene.add(overlays.root);
-  let overlayState:OverlayState={layers:[],scenario:"today",selectedObjectIds:[],placeId:null,proposalVisible:true};
+  let overlayState:OverlayState={layers:[],proposal:null,selectedObjectIds:[],placeId:null};
   if(signal.aborted)throw new DOMException('Aborted','AbortError');
   callbacks.progress(88,'准备光影与镜头');
   function resize(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h);camera.aspect=w/h;camera.fov=w<700?52:38;camera.updateProjectionMatrix();}
