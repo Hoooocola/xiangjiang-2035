@@ -27,6 +27,8 @@ for(const site of XIANGJIANG_SITES){
  if(!site.approximateLocation||aliases[site.name])continue;
  all.push({id:site.id,name:site.name,en:SITE_CATEGORIES[site.category].slice(3),coordinate:site.approximateLocation,index:String(all.length+1).padStart(2,'0'),category:SITE_CATEGORIES[site.category],siteCategory:site.category,description:`${site.name} · ${SITE_CATEGORIES[site.category].slice(3)}。地点来自场域参考与开放地理数据，研究成果需独立核验。`,note:site.notes,distance:site.category==='ecology'?72:48,overview:true,relatedResearchIds:[],relatedProposalIds:[],source:site.source,verificationStatus:site.spatialExtentStatus});
 }
+const orange=all.find(p=>p.id==='juzizhou')!;orange.relatedResearchIds.push('demo-ecology','demo-culture');orange.relatedProposalIds.push('demo-proposal');
+all.find(p=>p.id==='yanghu')!.relatedResearchIds.push('demo-yanghu');
 /** One authoritative entry per actual place; content never creates extra place markers. */
 export const MAP_PLACES=all;
 export const PENDING_PLACES=[{id:'jiefangyuan',name:'解放垸',coordinates:null,category:'community' as const,description:'旧原型方案关联地点，坐标未核验。',relatedResearchIds:[],relatedProposalIds:['legacy-p8'],source:['prototype-html/js/data.js @ 3bf2d3e'],verificationStatus:'unverified'}];

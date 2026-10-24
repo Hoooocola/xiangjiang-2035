@@ -21,7 +21,7 @@ export function buildOverlays(height:(x:number,z:number)=>number){
    const coords=o.geometry.coordinates;
    const vertices:THREE.Vector3[]=[];
    for(let i=1;i<coords.length;i++){const a=point(coords[i-1]),b=point(coords[i]);const steps=Math.max(1,Math.ceil(a.distanceTo(b)));for(let t=0;t<steps;t++){const v=a.clone().lerp(b,t/steps);v.y=height(v.x,v.z)+.19;vertices.push(v);}}vertices.push(point(coords.at(-1)!,.19));
-   const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(vertices),new THREE.LineBasicMaterial({color,transparent:true,opacity:.9,depthWrite:false}));line.renderOrder=5;g.add(line);
+   const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(vertices),(o.layer==='society'?new THREE.LineDashedMaterial({color,dashSize:.28,gapSize:.16,transparent:true,opacity:.9,depthWrite:false}):new THREE.LineBasicMaterial({color,transparent:true,opacity:.9,depthWrite:false})));line.computeLineDistances();line.renderOrder=5;g.add(line);
    if(o.geometry.type==='Polygon'){
     const shape=new THREE.Shape();coords.forEach((c,i)=>{const [x,z]=project(c);if(i)shape.lineTo(x,-z);else shape.moveTo(x,-z);});shape.closePath();
     const geometry=new THREE.ShapeGeometry(shape);geometry.rotateX(-Math.PI/2);const a=geometry.attributes.position;for(let i=0;i<a.count;i++)a.setY(i,height(a.getX(i),a.getZ(i))+.14);geometry.computeVertexNormals();

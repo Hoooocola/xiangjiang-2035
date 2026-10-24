@@ -24,6 +24,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
  const [overview,setOverview]=useState(false),[freeExplore,setFreeExplore]=useState(false),[drawer,setDrawer]=useState<'places'|'views'|'about'|null>(null),[selected,setSelected]=useState<string|null>(null);
  const [detailOpen,setDetailOpen]=useState(false),[detailTab,setDetailTab]=useState<DetailTab>('overview'),[recordId,setRecordId]=useState<string|null>(null);
  const [atlasPanel,setAtlasPanel]=useState<'layers'|'library'|null>(null),[layers,setLayers]=useState<LayerId[]>([]),[proposal,setProposal]=useState<ProposalScenario|null>(null),[objectIds,setObjectIds]=useState<string[]>([]);
+ const [layerScope,setLayerScope]=useState<'all'|'place'>('all');
  const [preset,setPreset]=useState(0),[mapPaths,setMapPaths]=useState<string[]>([]);
  const [metrics,setMetrics]=useState<{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number}|null>(null);
  const closeRef=useRef<HTMLButtonElement>(null),drawerCloseRef=useRef<HTMLButtonElement>(null),previousOverview=useRef(false);
@@ -35,8 +36,8 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
   return()=>{disposed=true;controller.abort();instance?.dispose();engine.current=null;};
  },[initialPlace]);
  useEffect(()=>{if(drawer)drawerCloseRef.current?.focus({preventScroll:true});else if(selected&&!moving)closeRef.current?.focus({preventScroll:true});},[drawer,selected,moving]);
- const overlayState:OverlayState={layers,proposal,selectedObjectIds:objectIds,placeId:selected};
- useEffect(()=>{engine.current?.setOverlays({layers,proposal,selectedObjectIds:objectIds,placeId:selected});},[loaded,layers,proposal,objectIds,selected]);
+ const overlayState:OverlayState={layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null};
+ useEffect(()=>{engine.current?.setOverlays({layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null});},[loaded,layers,proposal,objectIds,selected,layerScope]);
  const begin=()=>{setStarted(true);setDrawer(null);engine.current?.start();};
  const clearRecord=()=>{setRecordId(null);setProposal(null);setObjectIds([]);};
  const reset=()=>{setAtlasPanel(null);clearRecord();setFreeExplore(false);setDetailOpen(false);setSelected(null);setOverview(false);setDrawer(null);setPreset(0);engine.current?.reset();};
@@ -63,8 +64,8 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
   <div className={`${styles.markers} ${selected?styles.hasSelection:''}`} aria-label="地图地点">
    {PLACES.map(p=>{const Icon=PLACE_ICONS[p.siteCategory];return <button key={p.id} ref={el=>{if(el)markers.current.set(p.id,el);else markers.current.delete(p.id);}} className={`${styles.marker} ${selected===p.id?styles.selectedMarker:''}`} onClick={()=>focus(p.id)} aria-label={`探索${p.name}`} style={{visibility:'hidden'}} disabled={!loaded} data-place={p.id} data-category={p.siteCategory}><i><Icon size={14}/></i><span>{p.name}<small>{p.category}</small></span></button>;})}
   </div>
-  <div className={styles.knowledgeMarkers} aria-label="空间资料对象">{MAP_OBJECTS.map(o=><button key={o.id} ref={el=>{if(el)markers.current.set('object:'+o.id,el);else markers.current.delete('object:'+o.id);}} style={{visibility:'hidden','--object-color':LAYERS.find(l=>l.id===o.layer)!.color} as React.CSSProperties} className={`${styles.objectMarker} ${objectIds.includes(o.id)?styles.activeObject:''}`} onClick={()=>openObject(o.id)} aria-label={`空间对象：${o.title}`}><i/><span>{o.title}<small>{o.dataStatus==='demo'?'演示 / 非实测':'公开资料 / 地点级索引'}</small></span></button>)}</div>
-  {atlasPanel==='layers'&&<LayerPanel state={overlayState} onToggle={id=>setLayers(current=>current.includes(id)?current.filter(x=>x!==id):[...current,id])} onObject={openObject} onClose={()=>setAtlasPanel(null)}/>}
+  <div className={styles.knowledgeMarkers} aria-label="空间资料对象">{MAP_OBJECTS.map(o=><button key={o.id} ref={el=>{if(el)markers.current.set('object:'+o.id,el);else markers.current.delete('object:'+o.id);}} style={{visibility:'hidden','--object-color':LAYERS.find(l=>l.id===o.layer)!.color} as React.CSSProperties} data-layer={o.layer} className={`${styles.objectMarker} ${objectIds.includes(o.id)?styles.activeObject:''}`} onClick={()=>openObject(o.id)} aria-label={`空间对象：${o.title}`}><i/><span>{o.title}<small>{o.dataStatus==='demo'?'DEMO DATA / 模拟研究资料':'公开资料 / 地点级索引'}</small></span></button>)}</div>
+  {atlasPanel==='layers'&&<LayerPanel scope={layerScope} onScope={setLayerScope} selectedPlace={place?.name} state={overlayState} onToggle={id=>setLayers(current=>current.includes(id)?current.filter(x=>x!==id):[...current,id])} onObject={openObject} onClose={()=>setAtlasPanel(null)}/>}
   {atlasPanel==='library'&&<AtlasLibrary onOpen={openRecord} onClose={()=>setAtlasPanel(null)}/>}
   <div className={styles.metrics} data-testid="atlas-state">{JSON.stringify({place:selected,layers,proposal,record:recordId,objects:visibleObjects(overlayState).map(o=>o.id),detailOpen,objectIds})}</div>
   <section className={`${styles.intro} ${started?styles.introHidden:''}`} aria-label="开始探索" aria-hidden={started} inert={started}>

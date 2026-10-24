@@ -14,11 +14,11 @@ describe('knowledge map data contract',()=>{
   for(const o of MAP_OBJECTS){if(o.recordId)expect(recordById(o.recordId)).toBeDefined();for(const id of o.sourceIds)expect(SOURCES.some(s=>s.id===id)).toBe(true);}
  });
  it('keeps the Ezhou marker inside the actual source island and retains legacy mapping separately',()=>{expect(inRing(...project(EZHOU_COORDINATE),EZHOU_BOUNDARY.map(project))).toBe(true);expect(PLACES.find(p=>p.id==='ezhou')?.coordinate).toEqual(EZHOU_COORDINATE);});
- it('keeps all demo points and route vertices on the source island',()=>{for(const o of MAP_OBJECTS.filter(o=>o.geometry.type!=='Polygon'))for(const c of o.geometry.coordinates)expect(inRing(...project(c),EZHOU_BOUNDARY.map(project)),o.id).toBe(true);});
+ it('keeps all demo points and route vertices on the source island',()=>{for(const o of MAP_OBJECTS.filter(o=>o.placeId==='ezhou'&&o.geometry.type!=='Polygon'))for(const c of o.geometry.coordinates)expect(inRing(...project(c),EZHOU_BOUNDARY.map(project)),o.id).toBe(true);});
  it('never shows proposal geometry without an explicitly selected proposal',()=>{expect(visibleObjects({...state,selectedObjectIds:['proposal-arrival']}).every(o=>!o.proposalId)).toBe(true);});
  it('honors layer, place and scenario switches without removing other enabled layers',()=>{
   expect(visibleObjects({...state,layers:['ecology','culture']}).map(o=>o.layer)).toEqual(['ecology','culture']);
-  expect(visibleObjects({...state,placeId:'juzizhou'})).toHaveLength(0);
+  expect(visibleObjects({...state,placeId:'juzizhou'}).every(o=>o.placeId==='juzizhou')).toBe(true);
   expect(visibleObjects({...state,proposal:{proposalId:'proposal-care',view:'intervention'}}).filter(o=>o.layer==='proposal')).toHaveLength(4);
   expect(visibleObjects({...state,proposal:{proposalId:'proposal-care',view:'baseline'}}).filter(o=>o.layer==='proposal')).toHaveLength(0);
  });

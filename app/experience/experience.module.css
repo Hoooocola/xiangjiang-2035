@@ -41,3 +41,10 @@
 .marker[data-category=community]>i{border-radius:7px;color:#d7c3e7}
 .marker[data-category=ecology]>i{color:#b9d6b2}
 .marker[data-category=infrastructure]>i{border-radius:3px;color:#b5c5df}
+
+.objectMarker[data-layer=geography] i{border-radius:0;background:transparent;border-color:var(--object-color)}
+.objectMarker[data-layer=ecology] i{border-radius:0 70% 0 70%;transform:rotate(-35deg)}
+.objectMarker[data-layer=culture] i{border-radius:0;transform:rotate(45deg)}
+.objectMarker[data-layer=society] i{border-radius:50%;border-style:dashed;background:transparent}
+.objectMarker[data-layer=research] i{border-radius:2px;background:transparent;border:3px double var(--object-color)}
+.objectMarker[data-layer=proposal] i{border-radius:0;clip-path:polygon(50% 0,100% 100%,0 100%);width:16px;height:15px}
