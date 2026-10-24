@@ -21,7 +21,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
  const host=useRef<HTMLDivElement>(null),engine=useRef<ExperienceEngine|null>(null),markers=useRef(new Map<string,HTMLButtonElement>());
  const [loaded,setLoaded]=useState(false),[progress,setProgress]=useState(0),[loadingLabel,setLoadingLabel]=useState('准备一段湘江之旅');
  const [error,setError]=useState(''),[started,setStarted]=useState(false),[night,setNight]=useState(true),[moving,setMoving]=useState(false);
- const [overview,setOverview]=useState(false),[freeExplore,setFreeExplore]=useState(false),[drawer,setDrawer]=useState<'places'|'views'|'about'|null>(null),[selected,setSelected]=useState<string|null>(null);
+ const [overview,setOverview]=useState(true),[freeExplore,setFreeExplore]=useState(false),[drawer,setDrawer]=useState<'places'|'views'|'about'|null>(null),[selected,setSelected]=useState<string|null>(null);
  const [detailOpen,setDetailOpen]=useState(false),[detailTab,setDetailTab]=useState<DetailTab>('overview'),[recordId,setRecordId]=useState<string|null>(null);
  const [atlasPanel,setAtlasPanel]=useState<'layers'|'library'|null>(null),[layers,setLayers]=useState<LayerId[]>([]),[proposal,setProposal]=useState<ProposalScenario|null>(null),[objectIds,setObjectIds]=useState<string[]>([]);
  const [layerScope,setLayerScope]=useState<'all'|'place'>('all');
@@ -38,7 +38,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
  useEffect(()=>{if(drawer)drawerCloseRef.current?.focus({preventScroll:true});else if(selected&&!moving)closeRef.current?.focus({preventScroll:true});},[drawer,selected,moving]);
  const overlayState:OverlayState={layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null};
  useEffect(()=>{engine.current?.setOverlays({layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null});},[loaded,layers,proposal,objectIds,selected,layerScope]);
- const begin=()=>{setStarted(true);setDrawer(null);engine.current?.start();};
+ const begin=()=>{setStarted(true);setOverview(false);setDrawer(null);engine.current?.start();};
  const clearRecord=()=>{setRecordId(null);setProposal(null);setObjectIds([]);};
  const reset=()=>{setAtlasPanel(null);clearRecord();setFreeExplore(false);setDetailOpen(false);setSelected(null);setOverview(false);setDrawer(null);setPreset(0);engine.current?.reset();};
  const focus=(id:string)=>{setAtlasPanel(null);if(id!==selected){clearRecord();setDetailTab('overview');}if(!selected)previousOverview.current=overview;setStarted(true);setDetailOpen(false);setSelected(id);setOverview(false);setDrawer(null);engine.current?.focus(id);};
@@ -104,6 +104,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
     <span className={styles.miniNorth}>N</span><span className={styles.mapLocation}>{moving?'镜头移动中':currentLabel}</span>
    </div>
    <div className={styles.utilities}>
+    {moving&&<button className={styles.skipTour} onClick={()=>{setOverview(false);engine.current?.skip();}} aria-label="跳过导览，进入核心河段">跳过</button>}
     <button onClick={()=>{setStarted(true);if(moving)engine.current?.stop();else{setFreeExplore(false);setDetailOpen(false);setSelected(null);clearRecord();setAtlasPanel(null);setOverview(false);engine.current?.tour();}}} aria-label={moving?'停止镜头运动':'播放沿江巡游'} disabled={!loaded}>{moving?<Pause size={18}/>:<Play size={18}/>}</button>
     <button onClick={()=>{setAtlasPanel(null);setDrawer(drawer==='views'?null:'views');}} aria-label="选择镜头预设" disabled={!loaded}><Layers size={18}/></button>
     <button onClick={()=>{setAtlasPanel(null);setDrawer(drawer==='about'?null:'about');}} aria-label="关于地图与数据"><Info size={18}/></button>
@@ -115,7 +116,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
   </nav>
   {loaded&&!error&&<CameraControls onReset={reset} actions={{pan:(x,y)=>engine.current?.pan(x,y),orbit:v=>engine.current?.orbit(v),zoom:f=>engine.current?.zoom(f),dragMode:mode=>engine.current?.dragMode(mode)}}/>}
   <div className={styles.attribution}><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap</a> · <a href="https://docs.overturemaps.org/attribution/" target="_blank" rel="noreferrer">Overture Maps</a> · <a href="https://esa-worldcover.org/en" target="_blank" rel="noreferrer">ESA WorldCover</a> · <a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noreferrer">Mapzen / USGS</a></div>
-  <div className={styles.edition}>XIANGJIANG 2035 / SPATIAL ATLAS V2</div>
+  <div className={styles.edition}>XIANGJIANG 2035 / SPATIAL ATLAS V2.1</div>
   <div className={styles.metrics} data-testid="scene-metrics">{JSON.stringify(metrics)}</div><div className={styles.motionStatus} role="status" aria-live="polite">{moving?'镜头移动中，可拖动打断':loaded?'场景已就绪':loadingLabel}</div>
  </main>;
 }

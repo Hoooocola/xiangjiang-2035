@@ -1,3 +1,4 @@
+import {INTRO_SEQUENCE} from './camera-sequence';
 import {buildOverlays} from './overlays';
 import {MAP_OBJECTS,visibleObjects} from '../atlas/objects';
 import type {OverlayState} from '../atlas/types';
@@ -18,7 +19,7 @@ export interface ExperienceCallbacks {
  metrics:(metrics:{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number})=>void;
 }
 export interface ExperienceEngine {
- start:()=>void; tour:()=>void; stop:()=>void; reset:()=>void;
+ start:()=>void; tour:()=>void; stop:()=>void; skip:()=>void; reset:()=>void;
  setOverlays:(state:OverlayState)=>void; navigate:(x:number,z:number)=>void; overview:()=>void; focus:(id:string)=>void; back:()=>void;
  pan:(x:number,y:number)=>void;dragMode:(mode:'pan'|'orbit')=>void;
  theme:(night:boolean)=>void; zoom:(f:number)=>void; orbit:(v:number)=>void; preset:(index:number)=>void;dispose:()=>void;
@@ -34,7 +35,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
  renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
  renderer.shadowMap.enabled=true;renderer.shadowMap.autoUpdate=false;renderer.shadowMap.needsUpdate=true;renderer.shadowMap.type=THREE.PCFShadowMap;
  const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','三维湘江地图。拖动平移，Shift 加拖动或右键旋转，滚轮缩放。键盘方向键转动，Home 返回。');canvas.style.cursor='grab';host.appendChild(canvas);
- const rig=new CameraRig(camera,canvas,{minimumCameraY:(x,z)=>(built?.terrain.height(x,z)??0)+6.6});
+ const rig=new CameraRig(camera,canvas,{initial:OVERVIEW_POSE,minimumCameraY:(x,z)=>(built?.terrain.height(x,z)??0)+6.6});
  const sceneEnvironment=createEnvironment(scene,renderer),{sun}=sceneEnvironment;
  const focusMaterial=new THREE.MeshBasicMaterial({color:'#9276bd',transparent:true,opacity:.8,depthWrite:false,side:THREE.DoubleSide});
  const ring=new THREE.Mesh(new THREE.RingGeometry(0.5,0.54,64),focusMaterial);ring.rotation.x=-Math.PI/2;ring.visible=false;scene.add(ring);
@@ -115,10 +116,12 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    previous=undefined;ring.visible=false;select();
    if(media.matches){fly(CAMERA_PRESETS[0].pose,0);return;}
    callbacks.motion(true);ring.visible=false;select();
-   const sequence:CameraPose[]=[{target:[0,0,11],distance:66,azimuth:.40,polar:.83},{target:[1,0,-12],distance:73,azimuth:.29,polar:.76},CAMERA_PRESETS[0].pose];
-   rig.cruise(sequence,11800,()=>{callbacks.motion(false);});
+   const play=()=>rig.sequence(INTRO_SEQUENCE,()=>callbacks.motion(false));
+   if(Math.abs(rig.pose.distance-OVERVIEW_POSE.distance)<.1)play();
+   else rig.fly(OVERVIEW_POSE,2600,play);
+
   };
-  return {setOverlays:(state)=>{overlayState=state;overlays.update(state);},start:tour,tour,stop,navigate:(x,z)=>{previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{
+  return {setOverlays:(state)=>{overlayState=state;overlays.update(state);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{
    const p=PLACES.find(p=>p.id===id);if(!p)return;previous??=clonePose(rig.pose);const [x,z]=project(p.coordinate);ring.position.set(x,(built?.terrain.height(x,z)??0)+.08,z);select(id);ring.visible=false;fly(placePose(p));
   },back:()=>{ring.visible=false;select();fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},pan:(x,y)=>{stop();rig.pan(x*rig.pose.distance*.08,y*rig.pose.distance*.08);},dragMode:(mode)=>{stop();rig.dragMode=mode;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},preset:(i)=>{previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[i].pose);},dispose};
  }catch(e){dispose();throw e;}
