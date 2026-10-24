@@ -8,6 +8,12 @@ describe('site driven AOI',()=>{
  it('retains all PDF labels and explicit uncertainty without fabricating locations',()=>{expect(XIANGJIANG_SITES).toHaveLength(56);expect(new Set(XIANGJIANG_SITES.map(s=>s.category))).toEqual(new Set(Object.keys(SITE_CATEGORIES)));for(const s of XIANGJIANG_SITES){if(s.spatialExtentStatus==='unverified')expect(s.approximateLocation).toBeNull();if(s.geometry)expect(s.source.some(x=>x.includes('OpenStreetMap'))).toBe(true);}expect(XIANGJIANG_SITES.find(s=>s.name==='南门口')?.approximateLocation).toBeNull();});
  it('keeps complete objects uniformly emphasized and fades continuously outward',()=>{const compiled=compileAreas([square]);expect(focusWeight(1,1,compiled)).toBeCloseTo(.8);expect(focusWeight(9,9,compiled)).toBeCloseTo(.8);expect(focusWeight(10.01,5,compiled)).toBeCloseTo(.8,4);expect(focusWeight(15,5,compiled)).toBeCloseTo(.4);expect(focusWeight(20,5,compiled)).toBe(0);});
  it('does not add exposure when multiple areas overlap and preserves holes',()=>{expect(focusWeight(5,5,compileAreas([square,square]))).toBeCloseTo(.8);const hole={...square,transitionWidth:100,geometry:{type:'Polygon' as const,coordinates:[...square.geometry.type==='Polygon'?square.geometry.coordinates:[],[[3,3],[7,3],[7,7],[3,7],[3,3]].map(p=>unproject(p as [number,number]))]}};expect(focusWeight(5,5,compileAreas([hole]))).toBe(0);});
- it('retains nonzero context and different emphasis at equal river distances',()=>{const sample=createAoiSampler(()=>40,[square]);expect(sample(5,5)).toBeCloseTo(.8);expect(sample(60,60)).toBeCloseTo(.12);expect(sample(10.1,5)-sample(10.11,5)).toBeLessThan(.01);});
+ it('preserves V1 corridor everywhere and excludes detached geographic extensions',()=>{
+  const detached=createAoiSampler(()=>40,[square]);expect(detached(5,5)).toBe(0);
+  const sample=createAoiSampler((x)=>Math.abs(x),[square]);
+  expect(sample(5,60)).toBe(1);expect(sample(17.5,60)).toBeCloseTo(.5);expect(sample(26,60)).toBe(0);
+  expect(sample(12,5)).toBeGreaterThanOrEqual(sample(12,60));
+  expect(Math.abs(sample(10.1,5)-sample(10.11,5))).toBeLessThan(.01);
+ });
  it('has valid independent focus configurations, including complete mountain and wetland objects',()=>{for(const a of FOCUS_AREAS){expect(XIANGJIANG_SITES.some(s=>s.id===a.siteId)).toBe(true);expect(a.transitionWidth).toBeGreaterThan(0);expect(a.visualIntensity).toBeLessThanOrEqual(1);if(!a.verified)expect(a.extentSource).toContain('Approximate');}for(const name of ['岳麓山','洋湖湿地','月亮岛','巴溪洲','兴马洲'])expect(FOCUS_AREAS.find(a=>a.name===name)?.verified).toBe(true);const mountain=XIANGJIANG_SITES.find(s=>s.name==='岳麓山')!;expect(focusWeight(...project(mountain.approximateLocation!),compileAreas(FOCUS_AREAS))).toBeGreaterThan(.75);});
 });
