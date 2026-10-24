@@ -1,8 +1,10 @@
+import {DEMO_FEATURES} from './demo-v21';
 import {EZHOU_COORDINATE} from './places';
 import {EZHOU_BOUNDARY} from './ezhou-boundary';
 import type {MapObject,OverlayState} from './types';
 const shared={placeId:'ezhou',sourceIds:['demo'],dataStatus:'demo' as const,precision:'示意位置 · 非实测'};
 export const MAP_OBJECTS:MapObject[]=[
+ ...DEMO_FEATURES,
  {...shared,id:'island-outline',title:'鹅洲轮廓 · OSM',layer:'geography',sourceIds:['osm'],dataStatus:'public',geometry:{type:'Polygon',coordinates:EZHOU_BOUNDARY},anchor:EZHOU_COORDINATE,precision:'OSM 水域内洞，非地籍边界'},
  {...shared,id:'ecology-context',title:'生态议题 · 地点级参考',layer:'ecology',recordId:'issue-water',sourceIds:['water2026','osm'],dataStatus:'public',geometry:{type:'Polygon',coordinates:EZHOU_BOUNDARY},anchor:[112.945371,28.0189],precision:'以洲岛关联公开议题，不是污染范围或保护红线'},
  {...shared,id:'culture-index',title:'地方生活史 · 资料索引',layer:'culture',recordId:'research-2024',sourceIds:['walk2024'],dataStatus:'public',geometry:{type:'Point',coordinates:[[112.9474,28.0143]]},anchor:[112.9474,28.0143],precision:'地点级索引，不表示报道采访点'},
