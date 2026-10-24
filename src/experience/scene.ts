@@ -38,7 +38,8 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  const groundGeo=new THREE.PlaneGeometry(6000,6000);groundGeo.rotateX(-Math.PI/2);groundGeo.translate(0,-.08,0);groundGeo.setAttribute('color',new THREE.Float32BufferAttribute(new Float32Array(groundGeo.attributes.position.count*3).fill(1),3));
  groundGeo.setAttribute('importance',new THREE.Float32BufferAttribute(new Float32Array(groundGeo.attributes.position.count),1));
  groundGeo.setAttribute('assetEdgeOpacity',new THREE.Float32BufferAttribute(new Float32Array(groundGeo.attributes.position.count).fill(1),1));
- const ground=new THREE.Mesh(groundGeo,materials.ground);ground.receiveShadow=true;root.add(ground);
+ const baseMaterial=materials.ground.clone();baseMaterial.transparent=false;baseMaterial.onBeforeCompile=materials.ground.onBeforeCompile;
+ const ground=new THREE.Mesh(groundGeo,baseMaterial);ground.receiveShadow=true;ground.renderOrder=-2;root.add(ground);
  const cols=Math.floor((grid.width-1)/2),rows=Math.floor((grid.height-1)/2);
  const relief=new THREE.PlaneGeometry(grid.dx*(grid.width-1),grid.dz*(grid.height-1),cols,rows);relief.rotateX(-Math.PI/2);relief.translate(grid.x0+grid.dx*(grid.width-1)/2,0,grid.z0+grid.dz*(grid.height-1)/2);
  const rp=relief.attributes.position;for(let i=0;i<rp.count;i++)rp.setY(i,height(rp.getX(i),rp.getZ(i))-.025);relief.computeVertexNormals();
@@ -54,7 +55,7 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  // Feather only the outer DEM tile edge into the background; unrelated to research AOI.
  relief.setAttribute('assetEdgeOpacity',new THREE.Float32BufferAttribute(Array.from({length:rp.count},(_,i)=>{const x=rp.getX(i),z=rp.getZ(i);return THREE.MathUtils.smoothstep(Math.min(x-grid.x0,grid.x0+grid.dx*(grid.width-1)-x,z-grid.z0,grid.z0+grid.dz*(grid.height-1)-z),0,30);}),1));
  relief.setAttribute('importance',new THREE.Float32BufferAttribute(Array.from({length:rp.count},(_,i)=>terrain.importance(rp.getX(i),rp.getZ(i))),1));
- const mountain=new THREE.Mesh(relief,materials.ground);mountain.receiveShadow=true;root.add(mountain);
+ const mountain=new THREE.Mesh(relief,materials.ground);mountain.receiveShadow=true;mountain.renderOrder=-1;root.add(mountain);
  const waterGs:THREE.BufferGeometry[]=[],shoreGs:THREE.BufferGeometry[]=[],parks:THREE.BufferGeometry[][]=[[],[]],roads:THREE.BufferGeometry[][]=[[],[]],bridgeGs:THREE.BufferGeometry[]=[],bridgeRails:THREE.BufferGeometry[]=[];
  const chunks=new Map<string,THREE.BufferGeometry[]>(),treePositions:[number,number,number,number][]=[];
  const selection=new THREE.Group();selection.visible=false;root.add(selection);

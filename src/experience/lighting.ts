@@ -3,7 +3,7 @@ import * as THREE from 'three';
 // Lighting and atmosphere never sample AOI or decide which geometry is loaded.
 export const SCENE_LIGHTING = {
  day: { sky:'#ffffff', bounce:'#a7b6bf', key:'#ffffff', hemi:.95, sun:2.25, fill:.4, exposure:1 },
- night: { sky:'#c4dbe5', bounce:'#486772', key:'#d2e4ed', hemi:1.05, sun:1.15, fill:.55, exposure:1.13 },
+ night: { sky:'#c4dbe5', bounce:'#486772', key:'#d2e4ed', hemi:.8, sun:1.25, fill:.35, exposure:1.08 },
 };
 export const ATMOSPHERE = {
  day: { background:'#f1f4f6', nearScale:.9, farScale:3, nearOffset:80, farOffset:220 },
