@@ -37,7 +37,7 @@ export function makeMaterials() {
    float block=fract(sin(dot(floor(vWorld.xz*.45),vec2(12.98,78.23)))*43758.54);
    vec3 base=mix(uContextColor,uCoreColor,detail);
    base*=1.0-detail*block*.13;
-   vec3 roof=mix(vec3(.62,.67,.69),vec3(.36,.43,.46),uNight);
+   vec3 roof=mix(vec3(.62,.67,.69),vec3(.25,.30,.32),uNight);
    diffuseColor.rgb=mix(base,mix(base,roof,detail*.7),1.0-side);
    diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.50,.34,.72),focus*uFocusActive*.12);
    float axis=abs(vFace.x)>abs(vFace.z)?vWorld.z:vWorld.x;
@@ -67,7 +67,7 @@ export function makeMaterials() {
    diffuseColor.a*=vAssetEdgeOpacity;
    float district=clamp(vGroundImportance,0.0,1.0);
    vec3 dayGround=mix(vec3(1.0),vec3(.40,.46,.47),district);
-   vec3 litGround=mix(vec3(.022,.042,.052),vec3(.12,.18,.19),district);
+   vec3 litGround=mix(vec3(.022,.042,.052),vec3(.065,.095,.105),district);
    diffuseColor.rgb*=mix(dayGround,litGround,uNight);
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`
@@ -75,7 +75,7 @@ export function makeMaterials() {
    #include <opaque_fragment>
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
-   totalEmissiveRadiance+=vec3(.022,.038,.042)*district*uNight;
+   totalEmissiveRadiance+=vec3(.008,.014,.016)*district*uNight;
   `);
  };
  const park=new THREE.MeshStandardMaterial({color:THEMES.day.park,roughness:1});

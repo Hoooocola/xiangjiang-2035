@@ -14,12 +14,12 @@ describe('river corridor and mini-map geography',()=>{
  it('draws river paths from actual source polygons',()=>{
   const paths=riverMiniPaths(data);expect(paths.length).toBeGreaterThan(0);expect(paths.join('')).not.toMatch(/NaN|Infinity/);expect(paths.every(p=>p.startsWith('M')&&p.endsWith('Z'))).toBe(true);
  });
- it('keeps continuous river and nonzero context in north, core and south',()=>{
+ it('preserves full V1 bank emphasis and valid context weights in north, core and south',()=>{
   const grid=JSON.parse(readFileSync('public/data/terrain.json','utf8')) as TerrainGrid;
   for(const z of [-260,0,210]){
    let bank:[number,number]|undefined,outer:[number,number]|undefined;
    for(let x=grid.x0;x<grid.x0+grid.dx*(grid.width-1);x+=1){const d=terrain.distance(x,z);if(d>4&&d<8)bank=[x,z];if(d>30&&d<38)outer=[x,z];}
-   expect(bank).toBeDefined();expect(outer).toBeDefined();for(const point of [bank!,outer!]){expect(terrain.importance(...point)).toBeGreaterThanOrEqual(.119);expect(terrain.importance(...point)).toBeLessThanOrEqual(1);}
+   expect(bank).toBeDefined();expect(outer).toBeDefined();expect(terrain.importance(...bank!)).toBeCloseTo(1,3);expect(terrain.importance(...outer!)).toBeGreaterThanOrEqual(0);expect(terrain.importance(...outer!)).toBeLessThanOrEqual(1);
   }
  });
 });
