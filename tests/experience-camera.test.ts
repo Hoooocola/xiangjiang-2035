@@ -35,3 +35,18 @@ describe('one camera controller for transitions and direct input',()=>{
   expect(rig.desired.azimuth).not.toBe(before);rig.dispose();
  });
 });
+
+import {INTRO_SEQUENCE,sampleSequence} from '../src/experience/camera-sequence';
+describe('authored overview to core sequence',()=>{
+ it('holds endpoints and approaches without range or heading reversals',()=>{
+  expect(sampleSequence(INTRO_SEQUENCE,600)).toEqual(OVERVIEW_POSE);
+  let last=sampleSequence(INTRO_SEQUENCE,1200);
+  for(let t=1300;t<=11400;t+=100){const next=sampleSequence(INTRO_SEQUENCE,t);expect(next.distance).toBeLessThanOrEqual(last.distance+1e-8);expect(next.azimuth).toBeGreaterThanOrEqual(last.azimuth-1e-8);expect(next.polar).toBeGreaterThanOrEqual(last.polar-1e-8);expect(next.target[2]).toBeGreaterThanOrEqual(last.target[2]-1e-8);last=next;}
+  expect(sampleSequence(INTRO_SEQUENCE,11000)).toEqual(sampleSequence(INTRO_SEQUENCE,11400));
+ });
+ it('cancels both a sequence and its completion callback on input',()=>{
+  const {rig,canvas}=setup(),done=vi.fn();rig.sequence(INTRO_SEQUENCE,done);const start=rig.route!.start;rig.update(start+5500,.016);
+  canvas.dispatchEvent(Object.assign(new Event('pointerdown'),{pointerId:1,clientX:100,clientY:100}));rig.update(start+15000,.016);
+  expect(rig.route).toBeNull();expect(done).not.toHaveBeenCalled();rig.dispose();
+ });
+});

@@ -48,3 +48,6 @@
 .objectMarker[data-layer=society] i{border-radius:50%;border-style:dashed;background:transparent}
 .objectMarker[data-layer=research] i{border-radius:2px;background:transparent;border:3px double var(--object-color)}
 .objectMarker[data-layer=proposal] i{border-radius:0;clip-path:polygon(50% 0,100% 100%,0 100%);width:16px;height:15px}
+
+.night{background:#0c232b}
+.skipTour{font-size:11px!important;min-width:44px!important;min-height:44px!important}
