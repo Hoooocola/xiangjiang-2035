@@ -51,6 +51,10 @@ export function makeMaterials() {
    diffuseColor.rgb*=1.0-windows*.45;
    diffuseColor.rgb+=vec3(.09)*floors*side*detail*resolution*(1.0-uNight);
   `);
+  s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`
+   outgoingLight=mix(mix(vec3(.76,.80,.83),vec3(.012,.025,.032),uNight),outgoingLight,smoothstep(0.0,.24,vGroundImportance));
+   #include <opaque_fragment>
+  `);
   s.fragmentShader=s.fragmentShader.replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
    float distantGlow=side*detail*(1.0-resolution)*(.11+block*.08);
    totalEmissiveRadiance+=mix(vec3(1.0,.78,.46),vec3(.78,.88,1.0),step(.72,block))*(windows*lit*2.6+distantGlow)*uNight;
@@ -69,6 +73,10 @@ export function makeMaterials() {
    vec3 dayGround=mix(vec3(1.0),vec3(.40,.46,.47),district);
    vec3 litGround=mix(vec3(.022,.042,.052),vec3(.12,.18,.19),district);
    diffuseColor.rgb*=mix(dayGround,litGround,uNight);
+  `);
+  s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`
+   outgoingLight=mix(mix(vec3(.76,.80,.83),vec3(.012,.025,.032),uNight),outgoingLight,smoothstep(0.0,.24,vGroundImportance));
+   #include <opaque_fragment>
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
    totalEmissiveRadiance+=vec3(.022,.038,.042)*district*uNight;
