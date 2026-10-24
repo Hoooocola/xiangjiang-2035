@@ -33,3 +33,11 @@
 @media(max-height:760px) and (min-width:1051px){.atlasToolbar{top:30px}}
 
 .cameraControls:has(.cameraTools){z-index:9}
+
+/* Place category symbols are independent of information-layer encoding. */
+.marker>i{width:23px;height:23px;border:1px solid #c8efee90;border-radius:50%;transform:none;display:grid;place-items:center;background:#174551;color:#d8efeb}
+.marker:hover>i,.selectedMarker>i{transform:scale(1.15)}
+.marker[data-category=heritage]>i{border-radius:3px;color:#e0c59d}
+.marker[data-category=community]>i{border-radius:7px;color:#d7c3e7}
+.marker[data-category=ecology]>i{color:#b9d6b2}
+.marker[data-category=infrastructure]>i{border-radius:3px;color:#b5c5df}

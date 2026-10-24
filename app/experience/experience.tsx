@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import Link from 'next/link';
-import {ArrowUpRight,ArrowRight,RotateCcw,Sun,Moon,X,Compass,Play,Pause,Info,ChevronLeft,MapPin,Layers,BookOpen,SlidersHorizontal} from 'lucide-react';
+import {ArrowUpRight,ArrowRight,RotateCcw,Sun,Moon,X,Compass,Play,Pause,Info,ChevronLeft,MapPin,Layers,BookOpen,SlidersHorizontal,Waves,Anchor,Trees,Landmark,Users,Factory} from 'lucide-react';
 import {CAMERA_PRESETS,PLACES} from '@/src/experience/config';
 import {MINI_MAP,miniPoint,worldPoint} from '@/src/experience/minimap';
 import {project} from '@/src/experience/geo';
@@ -14,6 +14,8 @@ import {LAYERS,recordById} from '@/src/atlas/catalog';
 import {MAP_OBJECTS,layersForObjects,visibleObjects} from '@/src/atlas/objects';
 import type {LayerId,OverlayState,ProposalScenario} from '@/src/atlas/types';
 import {profileFor} from '@/src/atlas/places';
+
+const PLACE_ICONS={island:Waves,waterfront:Anchor,ecology:Trees,heritage:Landmark,community:Users,infrastructure:Factory};
 
 export default function Experience({initialPlace}:{initialPlace?:string}){
  const host=useRef<HTMLDivElement>(null),engine=useRef<ExperienceEngine|null>(null),markers=useRef(new Map<string,HTMLButtonElement>());
@@ -59,7 +61,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
   {loaded&&<div className={styles.atlasToolbar} aria-label="知识地图工具"><button aria-expanded={atlasPanel==='layers'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='layers'?null:'layers');}}><SlidersHorizontal size={15}/>图层 <small>{layers.length}</small></button><button aria-expanded={atlasPanel==='library'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='library'?null:'library');}}><BookOpen size={15}/>资料</button></div>}
 
   <div className={`${styles.markers} ${selected?styles.hasSelection:''}`} aria-label="地图地点">
-   {PLACES.map(p=><button key={p.id} ref={el=>{if(el)markers.current.set(p.id,el);else markers.current.delete(p.id);}} className={`${styles.marker} ${selected===p.id?styles.selectedMarker:''}`} onClick={()=>focus(p.id)} aria-label={`探索${p.name}`} style={{visibility:'hidden'}} disabled={!loaded} data-place={p.id}><i/><span>{p.name}<small>{p.en}</small></span></button>)}
+   {PLACES.map(p=>{const Icon=PLACE_ICONS[p.siteCategory];return <button key={p.id} ref={el=>{if(el)markers.current.set(p.id,el);else markers.current.delete(p.id);}} className={`${styles.marker} ${selected===p.id?styles.selectedMarker:''}`} onClick={()=>focus(p.id)} aria-label={`探索${p.name}`} style={{visibility:'hidden'}} disabled={!loaded} data-place={p.id} data-category={p.siteCategory}><i><Icon size={14}/></i><span>{p.name}<small>{p.category}</small></span></button>;})}
   </div>
   <div className={styles.knowledgeMarkers} aria-label="空间资料对象">{MAP_OBJECTS.map(o=><button key={o.id} ref={el=>{if(el)markers.current.set('object:'+o.id,el);else markers.current.delete('object:'+o.id);}} style={{visibility:'hidden','--object-color':LAYERS.find(l=>l.id===o.layer)!.color} as React.CSSProperties} className={`${styles.objectMarker} ${objectIds.includes(o.id)?styles.activeObject:''}`} onClick={()=>openObject(o.id)} aria-label={`空间对象：${o.title}`}><i/><span>{o.title}<small>{o.dataStatus==='demo'?'演示 / 非实测':'公开资料 / 地点级索引'}</small></span></button>)}</div>
   {atlasPanel==='layers'&&<LayerPanel state={overlayState} onToggle={id=>setLayers(current=>current.includes(id)?current.filter(x=>x!==id):[...current,id])} onObject={openObject} onClose={()=>setAtlasPanel(null)}/>}

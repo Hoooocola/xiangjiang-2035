@@ -3,7 +3,7 @@ export type LayerId='geography'|'ecology'|'culture'|'society'|'research'|'propos
 export type RecordKind='ResearchProject'|'ResearchSession'|'FieldRecord'|'ResearchGap'|'Insight'|'Issue'|'Conflict'|'DesignOpportunity'|'Proposal';
 export type ProposalType='Product Design'|'Service Design'|'Product-Service System'|'Spatial Installation'|'Information / Interaction Design';
 export interface AtlasRecord {
- id:string;kind:RecordKind;placeId:string;title:string;year:number;author:string;course?:string;themes:string[];summary:string;body:string[];
+ id:string;kind:RecordKind;placeId:string;placeIds?:string[];title:string;year:number;author:string;course?:string;themes:string[];summary:string;body:string[];
  dataStatus:'public'|'demo';state:string;sourceIds:string[];evidenceIds:string[];relatedIds:string[];objectIds:string[];
  gapType?:'Knowledge Gap'|'Spatial Gap';proposalType?:ProposalType;legacyId?:string;
 }

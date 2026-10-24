@@ -91,11 +91,13 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
     miniView?.setAttribute('d',vertices.map(([x,y],i)=>`${i?'L':'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ')+'Z');
     const [mx,my]=miniPoint(rig.pose.target[0],rig.pose.target[2]);miniCenter?.setAttribute('cx',String(mx));miniCenter?.setAttribute('cy',String(my));
    }
-   for(const place of PLACES){
+   const occupied:[number,number][]=[];
+   for(const place of [...PLACES].sort((a,b)=>Number(b.id===selectedId)-Number(a.id===selectedId))){
     const el=markers.get(place.id);if(!el)continue;
     const [x,z]=project(place.coordinate);projectPoint.set(x,(built?.terrain.height(x,z)??0)+.6,z).project(camera);
     const px=(projectPoint.x*.5+.5)*w,py=(-projectPoint.y*.5+.5)*h;
-    const show=projectPoint.z<1&&projectPoint.z>-1&&px>35&&px<w-35&&py>100&&py<h-120&&(!place.overview||d>170||selectedId===place.id)&&!(d>300&&['yuelu','city'].includes(place.id));
+    const show=projectPoint.z<1&&projectPoint.z>-1&&px>35&&px<w-35&&py>100&&py<h-120&&(!occupied.some(([x,y])=>Math.hypot(px-x,py-y)<(d>300?38:30))||selectedId===place.id);
+    if(show)occupied.push([px,py]);
     el.dataset.edge=px>w-200?'right':'left';el.style.transform=`translate3d(${px}px,${py}px,0)`;el.style.visibility=show?'visible':'hidden';
    }
    const visibleIds=new Set(visibleObjects(overlayState).map(o=>o.id));
