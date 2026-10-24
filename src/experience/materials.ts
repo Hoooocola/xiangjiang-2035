@@ -59,11 +59,12 @@ export function makeMaterials() {
  };
  // Use one material implementation for both original footprints and new instances.
  const contextBuilding=building;
- const ground=new THREE.MeshStandardMaterial({color:THEMES.day.ground,roughness:1,vertexColors:true});
+ const ground=new THREE.MeshStandardMaterial({color:THEMES.day.ground,roughness:1,vertexColors:true,transparent:true});
  ground.onBeforeCompile=s=>{
   s.uniforms.uNight=night;
-  s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nattribute float importance; varying float vGroundImportance; varying vec3 vGroundPosition;').replace('#include <begin_vertex>','#include <begin_vertex>\nvGroundImportance=importance; vGroundPosition=position;');
-  s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nuniform float uNight; varying float vGroundImportance; varying vec3 vGroundPosition;').replace('#include <color_fragment>',`#include <color_fragment>
+  s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nattribute float importance; attribute float assetEdgeOpacity; varying float vAssetEdgeOpacity; varying float vGroundImportance; varying vec3 vGroundPosition;').replace('#include <begin_vertex>','#include <begin_vertex>\nvGroundImportance=importance; vAssetEdgeOpacity=assetEdgeOpacity; vGroundPosition=position;');
+  s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nuniform float uNight; varying float vAssetEdgeOpacity; varying float vGroundImportance; varying vec3 vGroundPosition;').replace('#include <color_fragment>',`#include <color_fragment>
+   diffuseColor.a*=vAssetEdgeOpacity;
    float district=clamp(vGroundImportance,0.0,1.0);
    vec3 dayGround=mix(vec3(1.0),vec3(.40,.46,.47),district);
    vec3 litGround=mix(vec3(.022,.042,.052),vec3(.12,.18,.19),district);
@@ -91,6 +92,11 @@ export function makeMaterials() {
  }
  spatialSurface(road,'road');spatialSurface(park,'park');
  const tree=new THREE.MeshStandardMaterial({color:THEMES.day.tree,roughness:1});
+ tree.onBeforeCompile=s=>{
+  s.uniforms.uNight=night;
+  s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nattribute float instanceImportance; varying float vTreeImportance;').replace('#include <begin_vertex>','#include <begin_vertex>\nvTreeImportance=instanceImportance;');
+  s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nuniform float uNight; varying float vTreeImportance;').replace('#include <color_fragment>','#include <color_fragment>\ndiffuseColor.rgb*=mix(1.0,.18+.82*clamp(vTreeImportance,0.0,1.0),uNight);');
+ };
  const shore=new THREE.MeshStandardMaterial({color:THEMES.day.shore,roughness:.9});
  const bridge=new THREE.MeshStandardMaterial({color:THEMES.day.bridge,roughness:.65});
  const bridgeLight=new THREE.MeshStandardMaterial({color:'#d9e2e2',emissive:'#ffdba1',emissiveIntensity:0,roughness:.6});

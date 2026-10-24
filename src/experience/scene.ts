@@ -50,6 +50,8 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
   groundColors.set([groundTint.r,groundTint.g,groundTint.b],i*3);
  }
  relief.setAttribute('color',new THREE.BufferAttribute(groundColors,3));
+ // Feather only the outer DEM tile edge into the background; unrelated to research AOI.
+ relief.setAttribute('assetEdgeOpacity',new THREE.Float32BufferAttribute(Array.from({length:rp.count},(_,i)=>{const x=rp.getX(i),z=rp.getZ(i);return THREE.MathUtils.smoothstep(Math.min(x-grid.x0,grid.x0+grid.dx*(grid.width-1)-x,z-grid.z0,grid.z0+grid.dz*(grid.height-1)-z),0,30);}),1));
  relief.setAttribute('importance',new THREE.Float32BufferAttribute(Array.from({length:rp.count},(_,i)=>terrain.importance(rp.getX(i),rp.getZ(i))),1));
  const mountain=new THREE.Mesh(relief,materials.ground);mountain.receiveShadow=true;root.add(mountain);
  const waterGs:THREE.BufferGeometry[]=[],shoreGs:THREE.BufferGeometry[]=[],parks:THREE.BufferGeometry[][]=[[],[]],roads:THREE.BufferGeometry[][]=[[],[]],bridgeGs:THREE.BufferGeometry[]=[],bridgeRails:THREE.BufferGeometry[]=[];
@@ -153,10 +155,12 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  const treeGeo=new THREE.IcosahedronGeometry(1,0),transform=new THREE.Object3D();
  const treeCore=new THREE.Color('#506e47'),treeContext=new THREE.Color('#f0f4f3'),treeColor=new THREE.Color();
  for(const positions of treeChunks.values()){
-  const trees=new THREE.InstancedMesh(treeGeo,materials.tree,positions.length);
+  const geometry=treeGeo.clone();geometry.setAttribute('instanceImportance',new THREE.InstancedBufferAttribute(new Float32Array(positions.map(p=>p[3])),1));
+  const trees=new THREE.InstancedMesh(geometry,materials.tree,positions.length);
   positions.forEach(([x,y,z,importance],i)=>{const h=.08+(Math.sin(x*31+z*19)*.5+.5)*.07;transform.position.set(x,y+h*.6,z);transform.scale.set(h*.7,h,h*.7);transform.rotation.y=i;transform.updateMatrix();trees.setMatrixAt(i,transform.matrix);treeColor.copy(treeContext).lerp(treeCore,importance);trees.setColorAt(i,treeColor);});
   trees.castShadow=true;trees.receiveShadow=true;trees.computeBoundingSphere();detail.add(trees);
  }
+ treeGeo.dispose();
 
  return {root,city,detail,terrain,select:(id?:string)=>{selection.visible=id==='juzizhou';},stats:{buildings:count+contextCount,knownHeight:heightKnown+contextData.counts.knownHeight,trees:treePositions.length}};
 }
