@@ -13,7 +13,6 @@ import {CameraControls} from './camera-controls';
 import {LAYERS,recordById} from '@/src/atlas/catalog';
 import {MAP_OBJECTS,layersForObjects,visibleObjects} from '@/src/atlas/objects';
 import type {LayerId,OverlayState,ProposalScenario} from '@/src/atlas/types';
-import {profileFor} from '@/src/atlas/places';
 
 const PLACE_ICONS={island:Waves,waterfront:Anchor,ecology:Trees,heritage:Landmark,community:Users,infrastructure:Factory};
 
@@ -48,7 +47,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
  const revealObjects=(ids:string[])=>{setObjectIds(ids);setLayers(current=>Array.from(new Set([...current,...layersForObjects(ids)])));};
  const openRecord=(id:string|null)=>{if(!id){clearRecord();return;}const r=recordById(id);if(!r)return;if(selected!==r.placeId)focus(r.placeId);setStarted(true);setAtlasPanel(null);setDrawer(null);setDetailOpen(true);setRecordId(id);if(id!==proposal?.proposalId)setProposal(null);setDetailTab(r.kind==='ResearchProject'||r.kind==='ResearchSession'?'research':r.kind==='FieldRecord'?'evidence':['Proposal','DesignOpportunity'].includes(r.kind)?'design':'questions');revealObjects(r.objectIds);};
  const openObject=(id:string)=>{const o=MAP_OBJECTS.find(o=>o.id===id);if(!o)return;if(o.recordId){openRecord(o.recordId);return;}else{if(selected!==o.placeId)focus(o.placeId);setAtlasPanel(null);setDetailTab('overview');setRecordId(null);setProposal(null);setDetailOpen(true);}revealObjects([o.id]);};
- const changeProposal=(view:ProposalScenario['view'])=>{const record=recordId?recordById(recordId):undefined;if(record?.kind!=='Proposal'||record.placeId!==selected)return;setProposal({proposalId:record.id,view});revealObjects(record.objectIds);};
+ const changeProposal=(view:ProposalScenario['view'])=>{const record=recordId?recordById(recordId):undefined;if(record?.kind!=='Proposal'||record.placeId!==selected)return;setLayerScope('place');setProposal({proposalId:record.id,view});revealObjects(record.objectIds);};
 
  const place=PLACES.find(p=>p.id===selected);
  const currentLabel=place?.name??(overview?'湘江全段':freeExplore?'沿江自由探索':'长沙核心河段');
@@ -65,7 +64,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
    {PLACES.map(p=>{const Icon=PLACE_ICONS[p.siteCategory];return <button key={p.id} ref={el=>{if(el)markers.current.set(p.id,el);else markers.current.delete(p.id);}} className={`${styles.marker} ${selected===p.id?styles.selectedMarker:''}`} onClick={()=>focus(p.id)} aria-label={`探索${p.name}`} style={{visibility:'hidden'}} disabled={!loaded} data-place={p.id} data-category={p.siteCategory}><i><Icon size={14}/></i><span>{p.name}<small>{p.category}</small></span></button>;})}
   </div>
   <div className={styles.knowledgeMarkers} aria-label="空间资料对象">{MAP_OBJECTS.map(o=><button key={o.id} ref={el=>{if(el)markers.current.set('object:'+o.id,el);else markers.current.delete('object:'+o.id);}} style={{visibility:'hidden','--object-color':LAYERS.find(l=>l.id===o.layer)!.color} as React.CSSProperties} data-layer={o.layer} className={`${styles.objectMarker} ${objectIds.includes(o.id)?styles.activeObject:''}`} onClick={()=>openObject(o.id)} aria-label={`空间对象：${o.title}`}><i/><span>{o.title}<small>{o.dataStatus==='demo'?'DEMO DATA / 模拟研究资料':'公开资料 / 地点级索引'}</small></span></button>)}</div>
-  {atlasPanel==='layers'&&<LayerPanel scope={layerScope} onScope={setLayerScope} selectedPlace={place?.name} state={overlayState} onToggle={id=>setLayers(current=>current.includes(id)?current.filter(x=>x!==id):[...current,id])} onObject={openObject} onClose={()=>setAtlasPanel(null)}/>}
+  {atlasPanel==='layers'&&<LayerPanel scope={selected?layerScope:'all'} onScope={setLayerScope} selectedPlace={place?.name} state={overlayState} onToggle={id=>setLayers(current=>current.includes(id)?current.filter(x=>x!==id):[...current,id])} onObject={openObject} onClose={()=>setAtlasPanel(null)}/>}
   {atlasPanel==='library'&&<AtlasLibrary onOpen={openRecord} onClose={()=>setAtlasPanel(null)}/>}
   <div className={styles.metrics} data-testid="atlas-state">{JSON.stringify({place:selected,layers,proposal,record:recordId,objects:visibleObjects(overlayState).map(o=>o.id),detailOpen,objectIds})}</div>
   <section className={`${styles.intro} ${started?styles.introHidden:''}`} aria-label="开始探索" aria-hidden={started} inert={started}>
@@ -82,7 +81,7 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
    <p className={styles.eyebrow}>FIELD NOTES <span>/ {place.index}</span></p><small className={styles.placeEnglish}>{place.en}</small><h2>{place.name}</h2>
    <p className={styles.category}>{place.category}</p><p className={styles.description}>{place.description}</p>
    <div className={styles.location}><span>{place.coordinate[1].toFixed(4)}° N</span><span>{place.coordinate[0].toFixed(4)}° E</span></div>
-   <p className={styles.dataNote}>{place.note}</p>{place.id==='ezhou'&&<Link className={styles.siteEntry} href="/experience/sites/ezhou">进入三维研究现场 <ArrowUpRight size={15}/><small>概念场景 · 非真实扫描</small></Link>}<p className={styles.dataNote}>{profileFor(place.id).tags.join(' · ')}</p><button className={styles.detailEntry} onClick={()=>setDetailOpen(true)}>进入地点详情 <ArrowRight size={14}/></button><button className={styles.textButton} onClick={closePlace}><ChevronLeft size={16}/> 返回原视角</button>
+   <p className={styles.dataNote}>{place.note}</p>{place.id==='ezhou'&&<Link className={styles.siteEntry} href="/experience/sites/ezhou">进入三维研究现场 <ArrowUpRight size={15}/><small>概念场景 · 非真实扫描</small></Link>}<p className={styles.dataNote}>{`关联研究 ${place.relatedResearchIds.length} · 关联方案 ${place.relatedProposalIds.length}（含明确标记的演示资料）`}</p><button className={styles.detailEntry} onClick={()=>setDetailOpen(true)}>进入地点详情 <ArrowRight size={14}/></button><button className={styles.textButton} onClick={closePlace}><ChevronLeft size={16}/> 返回原视角</button>
   </aside>}
   {drawer&&<aside className={styles.drawer} aria-label={drawer==='places'?'地点列表':drawer==='views'?'镜头预设':'关于此地图'}>
    <button ref={drawerCloseRef} className={styles.close} onClick={()=>setDrawer(null)} aria-label="关闭面板"><X size={20}/></button>
