@@ -51,10 +51,6 @@ export function makeMaterials() {
    diffuseColor.rgb*=1.0-windows*.45;
    diffuseColor.rgb+=vec3(.09)*floors*side*detail*resolution*(1.0-uNight);
   `);
-  s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`
-   outgoingLight=mix(mix(vec3(.76,.80,.83),vec3(.012,.025,.032),uNight),outgoingLight,smoothstep(0.0,.24,vGroundImportance));
-   #include <opaque_fragment>
-  `);
   s.fragmentShader=s.fragmentShader.replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
    float distantGlow=side*detail*(1.0-resolution)*(.11+block*.08);
    totalEmissiveRadiance+=mix(vec3(1.0,.78,.46),vec3(.78,.88,1.0),step(.72,block))*(windows*lit*2.6+distantGlow)*uNight;
