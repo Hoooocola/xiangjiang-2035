@@ -1,0 +1,128 @@
+[
+  {
+    "id": "legacy-p1",
+    "originalId": "p1",
+    "title": "鹅洲岸线共享设计方案",
+    "year": 2026,
+    "placeIds": [
+      "ezhou"
+    ],
+    "originalPlace": "鹅洲",
+    "originalTeam": "2026 春季鹅洲综合调研 · 设计小组",
+    "source": "prototype-html/js/data.js @ 3bf2d3e",
+    "sourceStatus": "prototype-demo",
+    "coordinateVerified": true
+  },
+  {
+    "id": "legacy-p2",
+    "originalId": "p2",
+    "title": "鹅洲生态监测步道",
+    "year": 2025,
+    "placeIds": [
+      "ezhou"
+    ],
+    "originalPlace": "鹅洲",
+    "originalTeam": "湖南大学乡建设计课",
+    "source": "prototype-html/js/data.js @ 3bf2d3e",
+    "sourceStatus": "prototype-demo",
+    "coordinateVerified": true
+  },
+  {
+    "id": "legacy-p3",
+    "originalId": "p3",
+    "title": "乡野路径导视系统",
+    "year": 2024,
+    "placeIds": [
+      "ezhou"
+    ],
+    "originalPlace": "鹅洲",
+    "originalTeam": "湘江公共空间工作坊",
+    "source": "prototype-html/js/data.js @ 3bf2d3e",
+    "sourceStatus": "prototype-demo",
+    "coordinateVerified": true
+  },
+  {
+    "id": "legacy-p4",
+    "originalId": "p4",
+    "title": "季节性生态廊道",
+    "year": 2026,
+    "placeIds": [
+      "baxi"
+    ],
+    "originalPlace": "巴溪洲",
+    "originalTeam": "河流景观研究组",
+    "source": "prototype-html/js/data.js @ 3bf2d3e",
+    "sourceStatus": "prototype-demo",
+    "coordinateVerified": true
+  },
+  {
+    "id": "legacy-p5",
+    "originalId": "p5",
+    "title": "可逆遮荫单元",
+    "year": 2026,
+    "placeIds": [
+      "ezhou"
+    ],
+    "originalPlace": "鹅洲",
+    "originalTeam": "2026 春季鹅洲综合调研 · 设计小组",
+    "source": "prototype-html/js/data.js @ 3bf2d3e",
+    "sourceStatus": "prototype-demo",
+    "coordinateVerified": true
+  },
+  {
+    "id": "legacy-p6",
+    "originalId": "p6",
+    "title": "社区渡口更新",
+    "year": 2023,
+    "placeIds": [
+      "xingma"
+    ],
+    "originalPlace": "兴马洲",
+    "originalTeam": "湘江2035 联合研究",
+    "source": "prototype-html/js/data.js @ 3bf2d3e",
+    "sourceStatus": "prototype-demo",
+    "coordinateVerified": true
+  },
+  {
+    "id": "legacy-p7",
+    "originalId": "p7",
+    "title": "浅滩观察节点",
+    "year": 2022,
+    "placeIds": [
+      "ezhou"
+    ],
+    "originalPlace": "鹅洲",
+    "originalTeam": "公共空间研究室",
+    "source": "prototype-html/js/data.js @ 3bf2d3e",
+    "sourceStatus": "prototype-demo",
+    "coordinateVerified": true
+  },
+  {
+    "id": "legacy-p8",
+    "originalId": "p8",
+    "title": "乡村慢行环线",
+    "year": 2025,
+    "placeIds": [
+      "jiefangyuan"
+    ],
+    "originalPlace": "解放垸",
+    "originalTeam": "城乡规划课程",
+    "source": "prototype-html/js/data.js @ 3bf2d3e",
+    "sourceStatus": "prototype-demo",
+    "coordinateVerified": false
+  },
+  {
+    "id": "legacy-p9",
+    "originalId": "p9",
+    "title": "岸线共享设施原型",
+    "year": 2026,
+    "placeIds": [
+      "ezhou"
+    ],
+    "originalPlace": "鹅洲",
+    "originalTeam": "岸线使用补充调研",
+    "source": "prototype-html/js/data.js @ 3bf2d3e",
+    "sourceStatus": "prototype-demo",
+    "coordinateVerified": true
+  }
+]

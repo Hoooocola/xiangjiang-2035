@@ -2,6 +2,7 @@ import type {Coordinate} from '../experience/geo';
 export const EZHOU_COORDINATE:Coordinate=[112.9481,28.0099];
 export type Source={id:string;title:string;url?:string;year:number;author:string;status:'public'|'demo'|'approximate'};
 export const SOURCES:Source[]=[
+ {id:'legacy-prototype',title:'旧 HTML 原型中的 9 条方案记录（原型演示，不是核实成果）',year:2026,author:'prototype-html/js/data.js · Git 3bf2d3e，内容与首次归档一致',status:'demo'},
  {id:'gazetteer',title:'公开地名目录：Ezhou / 鹅洲',url:'https://fallingrain.com/world/CH/11/Ezhou.html',year:2026,author:'Falling Rain 地名目录；2026-10-22 核对',status:'approximate'},
  {id:'osm',title:'OpenStreetMap 河道与洲岛轮廓',url:'https://www.openstreetmap.org/relation/8727387',year:2026,author:'OpenStreetMap contributors',status:'public'},
  {id:'walk2024',title:'“洲”游长沙：鹅洲走读报道',url:'https://xjzb.icswb.com/h/106002/20240618/875653.html',year:2024,author:'长沙晚报 · 邬伟、周游、李金',status:'public'},
