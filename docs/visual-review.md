@@ -6,7 +6,7 @@
 
 | Masar 实际日间 | 湘江日间 |
 |---|---|
-| ![Masar](screenshots/reference/07-live-day.jpg) | ![湘江](screenshots/local/10-final-day-1440.jpg) |
+| [Masar 官方参考](https://www.masardestination.com.sa/) | ![湘江](screenshots/local/10-final-day-1440.jpg) |
 
 - 构图：参考以开发项目主轴和高层群为主角；湘江以真实河道和橘子洲为主轴，视野覆盖更宽的城市范围。同一视口下建筑更小，不能以截图相似度替代真实空间关系。
 - 模型：参考有退台、塔楼、地标、铺地、路缘等定制资产；当前为真实建筑占地挤出，程序化立面，普通桥面与桥墩。微观细节及标志性天际线仍有明显差距。
@@ -18,7 +18,7 @@
 
 | Masar 夜间 | 湘江夜间 |
 |---|---|
-| ![Masar 夜](screenshots/reference/06-live-night.jpg) | ![湘江 夜](screenshots/local/11-final-night-1440.jpg) |
+| [Masar 官方参考](https://www.masardestination.com.sa/) | ![湘江 夜](screenshots/local/11-final-night-1440.jpg) |
 
 第一次夜景太暗，已提高环境光、建筑与地面可见性。最终夜间改变天空/雾、地面、建筑、窗光、江水与主光，而非覆盖黑色滤镜。仍缺少精细路灯、真实地标照明和局部光照设计；高频窗格远处有细小闪烁/混叠，可继续优化。
 

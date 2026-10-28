@@ -29,7 +29,7 @@
 
 已打开 UNESCO 指定页面并捕获入口；入口提示继续即同意 Terms of Use，因此没有点击 Enter、没有声称完整操作其内部导览。仅观察到全屏场景背景、简洁顶部导航和单一进入动作。交互架构按用户提供的明确要求实现，不以未验证的参考内部行为作为事实。
 
-![UNESCO 可访问入口](screenshots/spatial-explorer-2026-10-22/01-reference.jpg)
+[Masar 官方参考](https://www.masardestination.com.sa/)
 
 ## 实现职责
 

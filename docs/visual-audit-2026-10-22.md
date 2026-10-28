@@ -102,7 +102,7 @@
 ### 步骤1：日间对照
 
 参考：
-![参考日间](screenshots/audit-2026-10-22/03-reference-day.jpg)
+[Masar 官方参考](https://www.masardestination.com.sa/)
 
 本地：
 ![本地日间](screenshots/audit-2026-10-22/02-local-day.jpg)
@@ -110,7 +110,7 @@
 ### 步骤2：夜间对照
 
 参考：
-![参考夜间](screenshots/audit-2026-10-22/01-reference-night.jpg)
+[Masar 官方参考](https://www.masardestination.com.sa/)
 
 本地：
 ![本地夜间](screenshots/audit-2026-10-22/06-local-night.jpg)
@@ -129,7 +129,7 @@
 
 参考的分析视图与本地地点聚焦用途不完全相同；这里比较区域强调与背景降权，而不主张复制其全部功能。
 
-![参考区域强调](screenshots/audit-2026-10-22/05-reference-area.jpg)
+[Masar 官方参考](https://www.masardestination.com.sa/)
 ![本地洲岛选中](screenshots/audit-2026-10-22/12-local-island-selected.jpg)
 
 ### 步骤6：UI组织

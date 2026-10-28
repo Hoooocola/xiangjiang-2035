@@ -1,6 +1,6 @@
 /* Map exploration */
 .map-page { position: relative; height: 100vh; min-height: 760px; overflow: hidden; background: #edf0f1; }
-.map-canvas { position: absolute; inset: 0; background: url("../assets/images/figma-map.png") center / cover no-repeat; filter: saturate(.65) contrast(.94) brightness(1.035); transform: scale(1.02); }
+.map-canvas { position: absolute; inset: 0; background: url("../assets/images/asset-unavailable.svg") center / cover no-repeat; filter: saturate(.65) contrast(.94) brightness(1.035); transform: scale(1.02); }
 .map-veil { position: absolute; inset: 0; z-index:0; pointer-events:none; background: rgba(255,255,255,.06); }
 .map-controls { position: absolute; z-index:3; right: 32px; top: 120px; display: grid; gap: 8px; }
 .map-control { width: 42px; height: 42px; border: var(--line); border-radius: 50%; background: rgba(255,255,255,.92); box-shadow: var(--shadow-soft); }
@@ -56,7 +56,7 @@
 .gap-row { display:grid; grid-template-columns:70px 1fr; gap:22px; padding:26px 0; border-top:var(--line); transition:opacity var(--ease); }
 .gap-row.is-selected { padding-left:14px; border-left:2px solid var(--brand); background:var(--cyan-mist); }
 .gap-row.is-muted { opacity:.38; }
-.record-map { position:relative; min-height:660px; background:url("../assets/images/figma-map.png") center/cover no-repeat; overflow:hidden; }
+.record-map { position:relative; min-height:660px; background:url("../assets/images/asset-unavailable.svg") center/cover no-repeat; overflow:hidden; }
 .record-map::after { content:""; position:absolute; inset:0; background:rgba(255,255,255,.4); }
 .record-map .marker { z-index:2; }
 .filter-rail { display:flex; gap:10px; align-items:center; margin-bottom:24px; }
@@ -94,7 +94,7 @@
 .prep-row { display:grid; grid-template-columns:40px 1fr auto; gap:18px; align-items:center; min-height:74px; border-bottom:var(--line); }
 .prep-state { width:22px; height:22px; border:1px solid var(--ink-14); border-radius:50%; }
 .prep-state.is-complete { border-color:var(--brand); background:var(--brand); box-shadow:inset 0 0 0 6px white; }
-.scope-map { position:relative; height:260px; margin-top:14px; background:url("../assets/images/figma-map.png") center/cover; overflow:hidden; }
+.scope-map { position:relative; height:260px; margin-top:14px; background:url("../assets/images/asset-unavailable.svg") center/cover; overflow:hidden; }
 .scope-map::after { content:""; position:absolute; inset:34% 25% 28% 30%; border:2px solid var(--brand); background:rgba(48,209,255,.13); clip-path:polygon(0 55%,15% 24%,52% 0,100% 18%,90% 72%,55% 100%,20% 86%); }
 .date-range { display:grid; grid-template-columns:1fr auto 1fr; gap:16px; align-items:end; }
 .people-results { border-top:var(--line); margin-top:12px; }

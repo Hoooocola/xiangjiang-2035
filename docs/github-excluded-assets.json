@@ -1,0 +1,387 @@
+[
+  {
+    "path": "design-assets/demo-images/proposal-attachment-board.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "50aebd25c641a2a9894795b8dadc2aff12335f37"
+    ]
+  },
+  {
+    "path": "design-assets/demo-images/proposal-ecology-monitoring.jpg",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "9669585f1e0d136767da0e5f3640d413d30495f7"
+    ]
+  },
+  {
+    "path": "design-assets/demo-images/proposal-ecology-monitoring.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "8706a6f8f6bd30b50aeb1d1fb552bb15ae71710a"
+    ]
+  },
+  {
+    "path": "design-assets/demo-images/proposal-reversible-shade.jpg",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "667ca27b88532490a5c0ac22a12de5e08cec5e29"
+    ]
+  },
+  {
+    "path": "design-assets/demo-images/proposal-reversible-shade.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "37b332d8c35bc79180c8dcbfe798a49b0beb62ca"
+    ]
+  },
+  {
+    "path": "design-assets/demo-images/proposal-rural-wayfinding.jpg",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "6e1504ef6094f9ace9f26a18165c145264f1ca6f"
+    ]
+  },
+  {
+    "path": "design-assets/demo-images/proposal-rural-wayfinding.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "3ce700fbc3a080d21e03cee7f22029ce146f2538"
+    ]
+  },
+  {
+    "path": "design-assets/demo-images/proposal-seasonal-ecology-corridor.jpg",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "7da3ee70183956e64d8fd866e18351aeeda52b6e"
+    ]
+  },
+  {
+    "path": "design-assets/demo-images/proposal-seasonal-ecology-corridor.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "edab8a632f9ccfe9342cd6156c1a0faf2d437aa8"
+    ]
+  },
+  {
+    "path": "design-assets/demo-images/proposal-shared-shoreline.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "2fb3d3670e0e38b5011a6269e1e25b744ed30ed1"
+    ]
+  },
+  {
+    "path": "docs/references/xiangjiang-site-classification.pdf",
+    "reason": "R3 original PDF",
+    "blobs": [
+      "4480ce207c4369f853937dba01b6643b976c5909"
+    ]
+  },
+  {
+    "path": "docs/screenshots/audit-2026-10-22/01-reference-night.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "0a144513d61789bab481c16bc79ee10cf8f2b9a0"
+    ]
+  },
+  {
+    "path": "docs/screenshots/audit-2026-10-22/03-reference-day.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "5a149feff95b4ca50f4ce7b96790d7afa54cc88f"
+    ]
+  },
+  {
+    "path": "docs/screenshots/audit-2026-10-22/04-reference-components.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "2881015658dfea9ae6428d1c9a991e60c55d0572"
+    ]
+  },
+  {
+    "path": "docs/screenshots/audit-2026-10-22/05-reference-area.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "d414c04f9cc0e22db471955f8674087e5d1df285"
+    ]
+  },
+  {
+    "path": "docs/screenshots/rebuild-2026-10-22/reference-minimap.png",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "f288de1e9155c342a568eb6dd6fef8561f2f8901"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/01-intro.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "37249cf13d2366881d8ac42c73f0e6695b986637"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/02-scroll.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "1eba1586e9435ef2d004c72509dd8f1a7470c14a"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/03-official-overview.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "52191ccf7034a171534c7e601d449f625daa1b54"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/04-official-detail.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "561fcf380f71400d8b7b145410aeb681a4aa18ed"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/05-official-focus.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "8985edc952bb8f1d167b68e5f8d35df0d2d61209"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/06-live-night.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "284827f3de2457f9f660203b06857bed7c26268b"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/06-official-wide.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "3442a4fc11e608d4d9d14d6a74c20ae672b7867d"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/07-live-day.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "4a5030fed8049a258b1ce9163576349637a5b44e"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/08-live-drag.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "eef86a705ee01e14394bd0685aa8f29ae276981d"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/09-live-zoom.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "f5caa29e8bacb1cf4de3e7910558eff33b3a2bbe"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/10-live-marker.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "59b790052d75bed32712e9354b4065ccc1ad3109"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/11-live-components.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "56ce0140a280b0c0545f4b5ee3f7794f1741d245"
+    ]
+  },
+  {
+    "path": "docs/screenshots/reference/12-narrow.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "5744a1b21e27ac560b5e12a822d9e740c44f45ce"
+    ]
+  },
+  {
+    "path": "docs/screenshots/spatial-explorer-2026-10-22/01-reference.jpg",
+    "reason": "R1 Masar reference screenshot",
+    "blobs": [
+      "d779121fc383830637ac825eb9724fdb3d64931f"
+    ]
+  },
+  {
+    "path": "prototype-html/assets/images/figma-map.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "2811d272a643baaa449f4ab6846b75b2befbe343"
+    ]
+  },
+  {
+    "path": "prototype-html/assets/images/map-explore-detail.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "3296b6a10d0e1b4d4b8478701b4b1146d6b93426"
+    ]
+  },
+  {
+    "path": "prototype-html/assets/images/proposal-attachment-board.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "50aebd25c641a2a9894795b8dadc2aff12335f37"
+    ]
+  },
+  {
+    "path": "prototype-html/assets/images/proposal-ecology-monitoring.jpg",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "9669585f1e0d136767da0e5f3640d413d30495f7"
+    ]
+  },
+  {
+    "path": "prototype-html/assets/images/proposal-reversible-shade.jpg",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "667ca27b88532490a5c0ac22a12de5e08cec5e29"
+    ]
+  },
+  {
+    "path": "prototype-html/assets/images/proposal-rural-wayfinding.jpg",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "6e1504ef6094f9ace9f26a18165c145264f1ca6f"
+    ]
+  },
+  {
+    "path": "prototype-html/assets/images/proposal-seasonal-ecology-corridor.jpg",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "7da3ee70183956e64d8fd866e18351aeeda52b6e"
+    ]
+  },
+  {
+    "path": "prototype-html/assets/images/proposal-shared-shoreline.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "2fb3d3670e0e38b5011a6269e1e25b744ed30ed1"
+    ]
+  },
+  {
+    "path": "public/assets/map-explore-detail.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "3296b6a10d0e1b4d4b8478701b4b1146d6b93426"
+    ]
+  },
+  {
+    "path": "public/assets/map-explore-state.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "3b11543317d6c23033cec01db367d105c1939921"
+    ]
+  },
+  {
+    "path": "public/assets/map-explore.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "d9b9f280ab80f4e9f71f24e18268fa501eeb29a3"
+    ]
+  },
+  {
+    "path": "public/assets/output-01.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "76926738fe1d9c28b744dd3b0229866fbc78d168"
+    ]
+  },
+  {
+    "path": "public/assets/output-02.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "3857542df0f777b9a9ada08b070720e8a8f8902d"
+    ]
+  },
+  {
+    "path": "public/assets/output-03.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "f649968b87fbfa7961b172b0e26f278d1d1eeab9"
+    ]
+  },
+  {
+    "path": "public/assets/output-04.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "99a4d9b4d3fff20f2d6cef92ff76fc64e3e06c57"
+    ]
+  },
+  {
+    "path": "public/assets/output-05.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "daab2addb9e01fa30d6c731a6907d0367eaa59d6"
+    ]
+  },
+  {
+    "path": "public/assets/output-06.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "8a9bcf9acb0f78e8a7bbbb9314da8b309f946a4d"
+    ]
+  },
+  {
+    "path": "public/assets/screen-04.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "16aa36dafe4f04e286ca3416db120e085bc7e179"
+    ]
+  },
+  {
+    "path": "public/assets/screen-05.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "6d94a140ac2dc3c04aa09ffaa1b87cb96a4a75ae"
+    ]
+  },
+  {
+    "path": "public/assets/screen-06.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "a0bcd813ea517432f75597c9135cf551f30bbaa0"
+    ]
+  },
+  {
+    "path": "public/assets/screen-07.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "37e03173ee2d63276443810e0d4a07b1a691a765"
+    ]
+  },
+  {
+    "path": "public/assets/screen-08.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "61df39144c759bfb7ce1815fa303815c4d61cd9b"
+    ]
+  },
+  {
+    "path": "public/assets/screen-09.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "9aab3f51eefe790d2886107391d2d07481168512"
+    ]
+  },
+  {
+    "path": "public/assets/screen-10.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "a653ca7dabe223bc62c914a7bb506bb1a8fd9321"
+    ]
+  },
+  {
+    "path": "public/assets/screen-11.png",
+    "reason": "R2 source not documented",
+    "blobs": [
+      "c53516f274ab810d867fc2a41210ceedb505b2a9"
+    ]
+  }
+]

@@ -73,15 +73,15 @@ export const clusters = [
 ];
 
 export const proposals = [
-  { id:"p1", title:"鹅洲岸线共享设计方案", place:"鹅洲", year:"2026", team:"2026 春季鹅洲综合调研 · 设计小组", image:"assets/images/proposal-shared-shoreline.png", legacy:false },
-  { id:"p2", title:"鹅洲生态监测步道", place:"鹅洲", year:"2025", team:"湖南大学乡建设计课", image:"assets/images/proposal-ecology-monitoring.jpg", legacy:false },
-  { id:"p3", title:"乡野路径导视系统", place:"鹅洲", year:"2024", team:"湘江公共空间工作坊", image:"assets/images/proposal-rural-wayfinding.jpg", legacy:true },
-  { id:"p4", title:"季节性生态廊道", place:"巴溪洲", year:"2026", team:"河流景观研究组", image:"assets/images/proposal-seasonal-ecology-corridor.jpg", legacy:false },
-  { id:"p5", title:"可逆遮荫单元", place:"鹅洲", year:"2026", team:"2026 春季鹅洲综合调研 · 设计小组", image:"assets/images/proposal-reversible-shade.jpg", legacy:false },
-  { id:"p6", title:"社区渡口更新", place:"兴马洲", year:"2023", team:"湘江2035 联合研究", image:"assets/images/proposal-rural-wayfinding.jpg", legacy:true },
-  { id:"p7", title:"浅滩观察节点", place:"鹅洲", year:"2022", team:"公共空间研究室", image:"assets/images/proposal-ecology-monitoring.jpg", legacy:true },
-  { id:"p8", title:"乡村慢行环线", place:"解放垸", year:"2025", team:"城乡规划课程", image:"assets/images/proposal-seasonal-ecology-corridor.jpg", legacy:false },
-  { id:"p9", title:"岸线共享设施原型", place:"鹅洲", year:"2026", team:"岸线使用补充调研", image:"assets/images/proposal-shared-shoreline.png", legacy:false },
+  { id:"p1", title:"鹅洲岸线共享设计方案", place:"鹅洲", year:"2026", team:"2026 春季鹅洲综合调研 · 设计小组", image:"assets/images/asset-unavailable.svg", legacy:false },
+  { id:"p2", title:"鹅洲生态监测步道", place:"鹅洲", year:"2025", team:"湖南大学乡建设计课", image:"assets/images/asset-unavailable.svg", legacy:false },
+  { id:"p3", title:"乡野路径导视系统", place:"鹅洲", year:"2024", team:"湘江公共空间工作坊", image:"assets/images/asset-unavailable.svg", legacy:true },
+  { id:"p4", title:"季节性生态廊道", place:"巴溪洲", year:"2026", team:"河流景观研究组", image:"assets/images/asset-unavailable.svg", legacy:false },
+  { id:"p5", title:"可逆遮荫单元", place:"鹅洲", year:"2026", team:"2026 春季鹅洲综合调研 · 设计小组", image:"assets/images/asset-unavailable.svg", legacy:false },
+  { id:"p6", title:"社区渡口更新", place:"兴马洲", year:"2023", team:"湘江2035 联合研究", image:"assets/images/asset-unavailable.svg", legacy:true },
+  { id:"p7", title:"浅滩观察节点", place:"鹅洲", year:"2022", team:"公共空间研究室", image:"assets/images/asset-unavailable.svg", legacy:true },
+  { id:"p8", title:"乡村慢行环线", place:"解放垸", year:"2025", team:"城乡规划课程", image:"assets/images/asset-unavailable.svg", legacy:false },
+  { id:"p9", title:"岸线共享设施原型", place:"鹅洲", year:"2026", team:"岸线使用补充调研", image:"assets/images/asset-unavailable.svg", legacy:false },
 ];
 
 export const researchSessions = [
@@ -105,7 +105,7 @@ export const opportunityCopy = {
 };
 
 export const fieldRecords = [
-  { id:"fr1", title:"树荫下的长时间停留", type:"Observation", tags:["Behavior","Facility"], place:"鹅洲北岸", image:"assets/images/proposal-shared-shoreline.png" },
-  { id:"fr2", title:"周末通行与停留冲突", type:"Observation", tags:["Behavior","Spatial Issue"], place:"鹅洲北岸", image:"assets/images/proposal-ecology-monitoring.jpg" },
-  { id:"fr3", title:"临时座椅朝向江景", type:"Photo / Video", tags:["Behavior","Opportunity"], place:"鹅洲北岸", image:"assets/images/proposal-reversible-shade.jpg" },
+  { id:"fr1", title:"树荫下的长时间停留", type:"Observation", tags:["Behavior","Facility"], place:"鹅洲北岸", image:"assets/images/asset-unavailable.svg" },
+  { id:"fr2", title:"周末通行与停留冲突", type:"Observation", tags:["Behavior","Spatial Issue"], place:"鹅洲北岸", image:"assets/images/asset-unavailable.svg" },
+  { id:"fr3", title:"临时座椅朝向江景", type:"Photo / Video", tags:["Behavior","Opportunity"], place:"鹅洲北岸", image:"assets/images/asset-unavailable.svg" },
 ];

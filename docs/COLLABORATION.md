@@ -1,3 +1,5 @@
+> 2026-10-29 协作副本说明：下文保留首次审计记录；最新清理、历史映射与限制以 [安全协作版本](SAFE_COLLABORATION.md) 为准。原始文件未获得新增版权授权，本副本按明确排除原则处理。
+
 # 2–3 人协作流程
 
 2026-10-28。仓库 https://github.com/Hoooocola/xiangjiang-2035 ，Private。当前处于首次上传准备，历史资产授权未确认，空仓库还不能克隆出项目。首次上传状态以 GITHUB_UPLOAD_AUDIT.md 为准。
