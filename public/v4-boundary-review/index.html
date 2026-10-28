@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>湘江 2035 · V4 材质分区审阅</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f6f3ed;color:#263d3a;font:16px/1.75 system-ui,-apple-system,"PingFang SC",sans-serif}main{max-width:1520px;margin:auto;padding:24px 3.16% 64px}nav{display:flex;justify-content:space-between;gap:20px;font-size:13px}a{color:#315e59;text-underline-offset:4px}figure{margin:16px -3.38% 0}img{display:block;width:100%;height:auto}.decision{border-left:3px solid #b78745;padding:12px 24px;background:#e9e4d9}h1{font-size:24px;margin:0 0 12px}h2{font-size:20px;margin-top:32px}p{margin:8px 0}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:14px 12px;border-bottom:1px solid #d7d8ce;vertical-align:top}th{font-size:13px;letter-spacing:1px}small{display:block;color:#5f7069;margin-top:20px}.scroll{overflow:auto}@media(max-width:650px){main{padding:20px}figure{margin:20px -20px;overflow:auto}img{min-width:1100px}h1{font-size:20px}.decision{padding:14px}nav{flex-wrap:wrap}table{min-width:650px}}
+</style>
+<main>
+<nav><span>1A + 2A + 3A + 4A · 分阶段验收 / 第一步</span><a href="boundary.svg" target="_blank" rel="noopener">打开原尺寸分区图 ↗</a></nav>
+<figure><img src="boundary.svg" width="1520" height="1030" alt="橘子洲与邻近两岸的现状及候选分区对照。右图保持既有地理范围，将主体与背景的混合压缩至外边界向内约200米，增加完整主体材质覆盖。"></figure>
+<section class="decision">
+<h1>待确认：采用右图的边界方案吗？</h1>
+<p><strong>A · 采用右图（推荐）</strong>：保留连续沿江范围和相连场域，将视觉混合压缩到外边界向内约 200 m。主体更完整，宽度也会比当前画面更明显。</p>
+<p><strong>B · 收窄后再看</strong>：保留现有地理范围，但把完整主体材质限制在更靠近江岸的位置；先补一张较窄方案，再进入三维验证。</p>
+<p>这一步只确认“哪些区域成为主体”。最终昼夜颜色、光照强度与立面细节，将在后续八张三维对照图中验收。</p>
+</section>
+<h2>同一范围，各类对象分别表达</h2>
+<div class="scroll"><table>
+<thead><tr><th>对象</th><th>主体范围内</th><th>主体范围外</th></tr></thead>
+<tbody>
+<tr><td>硬质地面与公共空间</td><td>日间浅驼／暖灰，夜间保持连续、柔和的暖色亮感；按已有分类区分。</td><td>日间暖白低对比；夜间深青灰，保留地形体量。</td></tr>
+<tr><td>建筑</td><td>暖灰石材与冷灰细节分工；按尺寸与形态分配格点、条纹和低层立面，夜间明暗有节奏。</td><td>简化立面、低对比体量；不铺满发光窗格。</td></tr>
+<tr><td>道路</td><td>深褐灰路面；部分真实主干路增加较桥梁更细、更弱的暖色光流。</td><td>弱化真实路网，以空间参照为主。</td></tr>
+<tr><td>水体</td><td>保持蓝青／深青基底；夜间加入微弱、随视角变化的淡金光泽。</td><td>延续河道识别，逐渐降低细节与光泽，不切断水体。</td></tr>
+<tr><td>绿地、山体与植被</td><td>保留绿色材质体系与自然地形。金色示意覆盖不代表改为铺装。</td><td>降低对比与细节，融入背景环境。</td></tr>
+</tbody></table></div>
+<small>范围依据：当前 terrain.importance 采样器的非零支持范围，叠加已有相连场域。示意网格 50 m，仅用于视觉分区审阅，不能视为测绘精度或法定地块边界。暖色底图表示主体材质权重；当前数据并不包含所有真实铺装和公共空间边界。</small>
+<small>本次仅新增审阅文档。尚未修改三维场景、AOI、原始 GIS、相机与日夜配置。分区确认后，先在橘子洲及邻近两岸制作河段、近景两个机位各四种状态，共八张对照图；全段推广另行验收。</small>
+</main>
+</html>

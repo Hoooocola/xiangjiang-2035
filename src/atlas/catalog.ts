@@ -2,11 +2,11 @@ import {DEMO_RECORDS} from './demo-v21';
 import {LEGACY_RECORDS} from './legacy';
 import type {AtlasRecord,LayerId} from './types';
 export const LAYERS:{id:LayerId;label:string;color:string;description:string}[]=[
- {id:'geography',label:'基础地理',color:'#70b4c4',description:'地点边界与地理参考（保留基础三维底图）'},
+ {id:'geography',label:'基础地理',color:'#70b4c4',description:'岸线、桥梁、地形与地理参考'},
  {id:'ecology',label:'生态',color:'#8db688',description:'生态议题参考范围，不代表保护红线'},
  {id:'culture',label:'文化',color:'#d2ad72',description:'地方生活史资料索引'},
- {id:'society',label:'社会',color:'#e49b77',description:'使用需求的示意观察路线'},
- {id:'research',label:'研究',color:'#a58bce',description:'研究材料、证据和问题关联'},
+ {id:'society',label:'社会',color:'#e49b77',description:'公共服务、活动与研究证据'},
+ {id:'economy',label:'经济',color:'#a58bce',description:'产业空间、经营运营与物流网络；等待真实数据'},
  {id:'proposal',label:'设计方案',color:'#64c8bf',description:'2035 概念服务触点及连接路线'},
 ];
 export const KIND_LABEL={ResearchProject:'研究项目',ResearchSession:'研究活动',FieldRecord:'田野与文献证据',ResearchGap:'研究缺口',Insight:'研究洞察',Issue:'已记录问题',Conflict:'待检验关系',DesignOpportunity:'设计机会',Proposal:'设计方案'};

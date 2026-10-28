@@ -6,7 +6,7 @@ import {MAP_OBJECTS,visibleObjects,layersForObjects} from '../src/atlas/objects'
 import {inRing,project} from '../src/experience/geo';
 import {PLACES} from '../src/experience/config';
 import type {OverlayState} from '../src/atlas/types';
-const state:OverlayState={layers:['geography','ecology','culture','society','research','proposal'],proposal:null,placeId:'ezhou',selectedObjectIds:[]};
+const state:OverlayState={layers:['geography','ecology','culture','society','economy','proposal'],proposal:null,placeId:'ezhou',selectedObjectIds:[],showDemo:true};
 describe('knowledge map data contract',()=>{
  it('resolves every relationship, source, place and spatial reference',()=>{
   expect(new Set(RECORDS.map(r=>r.id)).size).toBe(RECORDS.length);
@@ -17,7 +17,7 @@ describe('knowledge map data contract',()=>{
  it('keeps all demo points and route vertices on the source island',()=>{for(const o of MAP_OBJECTS.filter(o=>o.placeId==='ezhou'&&o.geometry.type!=='Polygon'))for(const c of o.geometry.coordinates)expect(inRing(...project(c),EZHOU_BOUNDARY.map(project)),o.id).toBe(true);});
  it('never shows proposal geometry without an explicitly selected proposal',()=>{expect(visibleObjects({...state,selectedObjectIds:['proposal-arrival']}).every(o=>!o.proposalId)).toBe(true);});
  it('honors layer, place and scenario switches without removing other enabled layers',()=>{
-  expect(visibleObjects({...state,layers:['ecology','culture']}).map(o=>o.layer)).toEqual(['ecology','culture']);
+  expect(visibleObjects({...state,layers:['ecology','culture']}).map(o=>o.id)).toEqual(['ecology-context','culture-index','research-index']);
   expect(visibleObjects({...state,placeId:'juzizhou'}).every(o=>o.placeId==='juzizhou')).toBe(true);
   expect(visibleObjects({...state,proposal:{proposalId:'proposal-care',view:'intervention'}}).filter(o=>o.layer==='proposal')).toHaveLength(4);
   expect(visibleObjects({...state,proposal:{proposalId:'proposal-care',view:'baseline'}}).filter(o=>o.layer==='proposal')).toHaveLength(0);

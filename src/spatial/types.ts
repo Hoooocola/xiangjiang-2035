@@ -21,6 +21,10 @@ export type Conflict=Finding&{kind:'Conflict'};
 export interface DesignOpportunity extends BaseRecord {kind:'DesignOpportunity';findingIds:string[];directions:string[]}
 export interface Proposal extends BaseRecord {kind:'Proposal';opportunityIds:string[];proposalType:'Product Design'|'Service Design'|'Product-Service System'|'Spatial Installation'|'Information / Interaction Design'|'Future Scenario'}
 export type ResearchRecord=ContextRecord|Resource|Evidence|Finding|DesignOpportunity|Proposal;
+/** anchor and points are resolved scene-world Y-up metres, not raw scan-local
+ * coordinates. A future scan import must apply its registered model transform
+ * before providing these positions. HTML glyph centres share the same anchor.
+ */
 export interface SpatialAnnotation {id:string;recordId:string;layer:SemanticLayer;form:SpatialForm;anchor:Vec3;points?:Vec3[];objectIds?:string[];futureOnly?:boolean}
 export interface GuidedStep {id:string;title:string;verb:string;description:string;camera:CameraPose;layers:SemanticLayer[];selectedId:string|null;highlightIds:string[];proposalVisible:boolean}
 export interface GuidedStory {id:string;siteId:string;title:string;steps:GuidedStep[]}

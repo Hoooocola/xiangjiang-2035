@@ -24,8 +24,8 @@ export function createAnnotations(model:SiteModel){
    const mesh=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({color,transparent:true,opacity:.13,depthWrite:false,side:THREE.DoubleSide}));mesh.userData.fill=true;mesh.renderOrder=2;g.add(mesh);
    const line=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(a.points.map(p=>new THREE.Vector3(...p))),new THREE.LineBasicMaterial({color,transparent:true,opacity:.75}));line.renderOrder=3;g.add(line);
   } else if(a.form==='object'){
-   for(const id of a.objectIds??[]){const object=model.objects.get(id);if(!object)continue;const b=new THREE.Box3().setFromObject(object).expandByScalar(.18),helper=new THREE.Box3Helper(b,color);g.add(helper);
-    object.traverse(child=>{if(child instanceof THREE.Mesh){const tint=new THREE.Mesh(child.geometry,new THREE.MeshBasicMaterial({color,transparent:true,opacity:.1,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));tint.matrixAutoUpdate=false;tint.matrix.copy(child.matrixWorld);tint.userData.fill=true;tint.renderOrder=4;g.add(tint);}});}
+   for(const id of a.objectIds??[]){const object=model.objects.get(id);if(!object)continue;object.updateWorldMatrix(true,true);
+    object.traverse(child=>{if(child instanceof THREE.Mesh){const edge=new THREE.LineSegments(new THREE.EdgesGeometry(child.geometry,35),new THREE.LineBasicMaterial({color,transparent:true,opacity:.85,depthWrite:false}));edge.matrixAutoUpdate=false;edge.matrix.copy(child.matrixWorld);g.add(edge);const tint=new THREE.Mesh(child.geometry,new THREE.MeshBasicMaterial({color,transparent:true,opacity:.1,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));tint.matrixAutoUpdate=false;tint.matrix.copy(child.matrixWorld);tint.userData.fill=true;tint.renderOrder=4;g.add(tint);}});}
   }
   g.traverse(o=>{o.userData.annotation=a.id;if(o instanceof THREE.Mesh)pickables.push(o);});
  }

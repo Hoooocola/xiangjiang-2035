@@ -31,9 +31,11 @@ function combine(gs:THREE.BufferGeometry[],material:THREE.Material,root:THREE.Ob
 }
 export interface ContextData {buildings:number[][];counts:{knownHeight:number}}
 /** All city chunks retain their real footprint and height at every camera distance. */
-export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:ContextData,materials:Materials,onProgress:(value:number)=>void){
+export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:ContextData,materials:Materials,onProgress:(value:number)=>void,studyAttributes=false,captureSourceIds:ReadonlySet<string>=new Set()) {
  const root=new THREE.Group(),city=new THREE.Group(),detail=new THREE.Group();root.add(city,detail);
  const terrain=terrainSampler(grid),height=terrain.height;
+ const sourceGeometry=new Map<string,THREE.BufferGeometry[]>();
+ const capture=(id:string,g:THREE.BufferGeometry)=>{if(captureSourceIds.has(id)){const list=sourceGeometry.get(id)??[];list.push(g.clone());sourceGeometry.set(id,list);}return g;};
  const weighted=(g:THREE.BufferGeometry,constant?:number)=>{const p=g.attributes.position;g.setAttribute('importance',new THREE.Float32BufferAttribute(Array.from({length:p.count},(_,i)=>constant??terrain.importance(p.getX(i),p.getZ(i))),1));return g;};
  const groundGeo=new THREE.PlaneGeometry(6000,6000);groundGeo.rotateX(-Math.PI/2);groundGeo.translate(0,-.08,0);groundGeo.setAttribute('color',new THREE.Float32BufferAttribute(new Float32Array(groundGeo.attributes.position.count*3).fill(1),3));
  groundGeo.setAttribute('importance',new THREE.Float32BufferAttribute(new Float32Array(groundGeo.attributes.position.count),1));
@@ -105,6 +107,8 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
     const g=new THREE.ExtrudeGeometry(shapeFrom(rings),{depth:Math.max(.03,h-minimum),bevelEnabled:false,steps:1,curveSegments:1});g.rotateX(-Math.PI/2);g.translate(0,base+minimum,0);
     const vertices=g.attributes.position.count,colors=new Float32Array(vertices*3).fill(1),importance=new Float32Array(vertices).fill(terrain.importance(cx,cz));
     g.setAttribute('color',new THREE.BufferAttribute(colors,3));g.setAttribute('importance',new THREE.BufferAttribute(importance,1));
+    // Opt-in study metadata survives chunk merging; default scene geometry is unchanged.
+    if(studyAttributes){const info=new Float32Array(vertices*4);for(let vi=0;vi<vertices;vi++)info.set([cx,cz,h,base+minimum],vi*4);g.setAttribute('studyBuilding',new THREE.BufferAttribute(info,4));}
     const key=`${Math.floor(cx/30)},${Math.floor(cz/30)}`;if(!chunks.has(key))chunks.set(key,[]);chunks.get(key)!.push(g);count++;if(actual)heightKnown++;
    }
   }else if(p.highway&&f.geometry.type==='LineString'){
@@ -112,9 +116,9 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
    // Roads keep continuous vertex weights across the entire source line.
    const foot=['footway','path','cycleway'].includes(p.highway),width=foot?.035:/motorway|trunk|primary/.test(p.highway)?.18:/secondary|tertiary/.test(p.highway)?.11:.055;
    if(p.bridge&&p.bridge!=='no'){
-    const y=Math.max(.25,height(...pts[0]),height(...pts[pts.length-1]))+.06;bridgeGs.push(ribbon(pts,width,()=>y));
+    const y=Math.max(.25,height(...pts[0]),height(...pts[pts.length-1]))+.06;bridgeGs.push(capture(f.id,ribbon(pts,width,()=>y)));
     const crossesRiver=pts.some(([x,z])=>onWater(x,z))||pts.some((p,i)=>i>0&&onWater((p[0]+pts[i-1][0])/2,(p[1]+pts[i-1][1])/2));
-    if(crossesRiver)for(const side of [-1,1]){const rail=pts.map((p,i)=>{const a=pts[Math.max(0,i-1)],b=pts[Math.min(pts.length-1,i+1)],d=Math.hypot(b[0]-a[0],b[1]-a[1])||1;return [p[0]-(b[1]-a[1])/d*width*.45*side,p[1]+(b[0]-a[0])/d*width*.45*side] as [number,number];});bridgeRails.push(ribbon(rail,.018,()=>y+.025));}
+    if(crossesRiver)for(const side of [-1,1]){const rail=pts.map((p,i)=>{const a=pts[Math.max(0,i-1)],b=pts[Math.min(pts.length-1,i+1)],d=Math.hypot(b[0]-a[0],b[1]-a[1])||1;return [p[0]-(b[1]-a[1])/d*width*.45*side,p[1]+(b[0]-a[0])/d*width*.45*side] as [number,number];});bridgeRails.push(capture(f.id,ribbon(rail,.018,()=>y+.025)));}
     for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i],length=Math.hypot(b[0]-a[0],b[1]-a[1]);for(let t=.5;t<length;t+=1){const x=THREE.MathUtils.lerp(a[0],b[0],t/length),z=THREE.MathUtils.lerp(a[1],b[1],t/length);if(onWater(x,z))bridgePiers.push([x,z,y]);}}
 
    }else roads[0].push(weighted(ribbon(pts,width,(x,z)=>height(x,z)+.035)));
@@ -140,6 +144,7 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  const boxGeometry=new THREE.BoxGeometry(1,1,1),contextTransform=new THREE.Object3D();let contextCount=0;
  for(const items of contextChunks.values()){
   const geometry=boxGeometry.clone();geometry.setAttribute('instanceImportance',new THREE.InstancedBufferAttribute(new Float32Array(items.map(([x,z])=>terrain.importance(x,z))),1));
+  if(studyAttributes)geometry.setAttribute('studyBuilding',new THREE.InstancedBufferAttribute(new Float32Array(items.flatMap(([x,z,,,,meters])=>[x,z,Math.max(.03,Math.min(6,meters/100)),height(x,z)+.01])),4));
   const mesh=new THREE.InstancedMesh(geometry,materials.contextBuilding,items.length);
   items.forEach(([x,z,width,depth,angle,meters],i)=>{
    const h=Math.max(.03,Math.min(6,meters/100));contextTransform.position.set(x,height(x,z)+h/2+.01,z);contextTransform.scale.set(Math.max(.02,width),h,Math.max(.02,depth));contextTransform.rotation.set(0,-angle,0);contextTransform.updateMatrix();mesh.setMatrixAt(i,contextTransform.matrix);
@@ -164,5 +169,5 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  }
  treeGeo.dispose();
 
- return {root,city,detail,terrain,select:(id?:string)=>{selection.visible=id==='juzizhou';},stats:{buildings:count+contextCount,knownHeight:heightKnown+contextData.counts.knownHeight,trees:treePositions.length}};
+ return {root,city,detail,terrain,sourceGeometry,select:(id?:string)=>{selection.visible=id==='juzizhou';},stats:{buildings:count+contextCount,knownHeight:heightKnown+contextData.counts.knownHeight,trees:treePositions.length}};
 }

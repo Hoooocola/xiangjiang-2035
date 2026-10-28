@@ -3,11 +3,11 @@ import * as THREE from 'three';
 // Lighting and atmosphere never sample AOI or decide which geometry is loaded.
 export const SCENE_LIGHTING = {
  day: { sky:'#ffffff', bounce:'#a7b6bf', key:'#ffffff', hemi:.95, sun:2.25, fill:.4, exposure:1 },
- night: { sky:'#c4dbe5', bounce:'#486772', key:'#d2e4ed', hemi:.8, sun:1.25, fill:.35, exposure:1.08 },
+ night: { sky:'#839fb9', bounce:'#233c48', key:'#b2c9df', hemi:.4, sun:.85, fill:.18, exposure:1.05 },
 };
 export const ATMOSPHERE = {
  day: { background:'#f1f4f6', nearScale:.9, farScale:3, nearOffset:80, farOffset:220 },
- night: { background:'#0c232b', nearScale:1.1, farScale:3.8, nearOffset:90, farOffset:260 },
+ night: { background:'#091c27', nearScale:1.05, farScale:3.2, nearOffset:18, farOffset:170 },
 };
 export function createEnvironment(scene:THREE.Scene,renderer:THREE.WebGLRenderer){
  const hemi=new THREE.HemisphereLight();
@@ -34,5 +34,5 @@ export function createEnvironment(scene:THREE.Scene,renderer:THREE.WebGLRenderer
   fog.near=distance*mix(a.nearScale,b.nearScale,night)+mix(a.nearOffset,b.nearOffset,night);
   fog.far=distance*mix(a.farScale,b.farScale,night)+mix(a.farOffset,b.farOffset,night);
  }
- return {sun,update};
+ return {sun,hemi,fill,update};
 }
