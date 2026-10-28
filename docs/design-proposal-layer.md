@@ -25,8 +25,10 @@
 - DEMO 开关关闭时，24 件课程作品入口正常；模拟社会、经济资料继续按原有 DEMO 规则显示，不伪装成真实数据。
 - 本地 3002 开发预览与 3003 原生产预览已恢复；隔离构建期间保留现有网站服务。
 
+线上版本：[xiangjiang-2035.vercel.app](https://xiangjiang-2035.vercel.app)，部署代码为 `ad30c0daf4bf31378bf148833fe545da3f3b5c85`。
+
 ## 证据
 
-[设计方案图层入口](screenshots/design-proposal-layer/design-layer-entry.png) · [岸线替换旧作品详情](screenshots/design-proposal-layer/shoreline-replaces-course.png)
+[设计方案图层入口](screenshots/design-proposal-layer/design-layer-entry.png) · [岸线替换旧作品详情](screenshots/design-proposal-layer/shoreline-replaces-course.png) · [六图层与课程目录叠加](screenshots/design-proposal-layer/six-layers-with-course.png)
 
 保留 V3 的小方形封面、纵向列表、原始成员/主题对应及 PDF 路由。作品与地点数据未更改。可撤销本次修复提交回退。
