@@ -14,7 +14,7 @@
 
 ## 主分支和归档
 
-- `main`：拟作为审核后的集成基线。首次上传前从当前完成验证的版本建立，不替换旧 master。
+- `main`：已在本地从完成验证的版本准备为集成基线，尚未上传；不替换旧 master。
 - `codex/spatial-information-v1-1`：现有主要产品开发分支，保留 `beca2ed` 验收版本。
 - `codex/github-collaboration`：本轮文档、资产备份和上传准备分支。
 - `master`、`feat/*`、`feature/*`：保留旧版本，不重写。
