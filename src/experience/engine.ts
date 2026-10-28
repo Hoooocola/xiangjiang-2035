@@ -1,3 +1,4 @@
+import {informationPose,informationDuration,informationInsets} from './information-framing';
 import {INTRO_SEQUENCE} from './camera-sequence';
 import {renderedTerrainHeight} from './information-surface';
 import {buildOverlays} from './overlays';
@@ -27,7 +28,7 @@ export interface ExperienceCallbacks {
 }
 export interface ExperienceEngine {
  start:()=>void; tour:()=>void; stop:()=>void; skip:()=>void; reset:()=>void;
- returnFromFocus:()=>void;setOverlays:(state:OverlayState)=>void;focusObjects:(ids:string[])=>void;hoverObject:(id:string|null)=>void; navigate:(x:number,z:number)=>void; overview:()=>void; focus:(id:string)=>void; back:()=>void;
+ clearInformationFocus:()=>void;focusSpatialInformation:(id:string,options?:{directoryOpen?:boolean})=>void;returnFromFocus:()=>void;setOverlays:(state:OverlayState)=>void;focusObjects:(ids:string[])=>void;hoverObject:(id:string|null)=>void; navigate:(x:number,z:number)=>void; overview:()=>void; focus:(id:string)=>void; back:()=>void;
  pan:(x:number,y:number)=>void;dragMode:(mode:'pan'|'orbit')=>void;
  theme:(night:boolean)=>void; zoom:(f:number)=>void; orbit:(v:number)=>void; preset:(index:number)=>void;dispose:()=>void;
 }
@@ -137,6 +138,14 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   frame=requestAnimationFrame(render);callbacks.progress(100,'准备就绪');callbacks.ready();
   const fly=(pose:CameraPose,duration=2600)=>{callbacks.motion(true);rig.fly(pose,duration,()=>callbacks.motion(false));};
   const frameResearch=(ids=overlayState.selectedObjectIds)=>{const points:THREE.Vector3[]=[];for(const id of ids){const g=overlays.groups.get(id);if(!g?.children.length)continue;g.updateMatrixWorld(true);const b=new THREE.Box3().setFromObject(g);points.push(b.min,b.max);}return researchPose(points,host.clientWidth,host.clientHeight,camera.fov);};
+  const focusInformation=(ids:string[],directoryOpen=false)=>{
+   const objects=MAP_OBJECTS.filter(o=>ids.includes(o.id));const points:THREE.Vector3[]=[];
+   for(const o of objects){const g=overlays.groups.get(o.id);if(!g?.children.length)continue;g.updateMatrixWorld(true);const b=new THREE.Box3().setFromObject(g);for(const x of [b.min.x,b.max.x])for(const y of [b.min.y,b.max.y])for(const z of [b.min.z,b.max.z])points.push(new THREE.Vector3(x,y,z));}
+   if(!objects.length)return;
+   const object=objects[0],form=object.form??(object.geometry.type==='Point'?'point':object.geometry.type==='Polygon'?'area':'line');
+   const pose=informationPose(points,form,rig.pose,host.clientWidth,host.clientHeight,camera.fov,informationInsets(host.clientWidth,host.clientHeight,directoryOpen));
+   if(pose){objectPrevious??=clonePose(rig.pose);fly(pose,informationDuration(rig.pose,pose));}
+  };
   const tour=()=>{
    previous=undefined;ring.visible=false;select();
    if(media.matches){fly(CAMERA_PRESETS[0].pose,0);return;}
@@ -146,7 +155,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    else rig.fly(OVERVIEW_POSE,2600,play);
 
   };
-  return {returnFromFocus:()=>{if(objectPrevious){fly(objectPrevious,1000);objectPrevious=undefined;}},focusObjects:ids=>{const pose=frameResearch(ids);if(pose){objectPrevious??=clonePose(rig.pose);fly(pose,1200);}},hoverObject:id=>overlays.hover(id),setOverlays:(state)=>{overlayState=state;overlays.update(state);const selected=visibleObjects(state).find(o=>state.selectedObjectIds.includes(o.id));researchSelected=!!selected;researchWeight=selected?.form==='object'?.75:selected?.geometry.type==='Polygon'?.35:selected?.geometry.type==='LineString'?.18:0;built?.select(researchSelected?undefined:selectedId);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{objectPrevious=undefined;
+  return {clearInformationFocus:()=>{stop();objectPrevious=undefined;},focusSpatialInformation:(id,options)=>focusInformation([id],options?.directoryOpen),returnFromFocus:()=>{if(objectPrevious){fly(objectPrevious,1000);objectPrevious=undefined;}},focusObjects:ids=>focusInformation(ids),hoverObject:id=>overlays.hover(id),setOverlays:(state)=>{overlayState=state;overlays.update(state);const selected=visibleObjects(state).find(o=>state.selectedObjectIds.includes(o.id));researchSelected=!!selected;researchWeight=selected?.form==='object'?.75:selected?.geometry.type==='Polygon'?.35:selected?.geometry.type==='LineString'?.18:0;built?.select(researchSelected?undefined:selectedId);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{objectPrevious=undefined;
    const p=PLACES.find(p=>p.id===id);if(!p)return;previous??=clonePose(rig.pose);const [x,z]=project(p.coordinate);ring.position.set(x,(built?.terrain.height(x,z)??0)+.08,z);select(id);ring.visible=false;fly(placePose(p));
   },back:()=>{ring.visible=false;select();fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},pan:(x,y)=>{stop();rig.pan(x*rig.pose.distance*.08,y*rig.pose.distance*.08);},dragMode:(mode)=>{stop();rig.dragMode=mode;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},preset:(i)=>{const preset=CAMERA_PRESETS[i];if(!preset)return;const place=PLACES.find(p=>p.id===selectedId);const pose=preset.mode==='research'?frameResearch()??preset.pose:preset.mode==='place'&&place?placePose(place):preset.pose;previous=undefined;ring.visible=false;if(preset.mode==='macro')select();fly(pose);},dispose};
  }catch(e){dispose();throw e;}

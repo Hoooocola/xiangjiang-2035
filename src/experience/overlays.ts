@@ -48,6 +48,7 @@ export function buildOverlays(height:(x:number,z:number)=>number,sourceGeometry=
    // Missing model binding stays absent; a centreline is not a substitute for structure.
   }else if(o.geometry.type==='Point'){
    const p=geographicAnchor(o.anchor,height,HEIGHT.pointBase,new THREE.Vector3());
+   anchors.set(o.id,p.clone().add(new THREE.Vector3(0,HEIGHT.pointTip/METERS_PER_UNIT,0)));
    const material=new THREE.MeshBasicMaterial({color,transparent:true,opacity:.8,depthWrite:false});
    const ring=new THREE.Mesh(new THREE.RingGeometry(.09,.13,24),material);ring.rotation.x=-Math.PI/2;ring.position.copy(p);g.add(ring);
    const pin=new THREE.Mesh(new THREE.CylinderGeometry(.015,.015,HEIGHT.pointStemHeight/METERS_PER_UNIT,8),material);pin.position.copy(p).add(new THREE.Vector3(0,HEIGHT.pointStemCenter/METERS_PER_UNIT,0));g.add(pin);
