@@ -4,7 +4,7 @@
 
 面向湘江沿岸生态、文化与社会创新研究的空间地图。当前包含 Three.js 三维地图、六类空间信息、地点与研究资料关联，以及独立的数据库田野采集流程。地图展示与概念 Demo 不等同于实测或真实研究结论。
 
-**首次上传状态（2026-10-28）：** [私有 GitHub 仓库](https://github.com/Hoooocola/xiangjiang-2035) 已创建；因历史素材共享授权待核实，当前尚未推送代码、分支或标签。以下克隆流程在首次上传完成后使用。详见 [上传审计](docs/GITHUB_UPLOAD_AUDIT.md)。
+**Safe collaboration copy (2026-10-29):** Filtered history; original local archive is unchanged. See [migration and verification](docs/SAFE_COLLABORATION.md).
 
 ## 环境
 

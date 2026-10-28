@@ -21,3 +21,11 @@ Masar 只作参考：https://www.masardestination.com.sa/ ；https://immersive-g
 ## 验证与远端
 
 本次新验证与远端上传结果待补充；此前原始仓库测试结果不能代替本次验证。主分支保护待 API 检查，文档不等同于已启用。
+
+## Verified 2026-10-29
+
+Clean dependency install, TypeScript, production build passed. Unit tests: 85 passed; isolated PostgreSQL integration: 26 passed. Lint: zero errors, two pre-existing prototype warnings. Production map, site, style frame and four GIS endpoints returned 200. Browser rendered 158242 building instances and 42023 trees; no console errors observed. Core trees and lockfile are identical to the original.
+
+GitHub Rulesets API returned HTTP 403 requiring Pro or public visibility. Repository remains Private; no purchase and no enforced review rules. Do not grant collaborators write access until the owner resolves this limitation. Build and typecheck remain mandatory manual PR evidence; no CI enabled.
+
+Remote upload and fresh remote clone will be checked separately.
