@@ -1,14 +1,23 @@
 'use client';
+import {useEffect,useRef} from 'react';
 import {X,ArrowUpRight,LocateFixed,ChevronLeft,ChevronRight} from 'lucide-react';
 import type {InformationFeature} from '@/src/atlas/types';
 import {SUBTYPES,subtypeOf} from '@/src/atlas/information';
 import {SOURCES} from '@/src/atlas/places';
 import styles from './information.module.css';
 const english={geography:'GEOGRAPHY',ecology:'ECOLOGY',culture:'CULTURE',society:'SOCIETY',economy:'ECONOMY',proposal:'PROPOSAL'};
-export function FocusLabel({object,onClose,onFocus,onReturn,onDetails,onPlace,step,steps,onStep,moving=false}:{object:InformationFeature;onClose:()=>void;onFocus:()=>void;onReturn:()=>void;onDetails:()=>void;onPlace:()=>void;step:number|null;steps:number;onStep:(n:number)=>void;moving?:boolean}){
+export function FocusLabel({object,onClose,onFocus,onReturn,onDetails,onPlace,step,steps,onStep,ready=true,onExitStart}:{object:InformationFeature;onClose:()=>void;onFocus:()=>void;onReturn:()=>void;onDetails:()=>void;onPlace:()=>void;step:number|null;steps:number;onStep:(n:number)=>void;ready?:boolean;onExitStart:()=>void}){
+ const root=useRef<HTMLElement>(null),exit=useRef<Animation|null>(null);
+ useEffect(()=>()=>exit.current?.cancel(),[]);
+ const dismiss=(action:()=>void)=>{
+  if(exit.current)return;onExitStart();
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!root.current){action();return;}
+  exit.current=root.current.animate([{opacity:1},{opacity:0}],{duration:140,easing:'ease-out',fill:'forwards'});
+  exit.current.onfinish=action;
+ };
  const subtype=SUBTYPES.find(s=>s.id===subtypeOf(object));
- return <aside className={styles.explanation} aria-label={`${object.title}空间解释`} data-information-panel data-information-explanation data-moving={moving} style={{'--category-color':`var(--layer-${object.layer})`} as React.CSSProperties}>
-  <header><span className={styles.type}>{english[object.layer]}<small>{subtype?.label} / {subtype?.form}</small></span><button aria-label="关闭空间解释" onClick={onClose}><X size={19}/></button></header>
+ return <aside ref={root} className={styles.explanation} aria-label={`${object.title}空间解释`} data-information-panel data-information-explanation data-ready={ready} style={{'--category-color':`var(--layer-${object.layer})`} as React.CSSProperties}>
+  <header><span className={styles.type}>{english[object.layer]}<small>{subtype?.label} / {subtype?.form}</small></span><button aria-label="关闭空间解释" onClick={()=>dismiss(onClose)}><X size={19}/></button></header>
   <div className={styles.explanationContent} key={object.id}>
    <h2>{object.title}</h2><p className={styles.summary}>{object.shortDescription}</p>
    {object.metric&&<p className={styles.metric}><strong>{object.metric.value}<small>{object.metric.unit}</small></strong><span>{object.metric.label}</span></p>}
@@ -21,7 +30,7 @@ export function FocusLabel({object,onClose,onFocus,onReturn,onDetails,onPlace,st
     {object.sourceFeatureIds?.map(id=><a className={styles.sourceId} key={id} href={`https://www.openstreetmap.org/${id}`} target="_blank" rel="noreferrer">{id}</a>)}
    </details>
   </div>
-  <nav className={styles.focusActions} aria-label="空间解释操作"><button onClick={onReturn}><ChevronLeft size={15}/>返回原视角</button><button onClick={onFocus}><LocateFixed size={14}/>重新聚焦</button></nav>
+  <nav className={styles.focusActions} aria-label="空间解释操作"><button onClick={()=>dismiss(onReturn)}><ChevronLeft size={15}/>返回原视角</button><button onClick={onFocus}><LocateFixed size={14}/>重新聚焦</button></nav>
   {step!==null&&<div className={styles.guide}><button disabled={step===0} onClick={()=>onStep(step-1)}><ChevronLeft size={15}/>上一节</button><span>{step+1} / {steps}</span><button disabled={step===steps-1} onClick={()=>onStep(step+1)}>下一节<ChevronRight size={15}/></button></div>}
  </aside>;
 }
