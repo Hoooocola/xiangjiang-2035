@@ -11,10 +11,11 @@ import type {OverlayState} from '../src/atlas/types';
 import {readFileSync} from 'node:fs';
 const base:OverlayState={layers:LAYERS.map(l=>l.id),proposal:null,placeId:null,selectedObjectIds:[],subtypes:SUBTYPES.map(s=>s.id)};
 describe('spatial information visibility and provenance',()=>{
- it('keeps demo opt-in, economy empty and research records reachable',()=>{
+ it('keeps demo opt-in, economic examples separate and research records reachable',()=>{
   expect(visibleObjects(base).every(o=>o.dataStatus==='public')).toBe(true);
   expect(visibleObjects({...base,showDemo:true}).some(o=>o.dataStatus==='demo')).toBe(true);
-  expect(MAP_OBJECTS.filter(o=>o.layer==='economy')).toHaveLength(0);
+  expect(visibleObjects(base).filter(o=>o.layer==='economy')).toHaveLength(0);
+  expect(visibleObjects({...base,showDemo:true}).filter(o=>o.layer==='economy')).toHaveLength(3);
   for(const id of ['research-2018','research-2024','field-template','demo-gap'])expect(recordById(id)).toBeDefined();
  });
  it('clears effective focus when its layer, subtype, scope or demo switch is off',()=>{
@@ -24,7 +25,7 @@ describe('spatial information visibility and provenance',()=>{
   expect(focusState({...base,selectedObjectIds:['demo-ecology-area']},MAP_OBJECTS).primaryId).toBeNull();
  });
  it('does not claim existing park polygons are wetland or full land-use data',()=>{
-  expect(MAP_OBJECTS.some(o=>['wetland','landuse','corridor'].includes(o.subtype??''))).toBe(false);
+  expect(MAP_OBJECTS.some(o=>o.dataStatus==='public'&&['wetland','landuse','corridor'].includes(o.subtype??''))).toBe(false);
   const park=MAP_OBJECTS.find(o=>o.id==='pilot-park-15867482')!;expect(park.subtype).toBe('cover');expect(park.precision).toContain('不是湿地');
  });
  it('preserves source shoreline segments and bridges instead of creating arbitrary boundaries',()=>{
