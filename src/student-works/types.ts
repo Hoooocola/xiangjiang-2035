@@ -18,6 +18,9 @@ export interface StudentWork {
   reviewNotes: string[];
   projectUrl: string;
   pdfUrl: string | null;
-  cover: string | null;
+  coverImage: string | null;
+  coverSource: string | null;
+  coverStatus: 'verified' | 'missing' | 'unverified';
+  pinwallUrl: string;
   source: { file: string; sha256: string; sheet: string; row: number };
 }

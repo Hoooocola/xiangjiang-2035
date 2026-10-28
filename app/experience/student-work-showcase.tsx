@@ -1,75 +1,88 @@
 'use client';
-import {useState} from 'react';
-import {ArrowUpRight, ChevronDown, MapPin, Search, X} from 'lucide-react';
-import {SHOWCASE_PLACES, STUDENT_THEMES, STUDENT_WORKS, showcaseStats, worksForPlace, worksForTheme, type ThemeFilter} from '@/src/student-works/catalog';
+import {useEffect, useRef, useState} from 'react';
+import {ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Check, Search, X} from 'lucide-react';
+import {SHOWCASE_PLACES, STUDENT_THEMES, STUDENT_WORKS, showcaseStats, visibleStudentWorks, worksForTheme, type ThemeFilter} from '@/src/student-works/catalog';
+import {adjacentWorkId} from '@/src/student-works/selection';
 import type {StudentWork} from '@/src/student-works/types';
 import styles from './student-work-showcase.module.css';
 
-function WorkCover({work}: {work: StudentWork}) {
+export type CourseIndexView = 'places' | 'works' | 'pending';
+
+export function WorkCover({work, eager = false}: {work: StudentWork; eager?: boolean}) {
   const [failed, setFailed] = useState(false);
-  return <div className={styles.cover}>
-    {work.cover && !failed ?
-      // Local static course thumbnails intentionally use native image loading/error fallback.
+  return <div className={styles.cover} data-cover-status={work.coverStatus}>
+    {work.coverImage && work.coverStatus === 'verified' && !failed ?
+      // Native loading preserves the source square cover and explicit unavailable state.
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={work.cover} alt={`${work.title}作品封面`} loading="lazy" onError={() => setFailed(true)}/> :
-      <div className={styles.placeholder}><span>COURSE WORK / {String(work.sequence).padStart(2, '0')}</span><strong>封面待补充</strong><small>可打开原作品查看</small></div>}
-    <span className={styles.number}>{String(work.sequence).padStart(2, '0')}</span>
+      <img src={work.coverImage} alt={`${work.title} · Pinwall 原始项目封面`} loading={eager ? 'eager' : 'lazy'} onError={() => setFailed(true)}/> :
+      <div className={styles.placeholder}><span>PROJECT {String(work.sequence).padStart(2, '0')}</span><strong>{work.coverStatus === 'unverified' ? '封面待核实' : '封面待补充'}</strong><small>原作品仍可查看</small></div>}
   </div>;
 }
 
-export function StudentWorkCard({work, onLocate}: {work: StudentWork; onLocate?: (id: string) => void}) {
-  return <article className={styles.workCard} data-work-id={work.id}>
-    <a href={work.pdfUrl ?? work.projectUrl} target="_blank" rel="noopener noreferrer" aria-label={`打开作品：${work.title}`}>
-      <WorkCover work={work}/><h3>{work.title}</h3>
-    </a>
-    <p className={styles.members}>{work.members.join('、')}</p>
-    <div className={styles.workMeta}><span>{work.theme}</span><span>{work.originalSite}</span></div>
-    {work.reviewNotes.length > 0 && <details className={styles.review}><summary>原表信息待核对</summary>{work.reviewNotes.map(note => <p key={note}>{note}</p>)}</details>}
-    <div className={styles.workActions}>
-      <a href={work.pdfUrl ?? work.projectUrl} target="_blank" rel="noopener noreferrer">{work.pdfUrl ? '打开完整 PDF' : '查看原作品'}<ArrowUpRight size={13}/></a>
-      {onLocate && work.placeId && <button onClick={() => onLocate(work.placeId!)}><MapPin size={13}/>在地图查看</button>}
-      {!work.placeId && <small title={work.locationNote}>地点待核对 · 暂不上图</small>}
-    </div>
-    {work.pdfUrl && <small className={styles.hint}>附件暂不可用时，将打开原作品页。</small>}
-  </article>;
-}
-
-export function StudentPlaceWorks({placeId, theme}: {placeId: string; theme: ThemeFilter}) {
-  const works = worksForPlace(placeId, theme);
-  return <section aria-label="学生课程作品" className={styles.placeWorks}>
-    <p className={styles.kicker}>STUDENT WORK / 课程成果</p>
-    <h3>学生作品 <span>{works.length}</span></h3>
-    <p className={styles.hint}>{theme === 'all' ? '按原表选址关联，课程设计不代表已实施项目。' : `当前方向：${theme}。切回全部方向可查看该地点其他作品。`}</p>
-    {works.length ? works.map(work => <StudentWorkCard key={work.id} work={work}/>) : <p className={styles.hint}>当前方向在此地点暂无作品。</p>}
-  </section>;
-}
-
-export function StudentWorkShowcase({theme, onTheme, onLocate, onClose, loaded}: {
-  theme: ThemeFilter; onTheme: (theme: ThemeFilter) => void; onLocate: (id: string) => void; onClose: () => void; loaded: boolean;
+export function StudentWorkShowcase({theme, query, view, expanded, selectedPlace, active, loaded, onTheme, onQuery, onView, onExpanded, onLocate, onWork, onClose, onOverview}: {
+  theme: ThemeFilter; query: string; view: CourseIndexView; expanded: boolean; selectedPlace: string | null;
+  active: boolean; loaded: boolean; onTheme: (value: ThemeFilter) => void; onQuery: (value: string) => void;
+  onView: (value: CourseIndexView) => void; onExpanded: (value: boolean) => void;
+  onLocate: (id: string) => void; onWork: (id: string) => void; onClose: () => void; onOverview: () => void;
 }) {
-  const [view, setView] = useState<'places' | 'works'>('places');
-  const [query, setQuery] = useState('');
-  const stats = showcaseStats(theme);
-  const normalizedQuery = query.trim().toLocaleLowerCase();
-  const visible = worksForTheme(theme).filter(work => [work.title, work.originalSite, ...work.members].join(' ').toLocaleLowerCase().includes(normalizedQuery));
+  const stats = showcaseStats(theme, query);
+  const visible = visibleStudentWorks(theme, query);
   const groups = SHOWCASE_PLACES.map(place => ({place, works: visible.filter(work => work.placeId === place.id)})).filter(group => group.works.length);
-  const pending = visible.filter(work => !work.placeId);
-  return <aside className={styles.panel} aria-label="课程成果展示">
-    <header className={styles.panelHeader}><div><p className={styles.kicker}>SOCIAL INNOVATION DESIGN</p><h2>把设计放回湘江</h2><p className={styles.hint}>课程成果展示 · 临时演示</p></div><button onClick={onClose} aria-label="收起课程成果展示"><X size={19}/></button></header>
-    <div className={styles.summary} aria-live="polite"><div><strong>{stats.total}</strong><span>作品</span></div><div><strong>{stats.places}</strong><span>地图地点</span></div><div><strong>{stats.pending}</strong><span>待定位作品</span></div></div>
-    <div className={styles.themes} role="group" aria-label="研究主题筛选">
-      <button aria-pressed={theme === 'all'} onClick={() => onTheme('all')}><span>全部方向</span><small>{STUDENT_WORKS.length}</small></button>
-      {STUDENT_THEMES.map((item, index) => <button key={item} aria-pressed={theme === item} onClick={() => onTheme(item)}><span><em>0{index + 1}</em>{item}</span><small>{worksForTheme(item).length}</small></button>)}
+  const indexWorks = view === 'pending' ? visible.filter(work => !work.placeId) : visible;
+  const chooseView = (next: CourseIndexView) => { onView(next); onExpanded(next !== view || !expanded); };
+  return <aside className={`${styles.overview} ${!active ? styles.overviewHidden : ''}`} aria-label="课程成果展示" aria-hidden={!active} inert={!active}>
+    <div className={styles.overviewHeading}><p className={styles.kicker}>SOCIAL INNOVATION DESIGN</p><button className={styles.iconButton} onClick={onClose} aria-label="收起课程成果展示"><X size={18}/></button></div>
+    <h1>把设计放回湘江</h1><p className={styles.introduction}>社会创新设计课程成果<br/>沿着一条江，读懂不同的设计提案。</p>
+    <div className={styles.statistics} aria-live="polite"><p><strong>{String(stats.total).padStart(2, '0')}</strong><span>WORKS / 作品</span></p><i>/</i><p><strong>{String(stats.places).padStart(2, '0')}</strong><span>PLACES / 地点</span></p></div>
+    <nav className={styles.themes} aria-label="研究主题筛选">
+      <button aria-pressed={theme === 'all'} onClick={() => onTheme('all')}><span className={styles.themeNumber}>00</span><span>全部研究方向</span><small>{STUDENT_WORKS.length}</small><i/></button>
+      {STUDENT_THEMES.map((item, index) => <button key={item} aria-pressed={theme === item} onClick={() => onTheme(item)}><span className={styles.themeNumber}>0{index + 1}</span><span>{item}</span><small>{worksForTheme(item).length}</small><i/></button>)}
+    </nav>
+    <label className={styles.search}><Search size={14}/><input aria-label="搜索作品、成员或地点" value={query} onChange={event => {onQuery(event.target.value); onView('works'); onExpanded(true);}} placeholder="寻找作品、成员或地点"/>{query && <button className={styles.iconButton} onClick={() => onQuery('')} aria-label="清除搜索"><X size={13}/></button>}</label>
+    <div className={styles.indexNavigation} aria-label="成果浏览方式">
+      <button aria-expanded={expanded && view === 'places'} onClick={() => chooseView('places')}>地点 <small>{stats.places}</small></button>
+      <button aria-expanded={expanded && view === 'works'} onClick={() => chooseView('works')}>作品 <small>{stats.total}</small></button>
+      <button aria-expanded={expanded && view === 'pending'} onClick={() => chooseView('pending')}>待定位 <small>{stats.pending}</small></button>
+      <button className={styles.indexToggle} onClick={() => onExpanded(!expanded)} aria-label={expanded ? '收起成果目录' : '展开成果目录'} aria-expanded={expanded}><ArrowDown size={14}/></button>
     </div>
-    <label className={styles.search}><Search size={15}/><input aria-label="搜索作品、成员或地点" value={query} onChange={event => setQuery(event.target.value)} placeholder="搜索作品、成员或地点"/>{query && <button onClick={() => setQuery('')} aria-label="清除搜索"><X size={14}/></button>}</label>
-    <div className={styles.views} role="group" aria-label="成果浏览方式"><button aria-pressed={view === 'places'} onClick={() => setView('places')}>地图地点</button><button aria-pressed={view === 'works'} onClick={() => setView('works')}>作品列表</button><span>{visible.length} 个作品</span></div>
-    <div className={styles.body}>
-      {!visible.length && <p className={styles.hint}>没有匹配的作品，请调整主题或搜索词。</p>}
-      {view === 'works' ? visible.map(work => <StudentWorkCard key={work.id} work={work} onLocate={loaded ? onLocate : undefined}/>) : <>
-        {groups.map(({place, works}) => <button key={place.id} disabled={!loaded} className={styles.placeRow} onClick={() => onLocate(place.id)}><MapPin size={16}/><span>{place.name}<small>{works.map(work => work.title).join(' / ')}</small></span><b>{works.length}</b><ArrowUpRight size={14}/></button>)}
-        {pending.length > 0 && <details className={styles.pending}><summary><span>地点待核对 <small>{pending.length} 个作品</small></span><ChevronDown size={15}/></summary><p className={styles.hint}>缺少可靠坐标或原选址不完整，作品仍可查看；核对前不在地图上放置标记。</p>{pending.map(work => <StudentWorkCard key={work.id} work={work}/>)}</details>}
-      </>}
+    {expanded && <div className={styles.indexBody} aria-label="课程成果目录">
+      {view === 'places' ? groups.map(({place, works}, index) => <button className={styles.placeRow} key={place.id} disabled={!loaded} aria-pressed={selectedPlace === place.id} onClick={() => onLocate(place.id)}><span className={styles.rowNumber}>{String(index + 1).padStart(2, '0')}</span><span>{place.name}</span><small>{String(works.length).padStart(2, '0')}</small><ArrowUpRight size={13}/></button>) : indexWorks.map(work => <button className={styles.workRow} key={work.id} disabled={!loaded && !!work.placeId} onClick={() => onWork(work.id)}><WorkCover work={work}/><span><strong>{work.title}</strong><small>{work.originalSite}</small></span><ArrowUpRight size={13}/></button>)}
+      {!(view === 'places' ? groups.length : indexWorks.length) && <p className={styles.hint}>没有匹配的{view === 'places' ? '地图地点' : '作品'}。{view === 'places' && stats.pending > 0 ? '可在待定位目录中查看原作品。' : '请调整搜索或主题。'}</p>}
+    </div>}
+    <div className={styles.overviewFoot}><button onClick={onOverview} disabled={!loaded}>回到湘江全段 <ArrowUpRight size={12}/></button><span>课程设计 / 非实施项目</span></div>
+  </aside>;
+}
+
+export function StudentWorkExhibition({work, works, placeName, ready, onSelect, onClose, onArchive}: {
+  work: StudentWork; works: readonly StudentWork[]; placeName: string; ready: boolean;
+  onSelect: (id: string) => void; onClose: () => void; onArchive?: () => void;
+}) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const position = Math.max(0, works.findIndex(item => item.id === work.id));
+  const previousId = adjacentWorkId(works, work.id, -1);
+  const nextId = adjacentWorkId(works, work.id, 1);
+  const next = works.find(item => item.id === nextId);
+  useEffect(() => {if (ready) closeRef.current?.focus({preventScroll: true});}, [ready]);
+  return <aside className={`${styles.exhibition} ${!ready ? styles.exhibitionArriving : ''}`} aria-label={`${placeName}课程作品`} aria-busy={!ready} inert={!ready} onKeyDown={event => {
+    if (event.key === 'ArrowRight' && works.length > 1 && nextId) {event.preventDefault(); onSelect(nextId);}
+    if (event.key === 'ArrowLeft' && works.length > 1 && previousId) {event.preventDefault(); onSelect(previousId);}
+  }}>
+    <header className={styles.placeHeading}><div><p className={styles.kicker}>STUDENT WORK / 沿江课程提案</p><h2>{placeName}</h2><p className={styles.placeCount}>{String(works.length).padStart(2, '0')} PROJECTS<span>{work.placeId ? '关联作品' : '原选址待核对 · 暂不上图'}</span></p></div><button ref={closeRef} className={styles.closeExhibition} onClick={onClose} aria-label="关闭作品并返回课程总览"><X size={22}/></button></header>
+    <div className={styles.projectComposition} key={work.id} data-work-id={work.id}>
+      <a className={styles.artwork} href={work.pinwallUrl} target="_blank" rel="noopener noreferrer" aria-label={`查看 Pinwall 项目详情：${work.title}`}><WorkCover key={work.id} work={work} eager/></a>
+      <section className={styles.projectText}>
+        <p className={styles.projectNumber}>{String(position + 1).padStart(2, '0')} <span>/ {String(works.length).padStart(2, '0')}</span></p>
+        <p className={styles.projectTheme}>{work.theme}</p><h3>{work.title}</h3>
+        <div className={styles.authors}><span>小组成员</span><p>{work.members.join('、')}</p></div>
+        <a className={styles.viewProject} href={work.pdfUrl ?? work.pinwallUrl} target="_blank" rel="noopener noreferrer">查看完整作品 <ArrowUpRight size={18}/><small>VIEW PROJECT</small></a>
+        <p className={styles.reportHint}>新标签页打开报告；附件不可用时转至原作品页。</p>
+        <details className={styles.provenance}><summary><Check size={11}/>{work.coverStatus === 'verified' ? 'Pinwall 原始封面 · 已核对' : '作品封面待核实'}</summary><p>封面、完整报告与原始项目分别关联，按项目 ID 核对标题及全组成员。</p><a href={work.pinwallUrl} target="_blank" rel="noopener noreferrer">查看 Pinwall 原始项目 <ArrowUpRight size={11}/></a>{work.reviewNotes.map(note => <p key={note}>{note}</p>)}</details>
+      </section>
     </div>
-    <footer className={styles.panelFooter}><span className={styles.markerKey}>◆</span> 带数字的地图标记关联课程作品。<small>按原表分类统计，第 19 组方向与备注冲突待核。</small></footer>
+    <footer className={styles.projectNavigation}>
+      <div className={styles.paging}><button className={styles.iconButton} disabled={works.length < 2} onClick={() => previousId && onSelect(previousId)} aria-label="上一件作品"><ArrowLeft size={18}/></button><span>{String(position + 1).padStart(2, '0')} <i>/ {String(works.length).padStart(2, '0')}</i></span><button className={styles.iconButton} disabled={works.length < 2} onClick={() => nextId && onSelect(nextId)} aria-label="下一件作品"><ArrowRight size={18}/></button></div>
+      {works.length > 1 && next && <button className={styles.nextPreview} onClick={() => onSelect(next.id)} aria-label={`切换下一件：${next.title}`}><WorkCover key={next.id} work={next}/><span><small>NEXT PROJECT</small>{next.title}</span></button>}
+      <div className={styles.exhibitionLinks}><button onClick={onClose}><ArrowLeft size={12}/>返回课程地图</button>{onArchive && <button onClick={onArchive}>地点研究档案 <ArrowUpRight size={12}/></button>}</div>
+    </footer>
   </aside>;
 }
