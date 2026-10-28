@@ -20,6 +20,6 @@ describe('V2.1 recoverable content and independent layer visibility',()=>{
   const state={layers:['ecology','society'] as const,placeId:null,proposal:null,selectedObjectIds:[],showDemo:true};
   const both=visibleObjects({...state,layers:[...state.layers]});const society=visibleObjects({...state,layers:['society']});
   expect(both.some(o=>o.layer==='ecology')).toBe(true);expect(society).toEqual(both.filter(o=>o.layer==='society'));
-  const available=MAP_OBJECTS.filter(o=>o.layer==='ecology').length;expect(available).toBe(4);expect(visibleObjects({...state,layers:[]})).toHaveLength(0);expect(available).toBe(4);
+  const available=MAP_OBJECTS.filter(o=>o.layer==='ecology').length;expect(available).toBe(7);expect(visibleObjects({...state,layers:[]})).toHaveLength(0);expect(available).toBe(7);
  });
 });

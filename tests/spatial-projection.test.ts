@@ -58,7 +58,7 @@ describe('scene anchors and CSS-pixel projection',()=>{
   overlays.root.traverse(o=>{if(o instanceof Mesh){o.geometry.dispose();const mats=Array.isArray(o.material)?o.material:[o.material];mats.forEach(m=>m.dispose());}});
  });
  it('changes semantic highlight and theme without moving the geographic line',()=>{
-  const overlays=buildOverlays(()=>0),route=MAP_OBJECTS.find(o=>o.geometry.type==='LineString')!;
+  const overlays=buildOverlays(()=>0),route=MAP_OBJECTS.find(o=>o.geometry.type==='LineString'&&o.dataStatus==='public')!;
   const group=overlays.root.getObjectByName(route.id)!,line=group.children.find(o=>o instanceof Line2) as Line2;
   const positions=Array.from(line.geometry.attributes.instanceStart.array);
   const state={layers:[route.layer],selectedObjectIds:[],placeId:null,proposal:null};

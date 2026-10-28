@@ -48,7 +48,7 @@ export const INFORMATION_DEMOS:MapObject[]=[
 ];
 export const INFORMATION_DEMO_RECORDS:AtlasRecord[]=INFORMATION_DEMOS.map(f=>({
  id:f.recordId!,kind:f.layer==='proposal'?'Proposal':f.layer==='society'?'FieldRecord':'ResearchProject',
- placeId:f.placeId,placeIds:f.placeIds,title:f.title,year:2026,author:'交互演示编辑（非调查团队）',themes:[f.layer],
+ placeId:f.placeId,placeIds:f.placeIds,title:f.title,year:2026,author:'交互演示编辑（非调查团队）',themes:[{geography:'基础地理',ecology:'生态',culture:'文化',society:'社会',economy:'经济',proposal:'设计方案'}[f.layer]],
  summary:f.shortDescription!,body:[f.shortDescription!,f.precision,'2026 为示例编制年份，不是调查年份。模拟材料不构成真实田野证据。指标、观察时间、受访者及经济数值均未填入。'],
  dataStatus:'demo',state:'DEMO DATA / 模拟研究资料 · 未实施调查',sourceIds:f.sourceIds,evidenceIds:[],relatedIds:[],objectIds:[f.id],
  ...(f.layer==='proposal'?{proposalType:f.id==='v11-culture-guide'?'Information / Interaction Design' as const:'Service Design' as const}:{}),
