@@ -37,7 +37,7 @@ pnpm exec next dev --hostname 127.0.0.1 --port 3002
 | 路径 | 用途 |
 |---|---|
 | `/experience` | 三维湘江、六类图层、空间解释与研究资料 |
-| `/experience?showcase=student-work` | 临时课程成果：四主题筛选、24 个学生作品、地点作品列表及完整 PDF 入口；[V3 列表与验收截图](docs/student-work-showcase-v3.md)；[数据映射](docs/student-work-showcase.md) |
+| `/experience?showcase=student-work` | 兼容直达设计方案图层；日常从首页“图层 → 设计方案 → 浏览课程设计作品”进入；[V3 列表与验收截图](docs/student-work-showcase-v3.md)；[数据映射](docs/student-work-showcase.md) |
 | `/experience/sites/ezhou` | 鹅洲概念研究现场；不是扫描实测模型 |
 | `/experience/style-frame` | 保留的色彩/材质研究预览 |
 | `/experience/style-frame-v4` | 保留的 V4 风格帧与调色研究；不代表获批主版本 |
@@ -125,3 +125,5 @@ pnpm exec next dev --hostname 127.0.0.1 --port 3002 --webpack
 在运行项目的电脑打开 `http://127.0.0.1:3002/experience?showcase=student-work`。本地预览地址仅用于该电脑；跨电脑阅读请使用 GitHub 分支链接，或自行克隆运行。
 
 本轮只把右侧大图轮播改为小封面纵向列表。说明与实际截图见 [V3 验收](docs/student-work-showcase-v3.md)，正式封面来源见 [24 项封面核对](docs/student-work-cover-audit-v2.md)。无需数据库、地图 Token 或个人环境文件即可查看三维课程成果。
+
+最新交互修复：课程成果已接入“设计方案”图层，可与其余图层叠加；右侧作品、空间说明和资料详情互斥显示。见 [图层与详情修复记录](docs/design-proposal-layer.md)。

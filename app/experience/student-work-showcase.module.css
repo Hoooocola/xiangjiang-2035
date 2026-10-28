@@ -2,7 +2,7 @@
 .mode{--course-ink:var(--text);--course-accent:var(--accent)}
 .sceneVeil{background:linear-gradient(90deg,rgba(var(--information-rgb),.75),rgba(var(--information-rgb),.35) 22%,transparent 48%),linear-gradient(0deg,rgba(var(--information-rgb),.7),transparent 24%)!important}
 .mode[data-work-open=true] .sceneVeil{background:linear-gradient(270deg,rgba(var(--information-rgb),.88),rgba(var(--information-rgb),.52) 19%,transparent 43%),linear-gradient(0deg,rgba(var(--information-rgb),.7),transparent 24%)!important}
-.mode>nav[aria-label="地图导航"]{display:none}.mode>header>nav>a[href="/create-research"]{display:none}.mode[data-work-open=true] [aria-label="镜头控制"]{visibility:hidden;pointer-events:none}
+.mode[data-work-open=true] [aria-label="镜头控制"]{visibility:hidden;pointer-events:none}
 .overview{position:absolute;z-index:9;left:5.4%;top:clamp(132px,17vh,190px);width:310px;max-width:27vw;max-height:calc(100dvh - 270px);display:flex;flex-direction:column;color:var(--text);transition:opacity .25s,transform .35s,visibility .35s;pointer-events:auto}
 .overview>*:not(.indexBody){flex-shrink:0}.overviewHidden{opacity:0;transform:translateX(-18px);visibility:hidden;pointer-events:none}
 .overviewHeading{display:flex;justify-content:space-between;align-items:center;gap:12px}.kicker{font-size:8px;line-height:1.5;letter-spacing:.2em;color:var(--accent);margin:0}.iconButton{min-width:32px;min-height:32px;display:inline-grid;place-items:center;flex-shrink:0}.overviewHeading>.iconButton{opacity:.6;transform:translateX(6px)}

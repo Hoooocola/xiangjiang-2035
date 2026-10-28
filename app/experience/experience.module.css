@@ -60,3 +60,6 @@
 .objectReading .mainNav{display:none}
 
 .objectReading .cameraControls{visibility:hidden;pointer-events:none}
+
+/* Extra course navigation anchors stay hidden until the proposal layer is active. */
+.marker[hidden]{display:none!important}
