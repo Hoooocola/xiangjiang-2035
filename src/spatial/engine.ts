@@ -5,6 +5,7 @@ import {initialState,highlightedRecordIds,visibleAnnotations} from './controller
 import {loadSiteModel,disposeTree} from './scene';
 import {createAnnotations,annotationForObject} from './annotations';
 import type {ExplorerState} from './types';
+import {projectAnchor} from './projection';
 export interface SiteEngine {apply:(state:ExplorerState)=>void;reset:()=>void;orbit:(n:number)=>void;zoom:(n:number)=>void;stop:()=>void;dispose:()=>void}
 interface Callbacks {select:(id:string)=>void;interact:()=>void;ready:()=>void;motion:(v:boolean)=>void;error:(message:string)=>void;metrics:(m:{fps:number;calls:number;geometries:number})=>void}
 export async function createSiteEngine(host:HTMLDivElement,markers:Map<string,HTMLButtonElement>,callbacks:Callbacks,signal:AbortSignal):Promise<SiteEngine>{
@@ -18,7 +19,7 @@ export async function createSiteEngine(host:HTMLDivElement,markers:Map<string,HT
  scene.add(new THREE.HemisphereLight('#e9f1ee','#2c4f4d',2));
  const sun=new THREE.DirectionalLight('#ffe0ad',3.5);sun.position.set(-28,65,22);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-70,right:70,top:70,bottom:-70,near:1,far:160});sun.shadow.normalBias=.04;scene.add(sun);
  const fill=new THREE.DirectionalLight('#83b9d1',1.4);fill.position.set(40,30,-25);scene.add(fill);
- let disposed=false,frame=0,state=initialState,last=performance.now(),metricTime=0,frames=0,lastLabels=0,hoverId:string|null=null;
+ let disposed=false,frame=0,state=initialState,last=performance.now(),metricTime=0,frames=0,hoverId:string|null=null;
  let model:Awaited<ReturnType<typeof loadSiteModel>>|undefined,annotations:ReturnType<typeof createAnnotations>|undefined;
  const cleanups:(()=>void)[]=[];
  const dispose=()=>{if(disposed)return;disposed=true;cancelAnimationFrame(frame);rig.dispose();cleanups.forEach(f=>f());model?.dispose();if(annotations)disposeTree(annotations.root);sun.shadow.dispose();renderer.dispose();renderer.forceContextLoss();canvas.remove();};
@@ -41,14 +42,13 @@ export async function createSiteEngine(host:HTMLDivElement,markers:Map<string,HT
   on('pointermove',((e:PointerEvent)=>{if(e.buttons)return;const a=pick(e);hoverId=a?.recordId??null;annotations!.hover(hoverId);canvas.style.cursor=a?'pointer':'grab';}) as EventListener);
   on('pointerleave',(()=>{hoverId=null;annotations!.hover(null);}) as EventListener);
   const point=new THREE.Vector3(),origin=new THREE.Vector3(),direction=new THREE.Vector3();
-  function updateLabels(now:number){
-   if(now-lastLabels<65)return;lastLabels=now;
+  function updateLabels(){
    const w=host.clientWidth,h=host.clientHeight,highlight=new Set(highlightedRecordIds(state));
    const candidates=visibleAnnotations(state).filter(a=>a.layer!=='context'||highlight.has(a.recordId));
    const priority=(id:string)=>(id===state.selectedId?10:0)+(highlight.has(id)?1:0);candidates.sort((a,b)=>priority(b.recordId)-priority(a.recordId));
    const occupied:{x:number;y:number;label:boolean;labelLeft:number}[]=[];const shown=new Set<string>(),labeledRecords=new Set<string>();
    for(const a of candidates){const el=markers.get(a.id);if(!el)continue;
-    origin.set(...a.anchor);point.copy(origin).project(camera);const x=(point.x*.5+.5)*w,y=(-point.y*.5+.5)*h;
+    origin.set(...a.anchor);projectAnchor(origin,camera,w,h,point);const x=point.x,y=point.y;
     let show=point.z>-1&&point.z<1&&x>24&&x<w-24&&y>110&&y<h-(w<700?105:130);
     const panel=host.parentElement?.querySelector<HTMLElement>('[data-site-panel]');if(panel){const rect=panel.getBoundingClientRect(),hr=host.getBoundingClientRect();if(x>rect.left-hr.left-15&&x<rect.right-hr.left+15&&y>rect.top-hr.top-15&&y<rect.bottom-hr.top+15)show=false;}
     if(show){direction.copy(origin).sub(camera.position);const distance=direction.length();raycaster.set(camera.position,direction.normalize());raycaster.far=Math.max(.1,distance-.55);const blocked=raycaster.intersectObjects(model!.occluders,false).length>0;raycaster.far=Infinity;show=!blocked;}
@@ -57,7 +57,7 @@ export async function createSiteEngine(host:HTMLDivElement,markers:Map<string,HT
    }
    for(const [id,el] of markers)if(!shown.has(id))el.style.visibility='hidden';
   }
-  function render(now:number){if(disposed)return;frame=requestAnimationFrame(render);const elapsed=(now-last)/1000;last=now;if(document.hidden)return;rig.update(now,Math.min(elapsed,.05));camera.updateMatrixWorld();updateLabels(now);renderer.render(scene,camera);frames++;metricTime+=elapsed;if(metricTime>2){callbacks.metrics({fps:Math.round(frames/metricTime),calls:renderer.info.render.calls,geometries:renderer.info.memory.geometries});frames=0;metricTime=0;}}
+  function render(now:number){if(disposed)return;frame=requestAnimationFrame(render);const elapsed=(now-last)/1000;last=now;if(document.hidden)return;rig.update(now,Math.min(elapsed,.05));updateLabels();renderer.render(scene,camera);frames++;metricTime+=elapsed;if(metricTime>2){callbacks.metrics({fps:Math.round(frames/metricTime),calls:renderer.info.render.calls,geometries:renderer.info.memory.geometries});frames=0;metricTime=0;}}
   rig.update(performance.now(),0);renderer.render(scene,camera);frame=requestAnimationFrame(render);callbacks.ready();
   const fly=(pose:typeof SITE_HOME)=>{callbacks.motion(true);rig.fly(pose,1700,()=>callbacks.motion(false));};
   return {apply:next=>{

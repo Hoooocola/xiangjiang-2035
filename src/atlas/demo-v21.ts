@@ -20,7 +20,7 @@ export const DEMO_FEATURES:DemoFeature[]=[
  feature('demo-ecology-area','林荫观察选区 · DEMO','ecology','demo-ecology','Polygon',[[112.955,28.188],[112.957,28.188],[112.958,28.191],[112.956,28.191],[112.955,28.188]],[112.9562,28.1895]),
  feature('demo-culture-point','地方记忆索引 · DEMO','culture','demo-culture','Point',[[112.955,28.185]],[112.955,28.185]),
  feature('demo-society-route','步行观察序列 · DEMO','society','demo-observation','LineString',[[112.952,28.180],[112.9545,28.185],[112.957,28.190],[112.959,28.194]],[112.9545,28.185]),
- feature('demo-research-point','问题与证据链 · DEMO','research','demo-issue','Point',[[112.953,28.182]],[112.953,28.182]),
+ feature('demo-research-point','问题与证据链 · DEMO','society','demo-issue','Point',[[112.953,28.182]],[112.953,28.182]),
  feature('demo-proposal-index','橘子洲 · 可查看概念方案','proposal','demo-proposal','Point',[[112.9559,28.1857]],[112.9559,28.1857]),
  feature('demo-intervention','阅读提示触点 · DEMO','proposal','demo-proposal','Point',[[112.958,28.192]],[112.958,28.192],'juzizhou','demo-proposal'),
  feature('demo-yanghu-area','湿地阅读选区 · DEMO','ecology','demo-yanghu','Polygon',[[112.931,28.129],[112.935,28.129],[112.936,28.132],[112.933,28.133],[112.931,28.129]],[112.934,28.131],'yanghu'),

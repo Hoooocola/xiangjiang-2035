@@ -1,0 +1,35 @@
+{
+  "bounds": {
+    "x": -80,
+    "z": -60,
+    "w": 145,
+    "h": 120
+  },
+  "cellMeters": 50,
+  "inwardBlendMeters": 200,
+  "supportCells": 37024,
+  "currentStrongCells": 20664,
+  "candidateStrongCells": 35315,
+  "candidateOutsideCells": 0,
+  "localAreas": [
+    "咸嘉湖",
+    "西湖公园",
+    "岳麓山",
+    "凤凰山",
+    "天马山",
+    "后湖",
+    "南郊公园",
+    "傅家洲",
+    "橘子洲",
+    "渔人码头",
+    "开福寺",
+    "潮宗街",
+    "烈士陵园"
+  ],
+  "note": "Cell counts include water and vegetation; not hardscape areas. Existing sampler > 0 defines support; no new geographic domain.",
+  "inputs": {
+    "public/data/terrain.json": "994c9dc16c2b35463664d39e375343b6d49f5a47d73b9409d402c353ad632366",
+    "public/data/xiangjiang.geojson": "1dc25e2244fe8a49a6b76b885b89715b2053b6802b480b5742358db829264402",
+    "src/experience/aoi/focus-areas.json": "d660bb81636a2b5aca4f76a194958b1f58d4f5678011cc268cea48bdacf5c679"
+  }
+}

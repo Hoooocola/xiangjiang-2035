@@ -34,6 +34,29 @@ describe('one camera controller for transitions and direct input',()=>{
   canvas.dispatchEvent(Object.assign(new Event('pointermove'),{pointerId:1,clientX:200,clientY:100,buttons:1,shiftKey:false}));
   expect(rig.desired.azimuth).not.toBe(before);rig.dispose();
  });
+ it('publishes current view matrices before a renderer runs, including flight and rotation',()=>{
+  const {rig,camera}=setup();
+  camera.fov=38;camera.aspect=16/9;camera.updateProjectionMatrix();
+  const target=new THREE.Vector3();
+  const assertCentred=()=>{
+   target.set(...rig.pose.target).project(camera);
+   expect(target.x).toBeCloseTo(0,10);expect(target.y).toBeCloseTo(0,10);
+   const inverse=camera.matrixWorld.clone().invert();
+   camera.matrixWorldInverse.elements.forEach((value,i)=>expect(value).toBeCloseTo(inverse.elements[i],10));
+  };
+  rig.update(0,0);assertCentred();
+  rig.orbit(.8);rig.pan(2,3);rig.zoom(.8);
+  for(let i=1;i<25;i++){rig.update(i*16,.016);assertCentred();}
+  rig.fly(OVERVIEW_POSE);const start=rig.transition!.start;
+  for(let i=0;i<=2400;i+=100){rig.update(start+i,.016);assertCentred();}
+  rig.dispose();
+ });
+ it('takes the short heading path when returning from several full free rotations',()=>{
+  const {rig}=setup();rig.pose.azimuth=Math.PI*6+.4;
+  rig.fly({...rig.pose,azimuth:.2});
+  expect(Math.abs(rig.transition!.to.azimuth-rig.transition!.from.azimuth)).toBeCloseTo(.2);
+  rig.dispose();
+ });
 });
 
 import {INTRO_SEQUENCE,sampleSequence} from '../src/experience/camera-sequence';

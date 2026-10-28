@@ -68,8 +68,10 @@ export class CameraRig {
  orbit(delta:number){if(this.route||this.transition)this.cancel();this.desired.azimuth+=delta;}
  cancel(){this.route=null;this.transition=null;this.desired=clonePose(this.pose);}
  fly(to:CameraPose,duration=2400,done?:()=>void){
-  this.route=null;this.transition={from:clonePose(this.pose),to:clonePose(to),start:performance.now(),duration:this.reducedMotion?0:duration,done};
-  this.desired=clonePose(to);
+  const destination=clonePose(to);
+  destination.azimuth=this.pose.azimuth+Math.atan2(Math.sin(to.azimuth-this.pose.azimuth),Math.cos(to.azimuth-this.pose.azimuth));
+  this.route=null;this.transition={from:clonePose(this.pose),to:destination,start:performance.now(),duration:this.reducedMotion?0:duration,done};
+  this.desired=clonePose(destination);
  }
  sequence(frames:CameraKeyframe[],done?:()=>void){
   this.transition=null;this.route={frames,start:performance.now(),duration:frames.at(-1)!.time,done};this.desired=clonePose(frames.at(-1)!.pose);
@@ -94,6 +96,8 @@ export class CameraRig {
   this.camera.position.set(p.target[0]+d*Math.sin(p.polar)*Math.sin(p.azimuth),p.target[1]+d*Math.cos(p.polar),p.target[2]+d*Math.sin(p.polar)*Math.cos(p.azimuth));
   if(this.options.minimumCameraY)this.camera.position.y=Math.max(this.camera.position.y,this.options.minimumCameraY(this.camera.position.x,this.camera.position.z));
   this.camera.lookAt(...p.target);
+  // Publish this pose before any DOM projection or picking, not only at render().
+  this.camera.updateMatrixWorld();
  }
  dispose(){this.cleanups.forEach(f=>f());this.pointers.clear();}
 }
