@@ -85,7 +85,7 @@ export default function Experience({initialPlace,studentShowcase=false}:{initial
    <button className={styles.wordmark} onClick={reset} aria-label="湘江 2035，返回核心河段" disabled={!loaded}><span>湘江 <b>2035</b></span><small>将来的江来 · A LIVING ATLAS</small></button>
    <nav className={styles.headerActions} aria-label="知识地图工具">
     {loaded&&<><button aria-expanded={atlasPanel==='layers'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='layers'?null:'layers');}}><SlidersHorizontal size={16}/>图层 <small>{layers.length}</small></button><button aria-expanded={atlasPanel==='library'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='library'?null:'library');}}><BookOpen size={16}/>资料</button></>}
-    {studentShowcase&&<><button aria-expanded={worksOpen} onClick={()=>{setWorksOpen(!worksOpen);setAtlasPanel(null);setDrawer(null);}}>课程成果</button><a href="/experience">退出演示</a></>}
+    {studentShowcase&&<><button aria-expanded={worksOpen} onClick={()=>{setWorksOpen(!worksOpen);setDetailOpen(false);setAtlasPanel(null);setDrawer(null);}}>课程成果</button><a href="/experience">退出演示</a></>}
     <a className={styles.platformLink} href="/create-research">研究平台 <ArrowUpRight size={16}/></a>
    </nav>
   </header>
@@ -109,7 +109,7 @@ export default function Experience({initialPlace,studentShowcase=false}:{initial
   {!loaded&&!error&&<div className={styles.loading} role="status" aria-live="polite"><span>{loadingLabel}</span><div><i style={{width:`${progress}%`}}/></div></div>}
   {error&&<section className={styles.error} role="alert"><h2>暂时无法展开这段湘江</h2><p>{error}</p><button onClick={()=>window.location.reload()}>重新载入 <RotateCcw size={15}/></button><a href="/create-research">进入研究平台 <ArrowUpRight size={15}/></a></section>}
   {place&&detailOpen&&!atlasPanel&&!drawer&&!moving&&<PlaceDetail key={place.id} studentTheme={studentShowcase?workTheme:undefined} place={place} onClose={()=>setDetailOpen(false)} onMap={()=>{setDetailOpen(false);const ids=visibleObjects(overlayState).filter(o=>objectIds.includes(o.id)).map(o=>o.id);if(ids.length)engine.current?.focusObjects(ids);else engine.current?.focus(place.id);}} tab={detailTab} onTab={setDetailTab} recordId={recordId} onRecord={openRecord} proposal={proposal} onProposal={changeProposal}/>}
-  {place&&!currentObject&&!detailOpen&&!atlasPanel&&!drawer&&!moving&&<aside className={styles.placePanel} aria-label={`${place.name}地点信息`}>
+  {place&&!currentObject&&!detailOpen&&!atlasPanel&&!drawer&&!moving&&(!studentShowcase||!worksOpen)&&<aside className={styles.placePanel} aria-label={`${place.name}地点信息`}>
    <button ref={closeRef} className={styles.close} onClick={closePlace} aria-label="关闭地点并返回原视角"><X size={20}/></button>
    <p className={styles.eyebrow}>FIELD NOTES <span>/ {place.index}</span></p><small className={styles.placeEnglish}>{place.en}</small><h2>{place.name}</h2>
    <p className={styles.category}>{place.category}</p><p className={styles.description}>{place.description}</p>

@@ -96,4 +96,17 @@ Pinwall 页面及 OSS 附件为公开原作品来源。封面缩略图保持原�
 
 用户于 2026-10-29 要求修改压缩包项目并持续上传 GitHub，并在询问既有三类素材上传范围时回复“都行”。记录此任务授权，不据此虚构素材为原创或第三方许可条款。之后用户明确告知同学已将仓库公开；本轮不改变仓库可见性、不改写既有历史。只提交明确任务文件，不提交环境文件、缓存、数据库或依赖目录。
 
-验证结果将在交付前补记。
+## 验证记录
+
+- 类型检查与本任务 TypeScript / React / 路由 lint 通过。
+- 完整单元测试：95 passed，26 个数据库集成测试 skipped；本次不涉及数据库，未启动数据库集成环境。
+- 命令：`node node_modules/vitest/vitest.mjs run --testTimeout=60000`。原有约 15 万栋建筑逐项断言在当前 Windows 机器上超过默认 15 秒；没有改动该测试、断言或产品数据，仅在本次验证命令提高超时。首次默认超时运行记录为 94 passed / 1 timeout / 26 skipped。
+- 浏览器验证：四方向动态计数、交通方向 5 作品 / 4 地图地点 / 1 待定位作品，鹅洲进入设计方案并显示该方向作品封面、成员与 PDF 入口；390 × 844 窄屏自动收起目录，日间与夜间可切换。保留原有相机、自由操作及返回入口。
+- 实际 PDF 接口检查：302 到 `oss.pinwall.cn` 的 PDF 路径，并使用 `private, no-store`，未输出或保存过期签名地址。
+- 24 个项目页和封面均已读取，24 个页面发现 PDF 附件；缩略图合计 567256 bytes。
+- 构建检查发现原有 `style-frame-v4/study.module.css` 使用未限定局部类的 focus-visible 全局选择器，导致 webpack CSS Modules 报错。仅增加该页面已有 `.page` 作用域，保持其视觉和交互不变。
+- GitHub main 是已清理参考资产的协作历史，与原压缩包历史不同。功能以源码差异移植到 `origin/main @ a039b01`，保留远端排除的资产，不 merge/push 原始历史或标签。已正常推送 `demo/student-work-showcase`；主分支未更改。
+
+生产构建 `next build --webpack` 已通过（独立 clone，与 dev 预览隔离）。普通 `/experience` 与演示 URL 均返回 HTTP 200；普通入口不渲染课程面板，演示入口渲染课程面板。
+
+截图见 `docs/screenshots/student-work-showcase/`。PR 地址在最终交付消息中提供。

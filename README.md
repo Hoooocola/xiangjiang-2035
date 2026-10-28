@@ -37,6 +37,7 @@ pnpm exec next dev --hostname 127.0.0.1 --port 3002
 | 路径 | 用途 |
 |---|---|
 | `/experience` | 三维湘江、六类图层、空间解释与研究资料 |
+| `/experience?showcase=student-work` | 临时课程成果：四主题筛选、24 个学生作品、地点作品列表及完整 PDF 入口；[数据与验收](docs/student-work-showcase.md) |
 | `/experience/sites/ezhou` | 鹅洲概念研究现场；不是扫描实测模型 |
 | `/experience/style-frame` | 保留的色彩/材质研究预览 |
 | `/experience/style-frame-v4` | 保留的 V4 风格帧与调色研究；不代表获批主版本 |

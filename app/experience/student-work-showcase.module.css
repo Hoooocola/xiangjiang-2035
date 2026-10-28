@@ -11,3 +11,5 @@
 @media(prefers-reduced-motion:reduce){.panel *{transition:none!important;animation:none!important}}
 
 @media(min-width:701px){.themes{display:grid;grid-template-columns:1fr 1fr;column-gap:13px}.themes button:first-child{grid-column:1/-1}.themes button{font-size:10px!important;letter-spacing:0;gap:4px}.themes em{display:none}.themes button>span{display:block}.withShelf{left:calc(4% + 344px)!important;bottom:42px!important;gap:10px!important}.withShelf [aria-label="湘江范围导航"]{width:220px}.mode>header>nav>a[href="/create-research"]{display:none}}
+@media(max-width:1099px){.mode:has([aria-label$="地点详情"]) .panel{display:none}}
+@media(max-width:700px){.mode>header>nav{gap:12px;justify-content:flex-start}.mode>header>nav>a[href="/create-research"]{display:none}}
