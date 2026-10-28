@@ -7,11 +7,13 @@ import {profileFor,sourceById,STATUS_LABEL} from '@/src/atlas/places';
 import {RECORDS,KIND_LABEL,recordById,recordsFor,researchYears} from '@/src/atlas/catalog';
 import type {AtlasRecord,ProposalScenario} from '@/src/atlas/types';
 import styles from './atlas.module.css';
+import {StudentPlaceWorks} from './student-work-showcase';
+import type {ThemeFilter} from '@/src/student-works/catalog';
 export type DetailTab='overview'|'research'|'evidence'|'questions'|'design';
 const tabs:[DetailTab,string][]=[['overview','地点概况'],['research','已有研究'],['evidence','田野证据'],['questions','问题与缺口'],['design','设计方案']];
 export function Sources({ids}:{ids:string[]}){return <div>{ids.map(id=>{const s=sourceById(id);return <p key={id} className={styles.source}><small>{STATUS_LABEL[s.status]} · {s.year}</small>{s.url?<a href={s.url} target="_blank" rel="noreferrer">{s.title}<ArrowUpRight size={13}/></a>:s.title}<small>{s.author}</small></p>;})}</div>;}
 export function RecordCard({record,onOpen}:{record:AtlasRecord;onOpen:(id:string)=>void}){return <button className={styles.recordCard} onClick={()=>onOpen(record.id)}><small>{record.dataStatus==='demo'?'示例编制 ':''}{record.year} · {KIND_LABEL[record.kind]} · {record.dataStatus==='demo'?'DEMO DATA / 模拟研究资料':'公开资料'}</small><strong>{record.title}</strong><span>{record.summary}</span><em>查看资料 →</em></button>;}
-export function PlaceDetail({place,onClose,onMap,tab,onTab,recordId,onRecord,proposal,onProposal}:{place:Place;onClose:()=>void;onMap:()=>void;tab:DetailTab;onTab:(tab:DetailTab)=>void;recordId:string|null;onRecord:(id:string|null)=>void;proposal:ProposalScenario|null;onProposal:(view:ProposalScenario['view'])=>void}){
+export function PlaceDetail({place,studentTheme,onClose,onMap,tab,onTab,recordId,onRecord,proposal,onProposal}:{place:Place;studentTheme?:ThemeFilter;onClose:()=>void;onMap:()=>void;tab:DetailTab;onTab:(tab:DetailTab)=>void;recordId:string|null;onRecord:(id:string|null)=>void;proposal:ProposalScenario|null;onProposal:(view:ProposalScenario['view'])=>void}){
  const [year,setYear]=useState('all');const p=profileFor(place.id),record=recordId?recordById(recordId):undefined,body=useRef<HTMLDivElement>(null),close=useRef<HTMLButtonElement>(null);
  useEffect(()=>{close.current?.focus({preventScroll:true});},[]);
  useEffect(()=>{body.current?.scrollTo(0,0);},[recordId,tab,year]);
@@ -35,7 +37,7 @@ export function PlaceDetail({place,onClose,onMap,tab,onTab,recordId,onRecord,pro
     {tab==='research'&&<><h3>研究时间轴</h3><p className={styles.hint}>公开材料与演示项目分别标记；没有虚构未来届次。</p><label className={styles.filter}>研究年份<select aria-label="研究年份" value={year} onChange={e=>setYear(e.target.value)}><option value="all">全部年份</option>{researchYears(place.id).map(y=><option key={y} value={y}>{y}</option>)}</select></label>{renderCards(recordsFor(place.id,'ResearchProject').filter(r=>year==='all'||r.year===Number(year)).sort((a,b)=>b.year-a.year))}<h3>关联研究活动</h3>{renderCards(recordsFor(place.id,'ResearchSession').filter(r=>year==='all'||r.year===Number(year)))}</>}
     {tab==='evidence'&&<><h3>田野记录与文献证据</h3><p className={styles.hint}>文献报道、待采集模板和真实现场记录不能互相替代。本样板没有导入私有田野数据。</p>{renderCards(recordsFor(place.id,'FieldRecord'))}<a className={styles.external} href="/create-research">进入原研究平台开展采集 <ArrowUpRight size={13}/></a></>}
     {tab==='questions'&&<>{(['ResearchGap','Issue','Conflict','Insight'] as const).map(kind=><section key={kind}><h3>{KIND_LABEL[kind]}</h3>{renderCards(recordsFor(place.id,kind))}</section>)}</>}
-    {tab==='design'&&<><h3>设计机会</h3>{renderCards(recordsFor(place.id,'DesignOpportunity'))}<h3>设计方案</h3>{renderCards(recordsFor(place.id,'Proposal'))}</>}
+    {tab==='design'&&<>{studentTheme!==undefined&&<StudentPlaceWorks placeId={place.id} theme={studentTheme}/>}<h3>设计机会</h3>{renderCards(recordsFor(place.id,'DesignOpportunity'))}<h3>设计方案</h3>{renderCards(recordsFor(place.id,'Proposal'))}</>}
    </>}
   </div><footer><button onClick={onMap}><MapPin size={14}/>在地图中查看</button><button onClick={onClose}>收起详情</button></footer>
  </aside>;
