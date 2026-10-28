@@ -1,0 +1,46 @@
+[
+  {
+    "id": "student-beichen",
+    "name": "北辰三角洲",
+    "coordinate": [
+      112.977992,
+      28.2393516
+    ],
+    "siteCategory": "community",
+    "source": "https://www.openstreetmap.org/relation/16162256",
+    "precision": "现有 OSM 几何包围盒中心，仅供近似导航，非研究范围"
+  },
+  {
+    "id": "student-oil1936",
+    "name": "油脂厂1936",
+    "coordinate": [
+      112.9637706,
+      28.1822843
+    ],
+    "siteCategory": "infrastructure",
+    "source": "https://www.openstreetmap.org/way/1298905852",
+    "precision": "现有 OSM 几何包围盒中心，仅供近似导航，非研究范围"
+  },
+  {
+    "id": "student-juzizhou-bridge",
+    "name": "橘子洲大桥",
+    "coordinate": [
+      112.9574416,
+      28.199184
+    ],
+    "siteCategory": "waterfront",
+    "source": "https://www.openstreetmap.org/way/52072501",
+    "precision": "现有 OSM 几何包围盒中心，仅供近似导航，非研究范围"
+  },
+  {
+    "id": "student-houzishi-west",
+    "name": "猴子石大桥西岸",
+    "coordinate": [
+      112.9433115,
+      28.142421
+    ],
+    "siteCategory": "waterfront",
+    "source": "https://www.openstreetmap.org/way/30610573",
+    "precision": "现有 OSM 几何的西端导航点，非西岸研究范围"
+  }
+]

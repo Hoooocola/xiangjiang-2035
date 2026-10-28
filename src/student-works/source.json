@@ -1,0 +1,639 @@
+[
+  {
+    "id": "pinwall-66171",
+    "sequence": 1,
+    "title": "湘江多元水岸交通系统设计",
+    "members": [
+      "李昱瑶",
+      "陈天庆",
+      "贾景舜",
+      "吴柿姬"
+    ],
+    "theme": "立体交通与网络系统",
+    "originalSite": "铜官窑",
+    "originalSiteType": "历史/景区",
+    "placeId": "tongguan",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66171",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 5
+    }
+  },
+  {
+    "id": "pinwall-66192",
+    "sequence": 2,
+    "title": "「洲行 ZHOU LINK」鹅洲岛立体共运系统",
+    "members": [
+      "曹圣平",
+      "李浩然",
+      "金光耀",
+      "刘浩东",
+      "陈子晗"
+    ],
+    "theme": "立体交通与网络系统",
+    "originalSite": "鹅洲岛",
+    "originalSiteType": "岛洲",
+    "placeId": "ezhou",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66192",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 6
+    }
+  },
+  {
+    "id": "pinwall-66181",
+    "sequence": 3,
+    "title": "流岸·2035",
+    "members": [
+      "苏石磊",
+      "彭诗尧",
+      "贺未琪",
+      "李浩宇"
+    ],
+    "theme": "立体交通与网络系统",
+    "originalSite": "文津码头",
+    "originalSiteType": "滨水/码头",
+    "placeId": null,
+    "locationNote": "原选址尚无可靠坐标或范围；保留作品，暂不上图。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66181",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 7
+    }
+  },
+  {
+    "id": "pinwall-66184",
+    "sequence": 4,
+    "title": "记忆·川上转——文津码头*湘江生活档案共创企划",
+    "members": [
+      "范心果",
+      "王浩",
+      "冷美言",
+      "王潜清"
+    ],
+    "theme": "社区生活与在地共创",
+    "originalSite": "文津码头",
+    "originalSiteType": "滨水/码头",
+    "placeId": null,
+    "locationNote": "原选址尚无可靠坐标或范围；保留作品，暂不上图。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66184",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 8
+    }
+  },
+  {
+    "id": "pinwall-66166",
+    "sequence": 5,
+    "title": "「这里，有故事。」——从居民记忆出发的湘江地图",
+    "members": [
+      "赵慧妍",
+      "孙誉铭",
+      "戴尚哲",
+      "陈博辉"
+    ],
+    "theme": "社区生活与在地共创",
+    "originalSite": "北辰三角洲",
+    "originalSiteType": "社区/街区",
+    "placeId": "student-beichen",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66166",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 9
+    }
+  },
+  {
+    "id": "pinwall-66178",
+    "sequence": 6,
+    "title": "洲有四季——巴溪洲“水位日历”社区共创计划",
+    "members": [
+      "林学瑶",
+      "史晓蕊",
+      "黄茜",
+      "凌子怡"
+    ],
+    "theme": "湘江的生态文旅",
+    "originalSite": "巴溪洲",
+    "originalSiteType": "岛洲",
+    "placeId": "baxi",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66178",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 10
+    }
+  },
+  {
+    "id": "pinwall-66196",
+    "sequence": 7,
+    "title": "裕湘百年",
+    "members": [
+      "解晓钰",
+      "李琦",
+      "黄璎雯",
+      "白芮萌",
+      "师曼"
+    ],
+    "theme": "社区生活与在地共创",
+    "originalSite": "裕湘纱厂",
+    "originalSiteType": "历史/景区",
+    "placeId": null,
+    "locationNote": "原选址尚无可靠坐标或范围；保留作品，暂不上图。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66196",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 11
+    }
+  },
+  {
+    "id": "pinwall-66170",
+    "sequence": 8,
+    "title": "WEAVE WAVE",
+    "members": [
+      "梁源",
+      "王晶菁",
+      "秦佳欣",
+      "刘之渝"
+    ],
+    "theme": "社区生活与在地共创",
+    "originalSite": "渔人码头",
+    "originalSiteType": "滨水/码头",
+    "placeId": "site-011",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66170",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 12
+    }
+  },
+  {
+    "id": "pinwall-66168",
+    "sequence": 9,
+    "title": "“油”点意思——长沙油脂厂改造计划",
+    "members": [
+      "肖悦",
+      "朱雨晴",
+      "吴欣雨",
+      "石恒屹"
+    ],
+    "theme": "产业规划与场景营造",
+    "originalSite": "油脂厂1936",
+    "originalSiteType": "社区/街区",
+    "placeId": "student-oil1936",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66168",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 13
+    }
+  },
+  {
+    "id": "pinwall-66172",
+    "sequence": 10,
+    "title": "江岸接力——橘洲文脉共编系统",
+    "members": [
+      "王子轩",
+      "兰奕娴",
+      "和浩帆",
+      "张素雅"
+    ],
+    "theme": "湘江的生态文旅",
+    "originalSite": "橘子洲",
+    "originalSiteType": "岛洲",
+    "placeId": "juzizhou",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66172",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 14
+    }
+  },
+  {
+    "id": "pinwall-66173",
+    "sequence": 11,
+    "title": "湘岸共赴：渔人码头滨水文化体验",
+    "members": [
+      "孙怡宁",
+      "王净",
+      "任芷淇",
+      "吴夏怡"
+    ],
+    "theme": "湘江的生态文旅",
+    "originalSite": "渔人码头",
+    "originalSiteType": "滨水/码头",
+    "placeId": "site-011",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66173",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 15
+    }
+  },
+  {
+    "id": "pinwall-66174",
+    "sequence": 12,
+    "title": "大王山交通再规划",
+    "members": [
+      "张祺",
+      "张恒源",
+      "郭谙凡",
+      "兰小凯"
+    ],
+    "theme": "湘江的生态文旅",
+    "originalSite": "大王山",
+    "originalSiteType": "历史/景区",
+    "placeId": null,
+    "locationNote": "原选址尚无可靠坐标或范围；保留作品，暂不上图。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66174",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 16
+    }
+  },
+  {
+    "id": "pinwall-66175",
+    "sequence": 13,
+    "title": "Reconnect江脉重连",
+    "members": [
+      "徐伟茗",
+      "潘奕彤",
+      "袁艺丹",
+      "王晨曦"
+    ],
+    "theme": "社区生活与在地共创",
+    "originalSite": "城南街区",
+    "originalSiteType": "社区/街区",
+    "placeId": null,
+    "locationNote": "原选址尚无可靠坐标或范围；保留作品，暂不上图。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66175",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 17
+    }
+  },
+  {
+    "id": "pinwall-66176",
+    "sequence": 14,
+    "title": "洋湖叠境-漫游-",
+    "members": [
+      "黄厚淇",
+      "张新宇",
+      "黄时韬",
+      "梁永坚"
+    ],
+    "theme": "社区生活与在地共创",
+    "originalSite": "洋湖湿地",
+    "originalSiteType": "历史/景区",
+    "placeId": "yanghu",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66176",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 18
+    }
+  },
+  {
+    "id": "pinwall-66179",
+    "sequence": 15,
+    "title": "栖亭·共栖之江",
+    "members": [
+      "吴鑫恒",
+      "杨晓芸",
+      "刘政昊",
+      "方建",
+      "许峰源"
+    ],
+    "theme": "湘江的生态文旅",
+    "originalSite": "橘子洲",
+    "originalSiteType": "岛洲",
+    "placeId": "juzizhou",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66179",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 19
+    }
+  },
+  {
+    "id": "pinwall-66180",
+    "sequence": 16,
+    "title": "江边，逗留一会儿",
+    "members": [
+      "戴依蝶",
+      "谢元",
+      "周思远",
+      "李懿恩",
+      "吕祎清"
+    ],
+    "theme": "立体交通与网络系统",
+    "originalSite": "猴子石大桥西岸",
+    "originalSiteType": "滨水/码头",
+    "placeId": "student-houzishi-west",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66180",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 20
+    }
+  },
+  {
+    "id": "pinwall-66183",
+    "sequence": 17,
+    "title": "江边共话站",
+    "members": [
+      "陈炳羽",
+      "胡添翼",
+      "官洪志",
+      "刘安轩",
+      "熊峰"
+    ],
+    "theme": "社区生活与在地共创",
+    "originalSite": "文津码头",
+    "originalSiteType": "滨水/码头",
+    "placeId": null,
+    "locationNote": "原选址尚无可靠坐标或范围；保留作品，暂不上图。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66183",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 21
+    }
+  },
+  {
+    "id": "pinwall-66185",
+    "sequence": 18,
+    "title": "「洲野共生」2035巴溪洲全民户外生活岛计划",
+    "members": [
+      "司想",
+      "杨育宗",
+      "管思砚",
+      "卜衍中"
+    ],
+    "theme": "产业规划与场景营造",
+    "originalSite": "大王山",
+    "originalSiteType": "历史/景区",
+    "placeId": null,
+    "locationNote": "原选址尚无可靠坐标或范围；保留作品，暂不上图。",
+    "reviewNotes": [
+      "题目提及巴溪洲，原选址为大王山；保留原表，地点待核对。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/66185",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 22
+    }
+  },
+  {
+    "id": "pinwall-66187",
+    "sequence": 19,
+    "title": "岸间——湘江滨水公共空间 的弹性更新与日常营造",
+    "members": [
+      "姚楠",
+      "杨文瑞",
+      "陈锦灏",
+      "张家玮",
+      "庞智友"
+    ],
+    "theme": "产业规划与场景营造",
+    "originalSite": "渔人码头到裕湘…",
+    "originalSiteType": "社区/街区",
+    "placeId": null,
+    "locationNote": "原选址尚无可靠坐标或范围；保留作品，暂不上图。",
+    "reviewNotes": [
+      "选址文本被截断，未推断完整路线或地点。",
+      "分类单元格为产业规划与场景营造，与表尾“第19组未填写项目方向”备注冲突，待核对。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/66187",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 23
+    }
+  },
+  {
+    "id": "pinwall-66188",
+    "sequence": 20,
+    "title": "潮间：潮宗街新旧文化共生界面系统",
+    "members": [
+      "李禹昂",
+      "林子强",
+      "闫翔钧",
+      "江悦宁"
+    ],
+    "theme": "社区生活与在地共创",
+    "originalSite": "潮宗街",
+    "originalSiteType": "社区/街区",
+    "placeId": "site-031",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66188",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 24
+    }
+  },
+  {
+    "id": "pinwall-66189",
+    "sequence": 21,
+    "title": "青年岛·文旅化改造",
+    "members": [
+      "杨睿妍",
+      "王嘉彤",
+      "郭晶晶",
+      "方奕"
+    ],
+    "theme": "湘江的生态文旅",
+    "originalSite": "鹅洲岛",
+    "originalSiteType": "岛洲",
+    "placeId": "ezhou",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66189",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 25
+    }
+  },
+  {
+    "id": "pinwall-66191",
+    "sequence": 22,
+    "title": "橘子洲大桥桥面交通改进计划",
+    "members": [
+      "项宏升",
+      "冯俊龙",
+      "乔嘉康",
+      "郑浩杰",
+      "张有成"
+    ],
+    "theme": "立体交通与网络系统",
+    "originalSite": "橘子洲大桥",
+    "originalSiteType": "历史/景区",
+    "placeId": "student-juzizhou-bridge",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66191",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 26
+    }
+  },
+  {
+    "id": "pinwall-66193",
+    "sequence": 23,
+    "title": "湘洲渡——湘江全域水上交通与文旅综合服务设计",
+    "members": [
+      "丁之杨",
+      "李诗妍",
+      "徐新月",
+      "杨米琪",
+      "李静雯"
+    ],
+    "theme": "湘江的生态文旅",
+    "originalSite": "鹅洲岛",
+    "originalSiteType": "岛洲",
+    "placeId": "ezhou",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66193",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 27
+    }
+  },
+  {
+    "id": "pinwall-66190",
+    "sequence": 24,
+    "title": "人人有泊位-渔人码头共泊计划",
+    "members": [
+      "吴炎伦",
+      "孙国庭",
+      "邱相程",
+      "陈昱燐"
+    ],
+    "theme": "社区生活与在地共创",
+    "originalSite": "渔人码头",
+    "originalSiteType": "滨水/码头",
+    "placeId": "site-011",
+    "locationNote": "复用现有地点或有来源的近似导航点，非研究范围。",
+    "reviewNotes": [],
+    "projectUrl": "https://pinwall.cn/project/66190",
+    "pdfUrl": null,
+    "cover": null,
+    "source": {
+      "file": "副本社会创新设计_作业标题与小组成员.xlsx",
+      "sha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+      "sheet": "作业名单",
+      "row": 28
+    }
+  }
+]
