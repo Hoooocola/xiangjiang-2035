@@ -1,3 +1,4 @@
+import {INFORMATION_DEMO_RECORDS} from './demo-information-v11';
 import {DEMO_RECORDS} from './demo-v21';
 import {LEGACY_RECORDS} from './legacy';
 import type {AtlasRecord,LayerId} from './types';
@@ -12,7 +13,7 @@ export const LAYERS:{id:LayerId;label:string;color:string;description:string}[]=
 export const KIND_LABEL={ResearchProject:'研究项目',ResearchSession:'研究活动',FieldRecord:'田野与文献证据',ResearchGap:'研究缺口',Insight:'研究洞察',Issue:'已记录问题',Conflict:'待检验关系',DesignOpportunity:'设计机会',Proposal:'设计方案'};
 const base={placeId:'ezhou',year:2026,author:'Demo 编辑团队',themes:[],dataStatus:'demo' as const,state:'概念演示 / 待验证',sourceIds:['demo'],evidenceIds:[],relatedIds:[],objectIds:[]};
 export const RECORDS:AtlasRecord[]=[
- ...LEGACY_RECORDS,...DEMO_RECORDS,
+ ...LEGACY_RECORDS,...DEMO_RECORDS,...INFORMATION_DEMO_RECORDS,
  {...base,id:'research-2018',kind:'ResearchProject',title:'2018 · 砂石行业与洲岛环境调研',year:2018,author:'长沙理工大学汽机学院社会实践团',course:'守护一江碧水 · 社会实践',themes:['行业转型','洲岛环境'],dataStatus:'public',state:'公开活动报道，非完整研究档案',sourceIds:['study2018'],summary:'公开报道记录了团队赴鹅洲及坪塘砂石基地调研。作为历史材料收录，不将当年的情况视为今日现状。',body:['仅收录可核验的活动信息及来源。原始访谈、照片授权与完整研究报告尚未导入。'],evidenceIds:['document-2018'],relatedIds:['gap-history'],objectIds:['research-index']},
  {...base,id:'research-2024',kind:'ResearchProject',title:'2024 · 洲岛生活与生态走读',year:2024,author:'长沙晚报走读团队',course:'“洲”游长沙 · 公开报道',themes:['地方生活','生态体验'],dataStatus:'public',state:'公开走读资料，非本平台学生成果',sourceIds:['walk2024'],summary:'以公开走读中的地方生活、过江交通与休闲活动为线索，建立地点档案入口。',body:['记录来源与报道年份，保留历史语境；没有从报道推导客流趋势或环境质量评分。'],evidenceIds:['document-2024'],relatedIds:['gap-season'],objectIds:['culture-index']},
  {...base,id:'research-2026-demo',kind:'ResearchProject',title:'2026 · 鹅洲低干扰服务研究（演示）',course:'湘江社会创新设计 · 功能演示课程',themes:['服务设计','信息引导'],summary:'用一组明确标注的示例材料演示研究—问题—方案之间的关联，不代表已经完成现场调研。',body:['研究提问：如何支持访客理解洲岛环境，并让日常使用与生态关照并存？','下一步需要现场测绘、访谈同意、时段观察及相关管理意见。此项目没有虚构居民访谈或测量数值。'],evidenceIds:['field-template'],relatedIds:['session-2026','gap-season','conflict-use','insight-care','opportunity-care','proposal-care'],objectIds:['society-route']},
