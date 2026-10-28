@@ -29,3 +29,7 @@ Clean dependency install, TypeScript, production build passed. Unit tests: 85 pa
 GitHub Rulesets API returned HTTP 403 requiring Pro or public visibility. Repository remains Private; no purchase and no enforced review rules. Do not grant collaborators write access until the owner resolves this limitation. Build and typecheck remain mandatory manual PR evidence; no CI enabled.
 
 Remote upload and fresh remote clone will be checked separately.
+
+## Upload blocked by transport (2026-10-29)
+
+Two Git HTTPS attempts failed: receive timeout, then github.com:443 connection failure after 75 seconds. GitHub API still confirms Private and isEmpty=true. No branches or tags uploaded. Do not describe this as a completed upload. Safe snapshot has passed local checks; remote fresh-clone validation remains pending. Retry an explicit normal push from this safe copy when Git HTTPS connectivity is restored; never push the original archive.
