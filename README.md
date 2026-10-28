@@ -20,7 +20,7 @@
 ```bash
 git clone https://github.com/Hoooocola/xiangjiang-2035.git
 cd xiangjiang-2035
-# main 将在首次上传时从已核验的当前版本建立，不替换历史 master。
+# main 已在本地准备；首次上传后可用，不替换历史 master。
 git switch main
 pnpm install --frozen-lockfile
 pnpm exec next dev --hostname 127.0.0.1 --port 3002
@@ -92,7 +92,7 @@ pnpm exec next start --hostname 127.0.0.1 --port 3003
 - 现有 `version1` 标签解析到提交 `cdcd8dd`，是历史归档，不是当前开发版本。
 - V1.1 开发分支：`codex/spatial-information-v1-1`，验收提交 `beca2ed`。
 - 协作准备分支：`codex/github-collaboration`。
-- 历史 `master` 保持原提交；后续 `main` 承担审核后的集成版本。
+- 历史 `master` 保持原提交；本地 `main` 已准备为集成基线，首次上传后承担审核后的集成版本。
 
 代码未在本轮添加开源许可证；不要把数据的开放许可理解成全部代码、截图或素材可自由再发布。参见 [资产来源与共享状态](docs/ASSET_LICENSES.md)。
 
