@@ -1,0 +1,336 @@
+{
+  "date": "2026-10-28",
+  "archive": ".local-backups/2026-10-28/previously-untracked-assets.tar.gz",
+  "files": [
+    {
+      "path": ".audit/visual-reset/01-map-home.png",
+      "bytes": 295641,
+      "sha256": "dba79a1b2191ee9f9fe6a16e91de16f6a6f64d8e8184634eef02e0937383134a"
+    },
+    {
+      "path": ".audit/visual-reset/02-goose-focus-preview.png",
+      "bytes": 88217,
+      "sha256": "1f339342d9a75f36f10467a00148eccadf57642c1856207e2dc4b921f84493ad"
+    },
+    {
+      "path": ".audit/visual-reset/03-point-detail-exploration.png",
+      "bytes": 10182,
+      "sha256": "11d3a28c1caac1dbd681ae6cae7bb5f4424b7a383b9fe55418bea70d9fe971fb"
+    },
+    {
+      "path": ".audit/visual-reset/03-site-overview.png",
+      "bytes": 125522,
+      "sha256": "9150a4bb788096252fe7f0503df36bda3e6ada22b0fbbe45ea2c1292c994b79c"
+    },
+    {
+      "path": ".audit/visual-reset/04-existing-map-pattern.png",
+      "bytes": 128273,
+      "sha256": "c767560bef561d28e9d6d0dd8f738acdc70d6bb44a98746968da5801c016c74d"
+    },
+    {
+      "path": ".audit/visual-reset/04-research-gaps-a-lowfi.png",
+      "bytes": 149778,
+      "sha256": "2c638a9b92331aa30c78903a1ceeb85d363634e4f23fb59e005a2e0eaf72efa7"
+    },
+    {
+      "path": ".audit/visual-reset/05-interaction-pattern-board.png",
+      "bytes": 69331,
+      "sha256": "492b8de43f610104bcab942272eedec64966c595daee988a1b6021e4f1bfc091"
+    },
+    {
+      "path": ".audit/visual-reset/06-component-visual-board.png",
+      "bytes": 90322,
+      "sha256": "6ead049b0b2ffc3463d96e70d211438923be2ab136380d3a1033f55434c19f03"
+    },
+    {
+      "path": ".audit/visual-reset/07-wrong-research-gaps.png",
+      "bytes": 54754,
+      "sha256": "cc74799b9bcb2d4bead531dc80a1df443d4d880d6c553c3901500bb35cf99c5f"
+    },
+    {
+      "path": ".audit/visual-reset/08-wrong-create-research.png",
+      "bytes": 49545,
+      "sha256": "de0146d95be477fd3c232a161c430f87865ad6e68b270cff6ba612b327228fab"
+    },
+    {
+      "path": ".audit/visual-reset/09-wrong-field-card.png",
+      "bytes": 48579,
+      "sha256": "29d45ef7dc88a202949fc83642c5865c1bd8b4e6c010837bf20453467ae3cd66"
+    },
+    {
+      "path": ".audit/visual-reset/10-wrong-kj.png",
+      "bytes": 51907,
+      "sha256": "3566fdc00e5674aecac04f50ec8d15c0515431d501a62d54337bbc9b26ce563a"
+    },
+    {
+      "path": ".audit/visual-reset/11-rebuilt-research-gaps.png",
+      "bytes": 46874,
+      "sha256": "d1283f226dad90091ed7ae166cb9fe40b95753567cd1ce0bd193a8558e31250b"
+    },
+    {
+      "path": ".audit/visual-reset/12-source-output-comparison.png",
+      "bytes": 562345,
+      "sha256": "d183a1b195acb0e5a27dc098f43773aa2a30518a0829d577f6ae065b1d6ab309"
+    },
+    {
+      "path": ".audit/visual-reset/13-rebuilt-research-gaps-refined.png",
+      "bytes": 86017,
+      "sha256": "6333096ea2bc8c7e2cb1a56c5bcdd067ac890ef5d149c8a48b4fbb5c6257fe57"
+    },
+    {
+      "path": ".audit/visual-reset/14-refinement-comparison.png",
+      "bytes": 572974,
+      "sha256": "d66b645f6acfd9b4001c3d0a4cbd2edb766a54065ccaf248e9062864af051e49"
+    },
+    {
+      "path": ".audit/visual-reset/node-23789.png",
+      "bytes": 5576,
+      "sha256": "a9eeee9fd577837c3292861c7cef3ba31800169b6e6ed43b5fc336a76e6efb78"
+    },
+    {
+      "path": ".audit/visual-reset/node-23793.png",
+      "bytes": 3499,
+      "sha256": "1ff41fb1a4879c073b3908d649425d35a47535cd92c2e990bf2a512af0e0a6bd"
+    },
+    {
+      "path": ".audit/visual-reset/node-23797.png",
+      "bytes": 6488,
+      "sha256": "e4bbeac172e02042a85cf7a15d038d25ba93bb70b7cf2b82eec1dadcac81963c"
+    },
+    {
+      "path": ".audit/visual-reset/raw-goose-1.png",
+      "bytes": 645624,
+      "sha256": "7384cdf0d0ceaeeead81718715ee86aad9c8ca922f9478b470bdcafcd800356a"
+    },
+    {
+      "path": ".audit/visual-reset/raw-goose-2.png",
+      "bytes": 30485,
+      "sha256": "cd9852d5aa683dda51d5c174e7dcb34f81b7362aaa12f9f44984350a925f38cd"
+    },
+    {
+      "path": ".audit/visual-reset/raw-goose-3.png",
+      "bytes": 1161502,
+      "sha256": "f1a69d31f20b1c64c7b9f68e751e1737ae00cd9ae89a2142bce6d1a4672eda2e"
+    },
+    {
+      "path": ".audit/visual-reset/raw-goose-4.png",
+      "bytes": 2351098,
+      "sha256": "818fc347aa58e79e4d5b8a00dd0622a59a5e9cce95bb2d2e6281ee55263342dc"
+    },
+    {
+      "path": ".audit/visual-reset/raw-goose-5.png",
+      "bytes": 46786,
+      "sha256": "9639d0c7c301a5a1588744cdf695f0e44e73da4cde868c1d79c73cb626dc712b"
+    },
+    {
+      "path": ".audit/visual-reset/raw-goose-6.png",
+      "bytes": 136484,
+      "sha256": "0466a4f5f19eff129447570c047fb6ea00fc21c220f74d904ca901189d641716"
+    },
+    {
+      "path": ".audit/visual-reset/raw-goose-7.png",
+      "bytes": 687011,
+      "sha256": "27cea38e0cf79b78e4013343c76b5548048f78d3ca183a1e76a800e69378542c"
+    },
+    {
+      "path": "docs/screenshots/current-building-lighting-2026-10-27/panel.png",
+      "bytes": 136549,
+      "sha256": "c7e63d600d0c568fbdff02a8feef48cb9a2d6c7221f5f73b7be69ca11744e87a"
+    },
+    {
+      "path": "docs/screenshots/har-stage1-2026-10-26/core-day.png",
+      "bytes": 165304,
+      "sha256": "2ae590286b6d36c3952026ed8e64ff6998e0d8f86a16eda470edde3ecde493cc"
+    },
+    {
+      "path": "docs/screenshots/har-stage1-2026-10-26/core-night.png",
+      "bytes": 125390,
+      "sha256": "3e01d492a7c519ba169322371eb42436d192ebaab275e8cb4b223b8e2040a376"
+    },
+    {
+      "path": "docs/screenshots/har-stage1-2026-10-26/research-day.png",
+      "bytes": 89734,
+      "sha256": "de27809987d3cb28d75c52b973a1b375485fbee4068fb426eadda0d97322f618"
+    },
+    {
+      "path": "docs/screenshots/har-stage1-2026-10-26/research-night.png",
+      "bytes": 100243,
+      "sha256": "c0850ae4f9fe84521eaaca2f13289e63ba8808e99632fbdf7b2b4b2603fb285d"
+    },
+    {
+      "path": "docs/screenshots/information-v1-2026-10-27/bridge-day.png",
+      "bytes": 104273,
+      "sha256": "e1fa355aefcc79de1901f4f6f743ae6ce481687d9e059971b89a0d7fa2881909"
+    },
+    {
+      "path": "docs/screenshots/information-v1-2026-10-27/bridge-night.png",
+      "bytes": 129528,
+      "sha256": "a9e6ef6762acb26c6a7721f83d78d8bc905ca99bf2839e2e197e559f4bf1df32"
+    },
+    {
+      "path": "docs/screenshots/information-v1-2026-10-27/contours-day.png",
+      "bytes": 133458,
+      "sha256": "7c845fb9b6e92c5261bee7edbb9b014061654253d2799916bde2fbc6a10811b7"
+    },
+    {
+      "path": "docs/screenshots/information-v1-2026-10-27/park-day.png",
+      "bytes": 136913,
+      "sha256": "f6063bbcf192dd71b692c99897e977bb905b444e574e0eb4f7e183aa41d4ec2f"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v3-2026-10-26/01-current-day.png",
+      "bytes": 4272771,
+      "sha256": "9109cbc74993e2719a8302267e3e72d046070c1a2897965a2e544c19f86ecfc2"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v3-2026-10-26/02-v3-day.png",
+      "bytes": 4136891,
+      "sha256": "be3aea61abf306f313aed6719d5dba1fce21dc3bc7ebd65480a534fb82943965"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v3-2026-10-26/03-current-night.png",
+      "bytes": 3547237,
+      "sha256": "1ada9ebb7841bff5f802cf5d2f171dafb6f7f75bdbe4c84156fc29875757d2eb"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v3-2026-10-26/04-v3-night.png",
+      "bytes": 3598220,
+      "sha256": "1a5528956edee2425686c51fe2d8744484c4b5d40111bd2035d0c0d5fe6fe864"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v3-2026-10-26/05-v3-night-body-only.png",
+      "bytes": 3590106,
+      "sha256": "68fa9f22f93f296dca7c0506469fe28de93aef1dccffad9031a7d780771a8364"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-26/close-current-day.png",
+      "bytes": 4449408,
+      "sha256": "a49f4c33fe74127c6780b8acc2bea439ddf5fd0043f4d49d5e87928ec296ffe0"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-26/close-current-night.png",
+      "bytes": 4236590,
+      "sha256": "960ef422c451d9c95ca301b712c8a93102c0491f4fee231eaed7e7cef5574a1f"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-26/close-v4-day.png",
+      "bytes": 4058529,
+      "sha256": "203c0d4f83d98b3cdb6edec4b8123d7948942a540158fc6390e0658a01cee3b9"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-26/close-v4-night.png",
+      "bytes": 4518789,
+      "sha256": "5e1f97012702a3e2df2f4b9a1997c82c83c200da63567a68064513f23263d750"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-26/river-current-day.png",
+      "bytes": 4273077,
+      "sha256": "3a9e8a4be8e405347323db60a9f63f0a531799472ec04698f887be2f7bfa345b"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-26/river-current-night.png",
+      "bytes": 3546839,
+      "sha256": "b9e07ae5613ff1dd3f7c63871d00387c943f6917255f9b7a67a1fe586b1a9e8d"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-26/river-v4-day.png",
+      "bytes": 4147125,
+      "sha256": "7bdff683b37675ba9e982b1aabfa6cac0cd102a1f3150f79526dd2ac47526240"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-26/river-v4-night.png",
+      "bytes": 4171846,
+      "sha256": "a939b5197b47ac166a77e0f2983eba9ce80843f5e12bb5dcc8b853077d3e0e9a"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-27/close-current-day.png",
+      "bytes": 4449408,
+      "sha256": "a49f4c33fe74127c6780b8acc2bea439ddf5fd0043f4d49d5e87928ec296ffe0"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-27/close-current-night.png",
+      "bytes": 4236590,
+      "sha256": "960ef422c451d9c95ca301b712c8a93102c0491f4fee231eaed7e7cef5574a1f"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-27/close-v4-day.png",
+      "bytes": 4089744,
+      "sha256": "4bc79fb8520b1d6a396870acbefbfb6dbe12fb225b95b43fff093a5bfa1fbfe3"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-27/close-v4-night.png",
+      "bytes": 4518390,
+      "sha256": "e557f7e113911cd26dfe398d79f7839525d5a76e1f965b8d7950b67bc991e159"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-27/river-current-day.png",
+      "bytes": 4273077,
+      "sha256": "3a9e8a4be8e405347323db60a9f63f0a531799472ec04698f887be2f7bfa345b"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-27/river-current-night.png",
+      "bytes": 3546839,
+      "sha256": "b9e07ae5613ff1dd3f7c63871d00387c943f6917255f9b7a67a1fe586b1a9e8d"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-27/river-v4-day.png",
+      "bytes": 4109674,
+      "sha256": "eafbf88368cbd598256ca94a77d5b1d1223ffb2a837d97e1982405bebd4f663d"
+    },
+    {
+      "path": "docs/screenshots/style-frame-v4-2026-10-27/river-v4-night.png",
+      "bytes": 4028387,
+      "sha256": "1680bb43c286dfb0cc63b1f425b99cf8851eeadd880932ecd092503d3a9d45f1"
+    },
+    {
+      "path": "exports/.DS_Store",
+      "bytes": 6148,
+      "sha256": "6504d5a15bca9385d511d904119b450b610006924e60f3fd99dc5e81989ad8e8"
+    },
+    {
+      "path": "exports/river-color-study/palette-reference.svg",
+      "bytes": 7555,
+      "sha256": "9af90fd93e39276520265879344500ffd600570e6ff6da549b7059ee4243867d"
+    },
+    {
+      "path": "exports/river-color-study/palette.json",
+      "bytes": 1234,
+      "sha256": "e7a6a42943436fe07793495c480eb8cc0dbf9d320d3fc57ae0ccd3d2d82b211d"
+    },
+    {
+      "path": "exports/river-color-study/preview-day.png",
+      "bytes": 1143734,
+      "sha256": "5d12238a11bf39113efbb954ea7890cbd098b9334f220f54eaa0890d3777d86c"
+    },
+    {
+      "path": "exports/river-color-study/preview-night.png",
+      "bytes": 1142203,
+      "sha256": "2bc95884859bf2373d480a8e317116dc93cffd2aadff6c15fa5a22a290c8f48b"
+    },
+    {
+      "path": "exports/river-color-study/validation.json",
+      "bytes": 511,
+      "sha256": "3354eecb141a4d317573edc8b086ff4346a8748a7e79a70fcf90555be81552d2"
+    },
+    {
+      "path": "exports/river-color-study/xiangjiang-river-day-layers.svg",
+      "bytes": 12719399,
+      "sha256": "86140dc194530ca7b329a10a10fc454c432118aa72b335d63d16306b861189fc"
+    },
+    {
+      "path": "exports/river-color-study/xiangjiang-river-night-layers.svg",
+      "bytes": 12719485,
+      "sha256": "927b29921169a36f63d28f7d257bcd0d0521d76d1aa2513a00a7df09fa25a1ef"
+    },
+    {
+      "path": "exports/river-color-study/使用说明.md",
+      "bytes": 3371,
+      "sha256": "a5e8ce7be770db32f61e0ff97561f6a00a92c5e898ab23adba0cfb6fd03a1fbf"
+    },
+    {
+      "path": "exports/湘江2035-河段昼夜SVG配色包.zip",
+      "bytes": 9361883,
+      "sha256": "2f8485a93c0fc779a56aef2fc2ef24f28ec9d0ff2c6c856910403385bb61f5d8"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "xiangjiang-river-day-layers.svg": {
+    "bytes": 12719399,
+    "paths": 88,
+    "groups": 68,
+    "embeddedImages": 0,
+    "uniqueIds": true,
+    "closedPaths": true
+  },
+  "xiangjiang-river-night-layers.svg": {
+    "bytes": 12719485,
+    "paths": 88,
+    "groups": 68,
+    "embeddedImages": 0,
+    "uniqueIds": true,
+    "closedPaths": true
+  },
+  "palette-reference.svg": {
+    "bytes": 7555,
+    "paths": 0,
+    "groups": 34,
+    "embeddedImages": 0,
+    "uniqueIds": true,
+    "closedPaths": true
+  }
+}
