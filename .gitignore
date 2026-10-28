@@ -4,8 +4,7 @@ out/
 coverage/
 *.log
 .env
-.env.local
-.env.*.local
+.env.*
 .data/
 .DS_Store
 tsconfig.tsbuildinfo
@@ -21,3 +20,23 @@ tsconfig.tsbuildinfo
 
 # Local document inspection output; verified references live in docs/references.
 tmp/pdfs/
+
+# Credentials and captured request headers stay local.
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+id_rsa
+id_ed25519
+*.har
+
+# Local DB/storage, backups and ephemeral inspection artifacts.
+*.sqlite
+*.sqlite3
+*.db
+.local-backups/
+.audit/
+
+# Duplicate downloadable archive; editable SVG studies remain versioned.
+/exports/*.zip

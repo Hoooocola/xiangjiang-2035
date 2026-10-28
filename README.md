@@ -1,141 +1,109 @@
-# 湘江生态文化与社会创新地图
+# 湘江 2035 · 将来的江来
 
-## Spatial Research Explorer V1.0
+面向湘江沿岸生态、文化与社会创新研究的空间地图。当前包含 Three.js 三维地图、六类空间信息、地点与研究资料关联，以及独立的数据库田野采集流程。地图展示与概念 Demo 不等同于实测或真实研究结论。
 
-新增鹅洲概念研究现场：五层空间信息、证据追溯、资源叠加比较、五步引导与方案介入。主地图默认暗模式，小地图使用旋转矩形定位框。
+**首次上传状态（2026-10-28）：** [私有 GitHub 仓库](https://github.com/Hoooocola/xiangjiang-2035) 已创建；因历史素材共享授权待核实，当前尚未推送代码、分支或标签。以下克隆流程在首次上传完成后使用。详见 [上传审计](docs/GITHUB_UPLOAD_AUDIT.md)。
 
-- [交付、运行、数据、浏览器测试与截图](docs/spatial-research-explorer-status.md)
-- [开发前审计与复用架构](docs/spatial-research-audit.md)
-- 入口：`/experience` 选择鹅洲 → 进入三维研究现场；或 `/experience/sites/ezhou`。
-- 当前分支 `feat/spatial-research-explorer`；修改前检查点 `before-spatial-explorer-20261022`（`7579154`）。
-- 场景和研究链均为 Mock，不是真实扫描或田野研究结论。
+## 环境
 
-## 湘江 2035 / 将来的江来 · 功能 Demo
+- Node.js：本机验证版本 `24.14.0`；本项目采用的 Next.js 16.3.4 最低要求 Node.js 20.9。
+- pnpm：`package.json` 声明 `11.19.0`，团队统一使用该版本与 `pnpm-lock.yaml`。本机现有 pnpm 为 11.25.0，最终验证版本见上传审计。
+- PostgreSQL：仅研究平台持久化功能需要；推荐与现有项目约定一致的 PostgreSQL 16，并确保 `initdb`、`pg_ctl`、`psql`、`createdb` 在 PATH 中。
+- Git。当前单个已版本化文件低于 50 MiB，无需 Git LFS；无需下载外部 GLB 模型。
 
-本轮已完成鹅洲功能样板：地点详情、六类空间图层、按年份浏览研究、证据与问题关联、设计机会及 Today / 2035 概念情景。公开资料与演示内容逐条区分，目录为只读 TypeScript 数据，不读取私有团队记录。
+如尚未安装 pnpm，可在安装 Node.js 后执行 `npm install -g pnpm@11.19.0`。不要使用 npm/yarn 重新生成另一份锁文件。
 
-- [功能演示操作指南](docs/functional-demo-guide.md)
-- [完整功能状态与 Sprint 验收](docs/functional-demo-status.md)
-- [本轮功能审计](docs/functional-audit.md)
+## 只运行三维地图
 
-默认首页进入 `/experience`：Three.js + 真实 OSM 湘江河道/洲岛/建筑占地，自定义镜头、沿江巡游、地点聚焦、全段概览及日夜主题。此页面无需数据库或地图 Token。
+首次上传完成且仓库邀请已接受后：
 
 ```bash
-pnpm install
-pnpm dev
-# http://localhost:3000/experience
+git clone https://github.com/Hoooocola/xiangjiang-2035.git
+cd xiangjiang-2035
+# main 将在首次上传时从已核验的当前版本建立，不替换历史 master。
+git switch main
+pnpm install --frozen-lockfile
+pnpm exec next dev --hostname 127.0.0.1 --port 3002
 ```
 
-生产演示：`pnpm build` 后运行 `pnpm start --hostname 127.0.0.1 --port 3001`，访问 `http://127.0.0.1:3001/experience`。
+打开 http://127.0.0.1:3002/experience 。端口占用时换一个空闲端口。本机正在运行的项目使用 3002；普通 `pnpm dev` 默认使用 3000。
 
-- [完整交付与限制](docs/delivery.md)
-- [参考研究](docs/reference-analysis.md) · [视觉对照](docs/visual-review.md)
-- [地理来源、许可与坐标契约](docs/data-sources.md)
-- 地理数据重新生成：`pnpm scene:prepare`，使用已保存在 `data/osm/` 的源数据。
-- 旧版安全检查点：`legacy-before-3d`（`3bf2d3e`）；此前开发分支 `feat/xiangjiang-functional-demo`；本轮安全标签 `before-functional-demo-20261022`（`2fd7f95`）。
-- 原研究平台仍位于 `/create-research`，以下为保留的数据库工作流。
+地图使用仓库内 `public/data/` 固定资产，不需要数据库、地图 Token 或用户个人 `.env.local`。首次安装依赖需要网络；正常地图渲染不在浏览器中实时下载 OSM 城市数据。
 
-## 原研究平台
+主要入口：
 
-M2 Research Vertical Slice：从 Research Session 进入手机田野采集，将 Field Record 与图片真实写入 PostgreSQL / Storage，再由桌面 Session Map 查询并打开 Record Detail。
+| 路径 | 用途 |
+|---|---|
+| `/experience` | 三维湘江、六类图层、空间解释与研究资料 |
+| `/experience/sites/ezhou` | 鹅洲概念研究现场；不是扫描实测模型 |
+| `/experience/style-frame` | 保留的色彩/材质研究预览 |
+| `/experience/style-frame-v4` | 保留的 V4 风格帧与调色研究；不代表获批主版本 |
+| `/create-research` | 真实数据库研究流程入口，需要以下开发环境 |
 
-## 技术栈
+## 运行研究平台（开发模式）
 
-- Next.js 16 App Router、React 19、TypeScript
-- PostgreSQL 16
-- Drizzle ORM + 可重复 Migration
-- Zod API validation
-- Leaflet + OpenStreetMap 基础底图
-- 可替换 Storage Adapter（本地开发实现只存 `storageRef`）
-- Vitest service / integration tests
-- pnpm
-
-原 Figma PNG 仍保留在 `public/assets`，但不会与新的真实数据库数据静默混合。
-
-## 本地运行
+地图静态目录与数据库记录是两套现存数据路径，不会自动同步。
 
 ```bash
-pnpm install
-pnpm db:local:start
-pnpm db:migrate
-pnpm db:seed
-pnpm dev
+cp .env.example .env.local
 ```
 
-访问 `http://localhost:3000/create-research`。创建并启动 Research Session 后，可进入 Session Map 与 390px Mobile Capture。
+仅在本机开发环境，将 `.env.local` 中两项设为：
 
-开发数据库由仓库内的 `.data/postgres` 承载并已加入 `.gitignore`。停止它：
-
-```bash
-pnpm db:local:stop
-```
-
-同一 PostgreSQL 实例会建立独立的 `xiangjiang2035_dev` 与 `xiangjiang2035_test` 数据库；集成测试强制要求 `TEST_DATABASE_URL`，不会回退到开发库。
-
-## 环境与安全边界
-
-复制 `.env.example` 为 `.env.local`。当前认证为显式开启的 `DEV ONLY` 适配层：
-
-```text
+```dotenv
 ALLOW_DEV_AUTH=true
-DEV_AUTH_USER_EMAIL=student.owner@example.test
-```
-
-生产环境会拒绝 Dev Auth。M1 没有实现 OAuth / SSO；上线前必须接入真实认证。
-
-Demo Seed 同样必须显式开启：
-
-```text
 ALLOW_DEMO_SEED=true
 ```
 
-生产环境禁止运行 Demo Seed，应用启动也不会自动写入任何示例数据。
-
-图片在开发环境写入 `.data/uploads`，数据库只保存 `local-dev://…` 形式的受控引用，不保存本地绝对路径。Production Storage 尚未接入，属于 P1；生产环境会明确报错而不会偷偷退回本地文件系统。
-
-## Migration 与测试
-
-生成后续 Migration：
+其余使用 `.env.example` 的本地配置：开发库 `xiangjiang2035_dev`、测试库 `xiangjiang2035_test`，端口 55432，示例开发身份 `student.owner@example.test`。
 
 ```bash
-pnpm db:generate
+pnpm db:local:start
 pnpm db:migrate
+pnpm db:seed
+pnpm exec next dev --hostname 127.0.0.1 --port 3002
+# http://127.0.0.1:3002/create-research
 ```
 
-基础检查：
+`db:local:start` 在本地 `.data/postgres` 初始化开发数据库，采用 trust 认证；仅用于隔离的个人开发机，不能暴露到公网或团队生产网络。每位协作者运行自己的数据库，不共享该目录。停止数据库：`pnpm db:local:stop`。
+
+开发图片保存在 `.data/uploads`，数据库记录受控的 `local-dev://` 引用。`.env.local`、数据库、上传图片和真实田野资料均不进 Git。
+
+## 检查与构建
 
 ```bash
-pnpm lint
 pnpm typecheck
+pnpm lint
 pnpm test
+# 运行下面命令之前需启动本机测试库；不会回退到开发库
 pnpm test:integration
+pnpm build
+pnpm exec next start --hostname 127.0.0.1 --port 3003
 ```
 
-从全新临时 PostgreSQL 完成 Migration、Seed、真实数据库测试、生产构建和 HTTP API 验证：
+常规 `pnpm test` 跳过 26 项数据库集成测试。测试库必须由 `TEST_DATABASE_URL` 明确指定。已有 `db:verify:fresh` 脚本还依赖未版本化 `.audit/visual-reset/node-23793.png`，因此当前不作为新成员的可复现入口；本轮保留脚本、不修改功能，采用上面的独立命令验证。
 
-```bash
-pnpm db:verify:fresh
-```
+生产构建可用于展示静态地图；**研究平台尚未接入生产认证和生产对象存储**。生产环境拒绝 Dev Auth、Demo Seed 和本地存储回退，不能据此文档直接上线真实田野资料服务。
 
-该命令只使用 `/tmp` 中的隔离数据库，结束后自动清理，不接触 development 或 production 数据库。
+## 资产与版本
 
-## M2 数据边界
+正常开发直接使用已版本化的 `public/data/xiangjiang.geojson`、`terrain.json`、`context.json`、`environment.json`。`data/` 保存来源与清单；`scripts/prepare-*.mjs` 为准备脚本。重新下载、生成 GIS 或调整 AOI 需要负责人审核，不能作为“安装步骤”自动执行。
 
-真实数据库：
+- 现有 `version1` 标签解析到提交 `cdcd8dd`，是历史归档，不是当前开发版本。
+- V1.1 开发分支：`codex/spatial-information-v1-1`，验收提交 `beca2ed`。
+- 协作准备分支：`codex/github-collaboration`。
+- 历史 `master` 保持原提交；后续 `main` 承担审核后的集成版本。
 
-- User
-- Team / Team Member
-- Place
-- Research Gap
-- Research Session / Member / Source Gap
-- Field Record / Field Record Media
-- Session-scoped Record Count / Marker / Record Detail
-- Audit Event
+代码未在本轮添加开源许可证；不要把数据的开放许可理解成全部代码、截图或素材可自由再发布。参见 [资产来源与共享状态](docs/ASSET_LICENSES.md)。
 
-保留为 Legacy Mock，等待后续里程碑：
+## 团队文档
 
-- KJ / Insight（M3）
-- Design Opportunity / Proposal（M4）
-- Historical Aggregation、GIS Workspace、Creator Canvas 与复杂权限 UI
-
-鹅洲位置和底图上下文当前明确标记 `DEMO_UNCALIBRATED`；不得将其解释为已校准 GIS 数据。M2 不自动开始 M3。
+- [所有 Codex 的项目规则](AGENTS.md)
+- [项目定位](docs/PROJECT_VISION.md)
+- [技术架构与模块](docs/ARCHITECTURE.md)
+- [已确定的设计原则](docs/DESIGN_SYSTEM.md)
+- [数据关系和字段](docs/DATA_SCHEMA.md)
+- [分工、分支、PR 与邀请](docs/COLLABORATION.md)
+- [首次上传审计与阻塞项](docs/GITHUB_UPLOAD_AUDIT.md)
+- [Spatial Information V1.1 交付](docs/spatial-information-v1-1.md)
+- [前版 README（历史记录）](docs/README-before-collaboration-2026-10-28.md)

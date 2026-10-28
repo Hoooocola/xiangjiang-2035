@@ -1,0 +1,72 @@
+{
+  "width": 2160,
+  "height": 1350,
+  "camera": {
+    "label": "河段",
+    "target": [
+      2,
+      0,
+      -1
+    ],
+    "distance": 58,
+    "azimuth": 0.38,
+    "polar": 1.12,
+    "fov": 38
+  },
+  "blendMeters": 600,
+  "layers": [
+    "背景",
+    "地面",
+    "水体",
+    "绿地",
+    "道路",
+    "建筑_屋顶",
+    "建筑_暖色立面",
+    "建筑_冷色立面",
+    "树木",
+    "岸线与桥墩",
+    "桥梁",
+    "桥梁灯带",
+    "窗格_暖色",
+    "窗格_冷色"
+  ],
+  "colors": {
+    "day": [
+      "#e9e7df",
+      "#aaa9a1",
+      "#4b777c",
+      "#758566",
+      "#625d54",
+      "#7c8787",
+      "#d8d3c9",
+      "#829696",
+      "#5f7950",
+      "#b8b6a2",
+      "#b7b3a7",
+      "#b5b3a5",
+      "#617473",
+      "#5f777c"
+    ],
+    "night": [
+      "#071e1d",
+      "#8e8c80",
+      "#254e50",
+      "#405c45",
+      "#514b3d",
+      "#72817d",
+      "#c7c2b5",
+      "#829696",
+      "#456047",
+      "#567067",
+      "#7c8275",
+      "#ffe1af",
+      "#ffe5bc",
+      "#d9e7e8"
+    ]
+  },
+  "context": {
+    "day": "#e9e8e1",
+    "night": "#24413e"
+  },
+  "method": "CPU depth visibility pass, closed vector boundary paths, 2160x1350 sampling; not editable 3D or shader-exact rendering"
+}
