@@ -20,6 +20,7 @@ import {miniPoint,miniViewport,riverMiniPaths} from './minimap';
 export interface ExperienceCallbacks {
  progress:(n:number,label:string)=>void;
  ready:()=>void;
+ informationReady?:(ready:boolean)=>void;
  object?:(id:string)=>void;
  interact?:()=>void;
  minimap:(paths:string[])=>void;
@@ -49,9 +50,9 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
  const ring=new THREE.Mesh(new THREE.RingGeometry(0.5,0.54,64),focusMaterial);ring.rotation.x=-Math.PI/2;ring.visible=false;scene.add(ring);
  let nightTarget=1,night=1,last=performance.now(),frames=0,frameTime=0,metricsTime=0;
  let previous:CameraPose|undefined,selectedId:string|undefined;
- let researchSelected=false,researchWeight=0;let objectPrevious:CameraPose|undefined;
+ let researchSelected=false,researchWeight=0;let objectPrevious:CameraPose|undefined;let informationPending=false;
  const select=(id?:string)=>{selectedId=id;built?.select(researchSelected?undefined:id);const place=PLACES.find(p=>p.id===id);const [x,z]=place?project(place.coordinate):[0,0];materials.focusRegion.value.set(x,z,id==='juzizhou'?5:16,id==='juzizhou'?24:16);};
- const stop=()=>{if(rig.route||rig.transition)rig.cancel();callbacks.motion(false);};rig.onInteract=()=>{stop();callbacks.interact?.();};
+ const stop=()=>{if(rig.route||rig.transition)rig.cancel();informationPending=false;callbacks.informationReady?.(true);callbacks.motion(false);};rig.onInteract=()=>{stop();callbacks.interact?.();};
  const dispose=()=>{
   if(disposed)return;disposed=true;cancelAnimationFrame(frame);rig.dispose();cleanups.forEach(f=>f());
   const geometries=new Set<THREE.BufferGeometry>(),mats=new Set<THREE.Material>();scene.traverse(o=>{const mesh=o as THREE.Mesh;if(mesh.geometry)geometries.add(mesh.geometry);if(mesh.material)(Array.isArray(mesh.material)?mesh.material:[mesh.material]).forEach(m=>mats.add(m));});
@@ -92,7 +93,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   function render(now:number){
    if(disposed)return;frame=requestAnimationFrame(render);const elapsed=(now-last)/1000,dt=Math.min(elapsed,.05);last=now;
    if(document.hidden)return;
-   rig.update(now,dt);compass??=host.parentElement?.querySelector<HTMLElement>('[data-compass]');if(compass)compass.style.transform=`rotate(${-rig.pose.azimuth*180/Math.PI}deg)`;materials.time.value=media.matches?0:now/1000;
+   rig.update(now,dt);if(informationPending&&(!rig.transition||rig.transition.duration===0||(now-rig.transition.start)/rig.transition.duration>=.72)){informationPending=false;callbacks.informationReady?.(true);}compass??=host.parentElement?.querySelector<HTMLElement>('[data-compass]');if(compass)compass.style.transform=`rotate(${-rig.pose.azimuth*180/Math.PI}deg)`;materials.time.value=media.matches?0:now/1000;
    night=THREE.MathUtils.lerp(night,nightTarget,1-Math.exp(-dt*2.2));materials.updateTheme(night);materials.focusActive.value=THREE.MathUtils.lerp(materials.focusActive.value,selectedId&&!overlayState.selectedObjectIds.length?1:0,1-Math.exp(-dt*3));
    materials.researchFocus.value=THREE.MathUtils.lerp(materials.researchFocus.value,researchWeight,1-Math.exp(-dt*3));
    const d=rig.pose.distance;materials.viewDistance.value=d;sceneEnvironment.update(night,d);overlays.theme(night);
@@ -136,7 +137,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    if(metricsTime>1.5&&built){callbacks.metrics({fps:Math.round(frames/frameTime),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,...built.stats});frames=0;frameTime=0;metricsTime=0;}
   }
   frame=requestAnimationFrame(render);callbacks.progress(100,'准备就绪');callbacks.ready();
-  const fly=(pose:CameraPose,duration=2600)=>{callbacks.motion(true);rig.fly(pose,duration,()=>callbacks.motion(false));};
+  const fly=(pose:CameraPose,duration=2600)=>{informationPending=false;callbacks.informationReady?.(true);callbacks.motion(true);rig.fly(pose,duration,()=>{informationPending=false;callbacks.informationReady?.(true);callbacks.motion(false);});};
   const frameResearch=(ids=overlayState.selectedObjectIds)=>{const points:THREE.Vector3[]=[];for(const id of ids){const g=overlays.groups.get(id);if(!g?.children.length)continue;g.updateMatrixWorld(true);const b=new THREE.Box3().setFromObject(g);points.push(b.min,b.max);}return researchPose(points,host.clientWidth,host.clientHeight,camera.fov);};
   const focusInformation=(ids:string[],directoryOpen=false)=>{
    const objects=MAP_OBJECTS.filter(o=>ids.includes(o.id));const points:THREE.Vector3[]=[];
@@ -144,7 +145,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    if(!objects.length)return;
    const object=objects[0],form=object.form??(object.geometry.type==='Point'?'point':object.geometry.type==='Polygon'?'area':'line');
    const pose=informationPose(points,form,rig.pose,host.clientWidth,host.clientHeight,camera.fov,informationInsets(host.clientWidth,host.clientHeight,directoryOpen));
-   if(pose){objectPrevious??=clonePose(rig.pose);fly(pose,informationDuration(rig.pose,pose));}
+   if(pose){objectPrevious??=clonePose(rig.pose);fly(pose,informationDuration(rig.pose,pose));informationPending=!media.matches;callbacks.informationReady?.(media.matches);}
   };
   const tour=()=>{
    previous=undefined;ring.visible=false;select();
