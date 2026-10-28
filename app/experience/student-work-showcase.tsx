@@ -1,8 +1,7 @@
 'use client';
 import {useEffect, useRef, useState} from 'react';
-import {ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Check, Search, X} from 'lucide-react';
+import {ArrowDown, ArrowLeft, ArrowUpRight, Search, X} from 'lucide-react';
 import {SHOWCASE_PLACES, STUDENT_THEMES, STUDENT_WORKS, showcaseStats, visibleStudentWorks, worksForTheme, type ThemeFilter} from '@/src/student-works/catalog';
-import {adjacentWorkId} from '@/src/student-works/selection';
 import type {StudentWork} from '@/src/student-works/types';
 import styles from './student-work-showcase.module.css';
 
@@ -53,35 +52,31 @@ export function StudentWorkShowcase({theme, query, view, expanded, selectedPlace
   </aside>;
 }
 
-export function StudentWorkExhibition({work, works, placeName, ready, onSelect, onClose, onArchive}: {
-  work: StudentWork; works: readonly StudentWork[]; placeName: string; ready: boolean;
-  onSelect: (id: string) => void; onClose: () => void; onArchive?: () => void;
+/** A single layout for every place, independent of the number of works. */
+export function StudentWorkExhibition({works, placeName, ready, onClose, onArchive}: {
+  works: readonly StudentWork[]; placeName: string; ready: boolean;
+  onClose: () => void; onArchive?: () => void;
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
-  const position = Math.max(0, works.findIndex(item => item.id === work.id));
-  const previousId = adjacentWorkId(works, work.id, -1);
-  const nextId = adjacentWorkId(works, work.id, 1);
-  const next = works.find(item => item.id === nextId);
-  useEffect(() => {if (ready) closeRef.current?.focus({preventScroll: true});}, [ready]);
-  return <aside className={`${styles.exhibition} ${!ready ? styles.exhibitionArriving : ''}`} aria-label={`${placeName}课程作品`} aria-busy={!ready} inert={!ready} onKeyDown={event => {
-    if (event.key === 'ArrowRight' && works.length > 1 && nextId) {event.preventDefault(); onSelect(nextId);}
-    if (event.key === 'ArrowLeft' && works.length > 1 && previousId) {event.preventDefault(); onSelect(previousId);}
-  }}>
-    <header className={styles.placeHeading}><div><p className={styles.kicker}>STUDENT WORK / 沿江课程提案</p><h2>{placeName}</h2><p className={styles.placeCount}>{String(works.length).padStart(2, '0')} PROJECTS<span>{work.placeId ? '关联作品' : '原选址待核对 · 暂不上图'}</span></p></div><button ref={closeRef} className={styles.closeExhibition} onClick={onClose} aria-label="关闭作品并返回课程总览"><X size={22}/></button></header>
-    <div className={styles.projectComposition} key={work.id} data-work-id={work.id}>
-      <a className={styles.artwork} href={work.pinwallUrl} target="_blank" rel="noopener noreferrer" aria-label={`查看 Pinwall 项目详情：${work.title}`}><WorkCover key={work.id} work={work} eager/></a>
-      <section className={styles.projectText}>
-        <p className={styles.projectNumber}>{String(position + 1).padStart(2, '0')} <span>/ {String(works.length).padStart(2, '0')}</span></p>
-        <p className={styles.projectTheme}>{work.theme}</p><h3>{work.title}</h3>
-        <div className={styles.authors}><span>小组成员</span><p>{work.members.join('、')}</p></div>
-        <a className={styles.viewProject} href={work.pdfUrl ?? work.pinwallUrl} target="_blank" rel="noopener noreferrer">查看完整作品 <ArrowUpRight size={18}/><small>VIEW PROJECT</small></a>
-        <p className={styles.reportHint}>新标签页打开报告；附件不可用时转至原作品页。</p>
-        <details className={styles.provenance}><summary><Check size={11}/>{work.coverStatus === 'verified' ? 'Pinwall 原始封面 · 已核对' : '作品封面待核实'}</summary><p>封面、完整报告与原始项目分别关联，按项目 ID 核对标题及全组成员。</p><a href={work.pinwallUrl} target="_blank" rel="noopener noreferrer">查看 Pinwall 原始项目 <ArrowUpRight size={11}/></a>{work.reviewNotes.map(note => <p key={note}>{note}</p>)}</details>
-      </section>
+  const groupKey = works[0]?.placeId ?? works[0]?.originalSite ?? placeName;
+  useEffect(() => {if (ready) closeRef.current?.focus({preventScroll: true});}, [ready, groupKey]);
+  return <aside className={`${styles.exhibition} ${!ready ? styles.exhibitionArriving : ''}`} aria-label={`${placeName}课程作品`} aria-busy={!ready} inert={!ready}>
+    <header className={styles.placeHeading}><div><p className={styles.kicker}>STUDENT WORK / 课程成果</p><h2>{placeName}</h2><p className={styles.placeCount}>{String(works.length).padStart(2, '0')} PROJECTS<span>{works[0]?.placeId ? '关联作品' : '原选址待核对 · 暂不上图'}</span></p></div><button ref={closeRef} className={styles.closeExhibition} onClick={onClose} aria-label="关闭作品并返回课程总览"><X size={20}/></button></header>
+    <div key={groupKey} className={styles.projectList} role="region" aria-label={`${placeName}全部作品列表`} tabIndex={0}>
+      <ul>
+        {works.map(work => <li className={styles.projectRow} key={work.id} data-work-id={work.id}>
+          <a className={styles.artwork} href={work.pdfUrl ?? work.pinwallUrl} target="_blank" rel="noopener noreferrer" aria-label={`查看完整作品：${work.title}`}><WorkCover work={work} eager/></a>
+          <div className={styles.projectText}>
+            <h3><a href={work.pdfUrl ?? work.pinwallUrl} target="_blank" rel="noopener noreferrer" title={work.title}>{work.title}</a></h3>
+            <p className={styles.projectTheme}>{work.theme}</p>
+            <p className={styles.authors}><span className={styles.srOnly}>小组成员：</span>{work.members.join('、')}</p>
+            <a className={styles.viewProject} href={work.pdfUrl ?? work.pinwallUrl} target="_blank" rel="noopener noreferrer" aria-label={`打开报告：${work.title}`}>查看完整作品 <ArrowUpRight size={13}/></a>
+          </div>
+        </li>)}
+      </ul>
     </div>
-    <footer className={styles.projectNavigation}>
-      <div className={styles.paging}><button className={styles.iconButton} disabled={works.length < 2} onClick={() => previousId && onSelect(previousId)} aria-label="上一件作品"><ArrowLeft size={18}/></button><span>{String(position + 1).padStart(2, '0')} <i>/ {String(works.length).padStart(2, '0')}</i></span><button className={styles.iconButton} disabled={works.length < 2} onClick={() => nextId && onSelect(nextId)} aria-label="下一件作品"><ArrowRight size={18}/></button></div>
-      {works.length > 1 && next && <button className={styles.nextPreview} onClick={() => onSelect(next.id)} aria-label={`切换下一件：${next.title}`}><WorkCover key={next.id} work={next}/><span><small>NEXT PROJECT</small>{next.title}</span></button>}
+    <footer className={styles.listFooter}>
+      <p>{works.length > 3 ? '向下滚动，浏览全部作品' : '新标签页打开报告或原作品'}</p>
       <div className={styles.exhibitionLinks}><button onClick={onClose}><ArrowLeft size={12}/>返回课程地图</button>{onArchive && <button onClick={onArchive}>地点研究档案 <ArrowUpRight size={12}/></button>}</div>
     </footer>
   </aside>;

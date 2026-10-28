@@ -37,7 +37,7 @@ pnpm exec next dev --hostname 127.0.0.1 --port 3002
 | 路径 | 用途 |
 |---|---|
 | `/experience` | 三维湘江、六类图层、空间解释与研究资料 |
-| `/experience?showcase=student-work` | 临时课程成果：四主题筛选、24 个学生作品、地点作品列表及完整 PDF 入口；[数据与验收](docs/student-work-showcase.md) |
+| `/experience?showcase=student-work` | 临时课程成果：四主题筛选、24 个学生作品、地点作品列表及完整 PDF 入口；[V3 列表与验收截图](docs/student-work-showcase-v3.md)；[数据映射](docs/student-work-showcase.md) |
 | `/experience/sites/ezhou` | 鹅洲概念研究现场；不是扫描实测模型 |
 | `/experience/style-frame` | 保留的色彩/材质研究预览 |
 | `/experience/style-frame-v4` | 保留的 V4 风格帧与调色研究；不代表获批主版本 |
@@ -110,3 +110,18 @@ pnpm exec next start --hostname 127.0.0.1 --port 3003
 - [首次上传审计与阻塞项](docs/GITHUB_UPLOAD_AUDIT.md)
 - [Spatial Information V1.1 交付](docs/spatial-information-v1-1.md)
 - [前版 README（历史记录）](docs/README-before-collaboration-2026-10-28.md)
+
+## 查看课程成果 V3 分支
+
+V3 当前位于独立分支 `demo/student-work-showcase`，尚未合并 main。其他成员可直接读取公开仓库或克隆该分支：
+
+```bash
+git clone --branch demo/student-work-showcase --single-branch https://github.com/Hoooocola/xiangjiang-2035.git
+cd xiangjiang-2035
+pnpm install --frozen-lockfile
+pnpm exec next dev --hostname 127.0.0.1 --port 3002 --webpack
+```
+
+在运行项目的电脑打开 `http://127.0.0.1:3002/experience?showcase=student-work`。本地预览地址仅用于该电脑；跨电脑阅读请使用 GitHub 分支链接，或自行克隆运行。
+
+本轮只把右侧大图轮播改为小封面纵向列表。说明与实际截图见 [V3 验收](docs/student-work-showcase-v3.md)，正式封面来源见 [24 项封面核对](docs/student-work-cover-audit-v2.md)。无需数据库、地图 Token 或个人环境文件即可查看三维课程成果。
