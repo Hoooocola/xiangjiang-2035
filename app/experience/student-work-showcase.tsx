@@ -31,7 +31,7 @@ export function StudentWorkShowcase({theme, query, view, expanded, selectedPlace
   const chooseView = (next: CourseIndexView) => { onView(next); onExpanded(next !== view || !expanded); };
   return <aside className={`${styles.overview} ${!active ? styles.overviewHidden : ''}`} aria-label="课程成果展示" aria-hidden={!active} inert={!active}>
     <div className={styles.overviewHeading}><p className={styles.kicker}>SOCIAL INNOVATION DESIGN</p><button className={styles.iconButton} onClick={onClose} aria-label="收起课程成果展示"><X size={18}/></button></div>
-    <h1>把设计放回湘江</h1><p className={styles.introduction}>社会创新设计课程成果<br/>沿着一条江，读懂不同的设计提案。</p>
+    <h1>2026社会创新设计</h1><p className={styles.introduction}>社会创新设计课程成果<br/>沿着一条江，读懂不同的设计提案。</p>
     <div className={styles.statistics} aria-live="polite"><p><strong>{String(stats.total).padStart(2, '0')}</strong><span>WORKS / 作品</span></p><i>/</i><p><strong>{String(stats.places).padStart(2, '0')}</strong><span>PLACES / 地点</span></p></div>
     <nav className={styles.themes} aria-label="研究主题筛选">
       <button aria-pressed={theme === 'all'} onClick={() => onTheme('all')}><span className={styles.themeNumber}>00</span><span>全部研究方向</span><small>{STUDENT_WORKS.length}</small><i/></button>
