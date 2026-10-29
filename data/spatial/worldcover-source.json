@@ -1,0 +1,28 @@
+{
+  "sourceId": "esa-worldcover-2021-v200",
+  "sourceName": "ESA WorldCover 10m 2021 v200",
+  "sourceUrl": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N27E111_Map.tif",
+  "license": "CC-BY-4.0",
+  "attribution": "\u00a9 ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+  "period": {
+    "start": "2021-01-01",
+    "end": "2021-12-31"
+  },
+  "observedAt": null,
+  "publishedAt": "2022-10-28",
+  "retrievedAt": "2026-10-29T15:31:53.077574+00:00",
+  "spatialResolution": "approximately 10 m; native EPSG:4326 pixel spacing",
+  "coordinateReferenceSystem": "EPSG:4326",
+  "geometryAccuracy": "10m classification grid; not cadastral or legal wetland boundary",
+  "processingMethod": "Native pixel window from public COG; no resampling. Study polygon mask applied during analysis.",
+  "dataStatus": "public",
+  "bounds": [
+    112.9,
+    28.099999999999998,
+    113.02000000000001,
+    28.27
+  ],
+  "width": 1440,
+  "height": 2040,
+  "sha256": "6e6666d7f42239e1905db12319e88a3a65843d6162d937676de50abbbfbd2907"
+}

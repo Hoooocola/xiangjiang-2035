@@ -1,0 +1,11 @@
+{
+  "queryUrl": "https://api.gbif.org/v1/occurrence/search?decimalLongitude=112.90,113.02&decimalLatitude=28.10,28.27&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0,1000&license=CC_BY_4_0&limit=100",
+  "retrievedAt": "2026-10-29T15:33:03.977143+00:00",
+  "matched": 516,
+  "fetched": 100,
+  "accepted": 100,
+  "rejected": 0,
+  "endOfRecords": false,
+  "rawSha256": "37ab0093f9ceeabb2aa2d13d24e465527b463ddf40ae638f7727c1c9ef44d985",
+  "scope": "Bounded pilot snapshot, not a full inventory; no observer names retained"
+}
