@@ -14,7 +14,7 @@ it('exposes actual student proposals through the design layer with DEMO disabled
  expect(html).toContain('24 作品');
  expect(html).toContain('学生课程设计方案');
  expect(html).toContain('浏览课程设计作品');
- expect(html).toContain('11');
+ expect(html).toContain('13');
  expect(html).toContain('显示设计方案');
  expect(html).toContain('aria-checked="true"');
  expect(html).toContain('非实施项目');

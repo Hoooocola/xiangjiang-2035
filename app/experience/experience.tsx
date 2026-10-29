@@ -21,6 +21,7 @@ import type {LayerId,OverlayState,ProposalScenario} from '@/src/atlas/types';
 import {SHOWCASE_PLACES,studentMarkerCount,visibleStudentWorks,worksForPlace,showcaseStats,type ThemeFilter} from '@/src/student-works/catalog';
 import {StudentWorkShowcase,StudentWorkExhibition,type CourseIndexView} from './student-work-showcase';
 import {selectionGroup} from '@/src/student-works/selection';
+import {preferredWorkPlace} from '@/src/student-works/relationships';
 import {activeSceneDetail} from './panel-selection';
 import workStyles from './student-work-showcase.module.css';
 
@@ -59,10 +60,10 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const begin=()=>{setStarted(true);setOverview(false);setDrawer(null);engine.current?.start();};
  const clearRecord=()=>{informationContext.current=null;setRecordId(null);setProposal(null);setObjectIds([]);setGuidedStep(null);};
  const closeCourseWork=()=>{setCourseWorkId(null);setWorksOpen(true);setDetailOpen(false);clearRecord();setSelected(null);setAtlasPanel(null);setDrawer(null);if(selected)engine.current?.back();else engine.current?.stop();setOverview(previousOverview.current);};
- const openCourseWork=(id:string)=>{const work=visibleStudentWorks(workTheme,workQuery).find(item=>item.id===id);if(!work)return;clearRecord();setStarted(true);setDetailOpen(false);setAtlasPanel(null);setDrawer(null);setWorksOpen(false);setCourseWorkId(id);if(work.placeId){if(!selected)previousOverview.current=overview;setSelected(work.placeId);setOverview(false);if(selected!==work.placeId)engine.current?.focus(work.placeId);}else{setSelected(null);engine.current?.clearPlaceSelection();}};
+ const openCourseWork=(id:string,contextPlace?:string)=>{const work=visibleStudentWorks(workTheme,workQuery).find(item=>item.id===id);if(!work)return;const target=preferredWorkPlace(work,contextPlace);clearRecord();setStarted(true);setDetailOpen(false);setAtlasPanel(null);setDrawer(null);setWorksOpen(false);setCourseWorkId(id);if(target){if(!selected)previousOverview.current=overview;setSelected(target);setOverview(false);if(selected!==target)engine.current?.focus(target);}else{setSelected(null);engine.current?.clearPlaceSelection();}};
  const changeWorkFilter=(theme:ThemeFilter,query:string)=>{setWorkTheme(theme);setWorkQuery(query);if(courseWorkId&&!visibleStudentWorks(theme,query).some(item=>item.id===courseWorkId)){setCourseWorkId(null);setSelected(null);setDetailOpen(false);setWorksOpen(true);clearRecord();engine.current?.clearPlaceSelection();}};
  const reset=()=>{if(studentShowcase){setCourseWorkId(null);setWorksOpen(true);}setAtlasPanel(null);clearRecord();setFreeExplore(false);setDetailOpen(false);setSelected(null);setOverview(false);setDrawer(null);setPreset(0);engine.current?.reset();};
- const focus=(id:string)=>{if(studentShowcase){const work=worksForPlace(id,workTheme,workQuery)[0];if(work){openCourseWork(work.id);return;}setCourseWorkId(null);setWorksOpen(false);}setAtlasPanel(null);if(id!==selected){clearRecord();setDetailTab('overview');}if(!selected)previousOverview.current=overview;setStarted(true);setDetailOpen(false);setSelected(id);setOverview(false);setDrawer(null);engine.current?.focus(id);};
+ const focus=(id:string)=>{if(studentShowcase){const work=worksForPlace(id,workTheme,workQuery)[0];if(work){openCourseWork(work.id,id);return;}setCourseWorkId(null);setWorksOpen(false);}setAtlasPanel(null);if(id!==selected){clearRecord();setDetailTab('overview');}if(!selected)previousOverview.current=overview;setStarted(true);setDetailOpen(false);setSelected(id);setOverview(false);setDrawer(null);engine.current?.focus(id);};
  const closePlace=()=>{if(studentShowcase){closeCourseWork();return;}clearRecord();setDetailOpen(false);setSelected(null);setAtlasPanel(null);setOverview(previousOverview.current);engine.current?.back();};
  const showOverview=()=>{if(studentShowcase){setCourseWorkId(null);setWorksOpen(true);}setAtlasPanel(null);clearRecord();setStarted(true);setDetailOpen(false);setSelected(null);setDrawer(null);setOverview(true);engine.current?.overview();};
  const changeTheme=(value:boolean)=>{engine.current?.theme(value);setNight(value);};
@@ -85,7 +86,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const sceneFocus=focusState(overlayState,MAP_OBJECTS,guidedStep);
  const changeProposal=(view:ProposalScenario['view'])=>{const record=recordId?recordById(recordId):undefined;if(record?.kind!=='Proposal'||record.placeId!==selected)return;setLayerScope('place');setProposal({proposalId:record.id,view});revealObjects(record.objectIds);};
 
- const courseGroup=selectionGroup(courseWorkId,workTheme,workQuery);
+ const courseGroup=selectionGroup(courseWorkId,workTheme,workQuery,selected);
  const courseWork=courseGroup.find(work=>work.id===courseWorkId);
  const rightDetail=activeSceneDetail({detailOpen,objectId:currentObject?.id,courseWorkId:courseWork?.id,atlasPanel,drawer});
  const place=navigationPlaces.find(p=>p.id===selected);

@@ -4,6 +4,7 @@ import {describe, expect, it} from 'vitest';
 import assets from '@/src/student-works/assets.json';
 import {STUDENT_WORKS, visibleStudentWorks, showcaseStats} from '@/src/student-works/catalog';
 import {adjacentWorkId, selectionGroup} from '@/src/student-works/selection';
+import {workPlaceIds} from '@/src/student-works/relationships';
 
 describe('official course cover identity', () => {
   it('uses the folder project cover matched by ID, title and the complete author group', () => {
@@ -45,18 +46,18 @@ describe('editorial selection and retained filtering', () => {
 
   it('switches within the selected place and never includes neighboring places', () => {
     const works = selectionGroup('pinwall-66172', 'all', '');
-    expect(works.map(work => work.id)).toEqual(['pinwall-66172', 'pinwall-66179']);
+    expect(works.map(work => work.id)).toEqual(['pinwall-66171', 'pinwall-66172', 'pinwall-66179']);
     expect(adjacentWorkId(works, 'pinwall-66172', 1)).toBe('pinwall-66179');
-    expect(adjacentWorkId(works, 'pinwall-66179', 1)).toBe('pinwall-66172');
-    expect(adjacentWorkId(works, 'pinwall-66172', -1)).toBe('pinwall-66179');
-    expect(works.every(work => work.placeId === 'juzizhou')).toBe(true);
+    expect(adjacentWorkId(works, 'pinwall-66179', 1)).toBe('pinwall-66171');
+    expect(adjacentWorkId(works, 'pinwall-66172', -1)).toBe('pinwall-66171');
+    expect(works.every(work => workPlaceIds(work).includes('juzizhou'))).toBe(true);
   });
 
   it('keeps unlocated original sites separate and does not fabricate a map place', () => {
     const works = selectionGroup('pinwall-66181', 'all', '');
     expect(works).toHaveLength(3);
     expect(works.every(work => work.placeId === null && work.originalSite === '文津码头')).toBe(true);
-    expect(selectionGroup('pinwall-66187', 'all', '')).toHaveLength(1);
+    expect(selectionGroup('pinwall-66187', 'all', '')).toHaveLength(4);
     expect(selectionGroup('pinwall-66172', '立体交通与网络系统', '')).toHaveLength(0);
     expect(selectionGroup(null, 'all', '')).toHaveLength(0);
   });

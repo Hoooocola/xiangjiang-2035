@@ -526,7 +526,7 @@
     "matchEvidence": {
       "projectId": "66185",
       "sourceRow": 22,
-      "originalSite": "大王山",
+      "originalSite": "巴溪洲",
       "folderUrl": "https://pinwall.cn/workFolder/1725",
       "pinwallTitle": "「洲野共生」2035巴溪洲全民户外生活岛计划",
       "pinwallMembers": [
@@ -541,7 +541,9 @@
       "originalSize": [
         360,
         360
-      ]
+      ],
+      "previousOriginalSite": "大王山",
+      "revisedExcelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
     }
   },
   "pinwall-66187": {
@@ -556,7 +558,7 @@
     "matchEvidence": {
       "projectId": "66187",
       "sourceRow": 23,
-      "originalSite": "渔人码头到裕湘…",
+      "originalSite": "渔人码头和裕湘纱厂",
       "folderUrl": "https://pinwall.cn/workFolder/1725",
       "pinwallTitle": "岸间——湘江滨水公共空间 的弹性更新与日常营造",
       "pinwallMembers": [
@@ -572,7 +574,9 @@
       "originalSize": [
         360,
         360
-      ]
+      ],
+      "previousOriginalSite": "渔人码头到裕湘…",
+      "revisedExcelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
     }
   },
   "pinwall-66188": {
