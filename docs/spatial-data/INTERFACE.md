@@ -32,7 +32,7 @@ Layer描述有稳定ID、现有category、几何类型、来源、年份、官�
 
 运行：`node --import tsx --input-type=module -e "import {analyzeYanghu} from './src/spatial-data/analysis.ts'; console.log(JSON.stringify(await analyzeYanghu(),null,2))"`。
 
-固定数据结果 `data/spatial/yanghu-analysis.json`：55076个分类像元中心，nodata=0，27320个在已有道路100m邻近范围；57条GBIF样本在研究面内（不代表57个独立地点）。其坐标误差可大于距离，结果标uncertain。约像元面积75.9m²，不直接把10m名义分辨率当100m²计算；按中心掩膜的面积仅近似。
+固定数据结果 `data/spatial/yanghu-analysis.json`：55076个分类像元中心，nodata=0，27320个在已有道路100m邻近范围；57条GBIF样本在研究面内（实际只有1个唯一坐标，不代表57个独立地点）。其坐标误差可大于距离，结果标uncertain。约像元面积75.9m²，不直接把10m名义分辨率当100m²计算；按中心掩膜的面积仅近似。
 
 研究线索：“道路邻近的不同土地覆盖地块如何被使用？应在何处核验路径可达性、生态边界与活动方式？”证据是分类像元、道路几何及误差信息；没有活动调查，不能得出活动破坏生态结论。水质未定位、步行网络不完整、GBIF采样偏倚、跨年方法不同均列为缺口。WorldCover2020/2021不做直接变化统计。
 
