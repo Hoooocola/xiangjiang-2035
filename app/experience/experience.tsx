@@ -117,7 +117,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
   <section className={`${styles.intro} ${started?styles.introHidden:''}`} aria-label="开始探索" aria-hidden={started} inert={started}>
    <p className={styles.eyebrow}>CHANGSHA, CHINA <span>28°11′ N · 112°58′ E</span></p>
    <h1>一条江，<br/><span>一种未来。</span></h1>
-   <p className={styles.subtitle}>湘江生态文化与社会创新地图</p>
+   <p className={styles.subtitle}>湘江生态、文化与社会创新数字地图：基于D—E—C产品总值指标的设计平台</p>
    <button className={styles.start} onClick={begin} disabled={!loaded||!!error}><span className={styles.startCircle}><ArrowRight size={24}/></span><span>{loaded?'开始探索':'正在构建湘江'}<small>{loaded?'START THE EXPERIENCE':`${String(progress).padStart(2,'0')} / 100`}</small></span></button>
   </section>
   {!loaded&&!error&&<div className={styles.loading} role="status" aria-live="polite"><span>{loadingLabel}</span><div><i style={{width:`${progress}%`}}/></div></div>}
