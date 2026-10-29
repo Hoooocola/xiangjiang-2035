@@ -42,5 +42,36 @@
     "siteCategory": "waterfront",
     "source": "https://www.openstreetmap.org/way/30610573",
     "precision": "现有 OSM 几何的西端导航点，非西岸研究范围"
+  },
+  {
+    "id": "student-yuxiang",
+    "name": "裕湘纱厂（入口参考）",
+    "coordinate": [
+      112.957348,
+      28.2256757
+    ],
+    "siteCategory": "heritage",
+    "source": "https://www.amap.com/place/B02DB0UMGK",
+    "precision": "以高德“裕湘纱厂内部停车场”作为入口导航参考；原GCJ-02经离线逆向近似转为WGS84，非厂区或作品研究边界。",
+    "sourceCoordinate": [
+      112.962845,
+      28.222205
+    ],
+    "sourceCrs": "GCJ-02",
+    "coordinateCrs": "WGS84",
+    "identitySource": "https://whhlyt.hunan.gov.cn/whhlyt/ggwh/201408/t20140806_5430596.html"
+  },
+  {
+    "id": "site-025",
+    "name": "大王山（片区导航）",
+    "coordinate": [
+      112.9061071,
+      28.089223
+    ],
+    "siteCategory": "ecology",
+    "source": "https://www.openstreetmap.org/way/1032466244",
+    "precision": "以OSM大王山旅游服务中心建筑包围盒中心作片区导航参考；非大王山山体中心或完整交通研究范围。",
+    "coordinateCrs": "WGS84",
+    "identitySource": "https://www.xjjt.com.cn/content/1950286"
   }
 ]
