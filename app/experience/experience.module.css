@@ -60,3 +60,10 @@
 .objectReading .mainNav{display:none}
 
 .objectReading .cameraControls{visibility:hidden;pointer-events:none}
+
+/* Keep the formal name subordinate to the concise two-line title. */
+.intro .subtitle{line-height:1.85;max-width:min(40vw,470px);margin:0;font-size:12px;letter-spacing:.08em;overflow-wrap:break-word}.heroPhrase{white-space:nowrap}
+@media(max-width:700px){.intro .subtitle{max-width:calc(100vw - 52px);font-size:11px}}
+
+/* Preserve PR1 course-anchor visibility rule. */
+.marker[hidden]{display:none!important}
