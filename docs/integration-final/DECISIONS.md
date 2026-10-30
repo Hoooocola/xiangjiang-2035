@@ -28,3 +28,5 @@ GitHub仓库核实为Private，main尚未启用服务器保护。所有PR仍须�
 PR6若吸收此候选，将暂时包含课程依赖提交；按#4→#1先合并后，#6差异会缩小。未核实旧项目自动部署前，远程分支推送保留为发布门槛，避免误触发原正式站点。
 
 候选新增vercel.json：git.deploymentEnabled=false，按官方文档禁止Git推送触发自动部署；只使用明确target=preview的手动CLI部署。该门禁不改旧部署，不自动推广生产，恢复自动发布应另经负责人审核。https://vercel.com/docs/project-configuration/git-configuration
+
+.vercelignore仅排除部署不需要的审核截图/文档、SVG导出和离线OSM/地形原始输入；它们继续完整保留在Git。public运行资产、data/spatial来源元数据、代码与锁文件均保留上传。
