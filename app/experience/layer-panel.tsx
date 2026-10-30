@@ -7,7 +7,7 @@ import {SUBTYPES,isAvailable,subtypeOf} from '@/src/atlas/information';
 import type {LayerId,OverlayState} from '@/src/atlas/types';
 import styles from './information.module.css';
 const english:Record<LayerId,string>={geography:'GEOGRAPHY',ecology:'ECOLOGY',culture:'CULTURE',society:'SOCIETY',economy:'ECONOMY',proposal:'PROPOSAL'};
-export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,selectedPlace,onSubtype,onDemo,onGuide,onClear}:{scope:'all'|'place';onScope:(scope:'all'|'place')=>void;selectedPlace?:string;state:OverlayState;onToggle:(id:LayerId)=>void;onObject:(id:string)=>void;onClose:()=>void;onSubtype:(id:string)=>void;onDemo:(value:boolean)=>void;onGuide:()=>void;onClear:()=>void}){
+export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,selectedPlace,onSubtype,onDemo,onGuide,onClear,courseStats,onCourseOpen}:{courseStats:{total:number;places:number;pending:number};onCourseOpen:()=>void;scope:'all'|'place';onScope:(scope:'all'|'place')=>void;selectedPlace?:string;state:OverlayState;onToggle:(id:LayerId)=>void;onObject:(id:string)=>void;onClose:()=>void;onSubtype:(id:string)=>void;onDemo:(value:boolean)=>void;onGuide:()=>void;onClear:()=>void}){
  const [expanded,setExpanded]=useState<LayerId[]>(state.layers);
  const visible=visibleObjects(state),inventory=MAP_OBJECTS.filter(o=>isAvailable(o,{...state,showDemo:true}));
  const toggleExpanded=(id:LayerId)=>setExpanded(ids=>ids.includes(id)?ids.filter(x=>x!==id):[...ids,id]);
@@ -25,10 +25,11 @@ export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,select
     const pending=SUBTYPES.filter(s=>s.layer===l.id&&!all.some(o=>subtypeOf(o)===s.id));
     return <section key={l.id} className={styles.category} style={{'--category-color':`var(--layer-${l.id})`} as React.CSSProperties}>
      <div className={styles.categoryHeading}>
-      <button className={styles.expandCategory} aria-expanded={open} aria-controls={`category-${l.id}`} onClick={()=>toggleExpanded(l.id)}><span className={styles.ordinal}>{String(index+1).padStart(2,'0')}</span><span><strong>{l.label}</strong><small>{english[l.id]}</small></span><span className={styles.count}>{available.length||`${all.length} 示例`}</span><ChevronDown size={13}/></button>
+      <button className={styles.expandCategory} aria-expanded={open} aria-controls={`category-${l.id}`} onClick={()=>toggleExpanded(l.id)}><span className={styles.ordinal}>{String(index+1).padStart(2,'0')}</span><span><strong>{l.label}</strong><small>{english[l.id]}</small></span><span className={styles.count}>{l.id==='proposal'?`${courseStats.total} 作品`:available.length||`${all.length} 示例`}</span><ChevronDown size={13}/></button>
       <button className={styles.layerSwitch} role="switch" aria-checked={enabled} aria-label={`显示${l.label}`} onClick={()=>{onToggle(l.id);if(!enabled&&!open)toggleExpanded(l.id);}}><span/></button>
      </div>
      {open&&<div id={`category-${l.id}`} className={styles.subtypes}>
+      {l.id==='proposal'&&<section aria-label="学生课程设计方案"><p className={styles.pending}>课程设计作品 · 非实施项目<br/>{courseStats.total} 件作品 · {courseStats.places} 个地图地点 · {courseStats.pending} 件待定位</p><div className={styles.objects}><button onClick={onCourseOpen}><i aria-hidden="true"/><span>浏览课程设计作品</span><ArrowUpRight size={12}/></button></div></section>}
       {SUBTYPES.filter(s=>s.layer===l.id&&all.some(o=>subtypeOf(o)===s.id)).map(sub=>{
        const objects=available.filter(o=>subtypeOf(o)===sub.id),total=all.filter(o=>subtypeOf(o)===sub.id).length;
        const active=enabled&&(state.subtypes?.includes(sub.id)??true);
@@ -42,6 +43,6 @@ export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,select
     </section>;
    })}
   </div>
-  <footer><button onClick={onGuide}>空间导读 <ArrowUpRight size={13}/></button><button onClick={onClear} disabled={!state.layers.length}>清除图层</button><small>{visible.length} 个空间对象可见</small></footer>
+  <footer><button onClick={onGuide}>空间导读 <ArrowUpRight size={13}/></button><button onClick={onClear} disabled={!state.layers.length}>清除图层</button><small>{visible.length} 个空间对象可见{state.layers.includes('proposal')?` · 课程作品关联 ${courseStats.places} 个地点`:null}</small></footer>
  </aside>;
 }
