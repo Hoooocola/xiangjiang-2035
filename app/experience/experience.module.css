@@ -67,3 +67,6 @@
 
 /* Preserve PR1 course-anchor visibility rule. */
 .marker[hidden]{display:none!important}
+
+.atmosphereControl{position:absolute;left:5.4%;bottom:145px;z-index:13;font-size:10px}.atmosphereControl>button{display:flex;gap:8px;align-items:center;min-height:38px}.atmosphereControl section{position:absolute;bottom:44px;left:0;width:220px;background:var(--paper);padding:14px 18px}.atmosphereControl p{font-size:12px;margin:0 0 12px}.atmosphereControl [role=group]{display:flex;flex-direction:column;align-items:flex-start}.atmosphereControl [role=group] button{min-height:38px}.atmosphereControl button[aria-pressed=true]{color:var(--accent)}.atmosphereControl small{display:block;font-size:9px;color:var(--muted);line-height:1.8;margin-top:8px}
+@media(min-width:1700px){.atmosphereControl{bottom:180px}}@media(max-width:759px){.atmosphereControl{left:24px;bottom:176px}.atmosphereControl>button span{display:none}.headerActions{gap:12px;justify-content:space-between}.headerActions>a{gap:5px;margin-left:0}.headerActions>button{min-width:0}.headerActions svg{width:14px}.headerActions>a svg{display:none}}

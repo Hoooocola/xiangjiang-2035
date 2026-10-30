@@ -51,3 +51,8 @@ export function AtlasLibrary({onOpen,onClose}:{onOpen:(id:string)=>void;onClose:
   {!items.length&&<p className={styles.empty}>此分类尚无资料。</p>}
  </aside>;
 }
+
+/** Long-form reading remains available when a record has no verified map location. */
+export function ResearchReader({record,onClose,onOpen}:{record:AtlasRecord;onClose:()=>void;onOpen:(id:string)=>void}){
+ return <aside className={styles.panel} aria-label="研究资料阅读"><header><div><small>RESEARCH READER</small><h2>资料阅读</h2></div><button onClick={onClose} aria-label="关闭资料阅读"><X size={19}/></button></header><article className={styles.body}><p className={styles.badge}>{record.dataStatus==='demo'?'DEMO / 概念演示':'公开资料'} · {record.year}</p><h3 className={styles.recordTitle}>{record.title}</h3><p>{record.author}</p><p>{record.summary}</p><p className={styles.notice}>地点定位尚未核验；保留资料关联，不生成虚构地图标记。</p><p className={styles.notice}>{record.state}</p>{record.body.map((text,i)=><p key={i}>{text}</p>)}{record.relatedIds.map(recordById).filter((r):r is AtlasRecord=>!!r).map(r=><RecordCard key={r.id} record={r} onOpen={onOpen}/>)}<h3>来源与数据状态</h3><Sources ids={record.sourceIds}/></article><footer><button onClick={onClose}>返回目录</button></footer></aside>;
+}
