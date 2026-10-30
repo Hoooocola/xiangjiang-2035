@@ -26,3 +26,5 @@ GitHub仓库核实为Private，main尚未启用服务器保护。所有PR仍须�
 旧Vercel项目在当前账号下不可访问（404），其自动生产部署设置未核实；不得因此推断它不存在Git连接。按负责人追加决定，在当前账号创建独立Preview项目，不连接Git，不更改旧站点，不使用--prod或promote。部署时只上传候选提交归档，不上传个人环境、数据库和未跟踪文件。Preview完成后按准确候选SHA复核；正式发布仍待单独确认。
 
 PR6若吸收此候选，将暂时包含课程依赖提交；按#4→#1先合并后，#6差异会缩小。未核实旧项目自动部署前，远程分支推送保留为发布门槛，避免误触发原正式站点。
+
+候选新增vercel.json：git.deploymentEnabled=false，按官方文档禁止Git推送触发自动部署；只使用明确target=preview的手动CLI部署。该门禁不改旧部署，不自动推广生产，恢复自动发布应另经负责人审核。https://vercel.com/docs/project-configuration/git-configuration

@@ -1,3 +1,4 @@
+import {readFileSync} from 'node:fs';
 import {createElement} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {describe,expect,it} from 'vitest';
@@ -6,6 +7,7 @@ import ExperiencePage from '@/app/experience/page';
 import {SPATIAL_LAYERS} from '@/src/spatial-data/catalog';
 
 describe('approved integration boundary',()=>{
+ it('blocks automatic Git deployments until release approval',()=>{const config=JSON.parse(readFileSync('vercel.json','utf8'));expect(config.git.deploymentEnabled).toBe(false);});
  it('renders the exact concise hero with the complete subordinate project name',()=>{
   const html=renderToStaticMarkup(createElement(Experience,{}));
   expect(html).toContain('<h1>一条江<br/><span>另一种未来</span></h1>');
