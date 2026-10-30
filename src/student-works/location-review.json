@@ -1,0 +1,21 @@
+{
+  "pinwall-66171": {
+    "placeIds": [
+      "tongguan",
+      "juzizhou",
+      "ezhou"
+    ],
+    "sourceUrl": "https://pinwall.cn/project/66171",
+    "evidence": "作者项目介绍明确列出橘子洲、铜官窑、鹅洲岛三类枢纽码头；Excel 主选址铜官窑保持不变。",
+    "status": "source-backed-multiple"
+  },
+  "pinwall-66187": {
+    "placeIds": [
+      "site-011",
+      "student-yuxiang"
+    ],
+    "sourceUrl": "https://pinwall.cn/project/66187",
+    "evidence": "用户修订表第23行明确渔人码头和裕湘纱厂；后者已补入口近似导航点。",
+    "status": "revised-excel-multiple"
+  }
+}
