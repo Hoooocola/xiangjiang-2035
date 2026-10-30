@@ -1,3 +1,5 @@
+> **V2.4 候选导航更新（2026-10-31）**：顶部“图层 / 资料 / 设计方案 / 研究平台”。现实GIS目录为五类；正式Proposal使用独立目录，课程成果在该目录底部的独立演示入口，兼容 `/experience?showcase=student-work`。课程与设计方案分离，旧版说明保留为历史记录。见 [V2.4交接](docs/v2.4/README.md)。
+
 > 在线访问：[湘江 2035 公共网站](https://xiangjiang-2035.vercel.app)。课程成果入口：图层 → 设计方案 → 浏览课程设计作品。无需登录即可查看地图与作品。
 
 > 学生课程成果 V4（Issue #3）：开发分支 `codex/student-work-media-v4`，基于 `demo/student-work-showcase` 继续迭代。使用用户修订表，核对 24 件作品、25 份 PDF 与 3 个视频；未确定的作品归入“未绑定地点”。[逐项核对表](docs/student-work-media-audit-v4.md) · [地图检索与定位精度](docs/student-work-locations-v4.md)。通过 PR 审核，不直接合并 main。
