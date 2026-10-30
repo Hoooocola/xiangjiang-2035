@@ -1,11 +1,12 @@
 import {describe,it,expect} from 'vitest';
 import {contains,cropRaster,distanceToLine,pointBuffer,validBounds} from '../src/spatial-data/geometry';
 import {getLayer,loadLayer,objectDetails,studyArea} from '../src/spatial-data/service';
-import {analyzeYanghu} from '../src/spatial-data/analysis';
+import {analyzeYanghu,canonicalEvidence} from '../src/spatial-data/analysis';
 import {SPATIAL_LAYERS,WORLDCOVER_LEGEND} from '../src/spatial-data/catalog';
 import {GET} from '../app/api/spatial-data/route';
 import type {Collection,Position,Raster} from '../src/spatial-data/types';
 describe('spatial geometry contracts',()=>{
+ it('normalizes build-time float and key-order differences in evidence IDs',()=>{expect(canonicalEvidence({b:28.099999999999998,a:1})).toBe(canonicalEvidence({a:1,b:28.1}));});
  const outer:Position[]=[[0,0],[4,0],[4,4],[0,4],[0,0]],hole:Position[]=[[1,1],[2,1],[2,2],[1,2],[1,1]];
  it('excludes polygon holes',()=>{expect(contains([.5,.5],[outer,hole])).toBe(true);expect(contains([1.5,1.5],[outer,hole])).toBe(false);});
  it('rejects NaN/reversed/non-WGS84 boxes',()=>{expect(validBounds([112,28,113,29])).toBe(true);for(const b of [[113,28,112,29],[NaN,28,113,29],[-181,0,1,2]])expect(validBounds(b)).toBe(false);});
