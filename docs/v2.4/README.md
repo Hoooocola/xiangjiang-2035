@@ -6,7 +6,7 @@
 
 地点选中→PlaceIntroduction（英文标签、标题、一句介绍、阅读入口）；定位与来源折叠，长文显式进入PlaceDetail或无核验地点的ResearchReader。资料索引是标题目录，摘要及关联渐进披露；五类现实GIS主题保留层级、开关与空间导读。
 
-设计方案成为顶部独立入口。DESIGN_PROPOSALS只读取原AtlasRecord.kind=Proposal，支持既有多地点/无定位条目；不生成逐方案marker。内部LayerId仍保留proposal，数据库和资料关系未删除；只移除GIS目录中的proposal一级项。进入模式保存相机上下文，关闭时只去掉方案空间叠加，保留现实图层和返回视角。
+设计方案成为顶部独立入口。DESIGN_PROPOSALS只读取原AtlasRecord.kind=Proposal，支持既有多地点/无定位条目；从原型源表只读恢复未定位的legacy-p8供文字阅读，不把它加入已映射地点或编造坐标；不生成逐方案marker。内部LayerId仍保留proposal，数据库和资料关系未删除；只移除GIS目录中的proposal一级项。进入模式保存相机上下文，关闭时只去掉方案空间叠加，保留现实图层和返回视角。
 
 StudentWork与Proposal分离，原24件作品、25PDF与3视频映射未改。课程模式兼容原URL /experience?showcase=student-work，也能从设计方案目录底部“浏览课程成果”进入，单独“退出课程成果”。不把学生课程作品隐式转换成正式Proposal。
 

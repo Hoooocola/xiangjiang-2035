@@ -8,7 +8,7 @@ import type {AtmospherePreference} from '@/src/experience/atmosphere';
 import type {ExperienceEngine} from '@/src/experience/engine';
 import styles from './experience.module.css';
 import {ProposalExplorer} from './proposal-explorer';
-import {DESIGN_PROPOSALS,proposalPlaceIds} from '@/src/atlas/proposals';
+import {DESIGN_PROPOSALS,proposalPlaceIds,designRecordById} from '@/src/atlas/proposals';
 import {PlaceIntroduction} from './place-introduction';
 import {PlaceDetail,AtlasLibrary,ResearchReader,type DetailTab} from './place-detail';
 import {FocusLabel} from './focus-label';
@@ -76,7 +76,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const showOverview=()=>{if(studentShowcase){setCourseWorkId(null);setWorksOpen(true);}setAtlasPanel(null);clearRecord();setStarted(true);setDetailOpen(false);setSelected(null);setDrawer(null);setOverview(true);engine.current?.overview();};
  const changeTheme=(value:boolean)=>{engine.current?.theme(value);setNight(value);};
  const revealObjects=(ids:string[])=>{setObjectIds(ids);setLayers(current=>Array.from(new Set([...current,...layersForObjects(ids)])));setSubtypes(current=>Array.from(new Set([...current,...MAP_OBJECTS.filter(o=>ids.includes(o.id)).map(subtypeOf)])));};
- const openRecord=(id:string|null)=>{if(!id){clearRecord();return;}setCourseWorkId(null);setWorksOpen(false);const r=recordById(id);if(!r)return;const location=(r.placeIds??[r.placeId]).find(id=>navigationPlaces.some(p=>p.id===id));setSelected(location??null);setStarted(true);setAtlasPanel(null);setDrawer(null);setDetailOpen(true);setRecordId(id);if(id!==proposal?.proposalId)setProposal(null);setDetailTab(r.kind==='ResearchProject'||r.kind==='ResearchSession'?'research':r.kind==='FieldRecord'?'evidence':['Proposal','DesignOpportunity'].includes(r.kind)?'design':'questions');revealObjects(r.objectIds);};
+ const openRecord=(id:string|null)=>{if(!id){clearRecord();return;}setCourseWorkId(null);setWorksOpen(false);const r=designRecordById(id);if(!r)return;const location=(r.placeIds??[r.placeId]).find(id=>navigationPlaces.some(p=>p.id===id));setSelected(location??null);setStarted(true);setAtlasPanel(null);setDrawer(null);setDetailOpen(true);setRecordId(id);if(id!==proposal?.proposalId)setProposal(null);setDetailTab(r.kind==='ResearchProject'||r.kind==='ResearchSession'?'research':r.kind==='FieldRecord'?'evidence':['Proposal','DesignOpportunity'].includes(r.kind)?'design':'questions');revealObjects(r.objectIds);};
  const focusInformation=(id:string,directoryOpen=false)=>{informationContext.current??={selected,overview,freeExplore,proposal};setOverview(false);setFreeExplore(false);engine.current?.focusSpatialInformation(id,{directoryOpen});};
  const openObject=(id:string,autoFocus=false)=>{const o=MAP_OBJECTS.find(o=>o.id===id);if(!o)return;setCourseWorkId(null);setWorksOpen(false);engine.current?.stop();setStarted(true);setDetailOpen(false);setDrawer(null);setRecordId(null);setGuidedStep(null);if(o.proposalId){setSelected(o.placeId);setProposal({proposalId:o.proposalId,view:'intervention'});}else setProposal(null);revealObjects([id]);const keepDirectory=window.innerWidth>=1100&&atlasPanel==='layers';if(window.innerWidth<1100)setAtlasPanel(null);if(autoFocus)focusInformation(id,keepDirectory);};
  useEffect(()=>{objectAction.current=id=>openObject(id);});
@@ -138,7 +138,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
   </section>
   {!loaded&&!error&&<div className={styles.loading} role="status" aria-live="polite"><span>{loadingLabel}</span><div><i style={{width:`${progress}%`}}/></div></div>}
   {error&&<section className={styles.error} role="alert"><h2>暂时无法展开这段湘江</h2><p>{error}</p><button onClick={()=>window.location.reload()}>重新载入 <RotateCcw size={15}/></button><a href="/create-research">进入研究平台 <ArrowUpRight size={15}/></a></section>}
-  {!place&&recordId&&detailOpen&&!atlasPanel&&recordById(recordId)&&<ResearchReader record={recordById(recordId)!} onClose={()=>setDetailOpen(false)} onOpen={openRecord}/>}
+  {!place&&recordId&&detailOpen&&!atlasPanel&&designRecordById(recordId)&&<ResearchReader record={designRecordById(recordId)!} onClose={()=>setDetailOpen(false)} onOpen={openRecord}/>}
   {place&&rightDetail==='place'&&!moving&&<PlaceDetail key={place.id} place={place} onClose={()=>setDetailOpen(false)} onMap={()=>{setDetailOpen(false);const ids=visibleObjects(overlayState).filter(o=>objectIds.includes(o.id)).map(o=>o.id);if(ids.length)engine.current?.focusObjects(ids);else engine.current?.focus(place.id);}} tab={detailTab} onTab={setDetailTab} recordId={recordId} onRecord={openRecord} proposal={proposal} onProposal={changeProposal}/>}
   {place&&!currentObject&&!detailOpen&&!atlasPanel&&!drawer&&!moving&&!courseWork&&!proposalOpen&&<PlaceIntroduction place={place} onClose={closePlace} onResearch={()=>{setDetailTab('research');setDetailOpen(true);}} onDetails={()=>{setDetailTab('overview');setDetailOpen(true);}}/>}
   {drawer&&<aside className={styles.drawer} aria-label={drawer==='places'?'地点列表':drawer==='views'?'镜头预设':'关于此地图'}>
