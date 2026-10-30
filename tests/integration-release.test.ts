@@ -12,18 +12,18 @@ describe('approved integration boundary',()=>{
   const html=renderToStaticMarkup(createElement(Experience,{}));
   expect(html).toContain('<h1>一条江<br/><span>另一种未来</span></h1>');
   expect(html).toMatch(/湘江生态、文化与社会创新数字地图：<br\/>基于D—E—C<span[^>]*>产品总值指标<\/span>的设计平台/);
-  expect(html).not.toContain('关闭设计方案');
+  expect(html).not.toContain('退出课程成果');
   expect(html).toContain('aria-label="开始探索" aria-hidden="false"');
  });
  it('retains the independent course URL and its explicit close control',async()=>{
   const element=await ExperiencePage({searchParams:Promise.resolve({showcase:'student-work'})});
   const html=renderToStaticMarkup(element);
-  expect(html).toContain('关闭设计方案');
+  expect(html).toContain('退出课程成果');
   expect(html).toContain('2026社会创新设计');
   expect(html).toContain('课程设计 / 非实施项目');
   expect(html).toContain('aria-label="开始探索" aria-hidden="true"');
   const normal=await ExperiencePage({searchParams:Promise.resolve({})});
-  expect(renderToStaticMarkup(normal)).not.toContain('关闭设计方案');
+  expect(renderToStaticMarkup(normal)).not.toContain('退出课程成果');
  });
  it('distinguishes data-only layers, unlocated observations and existing scene context',()=>{
   expect(SPATIAL_LAYERS.find(l=>l.layerId==='ecology.worldcover.2021')?.mapIntegration).toBe('data-only');

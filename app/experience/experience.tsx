@@ -1,12 +1,14 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import Link from 'next/link';
-import {ArrowUpRight,ArrowRight,RotateCcw,Sun,Moon,X,Compass,Play,Pause,Info,ChevronLeft,MapPin,Layers,BookOpen,SlidersHorizontal} from 'lucide-react';
+import {ArrowUpRight,ArrowRight,RotateCcw,Sun,Moon,X,Compass,Play,Pause,Info,ChevronLeft,MapPin,Layers,BookOpen,SlidersHorizontal,Lightbulb} from 'lucide-react';
 import {CAMERA_PRESETS,PLACES} from '@/src/experience/config';
 import {MINI_MAP,miniPoint,worldPoint} from '@/src/experience/minimap';
 import {project} from '@/src/experience/geo';
 import type {ExperienceEngine} from '@/src/experience/engine';
 import styles from './experience.module.css';
+import {ProposalExplorer} from './proposal-explorer';
+import {DESIGN_PROPOSALS,proposalPlaceIds} from '@/src/atlas/proposals';
 import {PlaceIntroduction} from './place-introduction';
 import {PlaceDetail,AtlasLibrary,type DetailTab} from './place-detail';
 import {FocusLabel} from './focus-label';
@@ -19,7 +21,7 @@ import {CameraControls} from './camera-controls';
 import {recordById} from '@/src/atlas/catalog';
 import {MAP_OBJECTS,layersForObjects,visibleObjects} from '@/src/atlas/objects';
 import type {LayerId,OverlayState,ProposalScenario} from '@/src/atlas/types';
-import {SHOWCASE_PLACES,studentMarkerCount,visibleStudentWorks,worksForPlace,showcaseStats,type ThemeFilter} from '@/src/student-works/catalog';
+import {SHOWCASE_PLACES,studentMarkerCount,visibleStudentWorks,worksForPlace,type ThemeFilter} from '@/src/student-works/catalog';
 import {StudentWorkShowcase,StudentWorkExhibition,type CourseIndexView} from './student-work-showcase';
 import {selectionGroup} from '@/src/student-works/selection';
 import {preferredWorkPlace} from '@/src/student-works/relationships';
@@ -29,8 +31,10 @@ import workStyles from './student-work-showcase.module.css';
 
 
 export default function Experience({initialPlace,studentShowcase:initialStudentShowcase=false}:{initialPlace?:string;studentShowcase?:boolean}){
- const [layers,setLayers]=useState<LayerId[]>(initialStudentShowcase?['proposal']:[]);
- const studentShowcase=layers.includes('proposal');
+ const [layers,setLayers]=useState<LayerId[]>([]);
+ const [studentShowcase,setStudentShowcase]=useState(initialStudentShowcase);
+ const [proposalOpen,setProposalOpen]=useState(false),[designId,setDesignId]=useState<string|null>(null);
+ const proposalReturn=useRef<(()=>void)|undefined>(undefined),proposalContext=useRef<{selected:string|null;overview:boolean;freeExplore:boolean;showDemo:boolean;proposal:ProposalScenario|null;objectIds:string[]} | null>(null);
  const navigationPlaces=SHOWCASE_PLACES;
  const [workTheme,setWorkTheme]=useState<ThemeFilter>('all'),[worksOpen,setWorksOpen]=useState(studentShowcase);
  const [workQuery,setWorkQuery]=useState(''),[workView,setWorkView]=useState<CourseIndexView>('places'),[workIndexOpen,setWorkIndexOpen]=useState(false),[courseWorkId,setCourseWorkId]=useState<string|null>(null);
@@ -74,15 +78,20 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const openObject=(id:string,autoFocus=false)=>{const o=MAP_OBJECTS.find(o=>o.id===id);if(!o)return;setCourseWorkId(null);setWorksOpen(false);engine.current?.stop();setStarted(true);setDetailOpen(false);setDrawer(null);setRecordId(null);setGuidedStep(null);if(o.proposalId){setSelected(o.placeId);setProposal({proposalId:o.proposalId,view:'intervention'});}else setProposal(null);revealObjects([id]);const keepDirectory=window.innerWidth>=1100&&atlasPanel==='layers';if(window.innerWidth<1100)setAtlasPanel(null);if(autoFocus)focusInformation(id,keepDirectory);};
  useEffect(()=>{objectAction.current=id=>openObject(id);});
  const reconcile=(next:OverlayState)=>{const visible=new Set(visibleObjects(next).map(o=>o.id));if(objectIds.some(id=>!visible.has(id))){engine.current?.clearInformationFocus();informationContext.current=null;}setObjectIds(ids=>ids.filter(id=>visible.has(id)));setGuidedStep(null);};
- const toggleLayer=(id:LayerId)=>{const enabled=layers.includes(id),next=enabled?layers.filter(x=>x!==id):[...layers,id];setLayers(next);if(id==='proposal'){setWorksOpen(!enabled);if(enabled&&courseWorkId){setCourseWorkId(null);setDetailOpen(false);clearRecord();setSelected(null);engine.current?.clearPlaceSelection();}}reconcile({...overlayState,layers:next});};
- const openCourseLayer=()=>{if(!studentShowcase)toggleLayer('proposal');setWorksOpen(true);setCourseWorkId(null);setDetailOpen(false);clearRecord();setSelected(null);setStarted(true);setAtlasPanel(null);setDrawer(null);engine.current?.clearPlaceSelection();};
+ const toggleLayer=(id:LayerId)=>{const next=layers.includes(id)?layers.filter(x=>x!==id):[...layers,id];setLayers(next);reconcile({...overlayState,layers:next});};
+ const closeStudent=()=>{setStudentShowcase(false);setCourseWorkId(null);setWorksOpen(false);setSelected(null);setDetailOpen(false);clearRecord();engine.current?.back();};
+ const closeDesign=()=>{setProposalOpen(false);setDesignId(null);setDetailOpen(false);setRecordId(null);const context=proposalContext.current;setLayers(value=>value.filter(id=>id!=='proposal'));setProposal(context?.proposal??null);setObjectIds(context?.objectIds??[]);setShowDemo(context?.showDemo??false);setSelected(context?.selected??null);setOverview(context?.overview??false);setFreeExplore(context?.freeExplore??false);proposalReturn.current?.();proposalReturn.current=undefined;proposalContext.current=null;};
+ const openDesign=()=>{if(proposalOpen){closeDesign();return;}if(studentShowcase)closeStudent();proposalReturn.current=engine.current?.rememberView();proposalContext.current={selected,overview,freeExplore,showDemo,proposal,objectIds};setProposalOpen(true);setDesignId(null);setStarted(true);setAtlasPanel(null);setDrawer(null);setDetailOpen(false);setCourseWorkId(null);setWorksOpen(false);};
+ const openCourseLayer=()=>{if(proposalOpen)closeDesign();setStudentShowcase(true);setWorksOpen(true);setCourseWorkId(null);setDetailOpen(false);clearRecord();setSelected(null);setStarted(true);setAtlasPanel(null);setDrawer(null);engine.current?.clearPlaceSelection();};
+ const selectDesign=(id:string)=>{setDesignId(id||null);setDetailOpen(false);setRecordId(null);setObjectIds([]);setProposal(null);if(!id)return;const record=DESIGN_PROPOSALS.find(p=>p.id===id);if(!record)return;const ids=proposalPlaceIds(record);if(ids.length){setSelected(ids[0]);setOverview(false);engine.current?.focus(ids[0]);setProposal({proposalId:id,view:'intervention'});setLayers(value=>Array.from(new Set([...value,'proposal'] as LayerId[])));setShowDemo(record.dataStatus==='demo'||showDemo);setSubtypes(value=>Array.from(new Set([...value,'intervention'])));setObjectIds(record.objectIds);}else{setSelected(null);engine.current?.clearPlaceSelection();}};
+ const focusDesignPlace=(id:string)=>{setSelected(id);engine.current?.focus(id);};
  const toggleSubtype=(id:string)=>{const layer=SUBTYPES.find(s=>s.id===id)?.layer;if(!layer)return;const next=subtypes.includes(id)&&layers.includes(layer)?subtypes.filter(x=>x!==id):Array.from(new Set([...subtypes,id]));const nextLayers=Array.from(new Set([...layers,layer]));setLayers(nextLayers);setSubtypes(next);reconcile({...overlayState,layers:nextLayers,subtypes:next});};
  const demoVisibility=(value:boolean)=>{setShowDemo(value);reconcile({...overlayState,showDemo:value});};
  const changeScope=(scope:'all'|'place')=>{setLayerScope(scope);reconcile({...overlayState,placeId:scope==='place'?selected:null});};
  const guideIds=[MAP_OBJECTS.find(o=>o.subtype==='shoreline')?.id,'pilot-juzizhou-bridge','pilot-contour-100','pilot-park-16734077'].filter((id):id is string=>!!id&&MAP_OBJECTS.some(o=>o.id===id));
  const guide=(step:number)=>{const id=guideIds[step];if(!id)return;setCourseWorkId(null);setWorksOpen(false);setStarted(true);setAtlasPanel(null);setDetailOpen(false);setDrawer(null);setLayerScope('all');setProposal(null);setRecordId(null);setGuidedStep(step);revealObjects([id]);focusInformation(id);};
  const closeExplanation=(preserveView=false)=>{setObjectIds([]);setGuidedStep(null);if(preserveView)engine.current?.stop();else{engine.current?.clearInformationFocus();informationContext.current=null;}};
- const clearLayers=()=>{setCourseWorkId(null);setWorksOpen(false);if(studentShowcase){setSelected(null);setDetailOpen(false);engine.current?.clearPlaceSelection();}informationContext.current=null;setLayers([]);setObjectIds([]);setGuidedStep(null);setProposal(null);engine.current?.clearInformationFocus();};
+ const clearLayers=()=>{informationContext.current=null;setLayers(value=>value.filter(id=>id==='proposal'));setObjectIds(ids=>ids.filter(id=>MAP_OBJECTS.find(o=>o.id===id)?.layer==='proposal'));setGuidedStep(null);engine.current?.clearInformationFocus();};
  const currentObject=visibleObjects(overlayState).find(o=>objectIds.includes(o.id));
  const sceneFocus=focusState(overlayState,MAP_OBJECTS,guidedStep);
  const changeProposal=(view:ProposalScenario['view'])=>{const record=recordId?recordById(recordId):undefined;if(record?.kind!=='Proposal'||record.placeId!==selected)return;setLayerScope('place');setProposal({proposalId:record.id,view});revealObjects(record.objectIds);};
@@ -93,13 +102,14 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const place=navigationPlaces.find(p=>p.id===selected);
  const currentLabel=place?.name??(overview?'湘江全段':freeExplore?'沿江自由探索':'长沙核心河段');
  const miniPlaces=navigationPlaces.filter(p=>['tongguan','juzizhou','zhaoshan'].includes(p.id));
- return <main data-work-open={rightDetail==='course'} style={{...Object.fromEntries(Object.entries(LAYER_VISUALS).map(([id,v])=>[`--layer-${id}`,night?v.night:v.day])),'--information-rgb':night?'8,23,28':'246,249,248'} as React.CSSProperties} className={`${styles.experience} ${studentShowcase?workStyles.mode:''} ${night?styles.night:''} ${started?styles.exploring:''} ${drawer?styles.drawerOpen:''} ${detailOpen||atlasPanel?styles.reading:''} ${currentObject?styles.objectReading:''}`} onKeyDown={e=>{if(e.key==='Escape'){if(studentShowcase&&courseWorkId&&!detailOpen){closeCourseWork();}else if(worksOpen){setWorksOpen(false);}else if(detailOpen){setDetailOpen(false);}else if(currentObject){closeExplanation();}else if(atlasPanel)setAtlasPanel(null);else if(drawer)setDrawer(null);else if(detailOpen)setDetailOpen(false);else if(selected)closePlace();else engine.current?.stop();}else if(e.key==='Home'&&e.target instanceof HTMLCanvasElement){e.preventDefault();reset();}}}>
+ return <main data-work-open={rightDetail==='course'} style={{...Object.fromEntries(Object.entries(LAYER_VISUALS).map(([id,v])=>[`--layer-${id}`,night?v.night:v.day])),'--information-rgb':night?'8,23,28':'246,249,248'} as React.CSSProperties} className={`${styles.experience} ${studentShowcase?workStyles.mode:''} ${night?styles.night:''} ${started?styles.exploring:''} ${drawer?styles.drawerOpen:''} ${detailOpen||atlasPanel?styles.reading:''} ${currentObject?styles.objectReading:''}`} onKeyDown={e=>{if(e.key==='Escape'){if(proposalOpen&&!detailOpen&&!atlasPanel){closeDesign();}else if(studentShowcase&&courseWorkId&&!detailOpen){closeCourseWork();}else if(worksOpen){setWorksOpen(false);}else if(detailOpen){setDetailOpen(false);}else if(currentObject){closeExplanation();}else if(atlasPanel)setAtlasPanel(null);else if(drawer)setDrawer(null);else if(detailOpen)setDetailOpen(false);else if(selected)closePlace();else engine.current?.stop();}else if(e.key==='Home'&&e.target instanceof HTMLCanvasElement){e.preventDefault();reset();}}}>
   <div ref={host} className={styles.scene}/><div className={`${styles.vignette} ${studentShowcase?workStyles.sceneVeil:''}`}/>
   <header className={styles.header}>
    <button className={styles.wordmark} onClick={reset} aria-label="湘江 2035，返回核心河段" disabled={!loaded}><span>湘江 <b>2035</b></span><small>将来的江来 · A LIVING ATLAS</small></button>
    <nav className={styles.headerActions} aria-label="知识地图工具">
-    <button disabled={!loaded} aria-expanded={atlasPanel==='layers'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='layers'?null:'layers');}}><SlidersHorizontal size={16}/>图层 <small>{layers.length}</small></button><button disabled={!loaded} aria-expanded={atlasPanel==='library'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='library'?null:'library');}}><BookOpen size={16}/>资料</button>
-    {studentShowcase&&<button onClick={()=>toggleLayer('proposal')}>关闭设计方案</button>}
+    <button disabled={!loaded} aria-expanded={atlasPanel==='layers'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='layers'?null:'layers');}}><SlidersHorizontal size={16}/>图层 <small>{layers.filter(id=>id!=='proposal').length}</small></button><button disabled={!loaded} aria-expanded={atlasPanel==='library'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='library'?null:'library');}}><BookOpen size={16}/>资料</button>
+    <button disabled={!loaded} aria-expanded={proposalOpen} onClick={openDesign}><Lightbulb size={16}/>设计方案</button>
+    {studentShowcase&&<button onClick={closeStudent}>退出课程成果</button>}
     <a className={styles.platformLink} href="/create-research">研究平台 <ArrowUpRight size={16}/></a>
    </nav>
   </header>
@@ -111,11 +121,12 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
   {studentShowcase&&!atlasPanel&&!drawer&&<StudentWorkShowcase theme={workTheme} query={workQuery} view={workView} expanded={workIndexOpen} selectedPlace={selected} active={worksOpen&&!courseWorkId&&!detailOpen} loaded={loaded} onTheme={value=>changeWorkFilter(value,workQuery)} onQuery={value=>changeWorkFilter(workTheme,value)} onView={setWorkView} onExpanded={setWorkIndexOpen} onLocate={focus} onWork={openCourseWork} onClose={()=>setWorksOpen(false)} onOverview={showOverview}/>}
   {studentShowcase&&courseWork&&rightDetail==='course'&&<StudentWorkExhibition works={courseGroup} placeName={place?.name??courseWork.originalSite} ready={loaded&&!moving} onClose={closeCourseWork} onArchive={place?()=>{setDetailOpen(true);setDetailTab('overview');setRecordId(null);}:undefined}/>}
 
-  {atlasPanel==='layers'&&<LayerPanel courseStats={showcaseStats()} onCourseOpen={openCourseLayer} scope={selected?layerScope:'all'} onScope={changeScope} selectedPlace={place?.name} state={overlayState} onToggle={toggleLayer} onSubtype={toggleSubtype} onDemo={demoVisibility} onGuide={()=>guide(0)} onClear={clearLayers} onObject={id=>openObject(id,true)} onClose={()=>setAtlasPanel(null)}/>}
+  {atlasPanel==='layers'&&<LayerPanel scope={selected?layerScope:'all'} onScope={changeScope} selectedPlace={place?.name} state={overlayState} onToggle={toggleLayer} onSubtype={toggleSubtype} onDemo={demoVisibility} onGuide={()=>guide(0)} onClear={clearLayers} onObject={id=>openObject(id,true)} onClose={()=>setAtlasPanel(null)}/>}
+  {proposalOpen&&!detailOpen&&!atlasPanel&&!drawer&&<ProposalExplorer selectedId={designId} placeId={selected} onSelect={selectDesign} onPlace={focusDesignPlace} onClose={closeDesign} onDetails={openRecord} onCourse={openCourseLayer}/>}
   {atlasPanel==='library'&&<AtlasLibrary onOpen={openRecord} onClose={()=>setAtlasPanel(null)}/>}
-  {currentObject&&rightDetail==='object'&&<FocusLabel key={currentObject.id} object={currentObject} ready={informationReady} onExitStart={()=>engine.current?.stop()} onPlace={()=>{setAtlasPanel(null);setSelected(currentObject.placeId);setRecordId(null);setDetailTab('overview');setDetailOpen(true);}} onClose={()=>closeExplanation()} onFocus={()=>{setAtlasPanel(null);focusInformation(currentObject.id);}} onReturn={()=>{const context=informationContext.current;closeExplanation(true);setRecordId(null);setDetailOpen(false);setProposal(context?.proposal??null);if(context){setSelected(context.selected);setOverview(context.overview);setFreeExplore(context.freeExplore);}informationContext.current=null;engine.current?.returnFromFocus();}} onDetails={()=>{setAtlasPanel(null);setGuidedStep(null);if(currentObject.recordId)openRecord(currentObject.recordId);else{const details=document.getElementById(`source-${currentObject.id}`) as HTMLDetailsElement|null;if(details){details.open=true;details.scrollIntoView({block:'nearest'});}}}} step={guidedStep} steps={guideIds.length} onStep={guide}/>}
+  {!proposalOpen&&currentObject&&rightDetail==='object'&&<FocusLabel key={currentObject.id} object={currentObject} ready={informationReady} onExitStart={()=>engine.current?.stop()} onPlace={()=>{setAtlasPanel(null);setSelected(currentObject.placeId);setRecordId(null);setDetailTab('overview');setDetailOpen(true);}} onClose={()=>closeExplanation()} onFocus={()=>{setAtlasPanel(null);focusInformation(currentObject.id);}} onReturn={()=>{const context=informationContext.current;closeExplanation(true);setRecordId(null);setDetailOpen(false);setProposal(context?.proposal??null);if(context){setSelected(context.selected);setOverview(context.overview);setFreeExplore(context.freeExplore);}informationContext.current=null;engine.current?.returnFromFocus();}} onDetails={()=>{setAtlasPanel(null);setGuidedStep(null);if(currentObject.recordId)openRecord(currentObject.recordId);else{const details=document.getElementById(`source-${currentObject.id}`) as HTMLDetailsElement|null;if(details){details.open=true;details.scrollIntoView({block:'nearest'});}}}} step={guidedStep} steps={guideIds.length} onStep={guide}/>}
   {!atlasPanel&&layers.length>0&&!detailOpen&&<div className={infoStyles.legend} aria-label="当前图层图例">{SUBTYPES.filter(sub=>visibleObjects(overlayState).some(o=>subtypeOf(o)===sub.id)).map(sub=><span key={sub.id} style={{color:`var(--layer-${sub.layer})`}}>{sub.label}<small>{sub.form}</small></span>)}</div>}
-  <div className={styles.metrics} data-testid="atlas-state">{JSON.stringify({place:selected,layers,proposal,record:recordId,objects:visibleObjects(overlayState).map(o=>o.id),detailOpen,objectIds,showDemo,subtypes,sceneFocus,informationReady,moving})}</div>
+  <div className={styles.metrics} data-testid="atlas-state">{JSON.stringify({place:selected,layers,proposal,record:recordId,objects:visibleObjects(overlayState).map(o=>o.id),detailOpen,objectIds,showDemo,subtypes,sceneFocus,informationReady,moving,proposalOpen,designId,studentShowcase})}</div>
   <section className={`${styles.intro} ${started?styles.introHidden:''}`} aria-label="开始探索" aria-hidden={started} inert={started}>
    <p className={styles.eyebrow}>CHANGSHA, CHINA <span>28°11′ N · 112°58′ E</span></p>
    <h1>一条江<br/><span>另一种未来</span></h1>
@@ -125,7 +136,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
   {!loaded&&!error&&<div className={styles.loading} role="status" aria-live="polite"><span>{loadingLabel}</span><div><i style={{width:`${progress}%`}}/></div></div>}
   {error&&<section className={styles.error} role="alert"><h2>暂时无法展开这段湘江</h2><p>{error}</p><button onClick={()=>window.location.reload()}>重新载入 <RotateCcw size={15}/></button><a href="/create-research">进入研究平台 <ArrowUpRight size={15}/></a></section>}
   {place&&rightDetail==='place'&&!moving&&<PlaceDetail key={place.id} place={place} onClose={()=>setDetailOpen(false)} onMap={()=>{setDetailOpen(false);const ids=visibleObjects(overlayState).filter(o=>objectIds.includes(o.id)).map(o=>o.id);if(ids.length)engine.current?.focusObjects(ids);else engine.current?.focus(place.id);}} tab={detailTab} onTab={setDetailTab} recordId={recordId} onRecord={openRecord} proposal={proposal} onProposal={changeProposal}/>}
-  {place&&!currentObject&&!detailOpen&&!atlasPanel&&!drawer&&!moving&&!courseWork&&<PlaceIntroduction place={place} onClose={closePlace} onResearch={()=>{setDetailTab('research');setDetailOpen(true);}} onDetails={()=>{setDetailTab('overview');setDetailOpen(true);}}/>}
+  {place&&!currentObject&&!detailOpen&&!atlasPanel&&!drawer&&!moving&&!courseWork&&!proposalOpen&&<PlaceIntroduction place={place} onClose={closePlace} onResearch={()=>{setDetailTab('research');setDetailOpen(true);}} onDetails={()=>{setDetailTab('overview');setDetailOpen(true);}}/>}
   {drawer&&<aside className={styles.drawer} aria-label={drawer==='places'?'地点列表':drawer==='views'?'镜头预设':'关于此地图'}>
    <button ref={drawerCloseRef} className={styles.close} onClick={()=>setDrawer(null)} aria-label="关闭面板"><X size={20}/></button>
    <p className={styles.eyebrow}>{drawer==='places'?'PLACES ALONG THE RIVER':drawer==='views'?'PERSPECTIVES':'ABOUT THE ATLAS'}</p>
