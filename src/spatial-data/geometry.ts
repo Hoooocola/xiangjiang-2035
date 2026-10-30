@@ -1,0 +1,12 @@
+import type {Bounds,Geometry,Position} from './types';
+export function validBounds(b:unknown):b is Bounds{return Array.isArray(b)&&b.length===4&&b.every(Number.isFinite)&&b[0]>=-180&&b[2]<=180&&b[1]>=-90&&b[3]<=90&&b[0]<b[2]&&b[1]<b[3];}
+export function contains(p:Position,rings:Position[][]):boolean{
+ const ringContains=(r:Position[])=>{let inside=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const a=r[i],b=r[j];if(((a[1]>p[1])!==(b[1]>p[1]))&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])inside=!inside;}return inside;};
+ return ringContains(rings[0])&&!rings.slice(1).some(ringContains);
+}
+export function geometryBounds(g:Geometry):Bounds{const ps=g.type==='Point'?[g.coordinates]:g.type==='Polygon'?g.coordinates.flat():g.coordinates;return [Math.min(...ps.map(p=>p[0])),Math.min(...ps.map(p=>p[1])),Math.max(...ps.map(p=>p[0])),Math.max(...ps.map(p=>p[1]))];}
+export function intersectsBounds(a:Bounds,b:Bounds){return a[0]<=b[2]&&a[2]>=b[0]&&a[1]<=b[3]&&a[3]>=b[1];}
+// Short-range equirectangular projection about the query point; metres, not scene units.
+export function distanceToLine(p:Position,line:Position[]):number{const sx=111320*Math.cos(p[1]*Math.PI/180),sy=111320;let best=Infinity;for(let i=1;i<line.length;i++){const a=[(line[i-1][0]-p[0])*sx,(line[i-1][1]-p[1])*sy],b=[(line[i][0]-p[0])*sx,(line[i][1]-p[1])*sy],v=[b[0]-a[0],b[1]-a[1]],l=v[0]**2+v[1]**2,t=l?Math.max(0,Math.min(1,-(a[0]*v[0]+a[1]*v[1])/l)):0;best=Math.min(best,Math.hypot(a[0]+t*v[0],a[1]+t*v[1]));}return best;}
+export function pointBuffer(p:Position,metres:number):Geometry{if(!Number.isFinite(metres)||metres<=0||metres>5000||Math.abs(p[1])>85)throw new Error('Buffer requires 0–5000 metres and non-polar coordinates');const ring:Position[]=Array.from({length:65},(_,i)=>{const a=i/64*Math.PI*2;return [p[0]+Math.cos(a)*metres/(111320*Math.cos(p[1]*Math.PI/180)),p[1]+Math.sin(a)*metres/111320];});ring[64]=ring[0];return {type:'Polygon',coordinates:[ring]};}
+export function cropRaster(r:import('./types').Raster,b:Bounds){const [w,s,e,n]=r.bounds,dx=(e-w)/r.width,dy=(n-s)/r.height,x0=Math.max(0,Math.floor((b[0]-w)/dx)),x1=Math.min(r.width,Math.ceil((b[2]-w)/dx)),y0=Math.max(0,Math.floor((n-b[3])/dy)),y1=Math.min(r.height,Math.ceil((n-b[1])/dy));if(x1<=x0||y1<=y0)return null;const values:number[]=[];for(let y=y0;y<y1;y++)values.push(...r.values.slice(y*r.width+x0,y*r.width+x1));return {width:x1-x0,height:y1-y0,bounds:[w+x0*dx,n-y1*dy,w+x1*dx,n-y0*dy] as Bounds,nodata:r.nodata,values};}

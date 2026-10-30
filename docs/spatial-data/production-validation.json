@@ -1,0 +1,45 @@
+[
+  {
+    "url": "/experience",
+    "status": 200,
+    "bytes": 53677,
+    "ms": 83
+  },
+  {
+    "url": "/api/spatial-data",
+    "status": 200,
+    "bytes": 6527,
+    "ms": 11
+  },
+  {
+    "url": "/api/spatial-data?action=study-area",
+    "status": 200,
+    "bytes": 6551,
+    "ms": 3
+  },
+  {
+    "url": "/api/spatial-data?action=layer&layerId=ecology.worldcover.2021&bbox=112.93,28.12,112.94,28.13",
+    "status": 200,
+    "bytes": 45720,
+    "ms": 46
+  },
+  {
+    "url": "/api/spatial-data?action=region&bbox=112.92,28.11,112.95,28.15&layers=ecology.gbif.snapshot,geography.roads.existing",
+    "status": 200,
+    "bytes": 336913,
+    "ms": 122
+  },
+  {
+    "url": "/api/spatial-data?action=layer&layerId=ecology.water.2025-11",
+    "status": 200,
+    "bytes": 9643,
+    "ms": 2
+  },
+  {
+    "url": "/api/spatial-data?action=analysis&studyAreaId=yanghu&bufferMeters=100",
+    "status": 200,
+    "bytes": 15381,
+    "ms": 366,
+    "matchesOfflineSnapshot": true
+  }
+]
