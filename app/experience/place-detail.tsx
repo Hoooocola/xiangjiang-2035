@@ -42,5 +42,12 @@ export function PlaceDetail({place,onClose,onMap,tab,onTab,recordId,onRecord,pro
 }
 export function AtlasLibrary({onOpen,onClose}:{onOpen:(id:string)=>void;onClose:()=>void}){
  const [kind,setKind]=useState('research');
- return <aside className={`${styles.panel} ${styles.leftPanel}`} aria-label="资料索引"><header><div><small>KNOWLEDGE / 可直接进入</small><h2>资料索引</h2></div><button onClick={onClose} aria-label="关闭资料索引"><X size={20}/></button></header><div className={styles.tabs}>{[['research','研究'],['questions','问题'],['design','方案']].map(([id,label])=><button key={id} aria-pressed={kind===id} onClick={()=>setKind(id)}>{label}</button>)}</div><div className={styles.body}><p className={styles.hint}>资料包括公开来源、旧原型恢复条目与模拟研究示例。选择资料阅读内容；需要移动镜头时点击“定位关联空间”。示例几何需在图层中主动开启。</p>{RECORDS.filter(r=>kind==='research'?r.kind==='ResearchProject':kind==='questions'?['Issue','Conflict','ResearchGap'].includes(r.kind):['Proposal','DesignOpportunity'].includes(r.kind)).map(r=><RecordCard key={r.id} record={r} onOpen={onOpen}/>)}</div></aside>;
+ const items=RECORDS.filter(r=>kind==='research'?r.kind==='ResearchProject':kind==='questions'?['Issue','Conflict','ResearchGap'].includes(r.kind):['Proposal','DesignOpportunity'].includes(r.kind));
+ return <aside className={styles.library} aria-label="资料索引" data-information-panel>
+  <header><div><small>THE RESEARCH INDEX</small><h2>沿江的研究与线索</h2></div><button onClick={onClose} aria-label="关闭资料索引"><X size={19}/></button></header>
+  <nav className={styles.indexTabs} aria-label="资料分类">{[['research','研究'],['questions','问题'],['design','方案']].map(([id,label])=><button key={id} aria-pressed={kind===id} onClick={()=>setKind(id)}>{label}</button>)}</nav>
+  <p className={styles.indexHint}>从标题进入阅读，沿关联回到空间。</p>
+  <ol className={styles.indexList}>{items.map((r,i)=><li key={r.id}><span className={styles.indexNumber}>{String(i+1).padStart(2,'0')}</span><div><small>{r.dataStatus==='demo'?'DEMO · 模拟研究资料':'公开资料'} · {r.year}</small><button onClick={()=>onOpen(r.id)}>{r.title}<ArrowUpRight size={14}/></button><details><summary>摘要与关联</summary><p>{r.summary}</p><p>{r.placeIds?.length??1} 个关联地点 · {r.sourceIds.length} 项来源</p></details></div></li>)}</ol>
+  {!items.length&&<p className={styles.empty}>此分类尚无资料。</p>}
+ </aside>;
 }

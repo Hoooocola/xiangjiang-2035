@@ -7,6 +7,7 @@ import {MINI_MAP,miniPoint,worldPoint} from '@/src/experience/minimap';
 import {project} from '@/src/experience/geo';
 import type {ExperienceEngine} from '@/src/experience/engine';
 import styles from './experience.module.css';
+import {PlaceIntroduction} from './place-introduction';
 import {PlaceDetail,AtlasLibrary,type DetailTab} from './place-detail';
 import {FocusLabel} from './focus-label';
 import infoStyles from './information.module.css';
@@ -124,13 +125,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
   {!loaded&&!error&&<div className={styles.loading} role="status" aria-live="polite"><span>{loadingLabel}</span><div><i style={{width:`${progress}%`}}/></div></div>}
   {error&&<section className={styles.error} role="alert"><h2>暂时无法展开这段湘江</h2><p>{error}</p><button onClick={()=>window.location.reload()}>重新载入 <RotateCcw size={15}/></button><a href="/create-research">进入研究平台 <ArrowUpRight size={15}/></a></section>}
   {place&&rightDetail==='place'&&!moving&&<PlaceDetail key={place.id} place={place} onClose={()=>setDetailOpen(false)} onMap={()=>{setDetailOpen(false);const ids=visibleObjects(overlayState).filter(o=>objectIds.includes(o.id)).map(o=>o.id);if(ids.length)engine.current?.focusObjects(ids);else engine.current?.focus(place.id);}} tab={detailTab} onTab={setDetailTab} recordId={recordId} onRecord={openRecord} proposal={proposal} onProposal={changeProposal}/>}
-  {place&&!currentObject&&!detailOpen&&!atlasPanel&&!drawer&&!moving&&!courseWork&&<aside className={styles.placePanel} aria-label={`${place.name}地点信息`}>
-   <button ref={closeRef} className={styles.close} onClick={closePlace} aria-label="关闭地点并返回原视角"><X size={20}/></button>
-   <p className={styles.eyebrow}>FIELD NOTES <span>/ {place.index}</span></p><small className={styles.placeEnglish}>{place.en}</small><h2>{place.name}</h2>
-   <p className={styles.category}>{place.category}</p><p className={styles.description}>{place.description}</p>
-   <div className={styles.location}><span>{place.coordinate[1].toFixed(4)}° N</span><span>{place.coordinate[0].toFixed(4)}° E</span></div>
-   <p className={styles.dataNote}>{place.note}</p>{place.id==='ezhou'&&<Link className={styles.siteEntry} href="/experience/sites/ezhou">进入三维研究现场 <ArrowUpRight size={15}/><small>概念场景 · 非真实扫描</small></Link>}<p className={styles.dataNote}>{`关联研究 ${place.relatedResearchIds.length} · 关联方案 ${place.relatedProposalIds.length}（含明确标记的演示资料）`}</p><button className={styles.detailEntry} onClick={()=>{setDetailTab(studentShowcase?'design':'overview');setDetailOpen(true);}}>{studentShowcase?'查看地点作品':'进入地点详情'} <ArrowRight size={14}/></button><button className={styles.textButton} onClick={closePlace}><ChevronLeft size={16}/> 返回原视角</button>
-  </aside>}
+  {place&&!currentObject&&!detailOpen&&!atlasPanel&&!drawer&&!moving&&!courseWork&&<PlaceIntroduction place={place} onClose={closePlace} onResearch={()=>{setDetailTab('research');setDetailOpen(true);}} onDetails={()=>{setDetailTab('overview');setDetailOpen(true);}}/>}
   {drawer&&<aside className={styles.drawer} aria-label={drawer==='places'?'地点列表':drawer==='views'?'镜头预设':'关于此地图'}>
    <button ref={drawerCloseRef} className={styles.close} onClick={()=>setDrawer(null)} aria-label="关闭面板"><X size={20}/></button>
    <p className={styles.eyebrow}>{drawer==='places'?'PLACES ALONG THE RIVER':drawer==='views'?'PERSPECTIVES':'ABOUT THE ATLAS'}</p>
