@@ -5,6 +5,17 @@ export type StudentTheme =
   | '湘江的生态文旅'
   | '产业规划与场景营造';
 
+export type StudentWorkMedia =
+  | {type: 'pdf'; id?: string; url: string; label?: string}
+  | {
+    type: 'video'; id: string; title: string; sourceUrl: string;
+    provider: string; embedUrl?: string; posterUrl?: string;
+    accessStatus: 'verified' | 'unverified' | 'unavailable';
+    embedStatus: 'supported' | 'blocked' | 'unverified';
+    loginRequired: 'yes' | 'no' | 'unknown';
+    checkedAt: string; evidence: string;
+  };
+
 export interface StudentWork {
   id: string;
   sequence: number;
@@ -14,6 +25,11 @@ export interface StudentWork {
   originalSite: string;
   originalSiteType: string;
   placeId: string | null;
+  /** Excel primary location remains placeId; only source-backed additional locations belong here. */
+  placeIds?: readonly string[];
+  /** Named locations confirmed by the teacher but still lacking a verified navigation point. */
+  pendingLocationNames?: readonly string[];
+  media?: readonly StudentWorkMedia[];
   locationNote: string;
   reviewNotes: string[];
   projectUrl: string;

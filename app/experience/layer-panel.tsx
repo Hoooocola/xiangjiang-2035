@@ -29,7 +29,7 @@ export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,select
       <button className={styles.layerSwitch} role="switch" aria-checked={enabled} aria-label={`显示${l.label}`} onClick={()=>{onToggle(l.id);if(!enabled&&!open)toggleExpanded(l.id);}}><span/></button>
      </div>
      {open&&<div id={`category-${l.id}`} className={styles.subtypes}>
-      {l.id==='proposal'&&<section aria-label="学生课程设计方案"><p className={styles.pending}>课程设计作品 · 非实施项目<br/>{courseStats.total} 件作品 · {courseStats.places} 个地图地点 · {courseStats.pending} 件待定位</p><div className={styles.objects}><button onClick={onCourseOpen}><i aria-hidden="true"/><span>浏览课程设计作品</span><ArrowUpRight size={12}/></button></div></section>}
+      {l.id==='proposal'&&<section aria-label="学生课程设计方案"><p className={styles.pending}>课程设计作品 · 非实施项目<br/>{courseStats.total} 件作品 · {courseStats.places} 个地图地点 · {courseStats.pending} 件作品未绑定地点</p><div className={styles.objects}><button onClick={onCourseOpen}><i aria-hidden="true"/><span>浏览课程设计作品</span><ArrowUpRight size={12}/></button></div></section>}
       {SUBTYPES.filter(s=>s.layer===l.id&&all.some(o=>subtypeOf(o)===s.id)).map(sub=>{
        const objects=available.filter(o=>subtypeOf(o)===sub.id),total=all.filter(o=>subtypeOf(o)===sub.id).length;
        const active=enabled&&(state.subtypes?.includes(sub.id)??true);

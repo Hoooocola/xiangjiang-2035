@@ -1,5 +1,7 @@
 > 在线访问：[湘江 2035 公共网站](https://xiangjiang-2035.vercel.app)。课程成果入口：图层 → 设计方案 → 浏览课程设计作品。无需登录即可查看地图与作品。
 
+> 学生课程成果 V4（Issue #3）：开发分支 `codex/student-work-media-v4`，基于 `demo/student-work-showcase` 继续迭代。使用用户修订表，核对 24 件作品、25 份 PDF 与 3 个视频；未确定的作品归入“未绑定地点”。[逐项核对表](docs/student-work-media-audit-v4.md) · [地图检索与定位精度](docs/student-work-locations-v4.md)。通过 PR 审核，不直接合并 main。
+
 > 2026-10-29 协作副本说明：下文保留首次审计记录；最新清理、历史映射与限制以 [安全协作版本](docs/SAFE_COLLABORATION.md) 为准。原始文件未获得新增版权授权，本副本按明确排除原则处理。
 
 # 湘江 2035 · 将来的江来
