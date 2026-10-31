@@ -123,3 +123,5 @@
 .indexBody,.projectList{background:none;border:0;box-shadow:none;backdrop-filter:none}
 .courseOptions::before{inset:0 -65px -50px -50px;background:radial-gradient(ellipse at 40% 38%,rgba(var(--reading-rgb),var(--reading-near)) 15%,rgba(var(--reading-rgb),var(--reading-near)) 50%,rgba(var(--reading-rgb),var(--reading-middle)) 61%,rgba(var(--reading-rgb),0) 78%)}
 @media(max-width:700px){.overview::before,.exhibition::before{inset:-65px -70px -100px;background:linear-gradient(90deg,rgba(var(--reading-rgb),0),rgba(var(--reading-rgb),var(--reading-middle)) 17%,rgba(var(--reading-rgb),var(--reading-near)) 50%,rgba(var(--reading-rgb),var(--reading-middle)) 83%,rgba(var(--reading-rgb),0));mask-image:linear-gradient(180deg,transparent,#000 60px,#000 calc(100% - 100px),transparent)}.courseOptions::before{inset:0 -50px -40px}}
+/* The title dropdown never takes the close button's independent hit target. */
+.overviewHeading{z-index:6}
