@@ -17,7 +17,7 @@ export function WorkCover({work, eager = false}: {work: StudentWork; eager?: boo
     {work.coverImage && work.coverStatus === 'verified' && !failed ?
       // Native loading preserves the source square cover and explicit unavailable state.
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={work.coverImage} alt={`${work.title} · Pinwall 原始项目封面`} loading={eager ? 'eager' : 'lazy'} onError={() => setFailed(true)}/> :
+      <img src={work.coverImage} alt={`${work.title} · Pinwall 原始项目封面`} referrerPolicy="no-referrer" loading={eager ? 'eager' : 'lazy'} onError={() => setFailed(true)}/> :
       <div className={styles.placeholder}><span>PROJECT {String(work.sequence).padStart(2, '0')}</span><strong>{failed ? '封面暂不可用' : work.coverStatus === 'unverified' ? '封面待核实' : '封面待补充'}</strong><small>原作品仍可查看</small></div>}
   </div>;
 }
