@@ -42,9 +42,6 @@ export const INFORMATION_DEMOS:MapObject[]=[
  make('commerce','economy','industry','沿江商业活动节点示例','以一个概念节点演示滨水经营活动如何与地点关联。这里只定义未来需核验的经营类型与空间关系，没有商户名称、营收或客流统计。',point(28.183),28.183),
  make('tourism','economy','tourism','滨水旅游服务分布示例','用概念路径串联拟议服务位置，讨论旅游服务与洲岛步行体验的关系。路径不是实际商户或运营网络，后续需补充经营主体与服务范围。',path(28.183,28.196),28.1895),
  make('operations','economy','operation','公共空间运营指标模板','将运营记录模板关联到一段洲岛空间，演示指标、单位、时间和统计范围的组织方式。客流、收入及用电值均未填写，不把示例当作经营结果。',area(28.189,28.193),28.191),
- make('slow-service','proposal','intervention','滨江慢行服务系统概念','以一条概念服务连接线讨论到达、行走与反馈之间的联系。它表达服务设计意图，尚未核验路线、设施条件或实施许可。',path(28.182,28.199),28.1905),
- make('public-touchpoint','proposal','intervention','滨水公共服务触点设计','以一个拟议触点演示环境说明、活动提示和维护反馈如何进入步行体验。位置为概念示意，没有新增真实设施或建设承诺。',point(28.192),28.192),
- make('culture-guide','proposal','intervention','文化导览与信息服务概念','将未来文化资料入口与一段洲岛步行空间相连，讨论导览内容和路径的配合。当前不提供已完成的导览服务，内容需经研究与授权后补充。',path(28.181,28.188),28.1845),
 ];
 export const INFORMATION_DEMO_RECORDS:AtlasRecord[]=INFORMATION_DEMOS.map(f=>({
  id:f.recordId!,kind:f.layer==='proposal'?'Proposal':f.layer==='society'?'FieldRecord':'ResearchProject',

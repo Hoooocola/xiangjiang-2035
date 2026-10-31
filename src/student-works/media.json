@@ -1,252 +1,1230 @@
 {
-  "pinwall-66171": {
-    "checkedAt": "2026-10-29T16:12:42.911893+00:00",
+  "pinwall-55730": {
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "YSHN7nCYH5WAXMzp7kzM"
-      }
-    ],
-    "videos": [
-      {
-        "id": "sG5TXa7Qx38sTBf8sMtH",
-        "title": "作品视频 1",
-        "sourceUrl": "https://pinwall.cn/project/66171",
+        "id": "XZn22b8HbTrKSYcEAzwE",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/XZn22b8HbTrKSYcEAzwE.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55730",
+        "resourcePath": "/pdf/XZn22b8HbTrKSYcEAzwE.pdf",
         "provider": "Pinwall / OSS",
-        "accessStatus": "verified",
-        "embedStatus": "unverified",
-        "loginRequired": "no",
-        "evidence": "作品实际页面附件链接（非仅播放图标）；GET Range 单字节检查，不下载完整视频。"
-      }
-    ]
-  },
-  "pinwall-66192": {
-    "checkedAt": "2026-10-29T16:12:43.649263+00:00",
-    "pdfs": [
+        "accessStatus": "verified"
+      },
       {
-        "id": "Bn4MER4AQbY5MDtnSQf6"
-      }
-    ],
-    "videos": [
-      {
-        "id": "fxNhstQ7iaymANGZHsay",
-        "title": "作品视频 1",
-        "sourceUrl": "https://pinwall.cn/project/66192",
+        "id": "SFf84QRGDnw2y7iErWtj",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/SFf84QRGDnw2y7iErWtj.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55730",
+        "resourcePath": "/pdf/SFf84QRGDnw2y7iErWtj.pdf",
         "provider": "Pinwall / OSS",
-        "accessStatus": "verified",
-        "embedStatus": "unverified",
-        "loginRequired": "no",
-        "evidence": "作品实际页面附件链接（非仅播放图标）；GET Range 单字节检查，不下载完整视频。"
-      }
-    ]
-  },
-  "pinwall-66181": {
-    "checkedAt": "2026-10-29T16:12:38.671669+00:00",
-    "pdfs": [
-      {
-        "id": "Q5aSEykdWSCFsfwyJsJE"
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
-  "pinwall-66184": {
-    "checkedAt": "2026-10-29T16:12:44.748942+00:00",
+  "pinwall-55734": {
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "6xHZkrPMb3GpcpJ5xb6p"
+        "id": "rScTxWfXbGcMYXWEn6J5",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/rScTxWfXbGcMYXWEn6J5.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55734",
+        "resourcePath": "/pdf/rScTxWfXbGcMYXWEn6J5.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "i7Pi3xNRHDSjxsCmeThd",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/i7Pi3xNRHDSjxsCmeThd.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55734",
+        "resourcePath": "/pdf/i7Pi3xNRHDSjxsCmeThd.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "BMAh37bXGfQiAfiBHE88",
+        "title": "资料 03",
+        "order": 3,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/BMAh37bXGfQiAfiBHE88.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55734",
+        "resourcePath": "/pdf/BMAh37bXGfQiAfiBHE88.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-55735": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "FyaCCPwxfsxnKdyTQAyG",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/FyaCCPwxfsxnKdyTQAyG.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55735",
+        "resourcePath": "/pdf/FyaCCPwxfsxnKdyTQAyG.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "hrMDii7JKm5zm6JPTeds",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/hrMDii7JKm5zm6JPTeds.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55735",
+        "resourcePath": "/pdf/hrMDii7JKm5zm6JPTeds.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-55736": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "SPPrnDThMzh5MSDZaEcw",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/SPPrnDThMzh5MSDZaEcw.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55736",
+        "resourcePath": "/pdf/SPPrnDThMzh5MSDZaEcw.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "y2Fk7rGZzcTd6PECD8QW",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/y2Fk7rGZzcTd6PECD8QW.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55736",
+        "resourcePath": "/pdf/y2Fk7rGZzcTd6PECD8QW.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-55750": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "6PpXXWwXzzsbEciD7esA",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/6PpXXWwXzzsbEciD7esA.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55750",
+        "resourcePath": "/pdf/6PpXXWwXzzsbEciD7esA.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "YBnZWJFzkrhXc5FGeEfQ",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/YBnZWJFzkrhXc5FGeEfQ.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55750",
+        "resourcePath": "/pdf/YBnZWJFzkrhXc5FGeEfQ.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-55758": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "Nzky6hzj2F2pRrWTNmQs",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/Nzky6hzj2F2pRrWTNmQs.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55758",
+        "resourcePath": "/pdf/Nzky6hzj2F2pRrWTNmQs.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "5ykc88Mc3m5CHJYScAeJ",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/5ykc88Mc3m5CHJYScAeJ.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55758",
+        "resourcePath": "/pdf/5ykc88Mc3m5CHJYScAeJ.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-55773": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "dfcCRYTAj5QtJSdb8Knw",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/dfcCRYTAj5QtJSdb8Knw.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55773",
+        "resourcePath": "/pdf/dfcCRYTAj5QtJSdb8Knw.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "PD88k6tdPFNjDr2rs7cx",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/PD88k6tdPFNjDr2rs7cx.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55773",
+        "resourcePath": "/pdf/PD88k6tdPFNjDr2rs7cx.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-55784": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "RKFhCF7iieBk882MnEF8",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/RKFhCF7iieBk882MnEF8.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55784",
+        "resourcePath": "/pdf/RKFhCF7iieBk882MnEF8.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "8aKDsp3wR5iC23jtWn4x",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/8aKDsp3wR5iC23jtWn4x.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55784",
+        "resourcePath": "/pdf/8aKDsp3wR5iC23jtWn4x.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-55785": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "M6AjFfJh2A7nJeCDCayE",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/M6AjFfJh2A7nJeCDCayE.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55785",
+        "resourcePath": "/pdf/M6AjFfJh2A7nJeCDCayE.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "Mbt2WDkEkBHYYBr8dnJK",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/Mbt2WDkEkBHYYBr8dnJK.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55785",
+        "resourcePath": "/pdf/Mbt2WDkEkBHYYBr8dnJK.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-55792": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "nRAAa45xrcH8irDPYa3X",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/nRAAa45xrcH8irDPYa3X.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55792",
+        "resourcePath": "/pdf/nRAAa45xrcH8irDPYa3X.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "xQBD7Mhj8DEDbPxQhRKJ",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/xQBD7Mhj8DEDbPxQhRKJ.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/55792",
+        "resourcePath": "/pdf/xQBD7Mhj8DEDbPxQhRKJ.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-60496": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "RdtJfCjWi8BDmetEraJ6",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/RdtJfCjWi8BDmetEraJ6.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/60496",
+        "resourcePath": "/pdf/RdtJfCjWi8BDmetEraJ6.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      },
+      {
+        "id": "Xy5emn3QAjKSQjPcsr86",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/Xy5emn3QAjKSQjPcsr86.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/60496",
+        "resourcePath": "/pdf/Xy5emn3QAjKSQjPcsr86.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-60519": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "md4esdZnrp7bA6GDpxrb",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/md4esdZnrp7bA6GDpxrb.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/60519",
+        "resourcePath": "/pdf/md4esdZnrp7bA6GDpxrb.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-62142": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "y6thZWhyr4Wh2yPyjWjZ",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/y6thZWhyr4Wh2yPyjWjZ.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62142",
+        "resourcePath": "/pdf/y6thZWhyr4Wh2yPyjWjZ.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": [
       {
-        "id": "nkMZFNTzC26pmxwFAKQm",
-        "title": "作品视频 1",
-        "sourceUrl": "https://pinwall.cn/project/66184",
+        "id": "kaz7chwWd7pJcSQWPPHd",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/kaz7chwWd7pJcSQWPPHd.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62142",
+        "resourcePath": "/video/kaz7chwWd7pJcSQWPPHd.mp4",
         "provider": "Pinwall / OSS",
         "accessStatus": "verified",
         "embedStatus": "unverified",
         "loginRequired": "no",
-        "evidence": "作品实际页面附件链接（非仅播放图标）；GET Range 单字节检查，不下载完整视频。"
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62168": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "SCfPHwmrhsE8PwKstwZ5",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/SCfPHwmrhsE8PwKstwZ5.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62168",
+        "resourcePath": "/pdf/SCfPHwmrhsE8PwKstwZ5.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "r25SkKZhrRDtk5RAGzEy",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/r25SkKZhrRDtk5RAGzEy.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62168",
+        "resourcePath": "/video/r25SkKZhrRDtk5RAGzEy.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62175": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "xHFh2bpYEYGfEf7NPsti",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/xHFh2bpYEYGfEf7NPsti.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62175",
+        "resourcePath": "/pdf/xHFh2bpYEYGfEf7NPsti.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "GaQTiXXPrBrnzJCa3kcj",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/GaQTiXXPrBrnzJCa3kcj.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62175",
+        "resourcePath": "/video/GaQTiXXPrBrnzJCa3kcj.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62177": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "ZDScBPaYYSHQArnRfeH6",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/ZDScBPaYYSHQArnRfeH6.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62177",
+        "resourcePath": "/pdf/ZDScBPaYYSHQArnRfeH6.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "tPGKmeFK4NQnxdJsGTWa",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/tPGKmeFK4NQnxdJsGTWa.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62177",
+        "resourcePath": "/video/tPGKmeFK4NQnxdJsGTWa.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62179": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "5EcRjHT234zNPJtAJeyH",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/5EcRjHT234zNPJtAJeyH.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62179",
+        "resourcePath": "/pdf/5EcRjHT234zNPJtAJeyH.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "cmBeW46yMPBCibmicNKn",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/cmBeW46yMPBCibmicNKn.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62179",
+        "resourcePath": "/video/cmBeW46yMPBCibmicNKn.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62181": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "ZXGSDpSKsNf5sfSAeDSk",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/ZXGSDpSKsNf5sfSAeDSk.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62181",
+        "resourcePath": "/pdf/ZXGSDpSKsNf5sfSAeDSk.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "rrtJa3JXWKE6rpsHrCb8",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/rrtJa3JXWKE6rpsHrCb8.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62181",
+        "resourcePath": "/video/rrtJa3JXWKE6rpsHrCb8.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62185": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "wzTJDnimhc5kfZEGkQXm",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/wzTJDnimhc5kfZEGkQXm.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62185",
+        "resourcePath": "/pdf/wzTJDnimhc5kfZEGkQXm.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "zrawa8sdhrr6ACAdENAH",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/zrawa8sdhrr6ACAdENAH.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62185",
+        "resourcePath": "/video/zrawa8sdhrr6ACAdENAH.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62187": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "kzrMnsMWbiYGF874einp",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/kzrMnsMWbiYGF874einp.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62187",
+        "resourcePath": "/pdf/kzrMnsMWbiYGF874einp.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "SWFEBtDFzjRAYPPbi5tC",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/SWFEBtDFzjRAYPPbi5tC.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62187",
+        "resourcePath": "/video/SWFEBtDFzjRAYPPbi5tC.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62188": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "CeWMp3pT2j6JQEeZMsD4",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/CeWMp3pT2j6JQEeZMsD4.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62188",
+        "resourcePath": "/pdf/CeWMp3pT2j6JQEeZMsD4.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "YfTbckh3yHp5ixR2jaAM",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/YfTbckh3yHp5ixR2jaAM.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62188",
+        "resourcePath": "/video/YfTbckh3yHp5ixR2jaAM.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62189": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "JDMWpXxCFBhmt7KRasWW",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/JDMWpXxCFBhmt7KRasWW.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62189",
+        "resourcePath": "/pdf/JDMWpXxCFBhmt7KRasWW.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "fzK2HEKsZnhWbbkcYiys",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/fzK2HEKsZnhWbbkcYiys.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62189",
+        "resourcePath": "/video/fzK2HEKsZnhWbbkcYiys.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62191": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "nwzZMXrxey6yFcj62bHn",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/nwzZMXrxey6yFcj62bHn.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62191",
+        "resourcePath": "/pdf/nwzZMXrxey6yFcj62bHn.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "EstDpXcXkPzPeZNt6JBR",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/EstDpXcXkPzPeZNt6JBR.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62191",
+        "resourcePath": "/video/EstDpXcXkPzPeZNt6JBR.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62192": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "cRfr3syf5QEaxxM8RmBy",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/cRfr3syf5QEaxxM8RmBy.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62192",
+        "resourcePath": "/pdf/cRfr3syf5QEaxxM8RmBy.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "inPcPNY6xRx2MRAmQ4eG",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/inPcPNY6xRx2MRAmQ4eG.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62192",
+        "resourcePath": "/video/inPcPNY6xRx2MRAmQ4eG.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-62197": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "ZdP58HdxZRt53cGbwajw",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/ZdP58HdxZRt53cGbwajw.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/62197",
+        "resourcePath": "/pdf/ZdP58HdxZRt53cGbwajw.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "3m2DFcKQY7H8DyAdfKWw",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/3m2DFcKQY7H8DyAdfKWw.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/62197",
+        "resourcePath": "/video/3m2DFcKQY7H8DyAdfKWw.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
       }
     ]
   },
   "pinwall-66166": {
-    "checkedAt": "2026-10-29T16:12:41.711820+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "RtaDmQG54PkT5mQrWHQE"
+        "id": "RtaDmQG54PkT5mQrWHQE",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/RtaDmQG54PkT5mQrWHQE.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66166",
+        "resourcePath": "/pdf/RtaDmQG54PkT5mQrWHQE.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
-    "videos": []
-  },
-  "pinwall-66178": {
-    "checkedAt": "2026-10-29T16:12:44.360624+00:00",
-    "pdfs": [
+    "videos": [],
+    "otherResources": [
       {
-        "id": "djYaHcnzy82BT6PPWWis"
+        "id": "source-interactive",
+        "title": "交互展示网页",
+        "kind": "interactive",
+        "order": 2,
+        "sourceUrl": "https://h5.pinwall.cn/66166/603158/xiangjiang-h5/index.html",
+        "openUrl": "https://h5.pinwall.cn/66166/603158/xiangjiang-h5/index.html",
+        "accessStatus": "verified",
+        "evidence": "压缩包通过原作品页面按需获取；交互网页在新标签打开，不嵌入或预加载。"
       }
-    ],
-    "videos": []
+    ]
   },
-  "pinwall-66196": {
-    "checkedAt": "2026-10-29T16:12:46.580893+00:00",
+  "pinwall-66168": {
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "5RdfBz3jfiHkRYjGKCzj"
+        "id": "87KXPWwfD3NhjY6Wn3yN",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/87KXPWwfD3NhjY6Wn3yN.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66168",
+        "resourcePath": "/pdf/87KXPWwfD3NhjY6Wn3yN.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66170": {
-    "checkedAt": "2026-10-29T16:12:48.448362+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "ETHRQNx6M4fb8zPrfxem"
+        "id": "ETHRQNx6M4fb8zPrfxem",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/ETHRQNx6M4fb8zPrfxem.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66170",
+        "resourcePath": "/pdf/ETHRQNx6M4fb8zPrfxem.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
-  "pinwall-66168": {
-    "checkedAt": "2026-10-29T16:12:47.328448+00:00",
+  "pinwall-66171": {
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "87KXPWwfD3NhjY6Wn3yN"
+        "id": "YSHN7nCYH5WAXMzp7kzM",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/YSHN7nCYH5WAXMzp7kzM.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66171",
+        "resourcePath": "/pdf/YSHN7nCYH5WAXMzp7kzM.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
-    "videos": []
+    "videos": [
+      {
+        "id": "sG5TXa7Qx38sTBf8sMtH",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/sG5TXa7Qx38sTBf8sMtH.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/66171",
+        "resourcePath": "/video/sG5TXa7Qx38sTBf8sMtH.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
   },
   "pinwall-66172": {
-    "checkedAt": "2026-10-29T16:12:47.317971+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "JM5z43G7kXyCcdQw5c5c"
+        "id": "JM5z43G7kXyCcdQw5c5c",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/JM5z43G7kXyCcdQw5c5c.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66172",
+        "resourcePath": "/pdf/JM5z43G7kXyCcdQw5c5c.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66173": {
-    "checkedAt": "2026-10-29T16:12:49.431492+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "8Dt3A4DF36EBnJbaREKe"
+        "id": "8Dt3A4DF36EBnJbaREKe",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/8Dt3A4DF36EBnJbaREKe.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66173",
+        "resourcePath": "/pdf/8Dt3A4DF36EBnJbaREKe.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66174": {
-    "checkedAt": "2026-10-29T16:12:50.014144+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "6T56eac7zJfCYT4p782N"
+        "id": "6T56eac7zJfCYT4p782N",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/6T56eac7zJfCYT4p782N.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66174",
+        "resourcePath": "/pdf/6T56eac7zJfCYT4p782N.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66175": {
-    "checkedAt": "2026-10-29T16:12:50.154548+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "xCJBmWwCJj4G7hf3jWGA"
+        "id": "xCJBmWwCJj4G7hf3jWGA",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/xCJBmWwCJj4G7hf3jWGA.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66175",
+        "resourcePath": "/pdf/xCJBmWwCJj4G7hf3jWGA.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66176": {
-    "checkedAt": "2026-10-29T16:12:51.331455+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "t65Dth27MTjyyDsr6Hay"
+        "id": "t65Dth27MTjyyDsr6Hay",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/t65Dth27MTjyyDsr6Hay.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66176",
+        "resourcePath": "/pdf/t65Dth27MTjyyDsr6Hay.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-66178": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "djYaHcnzy82BT6PPWWis",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/djYaHcnzy82BT6PPWWis.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66178",
+        "resourcePath": "/pdf/djYaHcnzy82BT6PPWWis.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66179": {
-    "checkedAt": "2026-10-29T16:12:52.281642+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "Mp3Hsy5REXcHxaPYPieh"
+        "id": "Mp3Hsy5REXcHxaPYPieh",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/Mp3Hsy5REXcHxaPYPieh.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66179",
+        "resourcePath": "/pdf/Mp3Hsy5REXcHxaPYPieh.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66180": {
-    "checkedAt": "2026-10-29T16:12:52.675415+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "B8E7KwAGGzHzm6HCFR8S"
+        "id": "B8E7KwAGGzHzm6HCFR8S",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/B8E7KwAGGzHzm6HCFR8S.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66180",
+        "resourcePath": "/pdf/B8E7KwAGGzHzm6HCFR8S.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-66181": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "Q5aSEykdWSCFsfwyJsJE",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/Q5aSEykdWSCFsfwyJsJE.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66181",
+        "resourcePath": "/pdf/Q5aSEykdWSCFsfwyJsJE.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66183": {
-    "checkedAt": "2026-10-29T16:12:54.948830+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "ErA8PdcnJteFQPejz2En"
+        "id": "ErA8PdcnJteFQPejz2En",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/ErA8PdcnJteFQPejz2En.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66183",
+        "resourcePath": "/pdf/ErA8PdcnJteFQPejz2En.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
-  "pinwall-66185": {
-    "checkedAt": "2026-10-29T16:12:54.102596+00:00",
+  "pinwall-66184": {
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "F8y5KRkREp5JjAWa3Tks"
+        "id": "6xHZkrPMb3GpcpJ5xb6p",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/6xHZkrPMb3GpcpJ5xb6p.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66184",
+        "resourcePath": "/pdf/6xHZkrPMb3GpcpJ5xb6p.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "nkMZFNTzC26pmxwFAKQm",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/nkMZFNTzC26pmxwFAKQm.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/66184",
+        "resourcePath": "/video/nkMZFNTzC26pmxwFAKQm.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-66185": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "F8y5KRkREp5JjAWa3Tks",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/F8y5KRkREp5JjAWa3Tks.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66185",
+        "resourcePath": "/pdf/F8y5KRkREp5JjAWa3Tks.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66187": {
-    "checkedAt": "2026-10-29T16:12:58.540078+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "cPFK5nsBYbTy77QJGNmf"
+        "id": "cPFK5nsBYbTy77QJGNmf",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/cPFK5nsBYbTy77QJGNmf.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66187",
+        "resourcePath": "/pdf/cPFK5nsBYbTy77QJGNmf.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       },
       {
-        "id": "aNC6rbPNpr2QjBMhWBQF"
+        "id": "aNC6rbPNpr2QjBMhWBQF",
+        "title": "资料 02",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/aNC6rbPNpr2QjBMhWBQF.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66187",
+        "resourcePath": "/pdf/aNC6rbPNpr2QjBMhWBQF.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
-    "videos": []
+    "videos": [],
+    "otherResources": [
+      {
+        "id": "source-archive",
+        "title": "原站压缩包",
+        "kind": "archive",
+        "order": 3,
+        "sourceUrl": "https://oss.pinwall.cn/rar_zip/S2cs75iHrbdaMK7BMWHx.zip",
+        "openUrl": "https://pinwall.cn/project/66187",
+        "accessStatus": "unavailable",
+        "evidence": "源站压缩包本次访问返回403，未绕过访问控制；通过原作品页查看作者当前公开方式。"
+      }
+    ]
   },
   "pinwall-66188": {
-    "checkedAt": "2026-10-29T16:12:55.399563+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "fw8QkTMktKTXRC6zTAxY"
+        "id": "fw8QkTMktKTXRC6zTAxY",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/fw8QkTMktKTXRC6zTAxY.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66188",
+        "resourcePath": "/pdf/fw8QkTMktKTXRC6zTAxY.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66189": {
-    "checkedAt": "2026-10-29T16:12:56.812968+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "CtxZHw2kJGJ3jxXTtSNt"
-      }
-    ],
-    "videos": []
-  },
-  "pinwall-66191": {
-    "checkedAt": "2026-10-29T16:12:58.590274+00:00",
-    "pdfs": [
-      {
-        "id": "Y8GAp5QTRrYWztksJJre"
-      }
-    ],
-    "videos": []
-  },
-  "pinwall-66193": {
-    "checkedAt": "2026-10-29T16:12:58.138153+00:00",
-    "pdfs": [
-      {
-        "id": "bFrwFzEJWbYwiACpCs3K"
+        "id": "CtxZHw2kJGJ3jxXTtSNt",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/CtxZHw2kJGJ3jxXTtSNt.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66189",
+        "resourcePath": "/pdf/CtxZHw2kJGJ3jxXTtSNt.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []
   },
   "pinwall-66190": {
-    "checkedAt": "2026-10-29T16:13:01.796959+00:00",
+    "checkedAt": "2026-10-31T08:07:52Z",
     "pdfs": [
       {
-        "id": "csZzG22RP2wasbnQXSDx"
+        "id": "iney3TXSJFSfSCPnnWAH",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/iney3TXSJFSfSCPnnWAH.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66190",
+        "resourcePath": "/pdf/iney3TXSJFSfSCPnnWAH.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "5ppts4CQSBRkQZ7WmCHC",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/5ppts4CQSBRkQZ7WmCHC.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/66190",
+        "resourcePath": "/video/5ppts4CQSBRkQZ7WmCHC.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ],
+    "retired": [
+      {
+        "id": "csZzG22RP2wasbnQXSDx",
+        "type": "pdf",
+        "title": "旧版附件（源页已变更）",
+        "accessStatus": "unverified",
+        "sourcePageUrl": "https://pinwall.cn/project/66190",
+        "reason": "此前登记ID已不在当前作品详情页；旧链接回退原作品页，不冒充当前附件。"
+      }
+    ]
+  },
+  "pinwall-66191": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "Y8GAp5QTRrYWztksJJre",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/Y8GAp5QTRrYWztksJJre.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66191",
+        "resourcePath": "/pdf/Y8GAp5QTRrYWztksJJre.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-66192": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "Bn4MER4AQbY5MDtnSQf6",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/Bn4MER4AQbY5MDtnSQf6.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66192",
+        "resourcePath": "/pdf/Bn4MER4AQbY5MDtnSQf6.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [
+      {
+        "id": "fxNhstQ7iaymANGZHsay",
+        "title": "作品视频 01",
+        "order": 2,
+        "sourceUrl": "https://oss.pinwall.cn/video/fxNhstQ7iaymANGZHsay.mp4",
+        "sourcePageUrl": "https://pinwall.cn/project/66192",
+        "resourcePath": "/video/fxNhstQ7iaymANGZHsay.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "公开作品详情页的真实视频附件；GET Range单字节核验，不下载或重托管视频。"
+      }
+    ]
+  },
+  "pinwall-66193": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "bFrwFzEJWbYwiACpCs3K",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/bFrwFzEJWbYwiACpCs3K.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66193",
+        "resourcePath": "/pdf/bFrwFzEJWbYwiACpCs3K.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": [],
+    "otherResources": [
+      {
+        "id": "source-interactive",
+        "title": "交互展示网页",
+        "kind": "interactive",
+        "order": 2,
+        "sourceUrl": "https://h5.pinwall.cn/66193/603206/index.html",
+        "openUrl": "https://h5.pinwall.cn/66193/603206/index.html",
+        "accessStatus": "verified",
+        "evidence": "压缩包通过原作品页面按需获取；交互网页在新标签打开，不嵌入或预加载。"
+      }
+    ]
+  },
+  "pinwall-66196": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "5RdfBz3jfiHkRYjGKCzj",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/5RdfBz3jfiHkRYjGKCzj.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66196",
+        "resourcePath": "/pdf/5RdfBz3jfiHkRYjGKCzj.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-66198": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "QzEbefsfeaxWaaRNPC8n",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/QzEbefsfeaxWaaRNPC8n.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66198",
+        "resourcePath": "/pdf/QzEbefsfeaxWaaRNPC8n.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "unavailable"
+      }
+    ],
+    "videos": []
+  },
+  "pinwall-66200": {
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "pdfs": [
+      {
+        "id": "6Mc8jfFCE8s2c38hn8zh",
+        "title": "资料 01",
+        "order": 1,
+        "sourceUrl": "https://oss.pinwall.cn/pdf/6Mc8jfFCE8s2c38hn8zh.pdf",
+        "sourcePageUrl": "https://pinwall.cn/project/66200",
+        "resourcePath": "/pdf/6Mc8jfFCE8s2c38hn8zh.pdf",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified"
       }
     ],
     "videos": []

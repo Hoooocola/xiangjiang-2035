@@ -23,11 +23,11 @@ describe('place work list', () => {
   it('shows Orange Isle works including source-backed multi-location projects in one list', () => {
     const works = worksForPlace('juzizhou');
     const html = renderToStaticMarkup(createElement(StudentWorkExhibition, {works, placeName:'橘子洲', ready:true, onClose:()=>{}}));
-    expect(works).toHaveLength(3);
+    expect(works).toHaveLength(6);
     expect(html).toContain('橘子洲全部作品列表');
     expect(html).toContain('江岸接力——橘洲文脉共编系统');
     expect(html).toContain('栖亭·共栖之江');
     expect(html).toContain('湘江多元水岸交通系统设计');
-    expect(html).toContain('03');
+    expect(html).toContain('06');
   });
 });

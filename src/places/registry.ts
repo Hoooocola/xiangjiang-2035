@@ -3,7 +3,6 @@ import {EZHOU_COORDINATE} from '../atlas/places';
 import type {Coordinate} from '../experience/geo';
 import {XIANGJIANG_SITES,SITE_CATEGORIES} from './index';
 import type {SiteCategory} from './types';
-import legacy from './legacy-proposals.json';
 interface OriginalPlace {id:string;name:string;en:string;coordinate:Coordinate;index:string;category:string;description:string;note:string;distance:number;overview?:boolean}
 const ORIGINAL_PLACES: OriginalPlace[] = [
  {id:'juzizhou',name:'橘子洲',en:'ORANGE ISLE',coordinate:[112.9559,28.1857],index:'01',category:'洲岛 / 公共空间',description:'江水在这里分为两道。沿着洲岛展开的步行空间，将城市日常、江岸生态与长沙的文化记忆联系在一起。',note:'真实河岸轮廓 · 场域导览，非研究结论',distance:44},
@@ -22,15 +21,15 @@ export interface Place extends OriginalPlace {siteCategory:SiteCategory;relatedR
 const aliases:Record<string,string>={'橘子洲':'juzizhou','岳麓山':'yuelu','鹅洲':'ezhou','铜官窑':'tongguan','昭山风景区':'zhaoshan','月亮岛':'moon-island','洋湖湿地':'yanghu','巴溪洲':'baxi','兴马洲':'xingma'};
 const all:Place[]=ORIGINAL_PLACES.map(p=>{
  const site=XIANGJIANG_SITES.find(s=>aliases[s.name]===p.id);
- return {...p,siteCategory:site?.category??'waterfront',relatedResearchIds:p.id==='ezhou'?['research-2018','research-2024','research-2026-demo']:[],relatedProposalIds:[...legacy.filter(l=>l.placeIds.includes(p.id)).map(l=>l.id),...(p.id==='ezhou'?['proposal-care']:[])],source:site?.source??['Legacy navigation / OSM context'],verificationStatus:site?.spatialExtentStatus??'approximate'};
+ return {...p,siteCategory:site?.category??'waterfront',relatedResearchIds:p.id==='ezhou'?['research-2018','research-2024','research-2026-demo']:[],relatedProposalIds:[],source:site?.source??['Legacy navigation / OSM context'],verificationStatus:site?.spatialExtentStatus??'approximate'};
 });
 for(const site of XIANGJIANG_SITES){
  if(!site.approximateLocation||aliases[site.name])continue;
  all.push({id:site.id,name:site.name,en:SITE_CATEGORIES[site.category].slice(3),coordinate:site.approximateLocation,index:String(all.length+1).padStart(2,'0'),category:SITE_CATEGORIES[site.category],siteCategory:site.category,description:`${site.name} · ${SITE_CATEGORIES[site.category].slice(3)}。地点来自场域参考与开放地理数据，研究成果需独立核验。`,note:site.notes,distance:site.category==='ecology'?72:48,overview:true,relatedResearchIds:[],relatedProposalIds:[],source:site.source,verificationStatus:site.spatialExtentStatus});
 }
-const orange=all.find(p=>p.id==='juzizhou')!;orange.relatedResearchIds.push('demo-ecology','demo-culture');orange.relatedProposalIds.push('demo-proposal');
+const orange=all.find(p=>p.id==='juzizhou')!;orange.relatedResearchIds.push('demo-ecology','demo-culture');
 all.find(p=>p.id==='yanghu')!.relatedResearchIds.push('demo-yanghu');
 /** One authoritative entry per actual place; content never creates extra place markers. */
 export const MAP_PLACES=all;
-export const PENDING_PLACES=[{id:'jiefangyuan',name:'解放垸',coordinates:null,category:'community' as const,description:'旧原型方案关联地点，坐标未核验。',relatedResearchIds:[],relatedProposalIds:['legacy-p8'],source:['prototype-html/js/data.js @ 3bf2d3e'],verificationStatus:'unverified'}];
+export const PENDING_PLACES=[{id:'jiefangyuan',name:'解放垸',coordinates:null,category:'community' as const,description:'历史文字索引地点，坐标未核验。',relatedResearchIds:[],relatedProposalIds:[],source:['prototype-html/js/data.js @ 3bf2d3e'],verificationStatus:'unverified'}];
 export const PLACE_REGISTRY=[...all.map(p=>({...p,coordinates:p.coordinate})),...PENDING_PLACES];

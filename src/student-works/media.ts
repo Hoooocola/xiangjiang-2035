@@ -11,7 +11,8 @@ export function videosForWork(work: StudentWork): WorkVideo[] {
   });
 }
 
-/** Default to the original page: public source navigation survives server-side resolver timeouts. */
+/** A distinct on-demand route per attachment; signatures are never stored in the catalog. */
 export function videoOpenUrl(work: StudentWork, video: WorkVideo): string {
-  return videosForWork(work).some(item=>item.id===video.id) ? video.sourceUrl : work.pinwallUrl;
+  return videosForWork(work).some(item=>item.id===video.id) && video.accessStatus !== 'unavailable'
+    ? `/student-works/${work.id}/video/${encodeURIComponent(video.id)}` : work.pinwallUrl;
 }

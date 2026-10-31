@@ -77,3 +77,7 @@ LayerId仍含proposal，以保持资料、情景和数据库关联兼容；现�
 ## V2.5 Course / StudentWork
 
 Course身份、年份、简介、主题、studentWorkIds及sourceUrl定义在src/student-works/courses.ts；目前只存在2026社会创新设计。它引用既有StudentWork稳定ID，不创建新的作品副本，也不转换成正式Proposal。检索复用visibleStudentWorks，统计复用statsForWorks，地点复用workPlaceIds。多地点去重、未定位资料保留；原Proposal与数据库契约不变。
+
+## V2.6 历年课程与多附件
+
+StudentWork目录合并原24件及archive-works.json的27件，归属2024/2025/2026 Course，支持显式all-courses汇总。每条媒体包含稳定id、type、title、order、sourcePageUrl/sourceUrl/resourcePath及accessStatus；签名由按需路由解析，不存Git。退役附件只保留迁移来源，不虚增当前附件数。原24件地点与作者不覆盖。旧14条DEMO Proposal经负责人授权删除，Proposal类型和持久化契约仍保留。见docs/v2.6。

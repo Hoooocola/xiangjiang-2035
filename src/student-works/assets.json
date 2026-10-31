@@ -730,5 +730,437 @@
         360
       ]
     }
+  },
+  "pinwall-55730": {
+    "coverImage": "https://oss.pinwall.cn/images/mrGBQNXwzJCd48WJ2SSf.png",
+    "coverSource": "https://oss.pinwall.cn/images/mrGBQNXwzJCd48WJ2SSf.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/55730",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "55730",
+      "folderUrl": "https://pinwall.cn/workFolder/1445",
+      "pinwallTitle": "湘江2035 | 橘子洲大桥桥下空间改造——江上商业与文化廊道",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-55734": {
+    "coverImage": "https://oss.pinwall.cn/images/J5PjzKEAkFwHEcwSJKPM.png",
+    "coverSource": "https://oss.pinwall.cn/images/J5PjzKEAkFwHEcwSJKPM.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/55734",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "55734",
+      "folderUrl": "https://pinwall.cn/workFolder/1445",
+      "pinwallTitle": "轻舟渡朱张，AR映湖湘-湘江",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-55735": {
+    "coverImage": "https://oss.pinwall.cn/images/FJsD3WTjRGN8sAma2GPr.png",
+    "coverSource": "https://oss.pinwall.cn/images/FJsD3WTjRGN8sAma2GPr.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/55735",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "55735",
+      "folderUrl": "https://pinwall.cn/workFolder/1445",
+      "pinwallTitle": "蓝钓计划-湘江",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-55736": {
+    "coverImage": "https://oss.pinwall.cn/images/fbnp3deTkANNNT6zbKTy.png",
+    "coverSource": "https://oss.pinwall.cn/images/fbnp3deTkANNNT6zbKTy.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/55736",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "55736",
+      "folderUrl": "https://pinwall.cn/workFolder/1445",
+      "pinwallTitle": "湘江-鳍迹-2035",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-55750": {
+    "coverImage": "https://oss.pinwall.cn/images/XeZtP3saCXBTGpS8cEdY.png",
+    "coverSource": "https://oss.pinwall.cn/images/XeZtP3saCXBTGpS8cEdY.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/55750",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "55750",
+      "folderUrl": "https://pinwall.cn/workFolder/1445",
+      "pinwallTitle": "生态保护背景下的设计驱动乡村振兴实践—兴马洲生态旅游创新探索",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-55758": {
+    "coverImage": "https://oss.pinwall.cn/images/rtAe2WGkHZyckyJ4RxcT.png",
+    "coverSource": "https://oss.pinwall.cn/images/rtAe2WGkHZyckyJ4RxcT.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/55758",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "55758",
+      "folderUrl": "https://pinwall.cn/workFolder/1445",
+      "pinwallTitle": "长沙柏家洲城市营区—湘江",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-55773": {
+    "coverImage": "https://oss.pinwall.cn/images/J43rG5nsyYPcay5m3n48.png",
+    "coverSource": "https://oss.pinwall.cn/images/J43rG5nsyYPcay5m3n48.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/55773",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "55773",
+      "folderUrl": "https://pinwall.cn/workFolder/1445",
+      "pinwallTitle": "矿坑公园——湘江",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-55784": {
+    "coverImage": "https://oss.pinwall.cn/images/sGft8AJpPixj2fHdzRYr.png",
+    "coverSource": "https://oss.pinwall.cn/images/sGft8AJpPixj2fHdzRYr.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/55784",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "55784",
+      "folderUrl": "https://pinwall.cn/workFolder/1445",
+      "pinwallTitle": "湘江沿岸八景文旅策划",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-55785": {
+    "coverImage": "https://oss.pinwall.cn/images/x75wryWm7KmGhNjeeTh7.png",
+    "coverSource": "https://oss.pinwall.cn/images/x75wryWm7KmGhNjeeTh7.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/55785",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "55785",
+      "folderUrl": "https://pinwall.cn/workFolder/1445",
+      "pinwallTitle": "旧景新寻——湘江欢乐城再规划 - 湘江",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-55792": {
+    "coverImage": "https://oss.pinwall.cn/images/28r5TmWe3tbhGmeEbNRP.png",
+    "coverSource": "https://oss.pinwall.cn/images/28r5TmWe3tbhGmeEbNRP.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/55792",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "55792",
+      "folderUrl": "https://pinwall.cn/workFolder/1445",
+      "pinwallTitle": "星忆湘流",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-60496": {
+    "coverImage": "https://oss.pinwall.cn/images/WCsDJCrp3ieYj3a5xCDX.png",
+    "coverSource": "https://oss.pinwall.cn/images/WCsDJCrp3ieYj3a5xCDX.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/60496",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "60496",
+      "folderUrl": "https://pinwall.cn/workFolder/1583",
+      "pinwallTitle": "湘江·长沙流域生态/人文/工业可视化大屏设计",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-60519": {
+    "coverImage": "https://oss.pinwall.cn/images/n2PnStE5fnrc4XHcfyXN.png",
+    "coverSource": "https://oss.pinwall.cn/images/n2PnStE5fnrc4XHcfyXN.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/60519",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "60519",
+      "folderUrl": "https://pinwall.cn/workFolder/1583",
+      "pinwallTitle": "云游湘江——eVTOL湘江空中游览主题航线策划",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62142": {
+    "coverImage": "https://oss.pinwall.cn/images/TrYnQhXfm7Nbdc48D56h.png",
+    "coverSource": "https://oss.pinwall.cn/images/TrYnQhXfm7Nbdc48D56h.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62142",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62142",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "湘江渡——记忆回流社区体验设计",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62168": {
+    "coverImage": "https://oss.pinwall.cn/images/ZSzp6dPfhBdfBH8cDFCD.png",
+    "coverSource": "https://oss.pinwall.cn/images/ZSzp6dPfhBdfBH8cDFCD.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62168",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62168",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "渡学湘江",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62175": {
+    "coverImage": "https://oss.pinwall.cn/images/BEaswYkdW5BC8d4wTtAe.png",
+    "coverSource": "https://oss.pinwall.cn/images/BEaswYkdW5BC8d4wTtAe.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62175",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62175",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "《橘子洲·1925》",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62177": {
+    "coverImage": "https://oss.pinwall.cn/images/baDAryscY8rE8wN5BzJM.png",
+    "coverSource": "https://oss.pinwall.cn/images/baDAryscY8rE8wN5BzJM.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62177",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62177",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "关关雎鸠，载禾之洲：兴马洲的诗意栖居2035",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62179": {
+    "coverImage": "https://oss.pinwall.cn/images/JwT7ytX5dMjmW7xRAJGX.png",
+    "coverSource": "https://oss.pinwall.cn/images/JwT7ytX5dMjmW7xRAJGX.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62179",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62179",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "2035城南漂流计划",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62181": {
+    "coverImage": "https://oss.pinwall.cn/images/ddhAJDfZ5MAeAaCTYwjy.png",
+    "coverSource": "https://oss.pinwall.cn/images/ddhAJDfZ5MAeAaCTYwjy.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62181",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62181",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "城市回声：湘江声流捕获计划",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62185": {
+    "coverImage": "https://oss.pinwall.cn/images/54ayr83k3ka58YixWn73.png",
+    "coverSource": "https://oss.pinwall.cn/images/54ayr83k3ka58YixWn73.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62185",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62185",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "大王山“一线四水”的两栖观光系统",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62187": {
+    "coverImage": "https://oss.pinwall.cn/images/phbszewxdeA4TTB3b6fT.png",
+    "coverSource": "https://oss.pinwall.cn/images/phbszewxdeA4TTB3b6fT.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62187",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62187",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "织水未来—基于2035湘江生态文化的裕湘纱厂社会创新",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62188": {
+    "coverImage": "https://oss.pinwall.cn/images/J6wChARh3fsM2jY7rziJ.jpg",
+    "coverSource": "https://oss.pinwall.cn/images/J6wChARh3fsM2jY7rziJ.jpg",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62188",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62188",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "解放“金三角”-基于霞凝港繁华回忆的社会创新设计",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62189": {
+    "coverImage": "https://oss.pinwall.cn/images/GP24MNxACZZsGHKQ7cMp.png",
+    "coverSource": "https://oss.pinwall.cn/images/GP24MNxACZZsGHKQ7cMp.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62189",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62189",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "湘江入焰梦——一代人的湘江烟花记忆与2035未来重生",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62191": {
+    "coverImage": "https://oss.pinwall.cn/images/yE7N2Sy7nXTGN7iYZRtp.png",
+    "coverSource": "https://oss.pinwall.cn/images/yE7N2Sy7nXTGN7iYZRtp.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62191",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62191",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "湘江新水娱乐新图景——变革理论指导下的湘江2035未来生态文旅构想",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62192": {
+    "coverImage": "https://oss.pinwall.cn/images/HCG2tKyhaCYBirzkfTxR.png",
+    "coverSource": "https://oss.pinwall.cn/images/HCG2tKyhaCYBirzkfTxR.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62192",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62192",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "“锌”火相传：锌厂人的共同回忆和情感联结",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-62197": {
+    "coverImage": "https://oss.pinwall.cn/images/hhisnnnQEtn4AprxzRzR.jpg",
+    "coverSource": "https://oss.pinwall.cn/images/hhisnnnQEtn4AprxzRzR.jpg",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/62197",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "62197",
+      "folderUrl": "https://pinwall.cn/workFolder/1642",
+      "pinwallTitle": "顺水而居—霞凝港社会创新设计",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-66198": {
+    "coverImage": "https://oss.pinwall.cn/images/idC3bp8jFQpAfAacm3Se.png",
+    "coverSource": "https://oss.pinwall.cn/images/idC3bp8jFQpAfAacm3Se.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66198",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "66198",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "湘圩・江物赶场",
+      "titleMatch": true,
+      "membersMatch": true
+    }
+  },
+  "pinwall-66200": {
+    "coverImage": "https://oss.pinwall.cn/images/5EMS3iNTwwwM7bRpHxJZ.png",
+    "coverSource": "https://oss.pinwall.cn/images/5EMS3iNTwwwM7bRpHxJZ.png",
+    "coverStatus": "verified",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66200",
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "status": "external-source",
+    "matchEvidence": {
+      "projectId": "66200",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "江洲北叙——橘子洲北平战复合水上生态教育微循环方案",
+      "titleMatch": true,
+      "membersMatch": true
+    }
   }
 }

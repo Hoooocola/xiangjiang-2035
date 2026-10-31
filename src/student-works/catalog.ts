@@ -1,4 +1,5 @@
 import source from './source.json';
+import archive from './archive-works.json';
 import locations from './locations.json';
 import assets from './assets.json';
 import locationReview from './location-review.json';
@@ -25,16 +26,20 @@ function assetStatus(value: string): StudentWork['coverStatus'] {
 }
 const media: Record<string, WorkAsset> = Object.fromEntries(Object.entries(assets).map(([id, asset]) => [id, {...asset, coverStatus: assetStatus(asset.coverStatus)}]));
 type VideoAsset = Omit<Extract<StudentWorkMedia, {type:'video'}>, 'type' | 'checkedAt'>;
-const videoMedia = videoSources as Record<string, {checkedAt:string;pdfs?:{id:string}[];videos:VideoAsset[]}>;
+type PdfAsset = Omit<Extract<StudentWorkMedia, {type:'pdf'}>, 'type' | 'url'> & {id:string};
+const videoMedia = videoSources as Record<string, {checkedAt:string;pdfs?:PdfAsset[];videos:VideoAsset[];otherResources?:Omit<Extract<StudentWorkMedia,{type:'external'}>,'type'>[];retired?:{id:string}[]}>;
 type SourceWork = Omit<StudentWork, 'coverImage' | 'coverSource' | 'coverStatus' | 'pinwallUrl'>;
-export const STUDENT_WORKS: readonly StudentWork[] = (source as SourceWork[]).map(work => ({
+export const STUDENT_WORKS: readonly StudentWork[] = ([...source, ...archive] as SourceWork[]).map(work => ({
   ...work,
+  courseId: work.courseId ?? 'social-innovation-design-2026',
+  year: work.year ?? 2026,
   placeIds: workPlaceIds({...work, placeIds: (locationReview as Record<string, {placeIds: string[]}>)[work.id]?.placeIds ?? work.placeIds}),
-  media: [
-    ...(videoMedia[work.id]?.pdfs?.length ? videoMedia[work.id].pdfs!.map((pdf, index) => ({type:'pdf' as const, id:pdf.id, url:`/student-works/${work.id}/pdf?attachment=${encodeURIComponent(pdf.id)}`, label:`报告 ${index+1}`})) :
+  media: ([
+    ...(videoMedia[work.id]?.pdfs?.length ? videoMedia[work.id].pdfs!.map((pdf, index) => ({...pdf, type:'pdf' as const, url:`/student-works/${work.id}/pdf?attachment=${encodeURIComponent(pdf.id)}`, label:pdf.title ?? `资料 ${index+1}`})) :
       media[work.id]?.hasPdf ? [{type:'pdf' as const, url:`/student-works/${work.id}/pdf`, label:'完整报告'}] : []),
     ...(videoMedia[work.id]?.videos ?? []).map(video => ({...video, type:'video' as const, checkedAt:videoMedia[work.id].checkedAt})),
-  ],
+    ...(videoMedia[work.id]?.otherResources ?? []).map(item => ({...item,type:'external' as const})),
+  ] as StudentWorkMedia[]).sort((a,b)=>(a.order??0)-(b.order??0)),
   coverImage: media[work.id]?.coverStatus === 'verified' && media[work.id]?.coverImage
     ? `${media[work.id].coverImage}?v=${media[work.id].sha256?.slice(0, 12) ?? 'verified'}` : null,
   coverSource: media[work.id]?.coverSource ?? null,
@@ -56,19 +61,20 @@ const extraPlaces: Place[] = locations.filter(location=>!MAP_PLACES.some(place=>
 
 /** New navigation points exist only while the explicit showcase mode is enabled. */
 export const SHOWCASE_PLACES: readonly Place[] = [...MAP_PLACES, ...extraPlaces];
-export function worksForTheme(theme: ThemeFilter): StudentWork[] {
-  return STUDENT_WORKS.filter(work => theme === 'all' || work.theme === theme);
+export const BASE_STUDENT_WORKS = STUDENT_WORKS.filter(work => (source as SourceWork[]).some(row => row.id === work.id));
+export function worksForTheme(theme: ThemeFilter, courseId = 'social-innovation-design-2026'): StudentWork[] {
+  return STUDENT_WORKS.filter(work => (courseId === 'all-courses' || work.courseId === courseId) && (theme === 'all' || work.theme === theme));
 }
-export function visibleStudentWorks(theme: ThemeFilter = 'all', query = ''): StudentWork[] {
+export function visibleStudentWorks(theme: ThemeFilter = 'all', query = '', courseId = 'social-innovation-design-2026'): StudentWork[] {
   const search = query.trim().toLocaleLowerCase();
-  return worksForTheme(theme).filter(work => !search || [work.title, work.originalSite, ...work.members,
+  return worksForTheme(theme, courseId).filter(work => !search || [work.title, work.originalSite, ...work.members,
     ...workPlaceIds(work).map(id => SHOWCASE_PLACES.find(place => place.id === id)?.name ?? '')].join(' ').toLocaleLowerCase().includes(search));
 }
-export function worksForPlace(placeId: string, theme: ThemeFilter = 'all', query = ''): StudentWork[] {
-  return visibleStudentWorks(theme, query).filter(work => workPlaceIds(work).includes(placeId));
+export function worksForPlace(placeId: string, theme: ThemeFilter = 'all', query = '', courseId = 'social-innovation-design-2026'): StudentWork[] {
+  return visibleStudentWorks(theme, query, courseId).filter(work => workPlaceIds(work).includes(placeId));
 }
-export function showcaseStats(theme: ThemeFilter = 'all', query = '') {
-  return statsForWorks(visibleStudentWorks(theme, query));
+export function showcaseStats(theme: ThemeFilter = 'all', query = '', courseId = 'social-innovation-design-2026') {
+  return statsForWorks(visibleStudentWorks(theme, query, courseId));
 }
 /** Shared by the lecture showcase and the course-based design directory. */
 export function statsForWorks(works: readonly StudentWork[]) {
@@ -84,6 +90,6 @@ export function statsForWorks(works: readonly StudentWork[]) {
   };
 }
 
-export function studentMarkerCount(placeId: string, theme: ThemeFilter, query = ''): number {
-  return worksForPlace(placeId, theme, query).length;
+export function studentMarkerCount(placeId: string, theme: ThemeFilter, query = '', courseId = 'social-innovation-design-2026'): number {
+  return worksForPlace(placeId, theme, query, courseId).length;
 }

@@ -1,6 +1,6 @@
 import {describe, expect, it} from 'vitest';
 import {MAP_PLACES} from '@/src/places/registry';
-import {SHOWCASE_PLACES, STUDENT_THEMES, STUDENT_WORKS, showcaseStats, worksForTheme, worksForPlace} from '@/src/student-works/catalog';
+import {SHOWCASE_PLACES, STUDENT_THEMES, BASE_STUDENT_WORKS as STUDENT_WORKS, showcaseStats, worksForTheme, worksForPlace} from '@/src/student-works/catalog';
 import {findPinwallPdf} from '@/src/student-works/pdf';
 import {workPlaceIds} from '@/src/student-works/relationships';
 
@@ -23,7 +23,7 @@ describe('course showcase source and place relationships', () => {
       for (const id of workPlaceIds(work)) expect(SHOWCASE_PLACES.some(place => place.id === id)).toBe(true);
     }
     expect(worksForPlace('ezhou')).toHaveLength(4);
-    expect(worksForPlace('site-011')).toHaveLength(4);
+    expect(worksForPlace('site-011')).toHaveLength(5);
     expect(worksForPlace('baxi')).toHaveLength(2);
     expect(MAP_PLACES.some(place => place.id.startsWith('student-'))).toBe(false);
     for (const place of SHOWCASE_PLACES) {
@@ -32,13 +32,13 @@ describe('course showcase source and place relationships', () => {
   });
 
   it('computes themes, map locations and pending works from the same filtered set', () => {
-    expect(STUDENT_THEMES.map(theme => worksForTheme(theme).length)).toEqual([5, 9, 7, 3]);
+    expect(STUDENT_THEMES.map(theme => worksForTheme(theme).length)).toEqual([5, 17, 10, 7]);
     for (const theme of ['all', ...STUDENT_THEMES] as const) {
       const stats = showcaseStats(theme);
       expect(stats.mapped + stats.pending).toBe(stats.total);
       expect(stats.places).toBe(new Set(worksForTheme(theme).flatMap(workPlaceIds)).size);
     }
-    expect(showcaseStats()).toMatchObject({total: 24, mapped: 20, places: 13, pending: 4, partiallyMapped:0});
+    expect(showcaseStats()).toMatchObject({total: 39, mapped: 28, places: 14, pending: 11, partiallyMapped:0});
     expect(worksForPlace('ezhou', '立体交通与网络系统')).toHaveLength(2);
   });
 

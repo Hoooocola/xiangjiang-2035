@@ -50,3 +50,7 @@ terrain-focus.ts把既有DEM插值渲染为柔化视觉焦点，不改变源高�
 ## V2.5 课程目录复用
 
 顶部设计方案改用StudentWorkShowcase的integrated布局与原StudentWorkExhibition，不再使用旧ProposalExplorer。课程模型只组织既有作品ID，搜索、统计、媒体入口与独立课程演示共用。所有运镜仍调用现有引擎接口；本轮不修改src/experience、AOI或基础GIS。见docs/v2.5/README.md。
+
+## V2.6 模块边界
+
+课程导入与媒体审计位于src/student-works，课程/媒体UI复用原组件；AtmosphereControl是底部工具行中的紧凑偏好控制。可关闭粒子/雾仅修改atmosphere.ts和环境fog段，不改CameraRig、AOI、材质或GIS数据。空间导读用户UI移除，原对象聚焦与返回接口保留。课程标题/统计、全附件、四尺寸及实际动态录屏验收见docs/v2.6。

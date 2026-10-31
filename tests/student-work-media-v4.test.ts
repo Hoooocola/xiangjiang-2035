@@ -1,7 +1,7 @@
 import {createElement} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {describe, expect, it, vi} from 'vitest';
-import {STUDENT_WORKS, showcaseStats, worksForPlace} from '@/src/student-works/catalog';
+import {BASE_STUDENT_WORKS as STUDENT_WORKS, showcaseStats, worksForPlace} from '@/src/student-works/catalog';
 import {workPlaceIds, preferredWorkPlace} from '@/src/student-works/relationships';
 import {selectionGroup} from '@/src/student-works/selection';
 import {findPinwallVideos} from '@/src/student-works/video';
@@ -23,9 +23,9 @@ describe('source-backed multi-location course selection', () => {
     expect(workPlaceIds(STUDENT_WORKS[0])).toEqual(['tongguan', 'juzizhou', 'ezhou']);
     expect(worksForPlace('juzizhou').map(w => w.id)).toContain(STUDENT_WORKS[0].id);
     expect(worksForPlace('ezhou')).toHaveLength(4);
-    expect(showcaseStats()).toMatchObject({total:24,mapped:20,pending:4,places:13,partiallyMapped:0});
-    expect(worksForPlace('student-yuxiang')).toHaveLength(2);
-    expect(worksForPlace('site-025')).toHaveLength(1);
+    expect(showcaseStats()).toMatchObject({total:39,mapped:28,pending:11,places:14,partiallyMapped:0});
+    expect(worksForPlace('student-yuxiang')).toHaveLength(4);
+    expect(worksForPlace('site-025')).toHaveLength(2);
   });
   it('uses the selected marker context instead of jumping back to the first work primary site', () => {
     expect(preferredWorkPlace(STUDENT_WORKS[0],'juzizhou')).toBe('juzizhou');
@@ -53,7 +53,7 @@ describe('video attachment evidence and on-demand links', () => {
     const actual=STUDENT_WORKS.find(work=>work.id==='pinwall-66187')!;
     expect(actual.media?.filter(item=>item.type==='pdf')).toHaveLength(2);
     const html=renderToStaticMarkup(createElement(StudentWorkExhibition,{works:[actual],placeName:'渔人码头',ready:true,onClose:()=>{}}));
-    expect(html).toContain('查看 PDF（2）');
+    expect(html).toContain('资料文件（2）');
     expect(html).not.toContain('另有地点未绑定');
     for(const pdf of actual.media!.filter(item=>item.type==='pdf'))expect(html).toContain(pdf.url);
   });
@@ -61,8 +61,8 @@ describe('video attachment evidence and on-demand links', () => {
     expect(renderToStaticMarkup(createElement(StudentWorkMediaLinks,{work:{...fixture,media:[]}}))).toBe('');
     const work={...fixture,media:[video,{...video,id:'secondMovie',title:'第二段'}]};
     const html=renderToStaticMarkup(createElement(StudentWorkExhibition,{works:[work],placeName:'独立测试',ready:true,onClose:()=>{}}));
-    expect(html).toContain('观看视频（2）');
-    expect(html).toContain('href="https://pinwall.cn/project/66171"');
+    expect(html).toContain('视频（2）');
+    expect(html).toContain('href="/student-works/pinwall-66171/video/demoMovie"');
     expect(html).toContain('target="_blank"');
     expect(html).not.toMatch(/<video|<iframe|<source|as="video"|autoplay|Expires=/i);
     expect(renderToStaticMarkup(createElement(StudentWorkMediaLinks,{work:{...fixture,media:[{...video,sourceUrl:'javascript:alert(1)'}]}}))).toBe('');
