@@ -8,6 +8,10 @@ export async function GET(request: Request, {params}: {params: Promise<{id: stri
   if (!work) return new Response('作品不存在', {status: 404});
   let destination = work.projectUrl;
   const attachment = new URL(request.url).searchParams.get('attachment');
+  const reports = (work.media ?? []).filter(item => item.type === 'pdf');
+  const chosen = attachment ? reports.find(item => item.id === attachment) : reports[0];
+  // Unknown/retired IDs retain the source-page fallback, never resolve another project's file.
+  if ((attachment && !chosen) || chosen?.accessStatus === 'unavailable') return new Response(null, {status:302, headers:{Location:work.projectUrl, 'Cache-Control':'private, no-store', 'Referrer-Policy':'no-referrer'}});
   try {
     const response = await fetch(work.projectUrl, {
       cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(8000),

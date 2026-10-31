@@ -34,11 +34,11 @@ export const STUDENT_WORKS: readonly StudentWork[] = ([...source, ...archive] as
   courseId: work.courseId ?? 'social-innovation-design-2026',
   year: work.year ?? 2026,
   placeIds: workPlaceIds({...work, placeIds: (locationReview as Record<string, {placeIds: string[]}>)[work.id]?.placeIds ?? work.placeIds}),
-  media: [
+  media: ([
     ...(videoMedia[work.id]?.pdfs?.length ? videoMedia[work.id].pdfs!.map((pdf, index) => ({...pdf, type:'pdf' as const, url:`/student-works/${work.id}/pdf?attachment=${encodeURIComponent(pdf.id)}`, label:pdf.title ?? `资料 ${index+1}`})) :
       media[work.id]?.hasPdf ? [{type:'pdf' as const, url:`/student-works/${work.id}/pdf`, label:'完整报告'}] : []),
     ...(videoMedia[work.id]?.videos ?? []).map(video => ({...video, type:'video' as const, checkedAt:videoMedia[work.id].checkedAt})),
-  ],
+  ] as StudentWorkMedia[]).sort((a,b)=>(a.order??0)-(b.order??0)),
   coverImage: media[work.id]?.coverStatus === 'verified' && media[work.id]?.coverImage
     ? `${media[work.id].coverImage}?v=${media[work.id].sha256?.slice(0, 12) ?? 'verified'}` : null,
   coverSource: media[work.id]?.coverSource ?? null,
