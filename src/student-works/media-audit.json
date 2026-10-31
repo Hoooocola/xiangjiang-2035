@@ -1,0 +1,689 @@
+{
+  "pinwall-66171": {
+    "projectUrl": "https://pinwall.cn/project/66171",
+    "checkedAt": "2026-10-29T16:12:42.911893+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 5,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/YSHN7nCYH5WAXMzp7kzM.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [
+      {
+        "id": "sG5TXa7Qx38sTBf8sMtH",
+        "title": "作品视频 1",
+        "sourceUrl": "https://pinwall.cn/project/66171",
+        "resourcePath": "/video/sG5TXa7Qx38sTBf8sMtH.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "作品实际页面附件链接（非仅播放图标）；GET Range 单字节检查，不下载完整视频。",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "video/mp4",
+          "transferOk": true
+        }
+      }
+    ],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "54ed134ada815dc9b884a8d315891b19316e3b7c774b6e038cffa991e2d822e9",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66192": {
+    "projectUrl": "https://pinwall.cn/project/66192",
+    "checkedAt": "2026-10-29T16:12:43.649263+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 6,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/Bn4MER4AQbY5MDtnSQf6.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [
+      {
+        "id": "fxNhstQ7iaymANGZHsay",
+        "title": "作品视频 1",
+        "sourceUrl": "https://pinwall.cn/project/66192",
+        "resourcePath": "/video/fxNhstQ7iaymANGZHsay.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "作品实际页面附件链接（非仅播放图标）；GET Range 单字节检查，不下载完整视频。",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "video/mp4",
+          "transferOk": true
+        }
+      }
+    ],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "960e8af8859fb5fb94550aa991ff9cb47c5cad383a5433ba6ef8e80b43c7115f",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66181": {
+    "projectUrl": "https://pinwall.cn/project/66181",
+    "checkedAt": "2026-10-29T16:12:38.671669+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 7,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/Q5aSEykdWSCFsfwyJsJE.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "b2fb87cb2dcfe5afd6b21ddb4b6ab8ee8b357b364b1ab2d5133b730489320ec0",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66184": {
+    "projectUrl": "https://pinwall.cn/project/66184",
+    "checkedAt": "2026-10-29T16:12:44.748942+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 8,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/6xHZkrPMb3GpcpJ5xb6p.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [
+      {
+        "id": "nkMZFNTzC26pmxwFAKQm",
+        "title": "作品视频 1",
+        "sourceUrl": "https://pinwall.cn/project/66184",
+        "resourcePath": "/video/nkMZFNTzC26pmxwFAKQm.mp4",
+        "provider": "Pinwall / OSS",
+        "accessStatus": "verified",
+        "embedStatus": "unverified",
+        "loginRequired": "no",
+        "evidence": "作品实际页面附件链接（非仅播放图标）；GET Range 单字节检查，不下载完整视频。",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "video/mp4",
+          "transferOk": true
+        }
+      }
+    ],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "78ac2d1f6b973bf813db694b80e634af8d0136a017e4c20cd3bda3a3790fa40c",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66166": {
+    "projectUrl": "https://pinwall.cn/project/66166",
+    "checkedAt": "2026-10-29T16:12:41.711820+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 9,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/RtaDmQG54PkT5mQrWHQE.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "8df2d908cbf577beb8535c541bc0120025d98b0e276baf393c33bc03030c5e1d",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66178": {
+    "projectUrl": "https://pinwall.cn/project/66178",
+    "checkedAt": "2026-10-29T16:12:44.360624+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 10,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/djYaHcnzy82BT6PPWWis.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "8eb70baae44131362331e6f89acf9cdb428206c9367edb68e6b12fd33270c3e9",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66196": {
+    "projectUrl": "https://pinwall.cn/project/66196",
+    "checkedAt": "2026-10-29T16:12:46.580893+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 11,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/5RdfBz3jfiHkRYjGKCzj.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "6432c935885b4e0c480a39dc1667a5ef93bb6175c284f5c256f50a29f43fb61a",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66170": {
+    "projectUrl": "https://pinwall.cn/project/66170",
+    "checkedAt": "2026-10-29T16:12:48.448362+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 12,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/ETHRQNx6M4fb8zPrfxem.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "6f8b41a62c2825897629a571c1240a877a51da2189342f12296947fe73663959",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66168": {
+    "projectUrl": "https://pinwall.cn/project/66168",
+    "checkedAt": "2026-10-29T16:12:47.328448+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 13,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/87KXPWwfD3NhjY6Wn3yN.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "7a4b51b64c318ec6ecf00a94517578d8234ae437f60582dab4f0be952a1099bb",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66172": {
+    "projectUrl": "https://pinwall.cn/project/66172",
+    "checkedAt": "2026-10-29T16:12:47.317971+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 14,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/JM5z43G7kXyCcdQw5c5c.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "468339247206ba696a04b27e61af5a8e98e8824af7a25ebf270b83b96c2532a0",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66173": {
+    "projectUrl": "https://pinwall.cn/project/66173",
+    "checkedAt": "2026-10-29T16:12:49.431492+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 15,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/8Dt3A4DF36EBnJbaREKe.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "799fb3b194604cd5d5ca366f91625d8e68ca85f0cf6e8555d89c5952f47b77a9",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66174": {
+    "projectUrl": "https://pinwall.cn/project/66174",
+    "checkedAt": "2026-10-29T16:12:50.014144+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 16,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/6T56eac7zJfCYT4p782N.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "f432f97967acfbe09d4b8715451145635d35fd3a843a825737d98b686330a702",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66175": {
+    "projectUrl": "https://pinwall.cn/project/66175",
+    "checkedAt": "2026-10-29T16:12:50.154548+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 17,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/xCJBmWwCJj4G7hf3jWGA.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "42fb55d31ef653cc0092620210e6c3ea7118205d079e1f374057386358a28395",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66176": {
+    "projectUrl": "https://pinwall.cn/project/66176",
+    "checkedAt": "2026-10-29T16:12:51.331455+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 18,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/t65Dth27MTjyyDsr6Hay.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "ee573a2710a5be3592811b4385c9197eb852e16161387f51fc37f12a408160f1",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66179": {
+    "projectUrl": "https://pinwall.cn/project/66179",
+    "checkedAt": "2026-10-29T16:12:52.281642+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 19,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/Mp3Hsy5REXcHxaPYPieh.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "fe97a0c510c4262cf7a1e065b80207730599c55f6942050f888dc76d28ac4f3c",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66180": {
+    "projectUrl": "https://pinwall.cn/project/66180",
+    "checkedAt": "2026-10-29T16:12:52.675415+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 20,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/B8E7KwAGGzHzm6HCFR8S.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "3288125e60b2aaca731e7cfdf6534d753f02a4b58a6bbeb5f0fa5ac8fd6d338b",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66183": {
+    "projectUrl": "https://pinwall.cn/project/66183",
+    "checkedAt": "2026-10-29T16:12:54.948830+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 21,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/ErA8PdcnJteFQPejz2En.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "d3ee74a420c31e057cadd8a53b1d8932f704fd5aae1e38930e33b7ac1197e4d5",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66185": {
+    "projectUrl": "https://pinwall.cn/project/66185",
+    "checkedAt": "2026-10-29T16:12:54.102596+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 22,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/F8y5KRkREp5JjAWa3Tks.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "e62827ef57837b0b37a2bc9b9dbe7814e313413bd819b24b53692d380c8833a0",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66187": {
+    "projectUrl": "https://pinwall.cn/project/66187",
+    "checkedAt": "2026-10-29T16:12:58.540078+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 23,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/cPFK5nsBYbTy77QJGNmf.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      },
+      {
+        "resourcePath": "/pdf/aNC6rbPNpr2QjBMhWBQF.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "0f39d2ca8e759640506db18cdd293aa54c72bf5b260f739d027f9305d65b4c98",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66188": {
+    "projectUrl": "https://pinwall.cn/project/66188",
+    "checkedAt": "2026-10-29T16:12:55.399563+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 24,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/fw8QkTMktKTXRC6zTAxY.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "c9981b4cee9ecdea2e09a16b0cb9484619f7ff250e4ed6fd2096a195fb597549",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66189": {
+    "projectUrl": "https://pinwall.cn/project/66189",
+    "checkedAt": "2026-10-29T16:12:56.812968+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 25,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/CtxZHw2kJGJ3jxXTtSNt.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "7cdd95827fed619c1f633b0f1ef02152f5131c87f833b3665018004d2903303f",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66191": {
+    "projectUrl": "https://pinwall.cn/project/66191",
+    "checkedAt": "2026-10-29T16:12:58.590274+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 26,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/Y8GAp5QTRrYWztksJJre.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "8187312446996ac0c0730b57c75107129512521faf8e20c766c9c6b5e69b184e",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66193": {
+    "projectUrl": "https://pinwall.cn/project/66193",
+    "checkedAt": "2026-10-29T16:12:58.138153+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 27,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/bFrwFzEJWbYwiACpCs3K.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "28168cdab74c82a2800f181b75c2f61ad393ffec6ac960ec049b71a7c60e9d6f",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  },
+  "pinwall-66190": {
+    "projectUrl": "https://pinwall.cn/project/66190",
+    "checkedAt": "2026-10-29T16:13:01.796959+00:00",
+    "pageStatus": "200",
+    "excelMatch": true,
+    "sourceRow": 28,
+    "titleMatch": true,
+    "membersMatch": true,
+    "coverMatch": true,
+    "coverSha256Match": true,
+    "pdfs": [
+      {
+        "resourcePath": "/pdf/csZzG22RP2wasbnQXSDx.pdf",
+        "accessProbe": {
+          "method": "GET Range bytes=0-0",
+          "status": "206",
+          "contentType": "application/pdf",
+          "transferOk": true
+        }
+      }
+    ],
+    "videos": [],
+    "videoSurveyStatus": "checked-public-page",
+    "abstractSha256": "3d6a351b023ffa65ba44dc9d3273cbe5404d80e495f192a1e2ea8974472993b2",
+    "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+  }
+}

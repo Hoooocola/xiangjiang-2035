@@ -1,0 +1,734 @@
+{
+  "pinwall-66171": {
+    "coverImage": "/student-works/pinwall-66171.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/RFGN3rtbw55ih2BiKjde.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66171",
+    "checkedAt": "2026-10-28T17:59:34.380672+00:00",
+    "sha256": "d20f1d97d4f51ffc2930a4ea87ad8bc21578b6dc02cfad8d313f4fdf4a2950db",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66171",
+      "sourceRow": 5,
+      "originalSite": "铜官窑",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "湘江多元水岸交通系统设计",
+      "pinwallMembers": [
+        "李昱瑶",
+        "陈天庆",
+        "贾景舜",
+        "吴柿姬"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66192": {
+    "coverImage": "/student-works/pinwall-66192.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/ACBebkK2yECDtpCtGf5z.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66192",
+    "checkedAt": "2026-10-28T17:59:34.381672+00:00",
+    "sha256": "1da08399084a67a111cac10bc30f3a9f6c5f36b5652efc23d827e668e9bad295",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66192",
+      "sourceRow": 6,
+      "originalSite": "鹅洲岛",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "「洲行 ZHOU LINK」鹅洲岛立体共运系统",
+      "pinwallMembers": [
+        "曹圣平",
+        "李浩然",
+        "金光耀",
+        "刘浩东",
+        "陈子晗"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66181": {
+    "coverImage": "/student-works/pinwall-66181.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/5iQCkZep7jKyheeYNYZd.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66181",
+    "checkedAt": "2026-10-28T17:59:34.383671+00:00",
+    "sha256": "b89b51b28810858b22b1fb70a4c69686eea11f63b19c005224e57f7a79e1d207",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66181",
+      "sourceRow": 7,
+      "originalSite": "文津码头",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "流岸·2035",
+      "pinwallMembers": [
+        "苏石磊",
+        "彭诗尧",
+        "贺未琪",
+        "李浩宇"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66184": {
+    "coverImage": "/student-works/pinwall-66184.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/jmG2fM7JXbGC5xzrTbAt.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66184",
+    "checkedAt": "2026-10-28T17:59:34.508688+00:00",
+    "sha256": "78f884a117a7050cf47bbcfda82409e0bc76c88f71502dbd752256c67f4e0e65",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66184",
+      "sourceRow": 8,
+      "originalSite": "文津码头",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "记忆·川上转——文津码头*湘江生活档案共创企划",
+      "pinwallMembers": [
+        "范心果",
+        "王浩",
+        "冷美言",
+        "王潜清"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66166": {
+    "coverImage": "/student-works/pinwall-66166.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/b7Dm7a4iDkRPS4c4w6n8.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66166",
+    "checkedAt": "2026-10-28T17:59:38.760785+00:00",
+    "sha256": "c16a93e3ac49c4310b66f1da91bd299db817cd3e0cb5cd039b6cca534ddc3b63",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66166",
+      "sourceRow": 9,
+      "originalSite": "北辰三角洲",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "「这里，有故事。」——从居民记忆出发的湘江地图",
+      "pinwallMembers": [
+        "赵慧妍",
+        "孙誉铭",
+        "戴尚哲",
+        "陈博辉"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66178": {
+    "coverImage": "/student-works/pinwall-66178.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/RYSjt27nA6Knd4YEhfYD.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66178",
+    "checkedAt": "2026-10-28T17:59:38.880832+00:00",
+    "sha256": "1d8a345a09a9e5db1cd0ac8c2561d9afacbfa4aa999fea677ee8236336595b07",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66178",
+      "sourceRow": 10,
+      "originalSite": "巴溪洲",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "洲有四季——巴溪洲“水位日历”社区共创计划",
+      "pinwallMembers": [
+        "林学瑶",
+        "史晓蕊",
+        "黄茜",
+        "凌子怡"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66196": {
+    "coverImage": "/student-works/pinwall-66196.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/3kGdDdSs3j5WHifzspJt.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66196",
+    "checkedAt": "2026-10-28T17:59:38.884830+00:00",
+    "sha256": "614dc047fbe58982f2af340be3d7e90e6169c99a832ea6f1f88f611cad7769f3",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66196",
+      "sourceRow": 11,
+      "originalSite": "裕湘纱厂",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "裕湘百年",
+      "pinwallMembers": [
+        "解晓钰",
+        "李琦",
+        "黄璎雯",
+        "白芮萌",
+        "师曼"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66170": {
+    "coverImage": "/student-works/pinwall-66170.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/D8F5QmT2dhGFjH4Qwyrz.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66170",
+    "checkedAt": "2026-10-28T17:59:39.092878+00:00",
+    "sha256": "a7e705b134d80fa2d60445bf789c2514bfa3a9ce012cfc4c09a1edcd8b104ff9",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66170",
+      "sourceRow": 12,
+      "originalSite": "渔人码头",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "WEAVE WAVE",
+      "pinwallMembers": [
+        "梁源",
+        "王晶菁",
+        "秦佳欣",
+        "刘之渝"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66168": {
+    "coverImage": "/student-works/pinwall-66168.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/K5YdzPPbQpEBPGReJbQs.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66168",
+    "checkedAt": "2026-10-28T17:59:42.412691+00:00",
+    "sha256": "41485d3ded498dfebf856d843919f7a12cc3c2fa154eafb10be1a4c8314c03b8",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66168",
+      "sourceRow": 13,
+      "originalSite": "油脂厂1936",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "“油”点意思——长沙油脂厂改造计划",
+      "pinwallMembers": [
+        "肖悦",
+        "朱雨晴",
+        "吴欣雨",
+        "石恒屹"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66172": {
+    "coverImage": "/student-works/pinwall-66172.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/AAT3FCc8EsSRcMtaWWCe.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66172",
+    "checkedAt": "2026-10-28T17:59:42.836474+00:00",
+    "sha256": "e94ca13098053a44fb8261e9954fb5813bcf47e076a59fa2e5958497edc6cac4",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66172",
+      "sourceRow": 14,
+      "originalSite": "橘子洲",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "江岸接力——橘洲文脉共编系统",
+      "pinwallMembers": [
+        "王子轩",
+        "兰奕娴",
+        "和浩帆",
+        "张素雅"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66173": {
+    "coverImage": "/student-works/pinwall-66173.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/7Qipb7H3BBYWdMZrA8tn.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66173",
+    "checkedAt": "2026-10-28T17:59:42.928286+00:00",
+    "sha256": "8ee8664139a1c10dd4b4fa8b2b5f89ea0bc4f60ce83faa763c798270da0fb83e",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66173",
+      "sourceRow": 15,
+      "originalSite": "渔人码头",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "湘岸共赴：渔人码头滨水文化体验",
+      "pinwallMembers": [
+        "孙怡宁",
+        "王净",
+        "任芷淇",
+        "吴夏怡"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66174": {
+    "coverImage": "/student-works/pinwall-66174.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/hBmp8NRC3YeGHibDmmZX.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66174",
+    "checkedAt": "2026-10-28T17:59:43.007966+00:00",
+    "sha256": "158c168fbf3fcb864ed428604f4ebcd3e6a18312d041bb11f58850d675d4501e",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66174",
+      "sourceRow": 16,
+      "originalSite": "大王山",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "大王山交通再规划",
+      "pinwallMembers": [
+        "张祺",
+        "张恒源",
+        "郭谙凡",
+        "兰小凯"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66175": {
+    "coverImage": "/student-works/pinwall-66175.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/m7m8hJsWPrjWpB6WXP8w.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66175",
+    "checkedAt": "2026-10-28T17:59:45.492154+00:00",
+    "sha256": "8a50997b60ae23349a0a111479183f69e5065b7733e5d17a7ac29fc1468678bb",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66175",
+      "sourceRow": 17,
+      "originalSite": "城南街区",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "Reconnect江脉重连",
+      "pinwallMembers": [
+        "徐伟茗",
+        "潘奕彤",
+        "袁艺丹",
+        "王晨曦"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66176": {
+    "coverImage": "/student-works/pinwall-66176.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/5t5GM5SsabxeHJSHRpAp.jpg",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66176",
+    "checkedAt": "2026-10-28T17:59:46.300968+00:00",
+    "sha256": "bbae990fa04fa985e529f220113d25071605ce9337942a951e076c6ea1ac53c4",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66176",
+      "sourceRow": 18,
+      "originalSite": "洋湖湿地",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "洋湖叠境-漫游-",
+      "pinwallMembers": [
+        "黄厚淇",
+        "张新宇",
+        "黄时韬",
+        "梁永坚"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66179": {
+    "coverImage": "/student-works/pinwall-66179.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/mm5bbZh3xXYmHAMFwnPP.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66179",
+    "checkedAt": "2026-10-28T17:59:46.999542+00:00",
+    "sha256": "e2112d5528887a05ff49546ebc87fd10b87aacbdb4d4e13f62b89936415740cb",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66179",
+      "sourceRow": 19,
+      "originalSite": "橘子洲",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "栖亭·共栖之江",
+      "pinwallMembers": [
+        "吴鑫恒",
+        "杨晓芸",
+        "刘政昊",
+        "方建",
+        "许峰源"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66180": {
+    "coverImage": "/student-works/pinwall-66180.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/JHFT5G8eST3smm6KePPB.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66180",
+    "checkedAt": "2026-10-28T17:59:47.295925+00:00",
+    "sha256": "45627bb0851be7ed63fee552f856f723da8fe627a54ec390d9df293a819ce72d",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66180",
+      "sourceRow": 20,
+      "originalSite": "猴子石大桥西岸",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "江边，逗留一会儿",
+      "pinwallMembers": [
+        "戴依蝶",
+        "谢元",
+        "周思远",
+        "李懿恩",
+        "吕祎清"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66183": {
+    "coverImage": "/student-works/pinwall-66183.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/AKtpCdFjCnbFPBd5rfMA.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66183",
+    "checkedAt": "2026-10-28T17:59:49.009141+00:00",
+    "sha256": "6dc83f6b71b924cf8d893ee16d4aecc561720616595ad000bacaff97b814b98e",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66183",
+      "sourceRow": 21,
+      "originalSite": "文津码头",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "江边共话站",
+      "pinwallMembers": [
+        "陈炳羽",
+        "胡添翼",
+        "官洪志",
+        "刘安轩",
+        "熊峰"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66185": {
+    "coverImage": "/student-works/pinwall-66185.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/FzHdKnyYtSsTMMETCZYw.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66185",
+    "checkedAt": "2026-10-28T17:59:50.533142+00:00",
+    "sha256": "7149eba9ca806cc51ce96ac7dedc855d3e4b99c946f368f111a540cf54deed58",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66185",
+      "sourceRow": 22,
+      "originalSite": "巴溪洲",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "「洲野共生」2035巴溪洲全民户外生活岛计划",
+      "pinwallMembers": [
+        "司想",
+        "杨育宗",
+        "管思砚",
+        "卜衍中"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ],
+      "previousOriginalSite": "大王山",
+      "revisedExcelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+    }
+  },
+  "pinwall-66187": {
+    "coverImage": "/student-works/pinwall-66187.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/CaYTGmWEpSkJFT7WiWGk.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66187",
+    "checkedAt": "2026-10-28T17:59:51.016062+00:00",
+    "sha256": "7463649545b7cef97e751be968d92252503f60127fb8c967d1e468a723c94010",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66187",
+      "sourceRow": 23,
+      "originalSite": "渔人码头和裕湘纱厂",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "岸间——湘江滨水公共空间 的弹性更新与日常营造",
+      "pinwallMembers": [
+        "姚楠",
+        "杨文瑞",
+        "陈锦灏",
+        "张家玮",
+        "庞智友"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ],
+      "previousOriginalSite": "渔人码头到裕湘…",
+      "revisedExcelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8"
+    }
+  },
+  "pinwall-66188": {
+    "coverImage": "/student-works/pinwall-66188.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/wEePQkmKNijiKbr5KzSN.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66188",
+    "checkedAt": "2026-10-28T17:59:51.904880+00:00",
+    "sha256": "fe2930a1a8dbee3cc64aa2929c73f41f8b0c055c351878f06a0e36b4c0ca449b",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66188",
+      "sourceRow": 24,
+      "originalSite": "潮宗街",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "潮间：潮宗街新旧文化共生界面系统",
+      "pinwallMembers": [
+        "李禹昂",
+        "林子强",
+        "闫翔钧",
+        "江悦宁"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66189": {
+    "coverImage": "/student-works/pinwall-66189.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/GdChmeRFEKJYNJAKxeMi.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66189",
+    "checkedAt": "2026-10-28T17:59:52.858035+00:00",
+    "sha256": "bb260ce432da72ffb9281120615126de80702a9c605381432261b39de7c654f9",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66189",
+      "sourceRow": 25,
+      "originalSite": "鹅洲岛",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "青年岛·文旅化改造",
+      "pinwallMembers": [
+        "杨睿妍",
+        "王嘉彤",
+        "郭晶晶",
+        "方奕"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66191": {
+    "coverImage": "/student-works/pinwall-66191.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/HwYNBd3Q5prpTeYzPBNh.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66191",
+    "checkedAt": "2026-10-28T17:59:54.703494+00:00",
+    "sha256": "c5e9942b1399a0243429c87e967e308fda44d355149c053328d8ccaefb31bc9f",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66191",
+      "sourceRow": 26,
+      "originalSite": "橘子洲大桥",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "橘子洲大桥桥面交通改进计划",
+      "pinwallMembers": [
+        "项宏升",
+        "冯俊龙",
+        "乔嘉康",
+        "郑浩杰",
+        "张有成"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66193": {
+    "coverImage": "/student-works/pinwall-66193.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/nird8EfrC7rhBAT3kHiY.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66193",
+    "checkedAt": "2026-10-28T17:59:56.551615+00:00",
+    "sha256": "03bb1fec84a81d89057b45097ef5ecdfb78f692e50ee69d0089dc81aab666f8b",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66193",
+      "sourceRow": 27,
+      "originalSite": "鹅洲岛",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "湘洲渡——湘江全域水上交通与文旅综合服务设计",
+      "pinwallMembers": [
+        "丁之杨",
+        "李诗妍",
+        "徐新月",
+        "杨米琪",
+        "李静雯"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  },
+  "pinwall-66190": {
+    "coverImage": "/student-works/pinwall-66190.webp",
+    "coverStatus": "verified",
+    "coverSource": "https://oss.pinwall.cn/images/zkYxQASmXhMYhJdF4cDK.png",
+    "hasPdf": true,
+    "pinwallUrl": "https://pinwall.cn/project/66190",
+    "checkedAt": "2026-10-28T17:59:57.999898+00:00",
+    "sha256": "11cc58d4579c06faf397f1ca6562755c9f286b250482253d59b45f96d097896e",
+    "status": "available",
+    "matchEvidence": {
+      "projectId": "66190",
+      "sourceRow": 28,
+      "originalSite": "渔人码头",
+      "folderUrl": "https://pinwall.cn/workFolder/1725",
+      "pinwallTitle": "人人有泊位-渔人码头共泊计划",
+      "pinwallMembers": [
+        "吴炎伦",
+        "孙国庭",
+        "邱相程",
+        "陈昱燐"
+      ],
+      "titleMatch": true,
+      "membersMatch": true,
+      "publisherMatch": true,
+      "originalSize": [
+        360,
+        360
+      ]
+    }
+  }
+}

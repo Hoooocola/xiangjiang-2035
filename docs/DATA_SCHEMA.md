@@ -69,3 +69,7 @@ KJ / Insight、Design Opportunity / Proposal 等完整数据库流程尚未接�
 ## 数据 PR 验收
 
 稳定 ID 不随标题重命名；引用必须解析；来源与权限明确；几何闭合、坐标有限且符合 WGS84；新增子类能在目录选择；统计带单位/范围/时间；Demo 不包装成事实。执行目录、关系、几何与 overlay 测试，并浏览器验证选择和资料入口。涉及真实田野资料时先审核隐私和上传权限。
+
+## V2.4 导航与数据语义
+
+LayerId仍含proposal，以保持资料、情景和数据库关联兼容；现实GIS导航只列geography/ecology/culture/society/economy。DESIGN_PROPOSALS仅由既有AtlasRecord.kind=Proposal派生，支持placeIds及无可核验地点；不把StudentWork隐式转换为Proposal。学生作品地点ID绑定及全部媒体映射未变。昭山同一地点ID的近似导航点来源纠偏见docs/v2.4/ZHAOSHAN_SOURCE.md，不新增山体边界契约。

@@ -12,14 +12,14 @@ export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,select
  const visible=visibleObjects(state),inventory=MAP_OBJECTS.filter(o=>isAvailable(o,{...state,showDemo:true}));
  const toggleExpanded=(id:LayerId)=>setExpanded(ids=>ids.includes(id)?ids.filter(x=>x!==id):[...ids,id]);
  return <aside className={styles.directory} aria-label="数据图层" data-information-panel data-information-directory>
-  <header><div><small>SPATIAL INFORMATION / 01</small><h2>阅读这段湘江</h2></div><button onClick={onClose} aria-label="关闭数据图层"><X size={18}/></button></header>
-  <div className={styles.directoryTools}>
+  <header><div><small>SPATIAL INFORMATION / 01</small><h2>阅读这段湘江</h2><p className={styles.directorySubhead}>选择主题，让空间显现。</p></div><button onClick={onClose} aria-label="关闭数据图层"><X size={18}/></button></header>
+  <details className={styles.directoryTools}><summary>阅读设置 <span>范围 · 示例</span></summary>
    <label className={styles.scope}><span>阅读范围</span><select aria-label="图层资料范围" value={scope} onChange={e=>onScope(e.target.value as 'all'|'place')}><option value="all">全部地点</option><option value="place" disabled={!selectedPlace}>{selectedPlace??'当前地点'}</option></select></label>
    <label className={styles.demo}><input type="checkbox" checked={state.showDemo===true} onChange={e=>onDemo(e.target.checked)}/><span>DEMO 示例<small>{state.showDemo?'已显示 · 非实测资料':'默认关闭 · 开启后可体验模拟主题'}</small></span><span className={styles.count}>{inventory.filter(o=>o.isMock).length}</span></label>
-  </div>
+  </details>
   <div className={styles.directoryBody}>
    <p className={styles.hint}>选择具体条目，镜头将带你到它的空间。</p>
-   {LAYERS.map((l,index)=>{
+   {LAYERS.filter(l=>l.id!=='proposal').map((l,index)=>{
     const all=inventory.filter(o=>o.layer===l.id),available=all.filter(o=>isAvailable(o,state));
     const enabled=state.layers.includes(l.id),open=expanded.includes(l.id);
     const pending=SUBTYPES.filter(s=>s.layer===l.id&&!all.some(o=>subtypeOf(o)===s.id));
@@ -42,6 +42,6 @@ export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,select
     </section>;
    })}
   </div>
-  <footer><button onClick={onGuide}>空间导读 <ArrowUpRight size={13}/></button><button onClick={onClear} disabled={!state.layers.length}>清除图层</button><small>{visible.length} 个空间对象可见</small></footer>
+  <footer><button onClick={onGuide}>空间导读 <ArrowUpRight size={13}/></button><button onClick={onClear} disabled={!state.layers.length}>清除图层</button><small>{visible.filter(o=>o.layer!=='proposal').length} 个空间对象可见</small></footer>
  </aside>;
 }

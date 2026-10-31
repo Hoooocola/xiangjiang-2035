@@ -1,3 +1,5 @@
+import {createAtmosphere,type AtmospherePreference} from './atmosphere';
+import {createTerrainFocus} from './terrain-focus';
 import {informationPose,informationDuration,informationInsets} from './information-framing';
 import {INTRO_SEQUENCE} from './camera-sequence';
 import {renderedTerrainHeight} from './information-surface';
@@ -6,7 +8,7 @@ import {MAP_OBJECTS,visibleObjects} from '../atlas/objects';
 import type {OverlayState} from '../atlas/types';
 import * as THREE from 'three';
 import { CameraRig, clonePose } from './camera';
-import { CAMERA_PRESETS, OVERVIEW_POSE, PLACES, placePose, type CameraPose } from './config';
+import { CAMERA_PRESETS, OVERVIEW_POSE, PLACES, placePose, type CameraPose, type Place } from './config';
 import { makeMaterials } from './materials';
 import {createEnvironment} from './lighting';
 import { buildScene } from './scene';
@@ -25,15 +27,18 @@ export interface ExperienceCallbacks {
  interact?:()=>void;
  minimap:(paths:string[])=>void;
  motion:(moving:boolean)=>void;
- metrics:(metrics:{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number})=>void;
+ metrics:(metrics:{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number;particles?:number;mistLayers?:number;atmosphere?:string})=>void;
 }
 export interface ExperienceEngine {
+ atmosphere:(value:AtmospherePreference)=>void;
+ rememberView:()=>()=>void;
+ clearPlaceSelection:()=>void;
  start:()=>void; tour:()=>void; stop:()=>void; skip:()=>void; reset:()=>void;
  clearInformationFocus:()=>void;focusSpatialInformation:(id:string,options?:{directoryOpen?:boolean})=>void;returnFromFocus:()=>void;setOverlays:(state:OverlayState)=>void;focusObjects:(ids:string[])=>void;hoverObject:(id:string|null)=>void; navigate:(x:number,z:number)=>void; overview:()=>void; focus:(id:string)=>void; back:()=>void;
  pan:(x:number,y:number)=>void;dragMode:(mode:'pan'|'orbit')=>void;
  theme:(night:boolean)=>void; zoom:(f:number)=>void; orbit:(v:number)=>void; preset:(index:number)=>void;dispose:()=>void;
 }
-export async function createExperience(host:HTMLDivElement,markers:Map<string,HTMLButtonElement>,callbacks:ExperienceCallbacks,signal:AbortSignal):Promise<ExperienceEngine>{
+export async function createExperience(host:HTMLDivElement,markers:Map<string,HTMLButtonElement>,callbacks:ExperienceCallbacks,signal:AbortSignal,navigationPlaces:readonly Place[]=PLACES):Promise<ExperienceEngine>{
  const cleanups:(()=>void)[]=[];const materials=makeMaterials();
  let renderer:THREE.WebGLRenderer;
  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});}catch{throw new Error('当前浏览器未能创建 WebGL 2 场景，请开启硬件加速，或使用支持 WebGL 的 Chrome / Safari。');}
@@ -46,12 +51,14 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
  const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','三维湘江地图。拖动平移，Shift 加拖动或右键旋转，滚轮缩放。键盘方向键转动，Home 返回。');canvas.style.cursor='grab';host.appendChild(canvas);
  const rig=new CameraRig(camera,canvas,{initial:OVERVIEW_POSE,minimumCameraY:(x,z)=>(built?.terrain.height(x,z)??0)+6.6});
  const sceneEnvironment=createEnvironment(scene,renderer),{sun}=sceneEnvironment;
+ const atmosphere=createAtmosphere();scene.add(atmosphere.root);let pressure=false,slowSamples=0;
  const focusMaterial=new THREE.MeshBasicMaterial({color:'#9276bd',transparent:true,opacity:.8,depthWrite:false,side:THREE.DoubleSide});
  const ring=new THREE.Mesh(new THREE.RingGeometry(0.5,0.54,64),focusMaterial);ring.rotation.x=-Math.PI/2;ring.visible=false;scene.add(ring);
  let nightTarget=1,night=1,last=performance.now(),frames=0,frameTime=0,metricsTime=0;
  let previous:CameraPose|undefined,selectedId:string|undefined;
  let researchSelected=false,researchWeight=0;let objectPrevious:CameraPose|undefined;let informationPending=false;
- const select=(id?:string)=>{selectedId=id;built?.select(researchSelected?undefined:id);const place=PLACES.find(p=>p.id===id);const [x,z]=place?project(place.coordinate):[0,0];materials.focusRegion.value.set(x,z,id==='juzizhou'?5:16,id==='juzizhou'?24:16);};
+ let updatePlaceFocus:(id?:string)=>void=()=>{};
+ const select=(id?:string)=>{selectedId=id;updatePlaceFocus(id);built?.select(researchSelected?undefined:id);const place=navigationPlaces.find(p=>p.id===id);const [x,z]=place?project(place.coordinate):[0,0];materials.focusRegion.value.set(x,z,id==='juzizhou'?5:16,id==='juzizhou'?24:16);};
  const stop=()=>{if(rig.route||rig.transition)rig.cancel();informationPending=false;callbacks.informationReady?.(true);callbacks.motion(false);};rig.onInteract=()=>{stop();callbacks.interact?.();};
  const dispose=()=>{
   if(disposed)return;disposed=true;cancelAnimationFrame(frame);rig.dispose();cleanups.forEach(f=>f());
@@ -67,8 +74,10 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   built=await buildScene(data,grid,context,materials,n=>callbacks.progress(Math.round(n),'构建河岸、街区与洲岛'),false,new Set(MAP_OBJECTS.filter(o=>o.form==='object').flatMap(o=>o.sourceFeatureIds??[])));
   scene.add(built.root);
   const overlays=buildOverlays(built.terrain.height,built.sourceGeometry,renderedTerrainHeight(grid,built.terrain.height));scene.add(overlays.root);
+  const terrainFocus=createTerrainFocus(renderedTerrainHeight(grid,built.terrain.height));scene.add(terrainFocus.root);
   const informationOccluders=[...built.city.children,...built.root.children.filter(o=>o instanceof THREE.Mesh&&!(o instanceof THREE.InstancedMesh))];
   let overlayState:OverlayState={layers:[],proposal:null,selectedObjectIds:[],placeId:null};
+  updatePlaceFocus=id=>{overlays.focus(id==='yanghu'?'pilot-park-15867482':null);terrainFocus.setActive(id==='zhaoshan');};
   const picker=new THREE.Raycaster(),pointer=new THREE.Vector2();let pointerDown:[number,number]|null=null;
   const down=(e:PointerEvent)=>{pointerDown=e.button===0?[e.clientX,e.clientY]:null;};
   const up=(e:PointerEvent)=>{if(!pointerDown||e.button!==0||Math.hypot(e.clientX-pointerDown[0],e.clientY-pointerDown[1])>4){pointerDown=null;return;}pointerDown=null;const r=canvas.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,1-(e.clientY-r.top)/r.height*2);picker.setFromCamera(pointer,camera);const groups=[...overlays.groups.values()].filter(g=>g.visible);const hit=picker.intersectObjects(groups,true)[0];if(hit){const obstruction=picker.intersectObjects(informationOccluders,false)[0];if(!obstruction||obstruction.distance>=hit.distance-.04)callbacks.object?.(hit.object.userData.informationId);}};
@@ -96,7 +105,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    rig.update(now,dt);if(informationPending&&(!rig.transition||rig.transition.duration===0||(now-rig.transition.start)/rig.transition.duration>=.72)){informationPending=false;callbacks.informationReady?.(true);}compass??=host.parentElement?.querySelector<HTMLElement>('[data-compass]');if(compass)compass.style.transform=`rotate(${-rig.pose.azimuth*180/Math.PI}deg)`;materials.time.value=media.matches?0:now/1000;
    night=THREE.MathUtils.lerp(night,nightTarget,1-Math.exp(-dt*2.2));materials.updateTheme(night);materials.focusActive.value=THREE.MathUtils.lerp(materials.focusActive.value,selectedId&&!overlayState.selectedObjectIds.length?1:0,1-Math.exp(-dt*3));
    materials.researchFocus.value=THREE.MathUtils.lerp(materials.researchFocus.value,researchWeight,1-Math.exp(-dt*3));
-   const d=rig.pose.distance;materials.viewDistance.value=d;sceneEnvironment.update(night,d);overlays.theme(night);
+   const d=rig.pose.distance;materials.viewDistance.value=d;atmosphere.update(dt,night,d,camera,rig.pose.target,media.matches,host.clientWidth<760,pressure,renderer.getPixelRatio());sceneEnvironment.update(night,d,atmosphere.fogStrength,media.matches?0:now/1000);overlays.theme(night);terrainFocus.theme(night);
    const near=Math.max(.3,d*.01);if(Math.abs(camera.near-near)>.05){camera.near=near;camera.updateProjectionMatrix();}
    sun.castShadow=d<240;
    if(sun.castShadow&&Math.hypot(rig.pose.target[0]-shadowTarget.x,rig.pose.target[2]-shadowTarget.z)>8){
@@ -110,8 +119,8 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
     const [mx,my]=miniPoint(rig.pose.target[0],rig.pose.target[2]);miniCenter?.setAttribute('cx',String(mx));miniCenter?.setAttribute('cy',String(my));
    }
    const occupied:[number,number][]=[];
-   for(const place of [...PLACES].sort((a,b)=>Number(b.id===selectedId)-Number(a.id===selectedId))){
-    const el=markers.get(place.id);if(!el)continue;
+   for(const place of [...navigationPlaces].sort((a,b)=>Number(b.id===selectedId)-Number(a.id===selectedId))){
+    const el=markers.get(place.id);if(!el||el.hidden)continue;
     geographicAnchor(place.coordinate,built!.terrain.height,ANCHOR_HEIGHT_METERS.place,anchorPoint);
     projectAnchor(anchorPoint,camera,w,h,projectPoint);
     const px=projectPoint.x,py=projectPoint.y;
@@ -134,11 +143,12 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    }
    ring.scale.setScalar(1+(media.matches?0:Math.sin(now*.0015)*.05));
    renderer.info.reset();post!.render(night);frames++;frameTime+=elapsed;metricsTime+=elapsed;
-   if(metricsTime>1.5&&built){callbacks.metrics({fps:Math.round(frames/frameTime),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,...built.stats});frames=0;frameTime=0;metricsTime=0;}
+   if(metricsTime>1.5&&built){callbacks.metrics({fps:Math.round(frames/frameTime),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,...built.stats,...atmosphere.stats()});if(frames/frameTime<30)slowSamples++;else slowSamples=0;if(slowSamples>=3)pressure=true;frames=0;frameTime=0;metricsTime=0;}
   }
   frame=requestAnimationFrame(render);callbacks.progress(100,'准备就绪');callbacks.ready();
   const fly=(pose:CameraPose,duration=2600)=>{informationPending=false;callbacks.informationReady?.(true);callbacks.motion(true);rig.fly(pose,duration,()=>{informationPending=false;callbacks.informationReady?.(true);callbacks.motion(false);});};
   const frameResearch=(ids=overlayState.selectedObjectIds)=>{const points:THREE.Vector3[]=[];for(const id of ids){const g=overlays.groups.get(id);if(!g?.children.length)continue;g.updateMatrixWorld(true);const b=new THREE.Box3().setFromObject(g);points.push(b.min,b.max);}return researchPose(points,host.clientWidth,host.clientHeight,camera.fov);};
+  const framePlace=(place:Place)=>{const fallback=placePose(place);if(place.id==='zhaoshan')return informationPose(terrainFocus.points,'area',fallback,host.clientWidth,host.clientHeight,camera.fov)??fallback;if(place.id!=='yanghu')return fallback;const group=overlays.groups.get('pilot-park-15867482');if(!group?.children.length)return fallback;group.updateMatrixWorld(true);const bounds=new THREE.Box3().setFromObject(group);return informationPose([bounds.min,bounds.max],'area',fallback,host.clientWidth,host.clientHeight,camera.fov)??fallback;};
   const focusInformation=(ids:string[],directoryOpen=false)=>{
    const objects=MAP_OBJECTS.filter(o=>ids.includes(o.id));const points:THREE.Vector3[]=[];
    for(const o of objects){const g=overlays.groups.get(o.id);if(!g?.children.length)continue;g.updateMatrixWorld(true);const b=new THREE.Box3().setFromObject(g);for(const x of [b.min.x,b.max.x])for(const y of [b.min.y,b.max.y])for(const z of [b.min.z,b.max.z])points.push(new THREE.Vector3(x,y,z));}
@@ -156,8 +166,8 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    else rig.fly(OVERVIEW_POSE,2600,play);
 
   };
-  return {clearInformationFocus:()=>{stop();objectPrevious=undefined;},focusSpatialInformation:(id,options)=>focusInformation([id],options?.directoryOpen),returnFromFocus:()=>{if(objectPrevious){fly(objectPrevious,1000);objectPrevious=undefined;}},focusObjects:ids=>focusInformation(ids),hoverObject:id=>overlays.hover(id),setOverlays:(state)=>{overlayState=state;overlays.update(state);const selected=visibleObjects(state).find(o=>state.selectedObjectIds.includes(o.id));researchSelected=!!selected;researchWeight=selected?.form==='object'?.75:selected?.geometry.type==='Polygon'?.35:selected?.geometry.type==='LineString'?.18:0;built?.select(researchSelected?undefined:selectedId);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{objectPrevious=undefined;
-   const p=PLACES.find(p=>p.id===id);if(!p)return;previous??=clonePose(rig.pose);const [x,z]=project(p.coordinate);ring.position.set(x,(built?.terrain.height(x,z)??0)+.08,z);select(id);ring.visible=false;fly(placePose(p));
-  },back:()=>{ring.visible=false;select();fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},pan:(x,y)=>{stop();rig.pan(x*rig.pose.distance*.08,y*rig.pose.distance*.08);},dragMode:(mode)=>{stop();rig.dragMode=mode;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},preset:(i)=>{const preset=CAMERA_PRESETS[i];if(!preset)return;const place=PLACES.find(p=>p.id===selectedId);const pose=preset.mode==='research'?frameResearch()??preset.pose:preset.mode==='place'&&place?placePose(place):preset.pose;previous=undefined;ring.visible=false;if(preset.mode==='macro')select();fly(pose);},dispose};
+  return {atmosphere:value=>atmosphere.setPreference(value),rememberView:()=>{const saved=clonePose(rig.pose),id=selectedId;return ()=>{objectPrevious=undefined;previous=undefined;select(id);fly(saved,1000);};},clearPlaceSelection:()=>{stop();ring.visible=false;select();},clearInformationFocus:()=>{stop();objectPrevious=undefined;overlays.focus(null);terrainFocus.setActive(false);},focusSpatialInformation:(id,options)=>focusInformation([id],options?.directoryOpen),returnFromFocus:()=>{if(objectPrevious){fly(objectPrevious,1000);objectPrevious=undefined;}},focusObjects:ids=>focusInformation(ids),hoverObject:id=>overlays.hover(id),setOverlays:(state)=>{overlayState=state;if(state.selectedObjectIds.length){overlays.focus(null);terrainFocus.setActive(false);}overlays.update(state);const selected=visibleObjects(state).find(o=>state.selectedObjectIds.includes(o.id));researchSelected=!!selected;researchWeight=selected?.form==='object'?.75:selected?.geometry.type==='Polygon'?.35:selected?.geometry.type==='LineString'?.18:0;built?.select(researchSelected?undefined:selectedId);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{objectPrevious=undefined;
+   const p=navigationPlaces.find(p=>p.id===id);if(!p)return;previous??=clonePose(rig.pose);const [x,z]=project(p.coordinate);ring.position.set(x,(built?.terrain.height(x,z)??0)+.08,z);select(id);ring.visible=false;fly(framePlace(p));
+  },back:()=>{ring.visible=false;select();fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},pan:(x,y)=>{stop();rig.pan(x*rig.pose.distance*.08,y*rig.pose.distance*.08);},dragMode:(mode)=>{stop();rig.dragMode=mode;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},preset:(i)=>{const preset=CAMERA_PRESETS[i];if(!preset)return;const place=navigationPlaces.find(p=>p.id===selectedId);const pose=preset.mode==='research'?frameResearch()??preset.pose:preset.mode==='place'&&place?framePlace(place):preset.pose;previous=undefined;ring.visible=false;if(preset.mode==='macro')select();fly(pose);},dispose};
  }catch(e){dispose();throw e;}
 }
