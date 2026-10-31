@@ -7,6 +7,7 @@ import type {StudentWork} from '@/src/student-works/types';
 import {workPlaceIds} from '@/src/student-works/relationships';
 import {StudentWorkMediaLinks, StudentWorkReportLinks} from './student-work-media';
 import styles from './student-work-showcase.module.css';
+import {CourseSelector} from './course-selector';
 
 export type CourseIndexView = 'places' | 'works' | 'pending';
 
@@ -38,7 +39,7 @@ export function StudentWorkShowcase({theme, query, view, expanded, selectedPlace
   const chooseView = (next: CourseIndexView) => { onView(next); onExpanded(true); };
   return <aside className={`${styles.overview} ${integrated ? styles.integratedIndex : ''} ${!active ? styles.overviewHidden : ''}`} aria-label={integrated ? '设计方案目录' : '课程成果展示'} aria-hidden={!active} inert={!active} data-information-panel data-course-index data-index-open={expanded}>
     <div className={styles.overviewHeading}><p className={styles.kicker}>COURSE / SOCIAL INNOVATION DESIGN</p><button className={styles.iconButton} onClick={onClose} aria-label={integrated ? '关闭设计方案模式' : '收起课程成果展示'}><X size={18}/></button></div>
-    <div className={styles.courseTitleRow}><h1>{course.title}</h1>{COURSE_OPTIONS.length > 1 && onCourse && <><ChevronDown size={16}/><select aria-label="选择课程" value={course.id} onChange={event => onCourse(event.target.value)}>{COURSE_OPTIONS.map(item => <option value={item.id} key={item.id}>{item.title}</option>)}</select></>}</div>
+    {onCourse ? <CourseSelector course={course} options={COURSE_OPTIONS} onChange={onCourse}/> : <div className={styles.courseTitleRow}><h1>{course.title}</h1></div>}
     <details className={styles.courseDescription}><summary>课程简介 <ArrowDown size={12}/></summary><p className={styles.introduction}>{course.description}</p></details>
     <div className={styles.statistics} aria-label="课程统计" aria-live="polite"><p><strong>{String(stats.total).padStart(2, '0')}</strong><span>WORKS / 作品</span></p><p><strong>{String(stats.places).padStart(2, '0')}</strong><span>PLACES / 地点</span></p><p><strong>{String(stats.pending).padStart(2, '0')}</strong><span>UNLOCATED / 待定位</span></p></div>
     <details ref={themeRef} className={styles.themePicker}><summary><span>四大研究主题</span><strong>{theme==='all'?'全部':theme}</strong><ChevronDown size={13}/></summary><nav className={styles.themes} aria-label="研究主题筛选">

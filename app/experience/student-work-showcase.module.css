@@ -99,3 +99,19 @@
 .overviewHeading{position:absolute;inset:0 0 auto 0;pointer-events:none;z-index:2;min-height:14px}.overviewHeading .kicker{font-size:7px}.overviewHeading .iconButton{position:absolute;right:0;top:-8px;min-height:44px;min-width:44px;pointer-events:auto}
 .courseTitleRow{padding:16px 25px 0 0;min-height:58px;box-sizing:border-box;margin:0}.courseTitleRow select{top:13px;height:45px}.overview h1,.integratedIndex h1{font-size:24px}.statistics,.integratedIndex .statistics{margin:7px 0}.statistics p{flex-direction:row;align-items:center;gap:7px}.statistics strong{font-size:27px}.statistics span{max-width:49px;line-height:1.5;font-size:7px}.overviewFoot{min-height:44px;gap:9px}.overviewFoot button{min-height:44px;font-size:8px!important}.overviewFoot>span{max-width:74px;text-align:right;font-size:6px}
 @media(max-width:700px){.overview,.integratedIndex{bottom:182px}.courseTitleRow{min-height:58px}.overview h1,.integratedIndex h1{font-size:24px}.statistics strong{font-size:27px}.overviewFoot{margin-top:3px}}
+/* Course combobox: the current title remains the control, with no system menu. */
+.courseTitleRow{z-index:3;padding-right:25px}
+.courseTitleRow h1{width:100%;min-width:0}
+.courseTitleRow h1>button{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;text-align:left;font:inherit;letter-spacing:inherit}
+.courseTitleRow h1>button>svg{flex-shrink:0;color:var(--accent);transition:transform .2s}
+.courseTitleRow [aria-expanded=true]>svg{transform:rotate(180deg)}
+.courseTitleRow:focus-within{outline:0}
+.courseTitleRow h1>button:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
+.courseOptions{position:absolute;z-index:4;top:100%;left:0;right:0;padding:6px 0 12px;margin:0;list-style:none;isolation:isolate}
+.courseOptions::before{content:'';position:absolute;z-index:-1;pointer-events:none;inset:-12px -30px -28px -24px;background:radial-gradient(ellipse at 40% 35%,rgba(var(--information-rgb),1) 22%,rgba(var(--information-rgb),.98) 54%,rgba(var(--information-rgb),0) 76%)}
+.courseOptions button{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;min-height:44px;text-align:left;font-size:12px!important;color:var(--muted)}
+.courseOptions button>svg{opacity:0;flex-shrink:0}
+.courseOptions [aria-selected=true],.courseOptions [data-active=true]{color:var(--accent)}
+.courseOptions [aria-selected=true]>svg{opacity:1}
+.courseOptions [data-active=true]>span{box-shadow:0 1px var(--accent)}
+.overview,.integratedIndex{overflow:visible}
