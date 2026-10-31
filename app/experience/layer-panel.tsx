@@ -7,7 +7,7 @@ import {SUBTYPES,isAvailable,subtypeOf} from '@/src/atlas/information';
 import type {LayerId,OverlayState} from '@/src/atlas/types';
 import styles from './information.module.css';
 const english:Record<LayerId,string>={geography:'GEOGRAPHY',ecology:'ECOLOGY',culture:'CULTURE',society:'SOCIETY',economy:'ECONOMY',proposal:'PROPOSAL'};
-export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,selectedPlace,onSubtype,onDemo,onGuide,onClear}:{scope:'all'|'place';onScope:(scope:'all'|'place')=>void;selectedPlace?:string;state:OverlayState;onToggle:(id:LayerId)=>void;onObject:(id:string)=>void;onClose:()=>void;onSubtype:(id:string)=>void;onDemo:(value:boolean)=>void;onGuide:()=>void;onClear:()=>void}){
+export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,selectedPlace,onSubtype,onDemo,onClear}:{scope:'all'|'place';onScope:(scope:'all'|'place')=>void;selectedPlace?:string;state:OverlayState;onToggle:(id:LayerId)=>void;onObject:(id:string)=>void;onClose:()=>void;onSubtype:(id:string)=>void;onDemo:(value:boolean)=>void;onClear:()=>void}){
  const [expanded,setExpanded]=useState<LayerId[]>(state.layers);
  const visible=visibleObjects(state),inventory=MAP_OBJECTS.filter(o=>isAvailable(o,{...state,showDemo:true}));
  const toggleExpanded=(id:LayerId)=>setExpanded(ids=>ids.includes(id)?ids.filter(x=>x!==id):[...ids,id]);
@@ -42,6 +42,6 @@ export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,select
     </section>;
    })}
   </div>
-  <footer><button onClick={onGuide}>空间导读 <ArrowUpRight size={13}/></button><button onClick={onClear} disabled={!state.layers.length}>清除图层</button><small>{visible.filter(o=>o.layer!=='proposal').length} 个空间对象可见</small></footer>
+  <footer><button onClick={onClear} disabled={!state.layers.length}>清除图层</button><small>{visible.filter(o=>o.layer!=='proposal').length} 个空间对象可见</small></footer>
  </aside>;
 }
