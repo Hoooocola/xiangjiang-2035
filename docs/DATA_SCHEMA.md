@@ -73,3 +73,7 @@ KJ / Insight、Design Opportunity / Proposal 等完整数据库流程尚未接�
 ## V2.4 导航与数据语义
 
 LayerId仍含proposal，以保持资料、情景和数据库关联兼容；现实GIS导航只列geography/ecology/culture/society/economy。DESIGN_PROPOSALS仅由既有AtlasRecord.kind=Proposal派生，支持placeIds及无可核验地点；不把StudentWork隐式转换为Proposal。学生作品地点ID绑定及全部媒体映射未变。昭山同一地点ID的近似导航点来源纠偏见docs/v2.4/ZHAOSHAN_SOURCE.md，不新增山体边界契约。
+
+## V2.5 Course / StudentWork
+
+Course身份、年份、简介、主题、studentWorkIds及sourceUrl定义在src/student-works/courses.ts；目前只存在2026社会创新设计。它引用既有StudentWork稳定ID，不创建新的作品副本，也不转换成正式Proposal。检索复用visibleStudentWorks，统计复用statsForWorks，地点复用workPlaceIds。多地点去重、未定位资料保留；原Proposal与数据库契约不变。
