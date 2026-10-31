@@ -715,7 +715,19 @@
         "accessStatus": "verified"
       }
     ],
-    "videos": []
+    "videos": [],
+    "otherResources": [
+      {
+        "id": "source-interactive",
+        "title": "交互展示网页",
+        "kind": "interactive",
+        "order": 2,
+        "sourceUrl": "https://h5.pinwall.cn/66166/603158/xiangjiang-h5/index.html",
+        "openUrl": "https://h5.pinwall.cn/66166/603158/xiangjiang-h5/index.html",
+        "accessStatus": "verified",
+        "evidence": "压缩包通过原作品页面按需获取；交互网页在新标签打开，不嵌入或预加载。"
+      }
+    ]
   },
   "pinwall-66168": {
     "checkedAt": "2026-10-31T08:07:52Z",
@@ -1009,7 +1021,19 @@
         "accessStatus": "verified"
       }
     ],
-    "videos": []
+    "videos": [],
+    "otherResources": [
+      {
+        "id": "source-archive",
+        "title": "原站压缩包",
+        "kind": "archive",
+        "order": 3,
+        "sourceUrl": "https://oss.pinwall.cn/rar_zip/S2cs75iHrbdaMK7BMWHx.zip",
+        "openUrl": "https://pinwall.cn/project/66187",
+        "accessStatus": "unavailable",
+        "evidence": "源站压缩包本次访问返回403，未绕过访问控制；通过原作品页查看作者当前公开方式。"
+      }
+    ]
   },
   "pinwall-66188": {
     "checkedAt": "2026-10-31T08:07:52Z",
@@ -1143,7 +1167,19 @@
         "accessStatus": "verified"
       }
     ],
-    "videos": []
+    "videos": [],
+    "otherResources": [
+      {
+        "id": "source-interactive",
+        "title": "交互展示网页",
+        "kind": "interactive",
+        "order": 2,
+        "sourceUrl": "https://h5.pinwall.cn/66193/603206/index.html",
+        "openUrl": "https://h5.pinwall.cn/66193/603206/index.html",
+        "accessStatus": "verified",
+        "evidence": "压缩包通过原作品页面按需获取；交互网页在新标签打开，不嵌入或预加载。"
+      }
+    ]
   },
   "pinwall-66196": {
     "checkedAt": "2026-10-31T08:07:52Z",

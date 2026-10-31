@@ -76,7 +76,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 398,
+      "sha256": "a4939c1cf87fec594d3dceea26ddbc9c791258620da03d8b6a3de3cc54cd4e56",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-55734",
@@ -170,7 +176,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 61,
+      "sha256": "bac68a6c553a81ea338253ce0255f535528475616c0986a2a287d1c308caa20d",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-55735",
@@ -249,7 +261,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 286,
+      "sha256": "fd7e4489ccb62c7e5fbd98bb32a96aa06f04743cce6a663ef13c3d46b2cea527",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-55736",
@@ -328,7 +346,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 209,
+      "sha256": "05d9f4eafd00cd2c6ec6dcf11c890c62e40a59be68f3f5d2b4b13da91ae2a509",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-55750",
@@ -407,7 +431,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 20,
+      "sha256": "6337f5c6af323f03b8247e85b5920ede20fb237cae2a19a9c68797b970e58614",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-55758",
@@ -482,7 +512,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 171,
+      "sha256": "cc69e700b4a33a57bdf90e3c36dab65ae0c511ab78ede3f773d759ab9679257a",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-55773",
@@ -563,7 +599,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 160,
+      "sha256": "bd4bd8ec2ce9a978c358387d9e9f7c3d518c383d040d79212d7af16ab199c403",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-55784",
@@ -640,7 +682,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 134,
+      "sha256": "7f622c7be346c6b63df08ef8900700ac5083fdd125dbde038e197a9b61dae0f5",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-55785",
@@ -719,7 +767,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 172,
+      "sha256": "9fc5615dc5be1ba21ef5a131132d2a978b163e22c2fef2d4132be04d24a78b77",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-55792",
@@ -798,7 +852,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 21,
+      "sha256": "4e7a902bfcedd236fad7a6c32f976013b4ed2ab8c9bab66ecd5a08daf71e5bee",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-60496",
@@ -875,7 +935,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 171,
+      "sha256": "f57d36f7724be00d27b5105bad558fb876e55d8c2bf456ff30950f4ed284e75f",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-60519",
@@ -939,7 +1005,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 139,
+      "sha256": "becd5901a0ec0ffc714aa578a62b9f75050c2110d510e3fba49c544d312715e8",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62142",
@@ -1014,7 +1086,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 230,
+      "sha256": "0a9797c67c77efd827108ab244385da7db3fc8dedf575837378121b8bd0dda2a",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62168",
@@ -1091,7 +1169,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 262,
+      "sha256": "3c9cde5b47f2f0287bbc16285dbbfb34bb5a2065d11400d42ae407dc45b9df69",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62175",
@@ -1170,7 +1254,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 382,
+      "sha256": "d927628deb276fece57ecffa313e7332e88b51d64cff0bc86510b2eb3be425b8",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62177",
@@ -1249,7 +1339,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 216,
+      "sha256": "e2d05cdb5d4ea9af12374b47d3a909980b13c580ff85889189cbd38199bff973",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62179",
@@ -1326,7 +1422,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 249,
+      "sha256": "fc0d2c05c777bdce2827effd12ec1f24854d5f856b125de974a1c453dd17749c",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62181",
@@ -1405,7 +1507,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 331,
+      "sha256": "84f237511643c60232b1b102259d955616cc1eab18e4a13db990ed73710df992",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62185",
@@ -1482,7 +1590,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 193,
+      "sha256": "c6bf012d3217b2a0649aeb62743a91152766f3fc7c13c7945eb7b30be59bfe93",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62187",
@@ -1561,7 +1675,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 163,
+      "sha256": "ff0fe86132fa14bf6bc3e1f4d8833d5a817b6b29ff7dbbf6c9995eaed80ca775",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62188",
@@ -1638,7 +1758,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 174,
+      "sha256": "479a00b2426ee579fbad997b2b89f450fe0c2db5c612e2ec0afea6092e7498ee",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62189",
@@ -1717,7 +1843,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 192,
+      "sha256": "639bf59b0f3a4c3b60404464f40f6dd3e556b6d1b056a63d3409678d6e0e0df2",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62191",
@@ -1790,7 +1922,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 145,
+      "sha256": "76a9c56d75dffdd5443b4257fc7baa8e10eab83ff88787d6330aa927892c39a4",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62192",
@@ -1869,7 +2007,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 246,
+      "sha256": "11af12d3c7f3be97955bd4f639f117afd888d2ba5593d8a083ecc1d092594102",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-62197",
@@ -1948,7 +2092,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 200,
+      "sha256": "84244d9357493568bbd3ff701df3ac9ef9f378403b25fbe2b4cd9c7ee6c6b932",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66166",
@@ -2012,7 +2162,29 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 376,
+      "sha256": "8df2d908cbf577beb8535c541bc0120025d98b0e276baf393c33bc03030c5e1d",
+      "location": "原作品详情页，不复制完整原文"
+    },
+    "otherResources": [
+      {
+        "id": "source-interactive",
+        "title": "交互展示网页",
+        "kind": "interactive",
+        "order": 2,
+        "sourceUrl": "https://h5.pinwall.cn/66166/603158/xiangjiang-h5/index.html",
+        "openUrl": "https://h5.pinwall.cn/66166/603158/xiangjiang-h5/index.html",
+        "accessStatus": "verified",
+        "evidence": "压缩包通过原作品页面按需获取；交互网页在新标签打开，不嵌入或预加载。",
+        "probe": {
+          "status": "206",
+          "type": "text/html"
+        }
+      }
+    ]
   },
   {
     "id": "pinwall-66168",
@@ -2076,7 +2248,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 145,
+      "sha256": "7a4b51b64c318ec6ecf00a94517578d8234ae437f60582dab4f0be952a1099bb",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66170",
@@ -2140,7 +2318,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 214,
+      "sha256": "6f8b41a62c2825897629a571c1240a877a51da2189342f12296947fe73663959",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66171",
@@ -2219,7 +2403,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 187,
+      "sha256": "54ed134ada815dc9b884a8d315891b19316e3b7c774b6e038cffa991e2d822e9",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66172",
@@ -2283,7 +2473,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 153,
+      "sha256": "468339247206ba696a04b27e61af5a8e98e8824af7a25ebf270b83b96c2532a0",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66173",
@@ -2347,7 +2543,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 261,
+      "sha256": "799fb3b194604cd5d5ca366f91625d8e68ca85f0cf6e8555d89c5952f47b77a9",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66174",
@@ -2411,7 +2613,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 266,
+      "sha256": "f432f97967acfbe09d4b8715451145635d35fd3a843a825737d98b686330a702",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66175",
@@ -2475,7 +2683,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 172,
+      "sha256": "42fb55d31ef653cc0092620210e6c3ea7118205d079e1f374057386358a28395",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66176",
@@ -2539,7 +2753,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 56,
+      "sha256": "ee573a2710a5be3592811b4385c9197eb852e16161387f51fc37f12a408160f1",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66178",
@@ -2603,7 +2823,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 174,
+      "sha256": "8eb70baae44131362331e6f89acf9cdb428206c9367edb68e6b12fd33270c3e9",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66179",
@@ -2669,7 +2895,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 331,
+      "sha256": "fe97a0c510c4262cf7a1e065b80207730599c55f6942050f888dc76d28ac4f3c",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66180",
@@ -2735,7 +2967,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 410,
+      "sha256": "3288125e60b2aaca731e7cfdf6534d753f02a4b58a6bbeb5f0fa5ac8fd6d338b",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66181",
@@ -2799,7 +3037,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 229,
+      "sha256": "b2fb87cb2dcfe5afd6b21ddb4b6ab8ee8b357b364b1ab2d5133b730489320ec0",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66183",
@@ -2865,7 +3109,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 358,
+      "sha256": "d3ee74a420c31e057cadd8a53b1d8932f704fd5aae1e38930e33b7ac1197e4d5",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66184",
@@ -2944,7 +3194,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 299,
+      "sha256": "78ac2d1f6b973bf813db694b80e634af8d0136a017e4c20cd3bda3a3790fa40c",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66185",
@@ -3008,7 +3264,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 221,
+      "sha256": "e62827ef57837b0b37a2bc9b9dbe7814e313413bd819b24b53692d380c8833a0",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66187",
@@ -3089,7 +3351,29 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 255,
+      "sha256": "0f39d2ca8e759640506db18cdd293aa54c72bf5b260f739d027f9305d65b4c98",
+      "location": "原作品详情页，不复制完整原文"
+    },
+    "otherResources": [
+      {
+        "id": "source-archive",
+        "title": "原站压缩包",
+        "kind": "archive",
+        "order": 3,
+        "sourceUrl": "https://oss.pinwall.cn/rar_zip/S2cs75iHrbdaMK7BMWHx.zip",
+        "openUrl": "https://pinwall.cn/project/66187",
+        "accessStatus": "unavailable",
+        "evidence": "源站压缩包本次访问返回403，未绕过访问控制；通过原作品页查看作者当前公开方式。",
+        "probe": {
+          "status": "403",
+          "type": "application/xml"
+        }
+      }
+    ]
   },
   {
     "id": "pinwall-66188",
@@ -3153,7 +3437,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 151,
+      "sha256": "c9981b4cee9ecdea2e09a16b0cb9484619f7ff250e4ed6fd2096a195fb597549",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66189",
@@ -3217,7 +3507,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 142,
+      "sha256": "7cdd95827fed619c1f633b0f1ef02152f5131c87f833b3665018004d2903303f",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66190",
@@ -3296,7 +3592,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 141,
+      "sha256": "3d6a351b023ffa65ba44dc9d3273cbe5404d80e495f192a1e2ea8974472993b2",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66191",
@@ -3362,7 +3664,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 16,
+      "sha256": "8187312446996ac0c0730b57c75107129512521faf8e20c766c9c6b5e69b184e",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66192",
@@ -3443,7 +3751,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 9,
+      "sha256": "960e8af8859fb5fb94550aa991ff9cb47c5cad383a5433ba6ef8e80b43c7115f",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66193",
@@ -3509,7 +3823,29 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 209,
+      "sha256": "28168cdab74c82a2800f181b75c2f61ad393ffec6ac960ec049b71a7c60e9d6f",
+      "location": "原作品详情页，不复制完整原文"
+    },
+    "otherResources": [
+      {
+        "id": "source-interactive",
+        "title": "交互展示网页",
+        "kind": "interactive",
+        "order": 2,
+        "sourceUrl": "https://h5.pinwall.cn/66193/603206/index.html",
+        "openUrl": "https://h5.pinwall.cn/66193/603206/index.html",
+        "accessStatus": "verified",
+        "evidence": "压缩包通过原作品页面按需获取；交互网页在新标签打开，不嵌入或预加载。",
+        "probe": {
+          "status": "206",
+          "type": "text/html"
+        }
+      }
+    ]
   },
   {
     "id": "pinwall-66196",
@@ -3575,7 +3911,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 137,
+      "sha256": "6432c935885b4e0c480a39dc1667a5ef93bb6175c284f5c256f50a29f43fb61a",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66198",
@@ -3639,7 +3981,13 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 132,
+      "sha256": "55f0607723c167fa9d0d15986a842a1689b4fe118271d9f9a250abcb5a872c0b",
+      "location": "原作品详情页，不复制完整原文"
+    }
   },
   {
     "id": "pinwall-66200",
@@ -3705,6 +4053,12 @@
         "ok": false
       }
     },
-    "checkedAt": "2026-10-31T08:07:52Z"
+    "checkedAt": "2026-10-31T08:07:52Z",
+    "descriptionAudit": {
+      "available": true,
+      "characters": 25,
+      "sha256": "63c2a5f7cfce3da581943e00d81521666cac330b72ce140f14462b8b169433b1",
+      "location": "原作品详情页，不复制完整原文"
+    }
   }
 ]

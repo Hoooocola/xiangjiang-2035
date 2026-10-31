@@ -1,7 +1,7 @@
 import {createElement} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {describe, expect, it} from 'vitest';
-import {DEFAULT_COURSE, COURSES, ALL_COURSES, courseWorks, courseStats} from '@/src/student-works/courses';
+import {DEFAULT_COURSE, COURSES, courseWorks, courseStats} from '@/src/student-works/courses';
 import {STUDENT_THEMES, STUDENT_WORKS, showcaseStats, statsForWorks, visibleStudentWorks, worksForPlace} from '@/src/student-works/catalog';
 import {StudentWorkShowcase, StudentWorkExhibition} from '@/app/experience/student-work-showcase';
 import {StudentWorkReportLinks} from '@/app/experience/student-work-media';

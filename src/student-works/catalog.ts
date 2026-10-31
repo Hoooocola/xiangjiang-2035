@@ -27,7 +27,7 @@ function assetStatus(value: string): StudentWork['coverStatus'] {
 const media: Record<string, WorkAsset> = Object.fromEntries(Object.entries(assets).map(([id, asset]) => [id, {...asset, coverStatus: assetStatus(asset.coverStatus)}]));
 type VideoAsset = Omit<Extract<StudentWorkMedia, {type:'video'}>, 'type' | 'checkedAt'>;
 type PdfAsset = Omit<Extract<StudentWorkMedia, {type:'pdf'}>, 'type' | 'url'> & {id:string};
-const videoMedia = videoSources as Record<string, {checkedAt:string;pdfs?:PdfAsset[];videos:VideoAsset[];retired?:{id:string}[]}>;
+const videoMedia = videoSources as Record<string, {checkedAt:string;pdfs?:PdfAsset[];videos:VideoAsset[];otherResources?:Omit<Extract<StudentWorkMedia,{type:'external'}>,'type'>[];retired?:{id:string}[]}>;
 type SourceWork = Omit<StudentWork, 'coverImage' | 'coverSource' | 'coverStatus' | 'pinwallUrl'>;
 export const STUDENT_WORKS: readonly StudentWork[] = ([...source, ...archive] as SourceWork[]).map(work => ({
   ...work,
@@ -38,6 +38,7 @@ export const STUDENT_WORKS: readonly StudentWork[] = ([...source, ...archive] as
     ...(videoMedia[work.id]?.pdfs?.length ? videoMedia[work.id].pdfs!.map((pdf, index) => ({...pdf, type:'pdf' as const, url:`/student-works/${work.id}/pdf?attachment=${encodeURIComponent(pdf.id)}`, label:pdf.title ?? `资料 ${index+1}`})) :
       media[work.id]?.hasPdf ? [{type:'pdf' as const, url:`/student-works/${work.id}/pdf`, label:'完整报告'}] : []),
     ...(videoMedia[work.id]?.videos ?? []).map(video => ({...video, type:'video' as const, checkedAt:videoMedia[work.id].checkedAt})),
+    ...(videoMedia[work.id]?.otherResources ?? []).map(item => ({...item,type:'external' as const})),
   ] as StudentWorkMedia[]).sort((a,b)=>(a.order??0)-(b.order??0)),
   coverImage: media[work.id]?.coverStatus === 'verified' && media[work.id]?.coverImage
     ? `${media[work.id].coverImage}?v=${media[work.id].sha256?.slice(0, 12) ?? 'verified'}` : null,

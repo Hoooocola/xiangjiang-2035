@@ -6,17 +6,21 @@ import styles from './student-work-showcase.module.css';
 /** Links only: no player, iframe, poster fetch or preload before/after opening an external tab. */
 export function StudentWorkMediaLinks({work}: {work:StudentWork}) {
   const videos = videosForWork(work);
-  if (!videos.length) return null;
+  const other = (work.media ?? []).filter(item => item.type === 'external');
+  if (!videos.length && !other.length) return null;
   const link = (video: typeof videos[number]) => <a key={video.id} className={styles.viewProject}
     href={videoOpenUrl(work, video)} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer"
     aria-label={`观看视频：${work.title} · ${video.title}`}
     title={`${video.title} · ${video.accessStatus === 'verified' ? '已核验附件' : '访问待核验'}；点击后解析当前原站视频，无法打开时保留原作品入口`}>
     <Play size={11}/>{video.title}{video.accessStatus === 'unavailable' ? ' · 暂不可用' : ''}<ArrowUpRight size={12}/>
   </a>;
-  return <details className={styles.videoIndex}>
+  return <>{videos.length > 0 && <details className={styles.videoIndex}>
     <summary className={styles.viewProject}>视频（{videos.length}）</summary>
     <div className={styles.videoChoices}>{videos.map(link)}</div>
-  </details>;
+  </details>}{other.length > 0 && <details className={styles.videoIndex}>
+    <summary className={styles.viewProject}>其他资料（{other.length}）</summary>
+    <div className={styles.videoChoices}>{other.map(item => <a key={item.id} className={styles.viewProject} href={item.openUrl} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer" title={item.evidence}>{item.title}{item.kind === 'archive' ? ' · 原作品页获取' : ''}<ArrowUpRight size={12}/></a>)}</div>
+  </details>}</>;
 }
 
 export function StudentWorkReportLinks({work}: {work:StudentWork}) {

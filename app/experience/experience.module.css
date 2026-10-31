@@ -72,3 +72,5 @@
 /* Keep the optional shortcut outside active reading/index surfaces on small screens. */
 
 .mainNav[hidden]{display:none}
+/* A compact popover must rise above the course directory's stacking context. */
+.bottomDock:has([id="atmosphere-options"]){z-index:30}

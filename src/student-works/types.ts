@@ -6,6 +6,7 @@ export type StudentTheme =
   | '产业规划与场景营造';
 
 export type StudentWorkMedia =
+  | {type: 'external'; id: string; title: string; kind: 'archive' | 'interactive'; sourceUrl: string; openUrl: string; order: number; accessStatus: 'verified' | 'unverified' | 'unavailable'; evidence: string}
   | {type: 'pdf'; id?: string; url: string; label?: string; title?: string; order?: number; sourceUrl?: string; sourcePageUrl?: string; resourcePath?: string; provider?: string; accessStatus?: 'verified' | 'unverified' | 'unavailable'}
   | {
     type: 'video'; id: string; title: string; sourceUrl: string;
