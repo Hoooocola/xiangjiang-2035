@@ -41,7 +41,7 @@ export const STUDENT_WORKS: readonly StudentWork[] = ([...source, ...archive] as
     ...(videoMedia[work.id]?.otherResources ?? []).map(item => ({...item,type:'external' as const})),
   ] as StudentWorkMedia[]).sort((a,b)=>(a.order??0)-(b.order??0)),
   coverImage: media[work.id]?.coverStatus === 'verified' && media[work.id]?.coverImage
-    ? `${media[work.id].coverImage}?v=${media[work.id].sha256?.slice(0, 12) ?? 'verified'}` : null,
+    ? media[work.id].coverImage!.startsWith('https://') ? `/student-works/${work.id}/cover` : `${media[work.id].coverImage}?v=${media[work.id].sha256?.slice(0, 12) ?? 'verified'}` : null,
   coverSource: media[work.id]?.coverSource ?? null,
   coverStatus: media[work.id]?.coverStatus ?? 'unverified',
   pinwallUrl: work.projectUrl,
