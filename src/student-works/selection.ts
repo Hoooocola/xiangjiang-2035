@@ -3,8 +3,8 @@ import type {StudentWork} from './types';
 import {groupAtPlace} from './relationships';
 
 /** A course selection never manufactures a place for an unlocated source row. */
-export function selectionGroup(workId: string | null, theme: ThemeFilter, query: string, placeId?: string | null): StudentWork[] {
-  const visible = visibleStudentWorks(theme, query);
+export function selectionGroup(workId: string | null, theme: ThemeFilter, query: string, placeId?: string | null, courseId = 'social-innovation-design-2026'): StudentWork[] {
+  const visible = visibleStudentWorks(theme, query, courseId);
   const selected = visible.find(work => work.id === workId);
   if (!selected) return [];
   return groupAtPlace(visible, selected, placeId);

@@ -1,7 +1,7 @@
 import {createElement} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {describe, expect, it, vi} from 'vitest';
-import {STUDENT_WORKS, showcaseStats, worksForPlace} from '@/src/student-works/catalog';
+import {BASE_STUDENT_WORKS as STUDENT_WORKS, showcaseStats, worksForPlace} from '@/src/student-works/catalog';
 import {workPlaceIds, preferredWorkPlace} from '@/src/student-works/relationships';
 import {selectionGroup} from '@/src/student-works/selection';
 import {findPinwallVideos} from '@/src/student-works/video';
@@ -23,9 +23,9 @@ describe('source-backed multi-location course selection', () => {
     expect(workPlaceIds(STUDENT_WORKS[0])).toEqual(['tongguan', 'juzizhou', 'ezhou']);
     expect(worksForPlace('juzizhou').map(w => w.id)).toContain(STUDENT_WORKS[0].id);
     expect(worksForPlace('ezhou')).toHaveLength(4);
-    expect(showcaseStats()).toMatchObject({total:24,mapped:20,pending:4,places:13,partiallyMapped:0});
+    expect(showcaseStats()).toMatchObject({total:39,mapped:28,pending:11,places:14,partiallyMapped:0});
     expect(worksForPlace('student-yuxiang')).toHaveLength(2);
-    expect(worksForPlace('site-025')).toHaveLength(1);
+    expect(worksForPlace('site-025')).toHaveLength(2);
   });
   it('uses the selected marker context instead of jumping back to the first work primary site', () => {
     expect(preferredWorkPlace(STUDENT_WORKS[0],'juzizhou')).toBe('juzizhou');

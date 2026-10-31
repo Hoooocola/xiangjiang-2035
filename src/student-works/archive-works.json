@@ -1,0 +1,934 @@
+[
+  {
+    "id": "pinwall-55730",
+    "sequence": 25,
+    "title": "湘江2035 | 橘子洲大桥桥下空间改造——江上商业与文化廊道",
+    "theme": "产业规划与场景营造",
+    "members": [
+      "喻静伊",
+      "臧谢晗",
+      "赖羽昕",
+      "周玮"
+    ],
+    "originalSite": "橘子洲大桥",
+    "originalSiteType": "滨水/码头",
+    "placeId": "student-juzizhou-bridge",
+    "placeIds": [
+      "student-juzizhou-bridge"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/55730",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2024",
+    "year": 2024,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 7
+    }
+  },
+  {
+    "id": "pinwall-55734",
+    "sequence": 26,
+    "title": "轻舟渡朱张，AR映湖湘-湘江",
+    "theme": "湘江的生态文旅",
+    "members": [
+      "朱一杰",
+      "冯志程",
+      "袁享",
+      "刘琪"
+    ],
+    "originalSite": "橘子洲",
+    "originalSiteType": "岛洲",
+    "placeId": "juzizhou",
+    "placeIds": [
+      "juzizhou"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/55734",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2024",
+    "year": 2024,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 8
+    }
+  },
+  {
+    "id": "pinwall-55735",
+    "sequence": 27,
+    "title": "蓝钓计划-湘江",
+    "theme": "湘江的生态文旅",
+    "members": [
+      "白书慧",
+      "车家璐",
+      "王骢然",
+      "刘子菁"
+    ],
+    "originalSite": "湘江整体",
+    "originalSiteType": "",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "湘江整体"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/55735",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2024",
+    "year": 2024,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 9
+    }
+  },
+  {
+    "id": "pinwall-55736",
+    "sequence": 28,
+    "title": "湘江-鳍迹-2035",
+    "theme": "湘江的生态文旅",
+    "members": [
+      "张雯悦",
+      "葛思雅",
+      "胡扬扬",
+      "崔心馨"
+    ],
+    "originalSite": "橘子洲",
+    "originalSiteType": "岛洲",
+    "placeId": "juzizhou",
+    "placeIds": [
+      "juzizhou"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/55736",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2024",
+    "year": 2024,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 10
+    }
+  },
+  {
+    "id": "pinwall-55750",
+    "sequence": 29,
+    "title": "生态保护背景下的设计驱动乡村振兴实践—兴马洲生态旅游创新探索",
+    "theme": "湘江的生态文旅",
+    "members": [
+      "李钰汶",
+      "李聪锐",
+      "杜明宇",
+      "余晓菲"
+    ],
+    "originalSite": "兴马洲",
+    "originalSiteType": "岛洲",
+    "placeId": "xingma",
+    "placeIds": [
+      "xingma"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/55750",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2024",
+    "year": 2024,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 11
+    }
+  },
+  {
+    "id": "pinwall-55758",
+    "sequence": 30,
+    "title": "长沙柏家洲城市营区—湘江",
+    "theme": "产业规划与场景营造",
+    "members": [
+      "桂健秦",
+      "郭力鸣"
+    ],
+    "originalSite": "柏家洲",
+    "originalSiteType": "岛洲",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "柏家洲"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/55758",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2024",
+    "year": 2024,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 12
+    }
+  },
+  {
+    "id": "pinwall-55773",
+    "sequence": 31,
+    "title": "矿坑公园——湘江",
+    "theme": "产业规划与场景营造",
+    "members": [
+      "罗万豪",
+      "沈程昊",
+      "姚茂杰",
+      "王宇珅",
+      "路程"
+    ],
+    "originalSite": "大王山",
+    "originalSiteType": "历史/景区",
+    "placeId": "site-025",
+    "placeIds": [
+      "site-025"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/55773",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2024",
+    "year": 2024,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 13
+    }
+  },
+  {
+    "id": "pinwall-55784",
+    "sequence": 32,
+    "title": "湘江沿岸八景文旅策划",
+    "theme": "湘江的生态文旅",
+    "members": [
+      "吴佳丽",
+      "张丽红",
+      "唐嘉馨"
+    ],
+    "originalSite": "湘江整体",
+    "originalSiteType": "",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "湘江整体"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/55784",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2024",
+    "year": 2024,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 14
+    }
+  },
+  {
+    "id": "pinwall-55785",
+    "sequence": 33,
+    "title": "旧景新寻——湘江欢乐城再规划 - 湘江",
+    "theme": "产业规划与场景营造",
+    "members": [
+      "葛轩迪",
+      "司槟川",
+      "刘朗",
+      "吴凌羽"
+    ],
+    "originalSite": "湘江欢乐城",
+    "originalSiteType": "历史/景区",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "湘江欢乐城"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/55785",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2024",
+    "year": 2024,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 15
+    }
+  },
+  {
+    "id": "pinwall-55792",
+    "sequence": 34,
+    "title": "星忆湘流",
+    "theme": "社区生活与在地共创",
+    "members": [
+      "高靖祖",
+      "徐节",
+      "曹婷",
+      "穆怡萱"
+    ],
+    "originalSite": "",
+    "originalSiteType": "",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/55792",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2024",
+    "year": 2024,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 16
+    }
+  },
+  {
+    "id": "pinwall-60496",
+    "sequence": 35,
+    "title": "湘江·长沙流域生态/人文/工业可视化大屏设计",
+    "theme": "产业规划与场景营造",
+    "members": [
+      "陈思蓓",
+      "董曼杰",
+      "余青蔚"
+    ],
+    "originalSite": "湘江整体",
+    "originalSiteType": "",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "湘江整体"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/60496",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2025",
+    "year": 2025,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 17
+    }
+  },
+  {
+    "id": "pinwall-60519",
+    "sequence": 36,
+    "title": "云游湘江——eVTOL湘江空中游览主题航线策划",
+    "theme": "湘江的生态文旅",
+    "members": [
+      "王一诺",
+      "唐菲",
+      "李春睿",
+      "龙丹琦"
+    ],
+    "originalSite": "湘江整体",
+    "originalSiteType": "",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "湘江整体"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/60519",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2025",
+    "year": 2025,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 18
+    }
+  },
+  {
+    "id": "pinwall-62142",
+    "sequence": 37,
+    "title": "湘江渡——记忆回流社区体验设计",
+    "theme": "社区生活与在地共创",
+    "members": [
+      "张宇欣",
+      "余林"
+    ],
+    "originalSite": "渔人码头",
+    "originalSiteType": "滨水/码头",
+    "placeId": "site-011",
+    "placeIds": [
+      "site-011"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62142",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 19
+    }
+  },
+  {
+    "id": "pinwall-62168",
+    "sequence": 38,
+    "title": "渡学湘江",
+    "theme": "产业规划与场景营造",
+    "members": [
+      "蒋家魁",
+      "周俊宇",
+      "谭有旭"
+    ],
+    "originalSite": "城南书院和岳麓书院",
+    "originalSiteType": "历史/景区",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "城南书院和岳麓书院"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62168",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 20
+    }
+  },
+  {
+    "id": "pinwall-62175",
+    "sequence": 39,
+    "title": "《橘子洲·1925》",
+    "theme": "产业规划与场景营造",
+    "members": [
+      "唐嘉馨",
+      "任紫凝",
+      "高帆",
+      "李响"
+    ],
+    "originalSite": "橘子洲",
+    "originalSiteType": "岛洲",
+    "placeId": "juzizhou",
+    "placeIds": [
+      "juzizhou"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62175",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 21
+    }
+  },
+  {
+    "id": "pinwall-62177",
+    "sequence": 40,
+    "title": "关关雎鸠，载禾之洲：兴马洲的诗意栖居2035",
+    "theme": "社区生活与在地共创",
+    "members": [
+      "杨洁心",
+      "袁璟",
+      "庄灏天",
+      "季佳丽"
+    ],
+    "originalSite": "兴马洲",
+    "originalSiteType": "岛洲",
+    "placeId": "xingma",
+    "placeIds": [
+      "xingma"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62177",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 22
+    }
+  },
+  {
+    "id": "pinwall-62179",
+    "sequence": 41,
+    "title": "2035城南漂流计划",
+    "theme": "社区生活与在地共创",
+    "members": [
+      "凡子翔",
+      "卓一群",
+      "李芊凝"
+    ],
+    "originalSite": "城南街区",
+    "originalSiteType": "社区/街区",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "城南街区"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62179",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 23
+    }
+  },
+  {
+    "id": "pinwall-62181",
+    "sequence": 42,
+    "title": "城市回声：湘江声流捕获计划",
+    "theme": "社区生活与在地共创",
+    "members": [
+      "陈陟",
+      "张瑾",
+      "印彤",
+      "方子铭"
+    ],
+    "originalSite": "湘江整体",
+    "originalSiteType": "",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "湘江整体"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62181",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 24
+    }
+  },
+  {
+    "id": "pinwall-62185",
+    "sequence": 43,
+    "title": "大王山“一线四水”的两栖观光系统",
+    "theme": "产业规划与场景营造",
+    "members": [
+      "徐云骁",
+      "吴凌羽",
+      "陈骋"
+    ],
+    "originalSite": "大王山",
+    "originalSiteType": "历史/景区",
+    "placeId": "site-025",
+    "placeIds": [
+      "site-025"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62185",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 25
+    }
+  },
+  {
+    "id": "pinwall-62187",
+    "sequence": 44,
+    "title": "织水未来—基于2035湘江生态文化的裕湘纱厂社会创新",
+    "theme": "社区生活与在地共创",
+    "members": [
+      "章玮",
+      "陈潇羽",
+      "黄尔卓",
+      "程聪蕙"
+    ],
+    "originalSite": "裕湘纱厂",
+    "originalSiteType": "历史/景区",
+    "placeId": "student-yuxiang",
+    "placeIds": [
+      "student-yuxiang"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62187",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 26
+    }
+  },
+  {
+    "id": "pinwall-62188",
+    "sequence": 45,
+    "title": "解放“金三角”-基于霞凝港繁华回忆的社会创新设计",
+    "theme": "社区生活与在地共创",
+    "members": [
+      "曾伟浩",
+      "蒋欣珂",
+      "余晓菲"
+    ],
+    "originalSite": "霞凝港",
+    "originalSiteType": "滨水/码头",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "霞凝港"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62188",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 27
+    }
+  },
+  {
+    "id": "pinwall-62189",
+    "sequence": 46,
+    "title": "湘江入焰梦——一代人的湘江烟花记忆与2035未来重生",
+    "theme": "湘江的生态文旅",
+    "members": [
+      "工设2003孙岚轩",
+      "曾婧怡",
+      "杨雨亭",
+      "刘佳婧"
+    ],
+    "originalSite": "橘子洲",
+    "originalSiteType": "岛洲",
+    "placeId": "juzizhou",
+    "placeIds": [
+      "juzizhou"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62189",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 28
+    }
+  },
+  {
+    "id": "pinwall-62191",
+    "sequence": 47,
+    "title": "湘江新水娱乐新图景——变革理论指导下的湘江2035未来生态文旅构想",
+    "theme": "湘江的生态文旅",
+    "members": [
+      "匡贵星"
+    ],
+    "originalSite": "文津码头",
+    "originalSiteType": "滨水/码头",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "文津码头"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62191",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 29
+    }
+  },
+  {
+    "id": "pinwall-62192",
+    "sequence": 48,
+    "title": "“锌”火相传：锌厂人的共同回忆和情感联结",
+    "theme": "社区生活与在地共创",
+    "members": [
+      "何殷殷",
+      "张扬",
+      "张羽翔",
+      "游康佳"
+    ],
+    "originalSite": "长沙锌厂",
+    "originalSiteType": "历史/景区",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "长沙锌厂"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62192",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 30
+    }
+  },
+  {
+    "id": "pinwall-62197",
+    "sequence": 49,
+    "title": "顺水而居—霞凝港社会创新设计",
+    "theme": "社区生活与在地共创",
+    "members": [
+      "韦开山",
+      "曾钰潆",
+      "陈子灿",
+      "王琦"
+    ],
+    "originalSite": "霞凝港",
+    "originalSiteType": "滨水/码头",
+    "placeId": null,
+    "placeIds": [],
+    "pendingLocationNames": [
+      "霞凝港"
+    ],
+    "media": [],
+    "locationNote": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/62197",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "硕士",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 31
+    }
+  },
+  {
+    "id": "pinwall-66198",
+    "sequence": 50,
+    "title": "湘圩・江物赶场",
+    "theme": "产业规划与场景营造",
+    "members": [
+      "谢星汉",
+      "马永骏",
+      "袁宇轩",
+      "胡训遥"
+    ],
+    "originalSite": "裕湘纱厂",
+    "originalSiteType": "历史/景区",
+    "placeId": "student-yuxiang",
+    "placeIds": [
+      "student-yuxiang"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/66198",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 56
+    }
+  },
+  {
+    "id": "pinwall-66200",
+    "sequence": 51,
+    "title": "江洲北叙——橘子洲北平战复合水上生态教育微循环方案",
+    "theme": "湘江的生态文旅",
+    "members": [
+      "张惠泉",
+      "阮航",
+      "高婷",
+      "何静怡",
+      "李帅"
+    ],
+    "originalSite": "橘子洲",
+    "originalSiteType": "岛洲",
+    "placeId": "juzizhou",
+    "placeIds": [
+      "juzizhou"
+    ],
+    "pendingLocationNames": [],
+    "media": [],
+    "locationNote": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。",
+    "reviewNotes": [
+      "年份来自用户工作簿，不等同于Pinwall上传年份。"
+    ],
+    "projectUrl": "https://pinwall.cn/project/66200",
+    "pdfUrl": null,
+    "courseId": "social-innovation-design-2026",
+    "year": 2026,
+    "level": "本科",
+    "source": {
+      "file": "社会创新课程-湘江作品.xlsx",
+      "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+      "sheet": "历年作业整理",
+      "row": 57
+    }
+  }
+]

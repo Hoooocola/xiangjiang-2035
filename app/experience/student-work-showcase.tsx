@@ -2,7 +2,7 @@
 import {useEffect, useRef, useState} from 'react';
 import {ArrowDown, ArrowLeft, ArrowUpRight, Search, X} from 'lucide-react';
 import {SHOWCASE_PLACES, type ThemeFilter} from '@/src/student-works/catalog';
-import {COURSES, DEFAULT_COURSE, courseStats, courseWorks, type Course} from '@/src/student-works/courses';
+import {COURSE_OPTIONS, DEFAULT_COURSE, courseStats, courseWorks, type Course} from '@/src/student-works/courses';
 import type {StudentWork} from '@/src/student-works/types';
 import {workPlaceIds} from '@/src/student-works/relationships';
 import {StudentWorkMediaLinks, StudentWorkReportLinks} from './student-work-media';
@@ -35,7 +35,7 @@ export function StudentWorkShowcase({theme, query, view, expanded, selectedPlace
   const chooseView = (next: CourseIndexView) => { onView(next); onExpanded(next !== view || !expanded); };
   return <aside className={`${styles.overview} ${integrated ? styles.integratedIndex : ''} ${!active ? styles.overviewHidden : ''}`} aria-label={integrated ? '设计方案目录' : '课程成果展示'} aria-hidden={!active} inert={!active} data-information-panel>
     <div className={styles.overviewHeading}><p className={styles.kicker}>COURSE / SOCIAL INNOVATION DESIGN</p><button className={styles.iconButton} onClick={onClose} aria-label={integrated ? '关闭设计方案模式' : '收起课程成果展示'}><X size={18}/></button></div>
-    {COURSES.length > 1 && onCourse && <label className={styles.courseSelect}>课程<select aria-label="选择课程" value={course.id} onChange={event => onCourse(event.target.value)}>{COURSES.map(item => <option value={item.id} key={item.id}>{item.title}</option>)}</select></label>}
+    {COURSE_OPTIONS.length > 1 && onCourse && <label className={styles.courseSelect}>课程<select aria-label="选择课程" value={course.id} onChange={event => onCourse(event.target.value)}>{COURSE_OPTIONS.map(item => <option value={item.id} key={item.id}>{item.title}</option>)}</select></label>}
     <h1>{course.title}</h1><p className={styles.introduction}>{course.description}</p>
     <div className={styles.statistics} aria-label="课程统计" aria-live="polite"><p><strong>{String(stats.total).padStart(2, '0')}</strong><span>WORKS / 作品</span></p><p><strong>{String(stats.places).padStart(2, '0')}</strong><span>PLACES / 地点</span></p><p><strong>{String(stats.pending).padStart(2, '0')}</strong><span>UNLOCATED / 待定位</span></p></div>
     <nav className={styles.themes} aria-label="研究主题筛选">
