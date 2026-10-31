@@ -25,7 +25,7 @@ export function CourseSelector({course, options, onChange}: {course:Course; opti
     }else if(open&&(event.key==='Enter'||event.key===' ')){event.preventDefault();choose(active);}
   };
   return <div ref={root} className={styles.courseTitleRow}>
-    <h1><button ref={trigger} type="button" role="combobox" aria-label="选择课程" aria-haspopup="listbox" aria-expanded={open} aria-controls={id} aria-activedescendant={open?`${id}-${active}`:undefined} onKeyDown={keyDown} onClick={()=>{setActive(selected);setOpen(!open);}}>{course.title}<ChevronDown size={16}/></button></h1>
+    <h1 aria-label={course.title}><button ref={trigger} type="button" role="combobox" aria-label="选择课程" aria-haspopup="listbox" aria-expanded={open} aria-controls={id} aria-activedescendant={open?`${id}-${active}`:undefined} onKeyDown={keyDown} onClick={()=>{setActive(selected);setOpen(!open);}}>{course.title}<ChevronDown size={16}/></button></h1>
     {open&&<ul id={id} className={styles.courseOptions} role="listbox" aria-label="课程年份" onWheel={event=>event.stopPropagation()}>
       {options.map((item,index)=><li key={item.id} role="presentation"><button type="button" role="option" id={`${id}-${index}`} tabIndex={-1} aria-selected={item.id===course.id} data-active={index===active} onPointerMove={()=>setActive(index)} onClick={()=>choose(index)}><span>{item.title}</span><Check size={13} aria-hidden="true"/></button></li>)}
     </ul>}

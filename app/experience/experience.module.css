@@ -74,3 +74,6 @@
 .mainNav[hidden]{display:none}
 /* A compact popover must rise above the course directory's stacking context. */
 .bottomDock:has([id="atmosphere-options"]){z-index:30}
+/* Shared reading-scrim tokens: theme only, never map-material colors. */
+.experience{--reading-rgb:var(--information-rgb);--reading-near:.97;--reading-middle:.9;--reading-soft:.48;--reading-fade:140px;--reading-tail:120px}
+.night{--reading-near:.98;--reading-middle:.91;--reading-soft:.54}
