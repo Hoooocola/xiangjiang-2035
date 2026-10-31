@@ -23,6 +23,7 @@ export function createEnvironment(scene:THREE.Scene,renderer:THREE.WebGLRenderer
  const colors=(key:'sky'|'bounce'|'key')=>[new THREE.Color(SCENE_LIGHTING.day[key]),new THREE.Color(SCENE_LIGHTING.night[key])];
  const sky=colors('sky'),bounce=colors('bounce'),key=colors('key');
  const bg=[new THREE.Color(ATMOSPHERE.day.background),new THREE.Color(ATMOSPHERE.night.background)];
+ const scatter=new THREE.Color('#102b2a');
  function update(night:number,distance:number,atmosphere=0,time=0){
   const mix=THREE.MathUtils.lerp,day=SCENE_LIGHTING.day,dark=SCENE_LIGHTING.night;
   hemi.color.copy(sky[0]).lerp(sky[1],night);hemi.groundColor.copy(bounce[0]).lerp(bounce[1],night);
@@ -33,7 +34,8 @@ export function createEnvironment(scene:THREE.Scene,renderer:THREE.WebGLRenderer
   const a=ATMOSPHERE.day,b=ATMOSPHERE.night;
   fog.near=distance*mix(a.nearScale,b.nearScale,night)+mix(a.nearOffset,b.nearOffset,night);
   fog.far=distance*mix(a.farScale,b.farScale,night)+mix(a.farOffset,b.farOffset,night);
-  fog.near=mix(fog.near,distance*.82+20,atmosphere);fog.far=mix(fog.far,(distance*1.75+140)*(1+Math.sin(time*.012)*.018),atmosphere);
+  fog.near=mix(fog.near,distance*.62+22,atmosphere);fog.far=mix(fog.far,(distance*2+75)*(1+Math.sin(time*.045)*.015),atmosphere);
+  if(atmosphere>0)fog.color.lerp(scatter,atmosphere*night*.3);
  }
  return {sun,hemi,fill,update};
 }
