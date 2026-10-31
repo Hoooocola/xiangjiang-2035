@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {createCloudFields} from './atmosphere-clouds';
 export type AtmospherePreference='auto'|'low'|'off';
 export function atmosphereQuality(preference:AtmospherePreference,reducedMotion:boolean,compact:boolean,underPressure=false){return preference==='off'||reducedMotion?'off':preference==='low'||compact||underPressure?'low':'full';}
 
@@ -34,29 +35,7 @@ export function createAtmosphere(){
   #include <colorspace_fragment>
  }`});
  const particles=new THREE.Points(geometry,particlesMaterial);particles.frustumCulled=false;root.add(particles);
- const cloudUniforms={uTime:{value:0},uNight:{value:1},uNear:{value:40},uDetail:{value:1}};
- const cloudMaterial=new THREE.ShaderMaterial({uniforms:cloudUniforms,transparent:true,depthWrite:false,depthTest:true,side:THREE.DoubleSide,
- vertexShader:`varying vec2 vUv;varying vec3 vWorld;varying float vDepth;void main(){vUv=uv;vec4 world=modelMatrix*vec4(position,1.);vWorld=world.xyz;vec4 view=viewMatrix*world;vDepth=-view.z;gl_Position=projectionMatrix*view;}`,
- fragmentShader:`
- varying vec2 vUv;varying vec3 vWorld;varying float vDepth;uniform float uTime,uNight,uNear,uDetail;
- float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
- float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.)),f.x),f.y);}
- void main(){vec2 uv=(vUv-.5)*2.;float mask=pow(max(0.,1.-dot(uv,uv)),2.);if(mask<.004)discard;
-  vec2 wind=vec2(uTime*.032,-uTime*.019);vec2 p=vWorld.xz*.034+vWorld.y*.027+wind;
-  float field=noise(p)*.66+noise(p*2.07-wind*.45)*.25;
-  if(uDetail>.5)field+=noise(p*4.13+wind*.21)*.09;
-  float nearClear=smoothstep(uNear*.5,uNear*1.3,vDepth);
-  float height=exp(-max(vWorld.y-4.,0.)*.045);
-  float alpha=mask*nearClear*height*(.018+.16*field);
-  vec3 color=mix(vec3(.76,.83,.81),vec3(.055,.15,.145),uNight);
-  gl_FragColor=vec4(color,alpha);
-  #include <tonemapping_fragment>
-  #include <colorspace_fragment>
- }`});
- const clouds=new THREE.Group();root.add(clouds);const plane=new THREE.PlaneGeometry(1,1);
- const fields=[[-62,5,-58,155,22],[42,8,-95,180,28],[-38,4,28,115,17],[78,10,48,170,26],[-93,7,84,145,21],[12,13,108,185,30]];
- for(const [x,y,z,w,h]of fields){const mesh=new THREE.Mesh(plane,cloudMaterial);mesh.frustumCulled=false;mesh.position.set(x,y,z);mesh.scale.set(w,h,1);clouds.add(mesh);}
- const target=new THREE.Vector3();
+ const clouds=createCloudFields();root.add(clouds.root);
  return {root,setPreference:(value:AtmospherePreference)=>{mode=value;},get preference(){return mode;},get elapsed(){return time;},get fogStrength(){return quality==='off'?0:quality==='low'?.55:1;},
  stats:()=>({particles:quality==='off'?0:quality==='low'?48:count,mistLayers:quality==='off'?0:quality==='low'?3:6,atmosphere:quality}),
  update:(dt:number,night:number,distance:number,camera:THREE.Camera,lookAt:readonly number[],reduced:boolean,compact:boolean,pressure:boolean,pixel:number)=>{
@@ -64,8 +43,6 @@ export function createAtmosphere(){
   time+=Math.max(0,Math.min(dt,.1));uniforms.uTime.value=time;uniforms.uNight.value=night;uniforms.uPixel.value=pixel;geometry.setDrawRange(0,quality==='low'?48:count);
   // Quantized world neighbourhood stays fixed through small pans/zooms; depth and parallax remain real.
   particles.position.set(Math.round(lookAt[0]/64)*64,0,Math.round(lookAt[2]/64)*64);
-  target.set(particles.position.x,0,particles.position.z);clouds.position.lerp(target,1-Math.exp(-dt*.32));
-  cloudUniforms.uTime.value=time;cloudUniforms.uNight.value=night;cloudUniforms.uNear.value=distance*.7+12;cloudUniforms.uDetail.value=quality==='full'?1:0;
-  clouds.children.forEach((mesh,i)=>{mesh.visible=quality==='full'||i<3;mesh.quaternion.copy(camera.quaternion);});
- },dispose:()=>{geometry.dispose();particlesMaterial.dispose();plane.dispose();cloudMaterial.dispose();}};
+  clouds.update(time,night,distance,camera,lookAt,quality);
+ },dispose:()=>{geometry.dispose();particlesMaterial.dispose();clouds.dispose();}};
 }
