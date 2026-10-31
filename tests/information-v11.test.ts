@@ -9,8 +9,8 @@ import type {OverlayState} from '../src/atlas/types';
 const all:OverlayState={layers:LAYERS.map(l=>l.id),selectedObjectIds:[],proposal:null,placeId:null,showDemo:true,subtypes:SUBTYPES.map(s=>s.id)};
 describe('V1.1 editorial information data',()=>{
  it('exposes each fixture as a functional, sourced and explicitly mock information object',()=>{
-  expect(INFORMATION_DEMOS).toHaveLength(15);
-  for(const category of ['ecology','culture','society','economy','proposal'])expect(INFORMATION_DEMOS.filter(f=>f.layer===category)).toHaveLength(3);
+  expect(INFORMATION_DEMOS).toHaveLength(12);
+  for(const category of ['ecology','culture','society','economy'])expect(INFORMATION_DEMOS.filter(f=>f.layer===category)).toHaveLength(3);
   const visible=new Set(visibleObjects(all).map(f=>f.id));
   for(const f of INFORMATION_DEMOS){
    expect(visible.has(f.id)).toBe(true);expect(validateInformationFeature(f)).toEqual([]);

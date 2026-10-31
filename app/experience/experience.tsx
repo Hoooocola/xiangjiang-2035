@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {ArrowUpRight,ArrowRight,RotateCcw,Sun,Moon,X,Compass,Play,Pause,Info,MapPin,Layers,BookOpen,SlidersHorizontal,Lightbulb,Sparkles} from 'lucide-react';
+import {ArrowUpRight,ArrowRight,RotateCcw,Sun,Moon,X,Compass,Play,Pause,Info,MapPin,Layers,BookOpen,SlidersHorizontal,Lightbulb} from 'lucide-react';
 import {CAMERA_PRESETS,PLACES} from '@/src/experience/config';
 import {MINI_MAP,miniPoint,worldPoint} from '@/src/experience/minimap';
 import {project} from '@/src/experience/geo';
@@ -16,6 +16,7 @@ import {SUBTYPES,subtypeOf,focusState} from '@/src/atlas/information';
 import {LayerPanel} from './layer-panel';
 import {LayerSymbol} from './layer-symbol';
 import {LAYER_VISUALS} from '@/src/atlas/visuals';
+import {AtmosphereControl} from './atmosphere-control';
 import {CameraControls} from './camera-controls';
 import {recordById} from '@/src/atlas/catalog';
 import {MAP_OBJECTS,layersForObjects,visibleObjects} from '@/src/atlas/objects';
@@ -51,7 +52,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const informationContext=useRef<{selected:string|null;overview:boolean;freeExplore:boolean;proposal:ProposalScenario|null}|null>(null);
  const [informationReady,setInformationReady]=useState(true);
  const [layerScope,setLayerScope]=useState<'all'|'place'>('all');
- const [atmosphereMode,setAtmosphereMode]=useState<AtmospherePreference>('auto'),[atmosphereOpen,setAtmosphereOpen]=useState(false);
+ const [atmosphereMode,setAtmosphereMode]=useState<AtmospherePreference>('auto');
  useEffect(()=>{const read=()=>{try{const value=localStorage.getItem('xiangjiang-atmosphere');if(value==='auto'||value==='low'||value==='off')setAtmosphereMode(value);}catch{}};const timer=setTimeout(read,0);window.addEventListener('storage',read);return()=>{clearTimeout(timer);window.removeEventListener('storage',read);};},[]);
  useEffect(()=>{engine.current?.atmosphere(atmosphereMode);},[atmosphereMode,loaded]);
  const [preset,setPreset]=useState(0),[mapPaths,setMapPaths]=useState<string[]>([]);
@@ -145,7 +146,6 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
    <h2>{drawer==='places'?'沿江探索':drawer==='views'?'观察视角':'关于湘江 2035'}</h2>
    {drawer==='places'?<div className={styles.placeList}>{navigationPlaces.map(p=><button key={p.id} onClick={()=>focus(p.id)} aria-pressed={selected===p.id}><span>{p.index}</span><div>{p.name}<small>{p.category}</small></div><ArrowUpRight size={19}/></button>)}</div>:drawer==='views'?<div className={styles.placeList}>{CAMERA_PRESETS.map((p,i)=><button key={p.id} aria-pressed={preset===i} onClick={()=>{setPreset(i);setFreeExplore(false);setStarted(true);setDetailOpen(p.mode==='research'&&!!recordId);if(p.mode==='macro'){setSelected(null);clearRecord();}setAtlasPanel(null);setOverview(p.mode==='macro');engine.current?.preset(i);setDrawer(null);}}><span>0{i+1}</span><div>{p.name}<small>{p.description}</small></div><ArrowUpRight size={19}/></button>)}</div>:<div className={styles.about}><p>以真实地点为索引，连接湘江的生态、文化与社会创新。此版本是三维空间体验 Demo。</p><p>河岸与核心建筑轮廓来自 OpenStreetMap；外围建筑与道路补充自 Overture Maps。外围采用轮廓推导的简化体量，未知高度为估算。树木根据 OSM 与 ESA WorldCover 林地范围布置；山体来自公开高程瓦片，并做了河岸平顺处理。鹅洲标记采用公开地名近似坐标，尚非测绘定位。</p><p>© OpenStreetMap contributors, Overture Maps Foundation；East Asian Buildings。© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium。地形：Mapzen / USGS。</p><p>坐标来源 WGS84，尚未完成 CGCS2000 基准校准。小地图采用真实河岸轮廓旋转排列，左北右南；紫色矩形为随镜头旋转和缩放的近似视野指示；全段时适配小地图范围，不是透视投影的测绘边界。</p><p>拖动平移；右键或 Shift 拖动旋转；滚轮缩放；方向键旋转，Home 重置，Esc 返回。</p></div>}
   </aside>}
-  <div className={styles.atmosphereControl}><button disabled={!loaded} aria-expanded={atmosphereOpen} aria-label="场景氛围设置" onClick={()=>setAtmosphereOpen(!atmosphereOpen)}><Sparkles size={16}/><span>氛围</span></button>{atmosphereOpen&&<section aria-label="场景氛围"><p>粒子与远景云雾</p><div role="group" aria-label="氛围质量">{([['auto','标准 · 自动降级'],['low','轻量'],['off','关闭']] as const).map(([value,label])=><button key={value} aria-pressed={atmosphereMode===value} onClick={()=>{setAtmosphereMode(value);try{localStorage.setItem('xiangjiang-atmosphere',value);}catch{}}}>{label}</button>)}</div><small>减少动态效果偏好优先；低帧率自动降低密度。</small></section>}</div>
   <div className={`${styles.bottomDock} ${!started?styles.dockIntro:''}`}>
    <div className={styles.themeSwitch} role="group" aria-label="昼夜模式">
     <button aria-label="切换日间" aria-pressed={!night} onClick={()=>changeTheme(false)} disabled={!loaded}><Sun size={23} strokeWidth={1.3}/></button>
@@ -160,13 +160,14 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
     <span className={styles.miniNorth}>N</span><span className={styles.mapLocation}>{moving?'镜头移动中':currentLabel}</span>
    </div>
    <div className={styles.utilities}>
+    <AtmosphereControl value={atmosphereMode} disabled={!loaded} onChange={value=>{setAtmosphereMode(value);try{localStorage.setItem('xiangjiang-atmosphere',value);}catch{}}}/>
     {moving&&!currentObject&&<button className={styles.skipTour} onClick={()=>{setOverview(false);engine.current?.skip();}} aria-label="跳过导览，进入核心河段">跳过</button>}
     <button onClick={()=>{setStarted(true);if(moving)engine.current?.stop();else{setFreeExplore(false);setDetailOpen(false);setSelected(null);clearRecord();setAtlasPanel(null);setOverview(false);engine.current?.tour();}}} aria-label={moving?'停止镜头运动':'播放沿江巡游'} disabled={!loaded}>{moving?<Pause size={18}/>:<Play size={18}/>}</button>
     <button onClick={()=>{setAtlasPanel(null);setDrawer(drawer==='views'?null:'views');}} aria-label="选择镜头预设" disabled={!loaded}><Layers size={18}/></button>
     <button onClick={()=>{setAtlasPanel(null);setDrawer(drawer==='about'?null:'about');}} aria-label="关于地图与数据"><Info size={18}/></button>
    </div>
   </div>
-  <nav className={styles.mainNav} aria-label="地图导航">
+  <nav className={styles.mainNav} aria-label="地图导航" hidden={courseActive}>
    <button disabled={!loaded} onClick={showOverview} aria-pressed={overview}><span>湘江全段<small>THE RIVER CORRIDOR</small></span><i><Compass size={20} strokeWidth={1}/></i></button>
    <button disabled={!loaded} aria-expanded={drawer==='places'} onClick={()=>{setAtlasPanel(null);setDrawer(drawer==='places'?null:'places');}}><span>地点探索<small>EXPLORE THE PLACES</small></span><i><MapPin size={20} strokeWidth={1}/></i></button>
   </nav>
