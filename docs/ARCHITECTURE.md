@@ -46,3 +46,7 @@ AOI 改材质权重，不能删除外围模型或生成新研究结论。对象�
 PlaceIntroduction负责首次选中的编辑式介绍，PlaceDetail/ResearchReader仅用于主动长文阅读；AtlasLibrary负责标题索引。ProposalExplorer读取src/atlas/proposals.ts的既有Proposal集合，StudentWork仍独立。内部proposal图层标识保留，但不属于五类现实GIS导航。rememberView通过原CameraRig保存/恢复视角，不在UI计算相机。
 
 terrain-focus.ts把既有DEM插值渲染为柔化视觉焦点，不改变源高程或连续AOI。atmosphere.ts提供一个Points批次和最多5个世界雾层，按偏好、减少动态效果和帧率降级；lighting.ts原光照及曝光不变，仅可选距离雾增强。见docs/v2.4。
+
+## V2.5 课程目录复用
+
+顶部设计方案改用StudentWorkShowcase的integrated布局与原StudentWorkExhibition，不再使用旧ProposalExplorer。课程模型只组织既有作品ID，搜索、统计、媒体入口与独立课程演示共用。所有运镜仍调用现有引擎接口；本轮不修改src/experience、AOI或基础GIS。见docs/v2.5/README.md。

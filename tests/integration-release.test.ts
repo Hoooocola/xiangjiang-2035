@@ -19,7 +19,7 @@ describe('approved integration boundary',()=>{
   const element=await ExperiencePage({searchParams:Promise.resolve({showcase:'student-work'})});
   const html=renderToStaticMarkup(element);
   expect(html).toContain('退出课程成果');
-  expect(html).toContain('2026社会创新设计');
+  expect(html).toContain('2026 社会创新设计');
   expect(html).toContain('课程设计 / 非实施项目');
   expect(html).toContain('aria-label="开始探索" aria-hidden="true"');
   const normal=await ExperiencePage({searchParams:Promise.resolve({})});

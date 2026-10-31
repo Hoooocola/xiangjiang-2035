@@ -68,7 +68,10 @@ export function worksForPlace(placeId: string, theme: ThemeFilter = 'all', query
   return visibleStudentWorks(theme, query).filter(work => workPlaceIds(work).includes(placeId));
 }
 export function showcaseStats(theme: ThemeFilter = 'all', query = '') {
-  const works = visibleStudentWorks(theme, query);
+  return statsForWorks(visibleStudentWorks(theme, query));
+}
+/** Shared by the lecture showcase and the course-based design directory. */
+export function statsForWorks(works: readonly StudentWork[]) {
   return {
     total: works.length,
     mapped: works.filter(work => workPlaceIds(work).length).length,
