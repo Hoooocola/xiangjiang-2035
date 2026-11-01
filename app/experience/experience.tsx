@@ -13,11 +13,13 @@ import infoStyles from './information.module.css';
 import {SUBTYPES,subtypeOf,focusState} from '@/src/atlas/information';
 import {LayerPanel} from './layer-panel';
 import {LayerSymbol} from './layer-symbol';
+import {AnalysisPanel} from './analysis-panel';
 import {LAYER_VISUALS} from '@/src/atlas/visuals';
 import {CameraControls} from './camera-controls';
 import {recordById} from '@/src/atlas/catalog';
 import {MAP_OBJECTS,layersForObjects,visibleObjects} from '@/src/atlas/objects';
-import type {LayerId,OverlayState,ProposalScenario} from '@/src/atlas/types';
+import type {LayerId,OverlayState,ProposalScenario,RealGeoState} from '@/src/atlas/types';
+import type {ProximityAnalysis} from '@/src/experience/real-geodata/types';
 
 
 
@@ -28,6 +30,8 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
  const [overview,setOverview]=useState(true),[freeExplore,setFreeExplore]=useState(false),[drawer,setDrawer]=useState<'places'|'views'|'about'|null>(null),[selected,setSelected]=useState<string|null>(null);
  const [detailOpen,setDetailOpen]=useState(false),[detailTab,setDetailTab]=useState<DetailTab>('overview'),[recordId,setRecordId]=useState<string|null>(null);
  const [atlasPanel,setAtlasPanel]=useState<'layers'|'library'|null>(null),[layers,setLayers]=useState<LayerId[]>([]),[proposal,setProposal]=useState<ProposalScenario|null>(null),[objectIds,setObjectIds]=useState<string[]>([]);
+ const [realGeo,setRealGeo]=useState<RealGeoState>({landcover:false,roads:false,observations:false,analysis:false});
+ const [analysis,setAnalysis]=useState<ProximityAnalysis|null>(null);
  const [showDemo,setShowDemo]=useState(false),[subtypes,setSubtypes]=useState(['shoreline','bridge','context','memory','activity','intervention']),[guidedStep,setGuidedStep]=useState<number|null>(null);
  const objectAction=useRef<(id:string)=>void>(()=>{});
  const informationContext=useRef<{selected:string|null;overview:boolean;freeExplore:boolean;proposal:ProposalScenario|null}|null>(null);
@@ -44,8 +48,8 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
   return()=>{disposed=true;controller.abort();instance?.dispose();engine.current=null;};
  },[initialPlace]);
  useEffect(()=>{if(drawer)drawerCloseRef.current?.focus({preventScroll:true});else if(selected&&!moving)closeRef.current?.focus({preventScroll:true});},[drawer,selected,moving]);
- const overlayState:OverlayState={layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null,showDemo,subtypes};
- useEffect(()=>{engine.current?.setOverlays({layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null,showDemo,subtypes});},[loaded,layers,proposal,objectIds,selected,layerScope,showDemo,subtypes]);
+ const overlayState:OverlayState={layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null,showDemo,subtypes,realGeo};
+ useEffect(()=>{engine.current?.setOverlays({layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null,showDemo,subtypes,realGeo});},[loaded,layers,proposal,objectIds,selected,layerScope,showDemo,subtypes,realGeo]);
  const begin=()=>{setStarted(true);setOverview(false);setDrawer(null);engine.current?.start();};
  const clearRecord=()=>{informationContext.current=null;setRecordId(null);setProposal(null);setObjectIds([]);setGuidedStep(null);};
  const reset=()=>{setAtlasPanel(null);clearRecord();setFreeExplore(false);setDetailOpen(false);setSelected(null);setOverview(false);setDrawer(null);setPreset(0);engine.current?.reset();};
@@ -60,6 +64,8 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
  useEffect(()=>{objectAction.current=id=>openObject(id);});
  const reconcile=(next:OverlayState)=>{const visible=new Set(visibleObjects(next).map(o=>o.id));if(objectIds.some(id=>!visible.has(id))){engine.current?.clearInformationFocus();informationContext.current=null;}setObjectIds(ids=>ids.filter(id=>visible.has(id)));setGuidedStep(null);};
  const toggleLayer=(id:LayerId)=>{const next=layers.includes(id)?layers.filter(x=>x!==id):[...layers,id];setLayers(next);reconcile({...overlayState,layers:next});};
+ const toggleRealGeo=(key:'landcover'|'roads'|'observations'|'analysis')=>{setRealGeo(prev=>{const next={...prev,[key]:!prev[key]};return next;});};
+ const runAnalysis=()=>{setRealGeo(prev=>({...prev,analysis:true}));engine.current?.analyzeProximity().then(a=>{if(a)setAnalysis(a);});};
  const toggleSubtype=(id:string)=>{const layer=SUBTYPES.find(s=>s.id===id)?.layer;if(!layer)return;const next=subtypes.includes(id)&&layers.includes(layer)?subtypes.filter(x=>x!==id):Array.from(new Set([...subtypes,id]));const nextLayers=Array.from(new Set([...layers,layer]));setLayers(nextLayers);setSubtypes(next);reconcile({...overlayState,layers:nextLayers,subtypes:next});};
  const demoVisibility=(value:boolean)=>{setShowDemo(value);reconcile({...overlayState,showDemo:value});};
  const changeScope=(scope:'all'|'place')=>{setLayerScope(scope);reconcile({...overlayState,placeId:scope==='place'?selected:null});};
@@ -88,10 +94,11 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
    {PLACES.map(p=><button key={p.id} ref={el=>{if(el)markers.current.set(p.id,el);else markers.current.delete(p.id);}} className={`${styles.marker} ${selected===p.id?styles.selectedMarker:''}`} onClick={()=>focus(p.id)} aria-label={`探索${p.name}`} style={{visibility:'hidden'}} disabled={!loaded} data-place={p.id} data-category={p.siteCategory}><i aria-hidden="true"/><span>{p.name}<small>{p.category}</small></span></button>)}
   </div>
   <div className={styles.knowledgeMarkers} data-has-selection={objectIds.length>0} aria-label="空间资料对象">{MAP_OBJECTS.map(o=><button key={o.id} ref={el=>{if(el)markers.current.set('object:'+o.id,el);else markers.current.delete('object:'+o.id);}} style={{visibility:'hidden','--object-color':`var(--layer-${o.layer})`} as React.CSSProperties} data-layer={o.layer} className={`${styles.objectMarker} ${objectIds.includes(o.id)?styles.activeObject:''}`} onPointerEnter={()=>engine.current?.hoverObject(o.id)} onPointerLeave={()=>engine.current?.hoverObject(null)} onFocus={()=>engine.current?.hoverObject(o.id)} onBlur={()=>engine.current?.hoverObject(null)} onClick={()=>openObject(o.id)} aria-pressed={objectIds.includes(o.id)} aria-label={`空间对象：${o.title}`}><i><LayerSymbol layer={o.layer} size={19}/></i><span>{o.title}<small>{o.dataStatus==='demo'?'DEMO DATA / 模拟研究资料':o.subtype?'公开空间资料':'公开资料 / 地点级索引'}</small></span></button>)}</div>
-  {atlasPanel==='layers'&&<LayerPanel scope={selected?layerScope:'all'} onScope={changeScope} selectedPlace={place?.name} state={overlayState} onToggle={toggleLayer} onSubtype={toggleSubtype} onDemo={demoVisibility} onGuide={()=>guide(0)} onClear={clearLayers} onObject={id=>openObject(id,true)} onClose={()=>setAtlasPanel(null)}/>}
+  {atlasPanel==='layers'&&<LayerPanel scope={selected?layerScope:'all'} onScope={changeScope} selectedPlace={place?.name} state={overlayState} onToggle={toggleLayer} onSubtype={toggleSubtype} onDemo={demoVisibility} onGuide={()=>guide(0)} onClear={clearLayers} onObject={id=>openObject(id,true)} onClose={()=>setAtlasPanel(null)} onRealGeo={toggleRealGeo} onAnalyze={runAnalysis}/>}
   {atlasPanel==='library'&&<AtlasLibrary onOpen={openRecord} onClose={()=>setAtlasPanel(null)}/>}
   {currentObject&&!detailOpen&&!drawer&&<FocusLabel key={currentObject.id} object={currentObject} ready={informationReady} onExitStart={()=>engine.current?.stop()} onPlace={()=>{setAtlasPanel(null);setSelected(currentObject.placeId);setRecordId(null);setDetailTab('overview');setDetailOpen(true);}} onClose={()=>closeExplanation()} onFocus={()=>{setAtlasPanel(null);focusInformation(currentObject.id);}} onReturn={()=>{const context=informationContext.current;closeExplanation(true);setRecordId(null);setDetailOpen(false);setProposal(context?.proposal??null);if(context){setSelected(context.selected);setOverview(context.overview);setFreeExplore(context.freeExplore);}informationContext.current=null;engine.current?.returnFromFocus();}} onDetails={()=>{setAtlasPanel(null);setGuidedStep(null);if(currentObject.recordId)openRecord(currentObject.recordId);else{const details=document.getElementById(`source-${currentObject.id}`) as HTMLDetailsElement|null;if(details){details.open=true;details.scrollIntoView({block:'nearest'});}}}} step={guidedStep} steps={guideIds.length} onStep={guide}/>}
   {!atlasPanel&&layers.length>0&&!detailOpen&&<div className={infoStyles.legend} aria-label="当前图层图例">{SUBTYPES.filter(sub=>visibleObjects(overlayState).some(o=>subtypeOf(o)===sub.id)).map(sub=><span key={sub.id} style={{color:`var(--layer-${sub.layer})`}}>{sub.label}<small>{sub.form}</small></span>)}</div>}
+  {realGeo.analysis&&analysis&&!detailOpen&&<AnalysisPanel analysis={analysis} onClose={()=>{setRealGeo(prev=>({...prev,analysis:false}));setAnalysis(null);}}/>}
   <div className={styles.metrics} data-testid="atlas-state">{JSON.stringify({place:selected,layers,proposal,record:recordId,objects:visibleObjects(overlayState).map(o=>o.id),detailOpen,objectIds,showDemo,subtypes,sceneFocus,informationReady,moving})}</div>
   <section className={`${styles.intro} ${started?styles.introHidden:''}`} aria-label="开始探索" aria-hidden={started} inert={started}>
    <p className={styles.eyebrow}>CHANGSHA, CHINA <span>28°11′ N · 112°58′ E</span></p>
