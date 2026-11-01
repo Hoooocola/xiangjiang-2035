@@ -17,6 +17,7 @@ tsconfig.tsbuildinfo
 
 # Reproducible public map download cache.
 .cache/xiangjiang/
+.cache/yanghu/
 
 # Local document inspection output; verified references live in docs/references.
 tmp/pdfs/
