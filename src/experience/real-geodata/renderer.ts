@@ -4,7 +4,7 @@
 import * as THREE from 'three';
 import {Line2} from 'three/addons/lines/Line2.js';
 import {loadLandcover, loadRoads, loadGbif} from './loaders';
-import {buildLandcoverMesh, disposeLandcover} from './landcover';
+import {buildLandcoverMesh, type LandcoverRender} from './landcover';
 import {buildRoads, themeRoads, selectRoads} from './roads';
 import {buildGbifPoints, type GbifRender} from './gbif';
 import {runProximityAnalysis} from './analysis';
@@ -23,11 +23,15 @@ export interface RealGeoRenderer {
   updateByDistance: (distance: number) => void;
   highlightObservation: (key: number | null) => void;
   selectRoads: (ids: string[]) => void;
+  /** 选择要突出的土地覆盖类别（null = 整体弱化视图）。 */
+  selectLandcoverClass: (code: number | null) => void;
   analyze: () => Promise<ProximityAnalysis | null>;
   dispose: () => void;
-  /** 数据加载状态（供 UI 显示） */
   status: () => { landcover: boolean; roads: boolean; observations: boolean };
-  /** 数据来源摘要（供图例显示） */
+  /** GBIF 聚合点位数量（供图例说明）。 */
+  gbifClusterCount: () => number;
+  /** 某记录所在坐标点位的全部记录（供详情展开）。 */
+  gbifRecordsAt: (key: number) => import('./types').GbifRecord[];
   metadata: () => {
     landcover?: LandcoverRaster;
     roads?: OsmRoads;
@@ -46,15 +50,15 @@ export async function createRealGeoRenderer(
   let roadsData: OsmRoads | null = null;
   let gbifData: GbifDataset | null = null;
 
-  let landcoverMesh: THREE.Mesh | null = null;
-  let landcoverTex: THREE.CanvasTexture | null = null;
+  let landcoverRender: LandcoverRender | null = null;
   let roadsRender: { group: THREE.Group; byId: Map<string, Line2>; dispose: () => void } | null = null;
   let gbifRender: GbifRender | null = null;
 
   let state: RealGeoLayerState = { landcover: false, roads: false, observations: false };
+  let currentNight = 0;
+  let selectedClass: number | null = null;
   let disposed = false;
 
-  // 并行加载三份数据（GBIF 下载可能较慢，失败不阻塞其余）
   const [landcover, roads, gbif] = await Promise.all([
     loadLandcover().catch(e => { console.warn('WorldCover 加载失败', e); return null; }),
     loadRoads().catch(e => { console.warn('OSM 道路加载失败', e); return null; }),
@@ -66,13 +70,10 @@ export async function createRealGeoRenderer(
   roadsData = roads;
   gbifData = gbif;
 
-  // 构建三个图层的可视化
   if (landcover) {
-    const built = buildLandcoverMesh(landcover, height);
-    landcoverMesh = built.mesh;
-    landcoverTex = built.texture;
-    landcoverMesh.visible = false;
-    root.add(landcoverMesh);
+    landcoverRender = buildLandcoverMesh(landcover, height);
+    landcoverRender.mesh.visible = false;
+    root.add(landcoverRender.mesh);
   }
   if (roads) {
     roadsRender = buildRoads(roads, height);
@@ -86,7 +87,7 @@ export async function createRealGeoRenderer(
   }
 
   function applyState() {
-    if (landcoverMesh) landcoverMesh.visible = state.landcover;
+    if (landcoverRender) landcoverRender.mesh.visible = state.landcover;
     if (roadsRender) roadsRender.group.visible = state.roads;
     if (gbifRender) gbifRender.group.visible = state.observations;
     root.visible = state.landcover || state.roads || state.observations;
@@ -98,18 +99,19 @@ export async function createRealGeoRenderer(
     root,
     setState: (next: RealGeoLayerState) => { state = next; applyState(); },
     theme: (n: number) => {
+      currentNight = n;
       if (roadsRender) themeRoads(roadsRender.byId, n);
       if (gbifRender) gbifRender.theme(n);
-      // landcover 纹理为静态日间色，夜间通过整体透明度略降模拟
-      if (landcoverMesh) {
-        const mat = landcoverMesh.material as THREE.MeshBasicMaterial;
-        mat.opacity = 0.85 - n * 0.25;
-      }
+      if (landcoverRender) landcoverRender.update(selectedClass, n);
     },
     updateByDistance: (distance: number) => { gbifRender?.updateByDistance(distance); },
     highlightObservation: (key: number | null) => { gbifRender?.highlight(key); },
     selectRoads: (ids: string[]) => {
       if (roadsRender) selectRoads(roadsRender.byId, new Set(ids));
+    },
+    selectLandcoverClass: (code: number | null) => {
+      selectedClass = code;
+      if (landcoverRender) landcoverRender.update(code, currentNight);
     },
     analyze: async () => {
       if (!gbifData || !roadsData) return null;
@@ -118,12 +120,14 @@ export async function createRealGeoRenderer(
     },
     dispose: () => {
       disposed = true;
-      if (landcoverMesh && landcoverTex) disposeLandcover(landcoverMesh, landcoverTex);
+      landcoverRender?.dispose();
       roadsRender?.dispose();
       gbifRender?.dispose();
       root.clear();
     },
     status: () => ({ landcover: !!landcoverRaster, roads: !!roadsData, observations: !!gbifData }),
+    gbifClusterCount: () => gbifRender?.clusterCount ?? 0,
+    gbifRecordsAt: (key) => gbifRender?.recordsAt(key) ?? [],
     metadata: () => ({
       landcover: landcoverRaster ?? undefined,
       roads: roadsData ?? undefined,

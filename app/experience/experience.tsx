@@ -16,6 +16,7 @@ import {SUBTYPES,subtypeOf,focusState} from '@/src/atlas/information';
 import {LayerPanel} from './layer-panel';
 import {LayerSymbol} from './layer-symbol';
 import {AnalysisPanel} from './analysis-panel';
+import {GbifDetail} from './gbif-detail';
 import {LAYER_VISUALS} from '@/src/atlas/visuals';
 import {AtmosphereControl} from './atmosphere-control';
 import {CameraControls} from './camera-controls';
@@ -51,6 +52,10 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const [atlasPanel,setAtlasPanel]=useState<'layers'|'library'|null>(null),[proposal,setProposal]=useState<ProposalScenario|null>(null),[objectIds,setObjectIds]=useState<string[]>([]);
  const [realGeo,setRealGeo]=useState<RealGeoState>({landcover:false,roads:false,observations:false,analysis:false});
  const [analysis,setAnalysis]=useState<ProximityAnalysis|null>(null);
+ const [landcoverClass,setLandcoverClass]=useState<number|null>(null);
+ const [gbifStats,setGbifStats]=useState<{total:number;clusters:number;yearMin:number|null;yearMax:number|null}|null>(null);
+ const [landcoverCodes,setLandcoverCodes]=useState<number[]>([]);
+ const [gbifDetailRecords,setGbifDetailRecords]=useState<import('@/src/experience/real-geodata/types').GbifRecord[]|null>(null);
  const [showDemo,setShowDemo]=useState(false),[subtypes,setSubtypes]=useState(['shoreline','bridge','context','memory','activity','intervention']);
  const objectAction=useRef<(id:string)=>void>(()=>{});
  const informationContext=useRef<{selected:string|null;overview:boolean;freeExplore:boolean;proposal:ProposalScenario|null}|null>(null);
@@ -59,6 +64,8 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const [atmosphereMode,setAtmosphereMode]=useState<AtmospherePreference>('auto');
  useEffect(()=>{const read=()=>{try{const value=localStorage.getItem('xiangjiang-atmosphere');if(value==='auto'||value==='low'||value==='off')setAtmosphereMode(value);}catch{}};const timer=setTimeout(read,0);window.addEventListener('storage',read);return()=>{clearTimeout(timer);window.removeEventListener('storage',read);};},[]);
  useEffect(()=>{engine.current?.atmosphere(atmosphereMode);},[atmosphereMode,loaded]);
+ // 真实数据图层元数据：GBIF 记录数量与年份范围（供图例显示，从数据计算）。
+ useEffect(()=>{if(!loaded)return;let cancelled=false;const timer=setTimeout(()=>{const meta=engine.current?.realGeoMeta();if(!meta||cancelled)return;const gbif=meta.gbif;if(gbif){const years=gbif.records.map(r=>r.year).filter((y):y is number=>typeof y==='number'&&y>0);setGbifStats({total:gbif.afterCleaning??gbif.records.length,clusters:engine.current?.gbifClusterCount()??0,yearMin:years.length?Math.min(...years):null,yearMax:years.length?Math.max(...years):null});}const lc=meta.landcover;if(lc){const codes=Object.keys(lc.distribution).map(Number).filter(c=>!Number.isNaN(c)).sort((a,b)=>a-b);setLandcoverCodes(codes);}},800);return()=>{cancelled=true;clearTimeout(timer);};},[loaded]);
  const [preset,setPreset]=useState(0),[mapPaths,setMapPaths]=useState<string[]>([]);
  const [metrics,setMetrics]=useState<{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number}|null>(null);
  const closeRef=useRef<HTMLButtonElement>(null),drawerCloseRef=useRef<HTMLButtonElement>(null),previousOverview=useRef(false);
@@ -66,7 +73,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
   if(!host.current)return;const target=host.current,controller=new AbortController();let disposed=false,instance:ExperienceEngine|null=null;
   import('@/src/experience/engine').then(({createExperience})=>createExperience(target,markers.current,{
    informationReady:value=>{if(!disposed)setInformationReady(value);},object:id=>objectAction.current(id),interact:()=>{},progress:(n,label)=>{if(disposed)return;if(n<0)setError(label);else{setProgress(n);setLoadingLabel(label);}},ready:()=>{if(!disposed)setLoaded(true);},motion:(v)=>{if(!disposed)setMoving(v);},metrics:(v)=>{if(!disposed)setMetrics(v);},minimap:(paths)=>{if(!disposed)setMapPaths(paths);},
-  },controller.signal,SHOWCASE_PLACES)).then(e=>{instance=e;if(disposed)e.dispose();else {engine.current=e;if(initialStudentShowcase)e.overview();if(initialPlace&&SHOWCASE_PLACES.some(p=>p.id===initialPlace)){setStarted(true);setSelected(initialPlace);e.focus(initialPlace);}}}).catch(e=>{if(!disposed&&e.name!=='AbortError')setError(e.message||'三维场景载入失败，请刷新后重试。');});
+  },controller.signal,SHOWCASE_PLACES)).then(e=>{instance=e;if(disposed)e.dispose();else {engine.current=e;e.onGbifPick?.(key=>{if(!disposed)setGbifDetailRecords(key==null?null:(e.gbifRecordsAt(key)));});if(initialStudentShowcase)e.overview();if(initialPlace&&SHOWCASE_PLACES.some(p=>p.id===initialPlace)){setStarted(true);setSelected(initialPlace);e.focus(initialPlace);}}}).catch(e=>{if(!disposed&&e.name!=='AbortError')setError(e.message||'三维场景载入失败，请刷新后重试。');});
   return()=>{disposed=true;controller.abort();instance?.dispose();engine.current=null;};
  },[initialPlace,initialStudentShowcase]);
  useEffect(()=>{if(drawer)drawerCloseRef.current?.focus({preventScroll:true});else if(selected&&!moving)closeRef.current?.focus({preventScroll:true});},[drawer,selected,moving]);
@@ -95,6 +102,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const openDesign=()=>{if(proposalOpen){closeDesign();return;}proposalReturn.current=engine.current?.rememberView();proposalContext.current={selected,overview,freeExplore,showDemo,proposal,objectIds};setStudentShowcase(false);setProposalOpen(true);setStarted(true);setAtlasPanel(null);setDrawer(null);setDetailOpen(false);setCourseWorkId(null);setWorksOpen(true);setWorkIndexOpen(true);setSelected(null);clearRecord();engine.current?.clearPlaceSelection();};
  const openCourseLayer=()=>{if(proposalOpen)closeDesign();setStudentShowcase(true);setWorksOpen(true);setCourseWorkId(null);setDetailOpen(false);clearRecord();setSelected(null);setStarted(true);setAtlasPanel(null);setDrawer(null);engine.current?.clearPlaceSelection();};
  const toggleRealGeo=(key:'landcover'|'roads'|'observations'|'analysis')=>{setRealGeo(prev=>({...prev,[key]:!prev[key]}));};
+ const selectLandcoverClass=(code:number|null)=>{setLandcoverClass(code);engine.current?.selectLandcoverClass(code);};
  const runAnalysis=()=>{setRealGeo(prev=>({...prev,analysis:true}));engine.current?.analyzeProximity().then(a=>{if(a)setAnalysis(a);});};
  const toggleSubtype=(id:string)=>{const layer=SUBTYPES.find(s=>s.id===id)?.layer;if(!layer)return;const next=subtypes.includes(id)&&layers.includes(layer)?subtypes.filter(x=>x!==id):Array.from(new Set([...subtypes,id]));const nextLayers=Array.from(new Set([...layers,layer]));setLayers(nextLayers);setSubtypes(next);reconcile({...overlayState,layers:nextLayers,subtypes:next});};
  const demoVisibility=(value:boolean)=>{setShowDemo(value);reconcile({...overlayState,showDemo:value});};
@@ -130,11 +138,12 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
   {courseActive&&!atlasPanel&&!drawer&&!detailOpen&&!currentObject&&<StudentWorkShowcase course={activeCourse} onCourse={changeCourse} theme={workTheme} query={workQuery} view={workView} expanded={workIndexOpen} selectedPlace={selected} active={proposalOpen||(worksOpen&&!courseWorkId)} integrated={proposalOpen} loaded={loaded} onTheme={value=>changeWorkFilter(value,workQuery)} onQuery={value=>changeWorkFilter(workTheme,value)} onView={setWorkView} onExpanded={setWorkIndexOpen} onLocate={focus} onWork={openCourseWork} onClose={proposalOpen?closeDesign:()=>setWorksOpen(false)} onOverview={showOverview} onLecture={openCourseLayer}/>}
   {courseActive&&courseWork&&rightDetail==='course'&&<StudentWorkExhibition works={courseGroup} placeName={place?.name??(courseWork.originalSite||'未绑定地点')} ready={loaded&&!moving} integrated={proposalOpen} selectedPlace={selected} onLocate={focus} onClose={closeCourseWork} onArchive={place?()=>{setDetailOpen(true);setDetailTab('overview');setRecordId(null);}:undefined}/>}
   {studentShowcase&&!worksOpen&&!courseWork&&!detailOpen&&!atlasPanel&&!drawer&&<button className={workStyles.reopen} onClick={()=>setWorksOpen(true)}>2026 社会创新设计 <ArrowUpRight size={13}/></button>}
-  {atlasPanel==='layers'&&<LayerPanel scope={selected?layerScope:'all'} onScope={changeScope} selectedPlace={place?.name} state={overlayState} onToggle={toggleLayer} onSubtype={toggleSubtype} onDemo={demoVisibility} onClear={clearLayers} onObject={id=>openObject(id,true)} onClose={()=>setAtlasPanel(null)} onRealGeo={toggleRealGeo} onAnalyze={runAnalysis}/>}
+  {atlasPanel==='layers'&&<LayerPanel scope={selected?layerScope:'all'} onScope={changeScope} selectedPlace={place?.name} state={overlayState} onToggle={toggleLayer} onSubtype={toggleSubtype} onDemo={demoVisibility} onClear={clearLayers} onObject={id=>openObject(id,true)} onClose={()=>setAtlasPanel(null)} onRealGeo={toggleRealGeo} onAnalyze={runAnalysis} onSelectLandcoverClass={selectLandcoverClass} landcoverClass={landcoverClass} gbifStats={gbifStats} landcoverCodes={landcoverCodes}/>}
   {atlasPanel==='library'&&<AtlasLibrary onOpen={openRecord} onClose={()=>setAtlasPanel(null)}/>}
   {currentObject&&rightDetail==='object'&&<FocusLabel key={currentObject.id} object={currentObject} ready={informationReady} onExitStart={()=>engine.current?.stop()} onPlace={()=>{setAtlasPanel(null);setSelected(currentObject.placeId);setRecordId(null);setDetailTab('overview');setDetailOpen(true);}} onClose={()=>closeExplanation()} onFocus={()=>{setAtlasPanel(null);focusInformation(currentObject.id);}} onReturn={()=>{const context=informationContext.current;closeExplanation(true);setRecordId(null);setDetailOpen(false);setProposal(context?.proposal??null);if(context){setSelected(context.selected);setOverview(context.overview);setFreeExplore(context.freeExplore);}informationContext.current=null;engine.current?.returnFromFocus();}} onDetails={()=>{setAtlasPanel(null);if(currentObject.recordId)openRecord(currentObject.recordId);else{const details=document.getElementById(`source-${currentObject.id}`) as HTMLDetailsElement|null;if(details){details.open=true;details.scrollIntoView({block:'nearest'});}}}}/>}
   {!atlasPanel&&layers.length>0&&!detailOpen&&<div className={infoStyles.legend} aria-label="当前图层图例">{SUBTYPES.filter(sub=>visibleObjects(overlayState).some(o=>subtypeOf(o)===sub.id)).map(sub=><span key={sub.id} style={{color:`var(--layer-${sub.layer})`}}>{sub.label}<small>{sub.form}</small></span>)}</div>}
   {realGeo.analysis&&analysis&&!detailOpen&&<AnalysisPanel analysis={analysis} onClose={()=>{setRealGeo(prev=>({...prev,analysis:false}));setAnalysis(null);}}/>}
+  {gbifDetailRecords!=null&&!detailOpen&&<GbifDetail records={gbifDetailRecords} onClose={()=>{setGbifDetailRecords(null);engine.current?.highlightObservation(null);}}/>}
   <div className={styles.metrics} data-testid="atlas-state">{JSON.stringify({place:selected,layers,proposal,record:recordId,objects:visibleObjects(overlayState).map(o=>o.id),detailOpen,objectIds,showDemo,subtypes,sceneFocus,informationReady,moving,proposalOpen,studentShowcase,workTheme,workQuery,courseWorkId,courseId,realGeo})}</div>
   <section className={`${styles.intro} ${started?styles.introHidden:''}`} aria-label="开始探索" aria-hidden={started} inert={started}>
    <p className={styles.eyebrow}>CHANGSHA, CHINA <span>28°11′ N · 112°58′ E</span></p>
