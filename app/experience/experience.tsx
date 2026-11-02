@@ -15,12 +15,14 @@ import infoStyles from './information.module.css';
 import {SUBTYPES,subtypeOf,focusState} from '@/src/atlas/information';
 import {LayerPanel} from './layer-panel';
 import {LayerSymbol} from './layer-symbol';
+import {AnalysisPanel} from './analysis-panel';
 import {LAYER_VISUALS} from '@/src/atlas/visuals';
 import {AtmosphereControl} from './atmosphere-control';
 import {CameraControls} from './camera-controls';
 import {recordById} from '@/src/atlas/catalog';
 import {MAP_OBJECTS,layersForObjects,visibleObjects} from '@/src/atlas/objects';
-import type {LayerId,OverlayState,ProposalScenario} from '@/src/atlas/types';
+import type {LayerId,OverlayState,ProposalScenario,RealGeoState} from '@/src/atlas/types';
+import type {ProximityAnalysis} from '@/src/experience/real-geodata/types';
 import {SHOWCASE_PLACES,studentMarkerCount,visibleStudentWorks,worksForPlace,type ThemeFilter} from '@/src/student-works/catalog';
 import {StudentWorkShowcase,StudentWorkExhibition,type CourseIndexView} from './student-work-showcase';
 import {courseById} from '@/src/student-works/courses';
@@ -47,6 +49,8 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const [overview,setOverview]=useState(true),[freeExplore,setFreeExplore]=useState(false),[drawer,setDrawer]=useState<'places'|'views'|'about'|null>(null),[selected,setSelected]=useState<string|null>(null);
  const [detailOpen,setDetailOpen]=useState(false),[detailTab,setDetailTab]=useState<DetailTab>('overview'),[recordId,setRecordId]=useState<string|null>(null);
  const [atlasPanel,setAtlasPanel]=useState<'layers'|'library'|null>(null),[proposal,setProposal]=useState<ProposalScenario|null>(null),[objectIds,setObjectIds]=useState<string[]>([]);
+ const [realGeo,setRealGeo]=useState<RealGeoState>({landcover:false,roads:false,observations:false,analysis:false});
+ const [analysis,setAnalysis]=useState<ProximityAnalysis|null>(null);
  const [showDemo,setShowDemo]=useState(false),[subtypes,setSubtypes]=useState(['shoreline','bridge','context','memory','activity','intervention']);
  const objectAction=useRef<(id:string)=>void>(()=>{});
  const informationContext=useRef<{selected:string|null;overview:boolean;freeExplore:boolean;proposal:ProposalScenario|null}|null>(null);
@@ -66,8 +70,8 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
   return()=>{disposed=true;controller.abort();instance?.dispose();engine.current=null;};
  },[initialPlace,initialStudentShowcase]);
  useEffect(()=>{if(drawer)drawerCloseRef.current?.focus({preventScroll:true});else if(selected&&!moving)closeRef.current?.focus({preventScroll:true});},[drawer,selected,moving]);
- const overlayState:OverlayState={layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null,showDemo,subtypes};
- useEffect(()=>{engine.current?.setOverlays({layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null,showDemo,subtypes});},[loaded,layers,proposal,objectIds,selected,layerScope,showDemo,subtypes]);
+ const overlayState:OverlayState={layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null,showDemo,subtypes,realGeo};
+ useEffect(()=>{engine.current?.setOverlays({layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null,showDemo,subtypes,realGeo});},[loaded,layers,proposal,objectIds,selected,layerScope,showDemo,subtypes,realGeo]);
  const begin=()=>{setStarted(true);setOverview(false);setDrawer(null);engine.current?.start();};
  const clearRecord=()=>{informationContext.current=null;setRecordId(null);setProposal(null);setObjectIds([]);};
  const closeCourseWork=()=>{setCourseWorkId(null);setWorksOpen(true);setDetailOpen(false);clearRecord();setSelected(null);setAtlasPanel(null);setDrawer(null);if(selected)engine.current?.back();else engine.current?.stop();setOverview(previousOverview.current);};
@@ -90,6 +94,8 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  const closeDesign=()=>{setProposalOpen(false);setCourseWorkId(null);setWorksOpen(false);setDetailOpen(false);setRecordId(null);const context=proposalContext.current;setProposal(context?.proposal??null);setObjectIds(context?.objectIds??[]);setShowDemo(context?.showDemo??false);setSelected(context?.selected??null);setOverview(context?.overview??false);setFreeExplore(context?.freeExplore??false);proposalReturn.current?.();proposalReturn.current=undefined;proposalContext.current=null;};
  const openDesign=()=>{if(proposalOpen){closeDesign();return;}proposalReturn.current=engine.current?.rememberView();proposalContext.current={selected,overview,freeExplore,showDemo,proposal,objectIds};setStudentShowcase(false);setProposalOpen(true);setStarted(true);setAtlasPanel(null);setDrawer(null);setDetailOpen(false);setCourseWorkId(null);setWorksOpen(true);setWorkIndexOpen(true);setSelected(null);clearRecord();engine.current?.clearPlaceSelection();};
  const openCourseLayer=()=>{if(proposalOpen)closeDesign();setStudentShowcase(true);setWorksOpen(true);setCourseWorkId(null);setDetailOpen(false);clearRecord();setSelected(null);setStarted(true);setAtlasPanel(null);setDrawer(null);engine.current?.clearPlaceSelection();};
+ const toggleRealGeo=(key:'landcover'|'roads'|'observations'|'analysis')=>{setRealGeo(prev=>({...prev,[key]:!prev[key]}));};
+ const runAnalysis=()=>{setRealGeo(prev=>({...prev,analysis:true}));engine.current?.analyzeProximity().then(a=>{if(a)setAnalysis(a);});};
  const toggleSubtype=(id:string)=>{const layer=SUBTYPES.find(s=>s.id===id)?.layer;if(!layer)return;const next=subtypes.includes(id)&&layers.includes(layer)?subtypes.filter(x=>x!==id):Array.from(new Set([...subtypes,id]));const nextLayers=Array.from(new Set([...layers,layer]));setLayers(nextLayers);setSubtypes(next);reconcile({...overlayState,layers:nextLayers,subtypes:next});};
  const demoVisibility=(value:boolean)=>{setShowDemo(value);reconcile({...overlayState,showDemo:value});};
  const changeScope=(scope:'all'|'place')=>{setLayerScope(scope);reconcile({...overlayState,placeId:scope==='place'?selected:null});};
@@ -124,11 +130,12 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
   {courseActive&&!atlasPanel&&!drawer&&!detailOpen&&!currentObject&&<StudentWorkShowcase course={activeCourse} onCourse={changeCourse} theme={workTheme} query={workQuery} view={workView} expanded={workIndexOpen} selectedPlace={selected} active={proposalOpen||(worksOpen&&!courseWorkId)} integrated={proposalOpen} loaded={loaded} onTheme={value=>changeWorkFilter(value,workQuery)} onQuery={value=>changeWorkFilter(workTheme,value)} onView={setWorkView} onExpanded={setWorkIndexOpen} onLocate={focus} onWork={openCourseWork} onClose={proposalOpen?closeDesign:()=>setWorksOpen(false)} onOverview={showOverview} onLecture={openCourseLayer}/>}
   {courseActive&&courseWork&&rightDetail==='course'&&<StudentWorkExhibition works={courseGroup} placeName={place?.name??(courseWork.originalSite||'未绑定地点')} ready={loaded&&!moving} integrated={proposalOpen} selectedPlace={selected} onLocate={focus} onClose={closeCourseWork} onArchive={place?()=>{setDetailOpen(true);setDetailTab('overview');setRecordId(null);}:undefined}/>}
   {studentShowcase&&!worksOpen&&!courseWork&&!detailOpen&&!atlasPanel&&!drawer&&<button className={workStyles.reopen} onClick={()=>setWorksOpen(true)}>2026 社会创新设计 <ArrowUpRight size={13}/></button>}
-  {atlasPanel==='layers'&&<LayerPanel scope={selected?layerScope:'all'} onScope={changeScope} selectedPlace={place?.name} state={overlayState} onToggle={toggleLayer} onSubtype={toggleSubtype} onDemo={demoVisibility} onClear={clearLayers} onObject={id=>openObject(id,true)} onClose={()=>setAtlasPanel(null)}/>}
+  {atlasPanel==='layers'&&<LayerPanel scope={selected?layerScope:'all'} onScope={changeScope} selectedPlace={place?.name} state={overlayState} onToggle={toggleLayer} onSubtype={toggleSubtype} onDemo={demoVisibility} onClear={clearLayers} onObject={id=>openObject(id,true)} onClose={()=>setAtlasPanel(null)} onRealGeo={toggleRealGeo} onAnalyze={runAnalysis}/>}
   {atlasPanel==='library'&&<AtlasLibrary onOpen={openRecord} onClose={()=>setAtlasPanel(null)}/>}
   {currentObject&&rightDetail==='object'&&<FocusLabel key={currentObject.id} object={currentObject} ready={informationReady} onExitStart={()=>engine.current?.stop()} onPlace={()=>{setAtlasPanel(null);setSelected(currentObject.placeId);setRecordId(null);setDetailTab('overview');setDetailOpen(true);}} onClose={()=>closeExplanation()} onFocus={()=>{setAtlasPanel(null);focusInformation(currentObject.id);}} onReturn={()=>{const context=informationContext.current;closeExplanation(true);setRecordId(null);setDetailOpen(false);setProposal(context?.proposal??null);if(context){setSelected(context.selected);setOverview(context.overview);setFreeExplore(context.freeExplore);}informationContext.current=null;engine.current?.returnFromFocus();}} onDetails={()=>{setAtlasPanel(null);if(currentObject.recordId)openRecord(currentObject.recordId);else{const details=document.getElementById(`source-${currentObject.id}`) as HTMLDetailsElement|null;if(details){details.open=true;details.scrollIntoView({block:'nearest'});}}}}/>}
   {!atlasPanel&&layers.length>0&&!detailOpen&&<div className={infoStyles.legend} aria-label="当前图层图例">{SUBTYPES.filter(sub=>visibleObjects(overlayState).some(o=>subtypeOf(o)===sub.id)).map(sub=><span key={sub.id} style={{color:`var(--layer-${sub.layer})`}}>{sub.label}<small>{sub.form}</small></span>)}</div>}
-  <div className={styles.metrics} data-testid="atlas-state">{JSON.stringify({place:selected,layers,proposal,record:recordId,objects:visibleObjects(overlayState).map(o=>o.id),detailOpen,objectIds,showDemo,subtypes,sceneFocus,informationReady,moving,proposalOpen,studentShowcase,workTheme,workQuery,courseWorkId,courseId})}</div>
+  {realGeo.analysis&&analysis&&!detailOpen&&<AnalysisPanel analysis={analysis} onClose={()=>{setRealGeo(prev=>({...prev,analysis:false}));setAnalysis(null);}}/>}
+  <div className={styles.metrics} data-testid="atlas-state">{JSON.stringify({place:selected,layers,proposal,record:recordId,objects:visibleObjects(overlayState).map(o=>o.id),detailOpen,objectIds,showDemo,subtypes,sceneFocus,informationReady,moving,proposalOpen,studentShowcase,workTheme,workQuery,courseWorkId,courseId,realGeo})}</div>
   <section className={`${styles.intro} ${started?styles.introHidden:''}`} aria-label="开始探索" aria-hidden={started} inert={started}>
    <p className={styles.eyebrow}>CHANGSHA, CHINA <span>28°11′ N · 112°58′ E</span></p>
    <h1>一条江<br/><span>另一种未来</span></h1>

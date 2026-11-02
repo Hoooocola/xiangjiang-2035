@@ -9,6 +9,8 @@ export interface AtlasRecord {
 }
 export interface MapObject {id:string;title:string;placeId:string;placeIds?:string[];layer:LayerId;subtype?:string;recordId?:string;sourceIds:string[];dataStatus:'public'|'demo';geometry:{type:'Point'|'LineString'|'Polygon';coordinates:Coordinate[];paths?:Coordinate[][];holes?:Coordinate[][];polygons?:Coordinate[][][]};anchor:Coordinate;precision:string;proposalId?:string;summary?:string;shortDescription?:string;time?:string;researchStatus?:string;sourceFeatureIds?:string[];surface?:'terrain'|'shore'|'park'|'road'|'model';form?:'point'|'line'|'area'|'object';year?:number;metric?:{label:string;value:number;unit:string;scope:string};}
 export interface ProposalScenario {proposalId:string;view:'baseline'|'intervention'}
-export interface OverlayState {layers:LayerId[];proposal:ProposalScenario|null;selectedObjectIds:string[];placeId:string|null;showDemo?:boolean;subtypes?:string[]}
+/** 真实数据图层开关（WorldCover / OSM 道路 / GBIF 观察记录）。 */
+export interface RealGeoState {landcover:boolean;roads:boolean;observations:boolean;analysis:boolean}
+export interface OverlayState {layers:LayerId[];proposal:ProposalScenario|null;selectedObjectIds:string[];placeId:string|null;showDemo?:boolean;subtypes?:string[];realGeo?:RealGeoState}
 
 export interface InformationFeature extends MapObject {category:LayerId;shortDescription:string;geometryType:MapObject['geometry']['type'];relatedPlaceIds:string[];sourceStatus:'public'|'mock';isMock:boolean;relatedEvidenceIds:string[];relatedProposalIds:string[]}

@@ -7,10 +7,16 @@ import {SUBTYPES,isAvailable,subtypeOf} from '@/src/atlas/information';
 import type {LayerId,OverlayState} from '@/src/atlas/types';
 import styles from './information.module.css';
 const english:Record<LayerId,string>={geography:'GEOGRAPHY',ecology:'ECOLOGY',culture:'CULTURE',society:'SOCIETY',economy:'ECONOMY',proposal:'PROPOSAL'};
-export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,selectedPlace,onSubtype,onDemo,onClear}:{scope:'all'|'place';onScope:(scope:'all'|'place')=>void;selectedPlace?:string;state:OverlayState;onToggle:(id:LayerId)=>void;onObject:(id:string)=>void;onClose:()=>void;onSubtype:(id:string)=>void;onDemo:(value:boolean)=>void;onClear:()=>void}){
+export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,selectedPlace,onSubtype,onDemo,onClear,onRealGeo,onAnalyze}:{scope:'all'|'place';onScope:(scope:'all'|'place')=>void;selectedPlace?:string;state:OverlayState;onToggle:(id:LayerId)=>void;onObject:(id:string)=>void;onClose:()=>void;onSubtype:(id:string)=>void;onDemo:(value:boolean)=>void;onClear:()=>void;onRealGeo:(key:'landcover'|'roads'|'observations'|'analysis')=>void;onAnalyze:()=>void}){
  const [expanded,setExpanded]=useState<LayerId[]>(state.layers);
  const visible=visibleObjects(state),inventory=MAP_OBJECTS.filter(o=>isAvailable(o,{...state,showDemo:true}));
  const toggleExpanded=(id:LayerId)=>setExpanded(ids=>ids.includes(id)?ids.filter(x=>x!==id):[...ids,id]);
+ const realGeo=state.realGeo??{landcover:false,roads:false,observations:false,analysis:false};
+ const realGeoItems:{key:'landcover'|'roads'|'observations';label:string;hint:string;group:'生态'|'基础地理'}[]=[
+  {key:'landcover',label:'土地覆盖',hint:'ESA WorldCover 2021 · 10m',group:'生态'},
+  {key:'roads',label:'道路网络',hint:'OpenStreetMap · 真实道路几何',group:'基础地理'},
+  {key:'observations',label:'生物观察记录',hint:'GBIF · 质量筛选后的观测',group:'生态'},
+ ];
  return <aside className={styles.directory} aria-label="数据图层" data-information-panel data-information-directory>
   <header><div><small>SPATIAL INFORMATION / 01</small><h2>阅读这段湘江</h2><p className={styles.directorySubhead}>选择主题，让空间显现。</p></div><button onClick={onClose} aria-label="关闭数据图层"><X size={18}/></button></header>
   <details className={styles.directoryTools}><summary>阅读设置 <span>范围 · 示例</span></summary>
@@ -19,6 +25,16 @@ export function LayerPanel({state,onToggle,onObject,onClose,scope,onScope,select
   </details>
   <div className={styles.directoryBody}>
    <p className={styles.hint}>选择具体条目，镜头将带你到它的空间。</p>
+   <section className={styles.realGeo} style={{'--category-color':'var(--layer-ecology)'} as React.CSSProperties}>
+    <div className={styles.realGeoHeading}><span>真实地理与生态数据</span><small>洋湖湿地 · REAL DATA</small></div>
+    {realGeoItems.map(item=>(
+     <label key={item.key} className={styles.realGeoItem}>
+      <input type="checkbox" checked={realGeo[item.key]} onChange={()=>onRealGeo(item.key)} aria-label={`显示${item.label}`}/>
+      <span>{item.label}<small>{item.group} · {item.hint}</small></span>
+     </label>
+    ))}
+    <button className={styles.analyzeBtn} aria-pressed={realGeo.analysis} onClick={()=>{onRealGeo('analysis');onAnalyze();}}>邻近分析 <small>GBIF ↔ OSM 道路距离</small></button>
+   </section>
    {LAYERS.filter(l=>l.id!=='proposal').map((l,index)=>{
     const all=inventory.filter(o=>o.layer===l.id),available=all.filter(o=>isAvailable(o,state));
     const enabled=state.layers.includes(l.id),open=expanded.includes(l.id);

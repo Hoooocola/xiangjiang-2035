@@ -6,6 +6,7 @@ import {renderedTerrainHeight} from './information-surface';
 import {buildOverlays} from './overlays';
 import {MAP_OBJECTS,visibleObjects} from '../atlas/objects';
 import type {OverlayState} from '../atlas/types';
+import {createRealGeoRenderer,type RealGeoRenderer} from './real-geodata/renderer';
 import * as THREE from 'three';
 import { CameraRig, clonePose } from './camera';
 import { CAMERA_PRESETS, OVERVIEW_POSE, PLACES, placePose, type CameraPose, type Place } from './config';
@@ -37,12 +38,14 @@ export interface ExperienceEngine {
  clearInformationFocus:()=>void;focusSpatialInformation:(id:string,options?:{directoryOpen?:boolean})=>void;returnFromFocus:()=>void;setOverlays:(state:OverlayState)=>void;focusObjects:(ids:string[])=>void;hoverObject:(id:string|null)=>void; navigate:(x:number,z:number)=>void; overview:()=>void; focus:(id:string)=>void; back:()=>void;
  pan:(x:number,y:number)=>void;dragMode:(mode:'pan'|'orbit')=>void;
  theme:(night:boolean)=>void; zoom:(f:number)=>void; orbit:(v:number)=>void; preset:(index:number)=>void;dispose:()=>void;
+ analyzeProximity:()=>Promise<import('./real-geodata/types').ProximityAnalysis|null>;
+ selectRoads:(ids:string[])=>void;highlightObservation:(key:number|null)=>void;
 }
 export async function createExperience(host:HTMLDivElement,markers:Map<string,HTMLButtonElement>,callbacks:ExperienceCallbacks,signal:AbortSignal,navigationPlaces:readonly Place[]=PLACES):Promise<ExperienceEngine>{
  const cleanups:(()=>void)[]=[];const materials=makeMaterials();
  let renderer:THREE.WebGLRenderer;
  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});}catch{throw new Error('当前浏览器未能创建 WebGL 2 场景，请开启硬件加速，或使用支持 WebGL 的 Chrome / Safari。');}
- let disposed=false,frame=0;let built:Awaited<ReturnType<typeof buildScene>>|undefined,post:ReturnType<typeof createPostprocessing>|undefined;
+ let disposed=false,frame=0;let built:Awaited<ReturnType<typeof buildScene>>|undefined,post:ReturnType<typeof createPostprocessing>|undefined,realGeo:RealGeoRenderer|null=null;
  const scene=new THREE.Scene();
  const camera=new THREE.PerspectiveCamera(38,1,0.3,4500);
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(host.clientWidth,host.clientHeight);
@@ -63,7 +66,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
  const dispose=()=>{
   if(disposed)return;disposed=true;cancelAnimationFrame(frame);rig.dispose();cleanups.forEach(f=>f());
   const geometries=new Set<THREE.BufferGeometry>(),mats=new Set<THREE.Material>();scene.traverse(o=>{const mesh=o as THREE.Mesh;if(mesh.geometry)geometries.add(mesh.geometry);if(mesh.material)(Array.isArray(mesh.material)?mesh.material:[mesh.material]).forEach(m=>mats.add(m));});
-  geometries.forEach(g=>g.dispose());mats.forEach(m=>m.dispose());Object.values(materials).forEach(v=>{if(v instanceof THREE.Material)v.dispose();});sun.shadow.dispose();post?.dispose();renderer.dispose();renderer.forceContextLoss();canvas.remove();
+  geometries.forEach(g=>g.dispose());mats.forEach(m=>m.dispose());Object.values(materials).forEach(v=>{if(v instanceof THREE.Material)v.dispose();});realGeo?.dispose();sun.shadow.dispose();post?.dispose();renderer.dispose();renderer.forceContextLoss();canvas.remove();
  };
  try{
   callbacks.progress(12,'读取湘江地理数据');
@@ -76,8 +79,11 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   const overlays=buildOverlays(built.terrain.height,built.sourceGeometry,renderedTerrainHeight(grid,built.terrain.height));scene.add(overlays.root);
   const terrainFocus=createTerrainFocus(renderedTerrainHeight(grid,built.terrain.height));scene.add(terrainFocus.root);
   const informationOccluders=[...built.city.children,...built.root.children.filter(o=>o instanceof THREE.Mesh&&!(o instanceof THREE.InstancedMesh))];
-  let overlayState:OverlayState={layers:[],proposal:null,selectedObjectIds:[],placeId:null};
+  let overlayState:OverlayState={layers:[],proposal:null,selectedObjectIds:[],placeId:null,realGeo:{landcover:false,roads:false,observations:false,analysis:false}};
   updatePlaceFocus=id=>{overlays.focus(id==='yanghu'?'pilot-park-15867482':null);terrainFocus.setActive(id==='zhaoshan');};
+  // 真实地理数据图层（WorldCover / OSM 道路 / GBIF 观察记录）——懒加载，不阻塞主场景。
+  const realGeoPromise=createRealGeoRenderer(built.terrain.height);
+  realGeoPromise.then(r=>{if(!disposed){realGeo=r;scene.add(r.root);r.theme(night);}}).catch(e=>console.warn('真实地理数据图层初始化失败',e));
   const picker=new THREE.Raycaster(),pointer=new THREE.Vector2();let pointerDown:[number,number]|null=null;
   const down=(e:PointerEvent)=>{pointerDown=e.button===0?[e.clientX,e.clientY]:null;};
   const up=(e:PointerEvent)=>{if(!pointerDown||e.button!==0||Math.hypot(e.clientX-pointerDown[0],e.clientY-pointerDown[1])>4){pointerDown=null;return;}pointerDown=null;const r=canvas.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,1-(e.clientY-r.top)/r.height*2);picker.setFromCamera(pointer,camera);const groups=[...overlays.groups.values()].filter(g=>g.visible);const hit=picker.intersectObjects(groups,true)[0];if(hit){const obstruction=picker.intersectObjects(informationOccluders,false)[0];if(!obstruction||obstruction.distance>=hit.distance-.04)callbacks.object?.(hit.object.userData.informationId);}};
@@ -105,7 +111,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    rig.update(now,dt);if(informationPending&&(!rig.transition||rig.transition.duration===0||(now-rig.transition.start)/rig.transition.duration>=.72)){informationPending=false;callbacks.informationReady?.(true);}compass??=host.parentElement?.querySelector<HTMLElement>('[data-compass]');if(compass)compass.style.transform=`rotate(${-rig.pose.azimuth*180/Math.PI}deg)`;materials.time.value=media.matches?0:now/1000;
    night=THREE.MathUtils.lerp(night,nightTarget,1-Math.exp(-dt*2.2));materials.updateTheme(night);materials.focusActive.value=THREE.MathUtils.lerp(materials.focusActive.value,selectedId&&!overlayState.selectedObjectIds.length?1:0,1-Math.exp(-dt*3));
    materials.researchFocus.value=THREE.MathUtils.lerp(materials.researchFocus.value,researchWeight,1-Math.exp(-dt*3));
-   const d=rig.pose.distance;materials.viewDistance.value=d;atmosphere.update(dt,night,d,camera,rig.pose.target,media.matches,host.clientWidth<760,pressure,renderer.getPixelRatio());sceneEnvironment.update(night,d,atmosphere.fogStrength,media.matches?0:now/1000);overlays.theme(night);terrainFocus.theme(night);
+   const d=rig.pose.distance;materials.viewDistance.value=d;atmosphere.update(dt,night,d,camera,rig.pose.target,media.matches,host.clientWidth<760,pressure,renderer.getPixelRatio());sceneEnvironment.update(night,d,atmosphere.fogStrength,media.matches?0:now/1000);overlays.theme(night);terrainFocus.theme(night);realGeo?.theme(night);realGeo?.updateByDistance(d);
    const near=Math.max(.3,d*.01);if(Math.abs(camera.near-near)>.05){camera.near=near;camera.updateProjectionMatrix();}
    sun.castShadow=d<240;
    if(sun.castShadow&&Math.hypot(rig.pose.target[0]-shadowTarget.x,rig.pose.target[2]-shadowTarget.z)>8){
@@ -166,8 +172,8 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    else rig.fly(OVERVIEW_POSE,2600,play);
 
   };
-  return {atmosphere:value=>atmosphere.setPreference(value),rememberView:()=>{const saved=clonePose(rig.pose),id=selectedId;return ()=>{objectPrevious=undefined;previous=undefined;select(id);fly(saved,1000);};},clearPlaceSelection:()=>{stop();ring.visible=false;select();},clearInformationFocus:()=>{stop();objectPrevious=undefined;overlays.focus(null);terrainFocus.setActive(false);},focusSpatialInformation:(id,options)=>focusInformation([id],options?.directoryOpen),returnFromFocus:()=>{if(objectPrevious){fly(objectPrevious,1000);objectPrevious=undefined;}},focusObjects:ids=>focusInformation(ids),hoverObject:id=>overlays.hover(id),setOverlays:(state)=>{overlayState=state;if(state.selectedObjectIds.length){overlays.focus(null);terrainFocus.setActive(false);}overlays.update(state);const selected=visibleObjects(state).find(o=>state.selectedObjectIds.includes(o.id));researchSelected=!!selected;researchWeight=selected?.form==='object'?.75:selected?.geometry.type==='Polygon'?.35:selected?.geometry.type==='LineString'?.18:0;built?.select(researchSelected?undefined:selectedId);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{objectPrevious=undefined;
+  return {atmosphere:value=>atmosphere.setPreference(value),rememberView:()=>{const saved=clonePose(rig.pose),id=selectedId;return ()=>{objectPrevious=undefined;previous=undefined;select(id);fly(saved,1000);};},clearPlaceSelection:()=>{stop();ring.visible=false;select();},clearInformationFocus:()=>{stop();objectPrevious=undefined;overlays.focus(null);terrainFocus.setActive(false);},focusSpatialInformation:(id,options)=>focusInformation([id],options?.directoryOpen),returnFromFocus:()=>{if(objectPrevious){fly(objectPrevious,1000);objectPrevious=undefined;}},focusObjects:ids=>focusInformation(ids),hoverObject:id=>overlays.hover(id),setOverlays:(state)=>{overlayState=state;if(state.selectedObjectIds.length){overlays.focus(null);terrainFocus.setActive(false);}overlays.update(state);realGeo?.setState(state.realGeo??{landcover:false,roads:false,observations:false,analysis:false});const selected=visibleObjects(state).find(o=>state.selectedObjectIds.includes(o.id));researchSelected=!!selected;researchWeight=selected?.form==='object'?.75:selected?.geometry.type==='Polygon'?.35:selected?.geometry.type==='LineString'?.18:0;built?.select(researchSelected?undefined:selectedId);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{objectPrevious=undefined;
    const p=navigationPlaces.find(p=>p.id===id);if(!p)return;previous??=clonePose(rig.pose);const [x,z]=project(p.coordinate);ring.position.set(x,(built?.terrain.height(x,z)??0)+.08,z);select(id);ring.visible=false;fly(framePlace(p));
-  },back:()=>{ring.visible=false;select();fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},pan:(x,y)=>{stop();rig.pan(x*rig.pose.distance*.08,y*rig.pose.distance*.08);},dragMode:(mode)=>{stop();rig.dragMode=mode;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},preset:(i)=>{const preset=CAMERA_PRESETS[i];if(!preset)return;const place=navigationPlaces.find(p=>p.id===selectedId);const pose=preset.mode==='research'?frameResearch()??preset.pose:preset.mode==='place'&&place?framePlace(place):preset.pose;previous=undefined;ring.visible=false;if(preset.mode==='macro')select();fly(pose);},dispose};
+  },back:()=>{ring.visible=false;select();fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},pan:(x,y)=>{stop();rig.pan(x*rig.pose.distance*.08,y*rig.pose.distance*.08);},dragMode:(mode)=>{stop();rig.dragMode=mode;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},analyzeProximity:()=>realGeo?.analyze()??Promise.resolve(null),selectRoads:(ids)=>realGeo?.selectRoads(ids),highlightObservation:(key)=>realGeo?.highlightObservation(key),preset:(i)=>{const preset=CAMERA_PRESETS[i];if(!preset)return;const place=navigationPlaces.find(p=>p.id===selectedId);const pose=preset.mode==='research'?frameResearch()??preset.pose:preset.mode==='place'&&place?framePlace(place):preset.pose;previous=undefined;ring.visible=false;if(preset.mode==='macro')select();fly(pose);},dispose};
  }catch(e){dispose();throw e;}
 }
