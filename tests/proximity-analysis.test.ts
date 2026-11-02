@@ -1,6 +1,6 @@
 // 空间邻近分析单元测试：验证测地距离计算与分析结果结构。
 import {describe,it,expect} from 'vitest';
-import {haversineMeters,pointToSegmentMeters,nearestRoadDistance,runProximityAnalysis} from '../src/experience/real-geodata/analysis';
+import {haversineMeters,pointToSegmentMeters,runProximityAnalysis} from '../src/experience/real-geodata/analysis';
 import type {GbifDataset,OsmRoads} from '../src/experience/real-geodata/types';
 
 describe('haversineMeters',()=>{
