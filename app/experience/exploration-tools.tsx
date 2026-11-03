@@ -16,7 +16,7 @@ export function ExplorationControls({layer,state,onChange}:{layer:LayerId;state:
  {(layer==='society'||layer==='economy')&&<ul>{DEMO_NODES.filter(p=>layer==='society'?p.kind==='services':p.kind==='commerce').map(p=><li key={p.id}>{p.name} · DEMO</li>)}</ul>}
  </div>;
 }
-function moveLensFrame(frame:RefObject<HTMLDivElement|null>,centre:RefObject<{x:number;y:number;r:number}>,engine:RefObject<ExperienceEngine|null>,x:number,y:number){const r=Math.min(110,(innerWidth-36)/2);centre.current={x:Math.max(r+10,Math.min(innerWidth-r-10,x)),y:Math.max(150,Math.min(innerHeight-r-100,y)),r};frame.current?.style.setProperty('transform',`translate3d(${centre.current.x-r}px,${centre.current.y-r}px,0)`);frame.current?.style.setProperty('--lens-size',`${r*2}px`);engine.current?.lensMove(centre.current.x,centre.current.y,r);}
+function moveLensFrame(frame:RefObject<HTMLDivElement|null>,centre:RefObject<{x:number;y:number;r:number}>,engine:RefObject<ExperienceEngine|null>,x:number,y:number){const r=Math.min(110,(innerWidth-36)/2);centre.current={x:Math.max(r+10,Math.min(innerWidth-r-10,x)),y:Math.max(r+130,Math.min(innerHeight-r-150,y)),r};frame.current?.style.setProperty('transform',`translate3d(${centre.current.x-r}px,${centre.current.y-r}px,0)`);frame.current?.style.setProperty('--lens-size',`${r*2}px`);engine.current?.lensMove(centre.current.x,centre.current.y,r);}
 export function DataLens({engine,onClose}:{engine:RefObject<ExperienceEngine|null>;onClose:()=>void}){
  const frame=useRef<HTMLDivElement>(null),centre=useRef({x:0,y:0,r:110}),drag=useRef<{x:number;y:number;cx:number;cy:number}|null>(null);
  const [reading,setReading]=useState<LensReading>({coordinate:null,code:0,label:'数据准备中',status:'loading'});

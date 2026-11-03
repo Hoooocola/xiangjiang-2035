@@ -22,6 +22,6 @@ export const DEMO_NODES=[
  {id:'shop-1',kind:'commerce',name:'临江商业示意点',coordinate:[112.977,28.185] as Coordinate},
  {id:'shop-2',kind:'commerce',name:'街区商业示意点',coordinate:[112.983,28.195] as Coordinate},
  {id:'shop-3',kind:'commerce',name:'街角商业示意点',coordinate:[112.978,28.205] as Coordinate},
-];
-export const CULTURE_NODES=MAP_PLACES.filter(p=>['橘子洲','开福寺','岳麓山'].includes(p.name)).map(p=>({id:p.id,name:p.name,coordinate:p.coordinate}));
+].map(node=>({...node,source:'V3 确定性DEMO配置，不是设施调查',precision:'示意点，不对应真实设施位置',placeIds:['city'],description:'用于讨论公共服务、商业与路网关系的固定演示锚点，不作研究结论。'}));
+export const CULTURE_NODES=MAP_PLACES.filter(p=>['橘子洲','开福寺','岳麓山'].includes(p.name)).map(p=>({id:p.id,name:p.name,coordinate:p.coordinate,source:p.source??[p.note],precision:p.note,placeIds:[p.id],description:p.description}));
 export const DEMO_FOCUS=project([112.975,28.191]);

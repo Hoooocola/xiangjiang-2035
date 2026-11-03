@@ -1,0 +1,2 @@
+# Native categorical rasters are bytes, not line-oriented text.
+public/data/spatial/*.bin binary

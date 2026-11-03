@@ -68,7 +68,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
  useEffect(()=>{const read=()=>{try{const value=localStorage.getItem('xiangjiang-atmosphere');if(value==='auto'||value==='low'||value==='off')setAtmosphereMode(value);}catch{}};const timer=setTimeout(read,0);window.addEventListener('storage',read);return()=>{clearTimeout(timer);window.removeEventListener('storage',read);};},[]);
  useEffect(()=>{engine.current?.atmosphere(atmosphereMode);},[atmosphereMode,loaded]);
  const [preset,setPreset]=useState(0),[mapPaths,setMapPaths]=useState<string[]>([]);
- const [metrics,setMetrics]=useState<{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number}|null>(null);
+ const [metrics,setMetrics]=useState<{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number;atmosphere?:string}|null>(null);
  const closeRef=useRef<HTMLButtonElement>(null),drawerCloseRef=useRef<HTMLButtonElement>(null),previousOverview=useRef(false);
  useEffect(()=>{
   if(!host.current)return;const target=host.current,controller=new AbortController();let disposed=false,instance:ExperienceEngine|null=null;
@@ -176,7 +176,7 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
     <span className={styles.miniNorth}>N</span><span className={styles.mapLocation}>{moving?'镜头移动中':currentLabel}</span>
    </div>
    <div className={styles.utilities}>
-    <AtmosphereControl value={atmosphereMode} disabled={!loaded} onChange={value=>{setAtmosphereMode(value);try{localStorage.setItem('xiangjiang-atmosphere',value);}catch{}}}/>
+    <AtmosphereControl quality={metrics?.atmosphere} value={atmosphereMode} disabled={!loaded} onChange={value=>{setAtmosphereMode(value);try{localStorage.setItem('xiangjiang-atmosphere',value);}catch{}}}/>
     {moving&&!currentObject&&<button className={styles.skipTour} onClick={()=>{setOverview(false);engine.current?.skip();}} aria-label="跳过导览，进入核心河段">跳过</button>}
     <button onClick={()=>{setStarted(true);if(moving)engine.current?.stop();else{setFreeExplore(false);setDetailOpen(false);setSelected(null);clearRecord();setAtlasPanel(null);setOverview(false);engine.current?.tour();}}} aria-label={moving?'停止镜头运动':'播放沿江巡游'} disabled={!loaded}>{moving?<Pause size={18}/>:<Play size={18}/>}</button>
     <button onClick={()=>{setAtlasPanel(null);setDrawer(drawer==='views'?null:'views');}} aria-label="选择镜头预设" disabled={!loaded}><Layers size={18}/></button>
