@@ -2,18 +2,20 @@
 import {useEffect,useRef,useState,useCallback,type RefObject,type PointerEvent} from 'react';
 import {X,Move,ArrowRight,ArrowLeft} from 'lucide-react';
 import type {ExperienceEngine} from '@/src/experience/engine';
-import {COVER_CLASSES,CULTURE_NODES,DEMO_NODES,type ExplorationState,type LensReading} from '@/src/exploration/data';
+import {COVER_CLASSES,type ExplorationState,type LensReading} from '@/src/exploration/data';
 import type {LayerId} from '@/src/atlas/types';
 import styles from './exploration.module.css';
-export function ExplorationControls({layer,state,onChange}:{layer:LayerId;state:ExplorationState;onChange:(state:ExplorationState)=>void}){
+import {ResourceList} from './resource-explorer';
+import type {NodeKind} from '@/src/exploration/relations';
+export function ExplorationControls({layer,state,onChange,onLocate,onAll}:{layer:LayerId;state:ExplorationState;onChange:(state:ExplorationState)=>void;onLocate:(ids:string[])=>void;onAll:(kind:NodeKind)=>void}){
  const toggle=(key:keyof ExplorationState,label:string,note:string)=><button className={styles.toggle} role="switch" aria-checked={!!state[key]} onClick={()=>onChange({...state,[key]:!state[key]})}><span>{label}<small>{note}</small></span><i/></button>;
  return <div className={styles.controls}>
  {layer==='geography'&&<>{toggle('shore','河流岸线','OSM · 真实河岸几何')}{toggle('roads','道路与桥梁','OSM · 路网细线与桥梁高程')}<p>地形高程沿用已有DEM；等高线 / 剖面 · 规划中</p></>}
- {layer==='ecology'&&<><h3>土地覆盖 <small>ESA WorldCover 2021 · 10m</small></h3><div className={styles.classes} aria-label="土地覆盖分类">{COVER_CLASSES.map(c=><button key={c.code} aria-pressed={state.cover===c.code} onClick={()=>onChange({...state,cover:state.cover===c.code?0:c.code})}>{c.label}</button>)}</div><button className={styles.lensButton} aria-pressed={state.lens} onClick={()=>onChange({...state,lens:!state.lens})}>{state.lens?'关闭精读':'局部精读'} <Move size={13}/></button><button onClick={()=>onChange({...state,cover:0,lens:false})}>关闭土地覆盖</button><p>范围扫描是类别编码，不代表单棵树、田垄方向或法定用地。此裁剪不含湿地植被类，不添加虚构类别。</p><details><summary>数据来源与边界</summary><p>ESA WorldCover 2021 v200 · EPSG:4326 · 10m原始像元。裁剪：112.90–113.02°E，28.10–28.27°N；范围外NoData。CC BY 4.0 / ESA WorldCover consortium。无年度变化推论。</p></details><p>历史水体时间序列、生物记录聚合 · 规划中</p></>}
- {layer==='culture'&&<>{toggle('culture','文化地点','现有注册地点 · 小型地理锚点')}{state.culture&&<ul>{CULTURE_NODES.map(p=><li key={p.id}>{p.name} · 地点索引</li>)}</ul>}<p>文化设施分类 · 规划中；地方故事使用既有资料入口。</p></>}
+ {layer==='ecology'&&<><h3>土地覆盖 <small>ESA WorldCover 2021 · 10m</small></h3><div className={styles.classes} aria-label="土地覆盖分类">{COVER_CLASSES.map(c=><button key={c.code} aria-pressed={state.cover===c.code} onClick={()=>onChange({...state,cover:state.cover===c.code?0:c.code})}>{c.label}</button>)}</div><button className={styles.lensButton} aria-pressed={state.lens} onClick={()=>onChange({...state,lens:!state.lens})}>{state.lens?'关闭精读':'局部精读'} <Move size={13}/></button><button onClick={()=>onChange({...state,cover:0,lens:false})}>关闭土地覆盖</button><p>范围扫描是类别编码，不代表单棵树、田垄方向或法定用地。此裁剪不含湿地植被类，不添加虚构类别。</p><details><summary>数据来源与边界</summary><p>ESA WorldCover 2021 v200 · EPSG:4326 · 10m原始像元。裁剪：112.90–113.02°E，28.10–28.27°N；范围外NoData。CC BY 4.0 / ESA WorldCover consortium。无年度变化推论。</p></details><p>历史水体时间序列 · 尚未实现；GBIF生物记录API已接入，地图聚合与记录选择尚未实现</p></>}
+ {layer==='culture'&&<>{toggle('culture','文化地点','现有注册地点 · 小型地理锚点')}<ResourceList kind="culture" selected={state.focusId} onLocate={onLocate} onAll={onAll}/><p>文化设施分类 · 规划中；地方故事使用既有资料入口。</p></>}
  {layer==='society'&&<>{toggle('services','公共服务节点','DEMO · 确定性示例，不是设施普查')}{toggle('walk','步行关系','DEMO · 近邻路段，不是计算等时圈')}<p>示意点及近邻路段用于提出研究问题，不证明实际可达性。人口分布 · 规划中</p></>}
  {layer==='economy'&&<>{toggle('commerce','商业服务节点','DEMO · 确定性示例，不是商业名录')}<p>产业边界、夜间灯光 · 规划中</p></>}
- {(layer==='society'||layer==='economy')&&<ul>{DEMO_NODES.filter(p=>layer==='society'?p.kind==='services':p.kind==='commerce').map(p=><li key={p.id}>{p.name} · DEMO</li>)}</ul>}
+ {(layer==='society'||layer==='economy')&&<ResourceList kind={layer==='society'?'services':'commerce'} selected={state.focusId} onLocate={onLocate} onAll={onAll}/>}
  </div>;
 }
 function moveLensFrame(frame:RefObject<HTMLDivElement|null>,centre:RefObject<{x:number;y:number;r:number}>,engine:RefObject<ExperienceEngine|null>,x:number,y:number){const r=Math.min(110,(innerWidth-36)/2);centre.current={x:Math.max(r+10,Math.min(innerWidth-r-10,x)),y:Math.max(r+130,Math.min(innerHeight-r-150,y)),r};frame.current?.style.setProperty('transform',`translate3d(${centre.current.x-r}px,${centre.current.y-r}px,0)`);frame.current?.style.setProperty('--lens-size',`${r*2}px`);engine.current?.lensMove(centre.current.x,centre.current.y,r);}

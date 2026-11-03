@@ -1,4 +1,7 @@
 import {createExploration} from '@/src/exploration/render';
+import {createResourceMarkers} from '@/src/exploration/markers';
+import {RESOURCE_NODES,activeNodes,usableCoordinate,analysisBoundary,ANALYSIS_RADII} from '@/src/exploration/relations';
+import {EMPTY_EXPLORATION} from '@/src/exploration/data';
 import type {ExplorationState,LensReading} from '@/src/exploration/data';
 import {createAtmosphere,type AtmospherePreference} from './atmosphere';
 import {createTerrainFocus} from './terrain-focus';
@@ -32,6 +35,7 @@ export interface ExperienceCallbacks {
  metrics:(metrics:{fps:number;calls:number;triangles:number;geometries:number;textures?:number;buildings:number;knownHeight:number;trees:number;particles?:number;mistLayers?:number;atmosphere?:string})=>void;
 }
 export interface ExperienceEngine {
+ locateResources:(ids:string[],options?:{directoryOpen?:boolean;radius?:number})=>{ok:boolean;message?:string};
  explore:(state:ExplorationState)=>Promise<void>;lensMove:(x:number,y:number,r:number)=>void;lensRead:(x:number,y:number)=>LensReading;
  atmosphere:(value:AtmospherePreference)=>void;
  rememberView:()=>()=>void;
@@ -78,6 +82,8 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   scene.add(built.root);
   const relief=built.root.children.find(o=>o instanceof THREE.Mesh&&o.renderOrder===-1) as THREE.Mesh;
   const exploration=createExploration(data,relief.geometry,built.terrain.height);scene.add(exploration.root);cleanups.push(()=>exploration.dispose());
+  let explorationState:ExplorationState={...EMPTY_EXPLORATION},resourcePlaceIds=new Set<string>();
+  const updateResourceMarkers=createResourceMarkers(markers,built.terrain.height);
   const overlays=buildOverlays(built.terrain.height,built.sourceGeometry,renderedTerrainHeight(grid,built.terrain.height));scene.add(overlays.root);
   const terrainFocus=createTerrainFocus(renderedTerrainHeight(grid,built.terrain.height));scene.add(terrainFocus.root);
   const informationOccluders=[...built.city.children,...built.root.children.filter(o=>o instanceof THREE.Mesh&&!(o instanceof THREE.InstancedMesh))];
@@ -129,7 +135,8 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
     geographicAnchor(place.coordinate,built!.terrain.height,ANCHOR_HEIGHT_METERS.place,anchorPoint);
     projectAnchor(anchorPoint,camera,w,h,projectPoint);
     const px=projectPoint.x,py=projectPoint.y;
-    const show=!researchSelected&&projectPoint.z<1&&projectPoint.z>-1&&px>35&&px<w-35&&py>100&&py<h-120&&(!occupied.some(([x,y])=>Math.hypot(px-x,py-y)<(d>300?38:30))||selectedId===place.id);
+    const resourceVisible=resourcePlaceIds.has(place.id)&&!!markers.get('resource:'+place.id);
+    const show=!resourceVisible&&!researchSelected&&projectPoint.z<1&&projectPoint.z>-1&&px>35&&px<w-35&&py>100&&py<h-120&&(!occupied.some(([x,y])=>Math.hypot(px-x,py-y)<(d>300?38:30))||selectedId===place.id);
     if(show)occupied.push([px,py]);
     el.dataset.edge=px>w-200?'right':'left';el.style.transform=`translate3d(${px}px,${py}px,0)`;el.style.visibility=show?'visible':'hidden';
    }
@@ -148,11 +155,24 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    }
    ring.scale.setScalar(1+(media.matches?0:Math.sin(now*.0015)*.05));
    exploration.update(dt,night,renderer.getPixelRatio(),h,media.matches);
+   updateResourceMarkers(explorationState,camera,w,h);
    renderer.info.reset();post!.render(night);frames++;frameTime+=elapsed;metricsTime+=elapsed;
    if(metricsTime>1.5&&built){callbacks.metrics({fps:Math.round(frames/frameTime),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,...built.stats,...atmosphere.stats()});if(frames/frameTime<30)slowSamples++;else slowSamples=0;if(slowSamples>=3)pressure=true;frames=0;frameTime=0;metricsTime=0;}
   }
   frame=requestAnimationFrame(render);callbacks.progress(100,'准备就绪');callbacks.ready();
   const fly=(pose:CameraPose,duration=2600)=>{informationPending=false;callbacks.informationReady?.(true);callbacks.motion(true);rig.fly(pose,duration,()=>{informationPending=false;callbacks.informationReady?.(true);callbacks.motion(false);});};
+  const locateResources=(ids:string[],options:{directoryOpen?:boolean;radius?:number}={})=>{
+   const unique=[...new Set(ids)],nodes=RESOURCE_NODES.filter(n=>unique.includes(n.id));
+   if(!nodes.length||nodes.length!==unique.length||nodes.some(n=>!usableCoordinate(n.coordinate)))return {ok:false,message:'地点坐标缺失或超出可用地图范围，未移动镜头。'};
+   if(options.radius!==undefined&&!ANALYSIS_RADII.some(r=>r===options.radius))return {ok:false,message:'不支持的分析范围，未移动镜头。'};
+   const coordinates=options.radius&&nodes.length===1?analysisBoundary(nodes[0].coordinate,options.radius):nodes.map(n=>n.coordinate);
+   const points=coordinates.map(c=>{const[x,z]=project(c);return new THREE.Vector3(x,built!.terrain.height(x,z),z);});
+   const w=host.clientWidth,h=host.clientHeight,reading=nodes.length===1,insets=w<760?{left:24,right:24,top:145,bottom:reading?Math.min(h*.4+140,h-220):150}:{left:options.directoryOpen?380:40,right:options.directoryOpen||!reading?40:380,top:140,bottom:160};
+   const pose=informationPose(points,options.radius?'area':nodes.length===1?'point':'area',rig.pose,w,h,camera.fov,insets);
+   if(!pose)return {ok:false,message:'当前窗口不足以显示地点，请扩大窗口后重试。'};
+   if(nodes.length===1&&!options.radius)pose.distance=Math.max(pose.distance,30);
+   ring.visible=false;select();fly(pose,informationDuration(rig.pose,pose));return {ok:true};
+  };
   const frameResearch=(ids=overlayState.selectedObjectIds)=>{const points:THREE.Vector3[]=[];for(const id of ids){const g=overlays.groups.get(id);if(!g?.children.length)continue;g.updateMatrixWorld(true);const b=new THREE.Box3().setFromObject(g);points.push(b.min,b.max);}return researchPose(points,host.clientWidth,host.clientHeight,camera.fov);};
   const framePlace=(place:Place)=>{const fallback=placePose(place);if(place.id==='zhaoshan')return informationPose(terrainFocus.points,'area',fallback,host.clientWidth,host.clientHeight,camera.fov)??fallback;if(place.id!=='yanghu')return fallback;const group=overlays.groups.get('pilot-park-15867482');if(!group?.children.length)return fallback;group.updateMatrixWorld(true);const bounds=new THREE.Box3().setFromObject(group);return informationPose([bounds.min,bounds.max],'area',fallback,host.clientWidth,host.clientHeight,camera.fov)??fallback;};
   const focusInformation=(ids:string[],directoryOpen=false)=>{
@@ -172,7 +192,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    else rig.fly(OVERVIEW_POSE,2600,play);
 
   };
-  return {explore:state=>exploration.set(state),lensMove:(x,y,r)=>exploration.moveLens(x,y,r),lensRead:(x,y)=>exploration.read(x,y,host.clientWidth,host.clientHeight,camera),atmosphere:value=>atmosphere.setPreference(value),rememberView:()=>{const saved=clonePose(rig.pose),id=selectedId;return ()=>{objectPrevious=undefined;previous=undefined;select(id);fly(saved,1000);};},clearPlaceSelection:()=>{stop();ring.visible=false;select();},clearInformationFocus:()=>{stop();objectPrevious=undefined;overlays.focus(null);terrainFocus.setActive(false);},focusSpatialInformation:(id,options)=>focusInformation([id],options?.directoryOpen),returnFromFocus:()=>{if(objectPrevious){fly(objectPrevious,1000);objectPrevious=undefined;}},focusObjects:ids=>focusInformation(ids),hoverObject:id=>overlays.hover(id),setOverlays:(state)=>{overlayState=state;if(state.selectedObjectIds.length){overlays.focus(null);terrainFocus.setActive(false);}overlays.update(state);const selected=visibleObjects(state).find(o=>state.selectedObjectIds.includes(o.id));researchSelected=!!selected;researchWeight=selected?.form==='object'?.75:selected?.geometry.type==='Polygon'?.35:selected?.geometry.type==='LineString'?.18:0;built?.select(researchSelected?undefined:selectedId);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{objectPrevious=undefined;
+  return {locateResources,explore:state=>{explorationState={...state};resourcePlaceIds=new Set(activeNodes(state).flatMap(n=>n.placeId?[n.placeId]:[]));return exploration.set(state);},lensMove:(x,y,r)=>exploration.moveLens(x,y,r),lensRead:(x,y)=>exploration.read(x,y,host.clientWidth,host.clientHeight,camera),atmosphere:value=>atmosphere.setPreference(value),rememberView:()=>{const saved=clonePose(rig.pose),id=selectedId;return ()=>{objectPrevious=undefined;previous=undefined;select(id);fly(saved,1000);};},clearPlaceSelection:()=>{stop();ring.visible=false;select();},clearInformationFocus:()=>{stop();objectPrevious=undefined;overlays.focus(null);terrainFocus.setActive(false);},focusSpatialInformation:(id,options)=>focusInformation([id],options?.directoryOpen),returnFromFocus:()=>{if(objectPrevious){fly(objectPrevious,1000);objectPrevious=undefined;}},focusObjects:ids=>focusInformation(ids),hoverObject:id=>overlays.hover(id),setOverlays:(state)=>{overlayState=state;if(state.selectedObjectIds.length){overlays.focus(null);terrainFocus.setActive(false);}overlays.update(state);const selected=visibleObjects(state).find(o=>state.selectedObjectIds.includes(o.id));researchSelected=!!selected;researchWeight=selected?.form==='object'?.75:selected?.geometry.type==='Polygon'?.35:selected?.geometry.type==='LineString'?.18:0;built?.select(researchSelected?undefined:selectedId);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{objectPrevious=undefined;
    const p=navigationPlaces.find(p=>p.id===id);if(!p)return;previous??=clonePose(rig.pose);const [x,z]=project(p.coordinate);ring.position.set(x,(built?.terrain.height(x,z)??0)+.08,z);select(id);ring.visible=false;fly(framePlace(p));
   },back:()=>{ring.visible=false;select();fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},pan:(x,y)=>{stop();rig.pan(x*rig.pose.distance*.08,y*rig.pose.distance*.08);},dragMode:(mode)=>{stop();rig.dragMode=mode;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},preset:(i)=>{const preset=CAMERA_PRESETS[i];if(!preset)return;const place=navigationPlaces.find(p=>p.id===selectedId);const pose=preset.mode==='research'?frameResearch()??preset.pose:preset.mode==='place'&&place?framePlace(place):preset.pose;previous=undefined;ring.visible=false;if(preset.mode==='macro')select();fly(pose);},dispose};
  }catch(e){dispose();throw e;}

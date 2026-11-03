@@ -1,7 +1,7 @@
 import {MAP_PLACES} from '@/src/places/registry';
 import {project,unproject,type Coordinate} from '@/src/experience/geo';
 export const COVER_CLASSES=[{code:10,label:'林地',color:'#6c9174'},{code:20,label:'灌丛',color:'#c5aa65'},{code:30,label:'草地',color:'#a4b780'},{code:40,label:'农田',color:'#c4b587'},{code:50,label:'建成区',color:'#bd9490'},{code:60,label:'裸地',color:'#c1b6a7'},{code:80,label:'水体',color:'#69a4b6'}] as const;
-export type ExplorationState={cover:number; lens:boolean; shore:boolean;roads:boolean;culture:boolean;services:boolean;commerce:boolean;walk:boolean};
+export type ExplorationState={cover:number; lens:boolean; shore:boolean;roads:boolean;culture:boolean;services:boolean;commerce:boolean;walk:boolean;focusId?:string|null;analysisRadius?:number|null};
 export const EMPTY_EXPLORATION:ExplorationState={cover:0,lens:false,shore:false,roads:false,culture:false,services:false,commerce:false,walk:false};
 export type CoverMeta={width:number;height:number;bounds:number[];nodata:number;sha256:string;rowOrder:string;classes:number[]};
 export type LensReading={coordinate:Coordinate|null;code:number;label:string;status:'ready'|'nodata'|'loading'|'unavailable'};
