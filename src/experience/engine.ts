@@ -1,3 +1,5 @@
+import {createExploration} from '@/src/exploration/render';
+import type {ExplorationState,LensReading} from '@/src/exploration/data';
 import {createAtmosphere,type AtmospherePreference} from './atmosphere';
 import {createTerrainFocus} from './terrain-focus';
 import {informationPose,informationDuration,informationInsets} from './information-framing';
@@ -27,9 +29,10 @@ export interface ExperienceCallbacks {
  interact?:()=>void;
  minimap:(paths:string[])=>void;
  motion:(moving:boolean)=>void;
- metrics:(metrics:{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number;particles?:number;mistLayers?:number;atmosphere?:string})=>void;
+ metrics:(metrics:{fps:number;calls:number;triangles:number;geometries:number;textures?:number;buildings:number;knownHeight:number;trees:number;particles?:number;mistLayers?:number;atmosphere?:string})=>void;
 }
 export interface ExperienceEngine {
+ explore:(state:ExplorationState)=>Promise<void>;lensMove:(x:number,y:number,r:number)=>void;lensRead:(x:number,y:number)=>LensReading;
  atmosphere:(value:AtmospherePreference)=>void;
  rememberView:()=>()=>void;
  clearPlaceSelection:()=>void;
@@ -73,6 +76,8 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
   callbacks.progress(35,'构建河岸、街区与洲岛');
   built=await buildScene(data,grid,context,materials,n=>callbacks.progress(Math.round(n),'构建河岸、街区与洲岛'),false,new Set(MAP_OBJECTS.filter(o=>o.form==='object').flatMap(o=>o.sourceFeatureIds??[])));
   scene.add(built.root);
+  const relief=built.root.children.find(o=>o instanceof THREE.Mesh&&o.renderOrder===-1) as THREE.Mesh;
+  const exploration=createExploration(data,relief.geometry,built.terrain.height);scene.add(exploration.root);cleanups.push(()=>exploration.dispose());
   const overlays=buildOverlays(built.terrain.height,built.sourceGeometry,renderedTerrainHeight(grid,built.terrain.height));scene.add(overlays.root);
   const terrainFocus=createTerrainFocus(renderedTerrainHeight(grid,built.terrain.height));scene.add(terrainFocus.root);
   const informationOccluders=[...built.city.children,...built.root.children.filter(o=>o instanceof THREE.Mesh&&!(o instanceof THREE.InstancedMesh))];
@@ -142,8 +147,9 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
     el.style.transform=`translate3d(${px}px,${py}px,0)`;el.style.visibility=show?'visible':'hidden';el.dataset.edge=px>w-220?'right':'left';
    }
    ring.scale.setScalar(1+(media.matches?0:Math.sin(now*.0015)*.05));
+   exploration.update(dt,night,renderer.getPixelRatio(),h,media.matches);
    renderer.info.reset();post!.render(night);frames++;frameTime+=elapsed;metricsTime+=elapsed;
-   if(metricsTime>1.5&&built){callbacks.metrics({fps:Math.round(frames/frameTime),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,...built.stats,...atmosphere.stats()});if(frames/frameTime<30)slowSamples++;else slowSamples=0;if(slowSamples>=3)pressure=true;frames=0;frameTime=0;metricsTime=0;}
+   if(metricsTime>1.5&&built){callbacks.metrics({fps:Math.round(frames/frameTime),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,...built.stats,...atmosphere.stats()});if(frames/frameTime<30)slowSamples++;else slowSamples=0;if(slowSamples>=3)pressure=true;frames=0;frameTime=0;metricsTime=0;}
   }
   frame=requestAnimationFrame(render);callbacks.progress(100,'准备就绪');callbacks.ready();
   const fly=(pose:CameraPose,duration=2600)=>{informationPending=false;callbacks.informationReady?.(true);callbacks.motion(true);rig.fly(pose,duration,()=>{informationPending=false;callbacks.informationReady?.(true);callbacks.motion(false);});};
@@ -166,7 +172,7 @@ export async function createExperience(host:HTMLDivElement,markers:Map<string,HT
    else rig.fly(OVERVIEW_POSE,2600,play);
 
   };
-  return {atmosphere:value=>atmosphere.setPreference(value),rememberView:()=>{const saved=clonePose(rig.pose),id=selectedId;return ()=>{objectPrevious=undefined;previous=undefined;select(id);fly(saved,1000);};},clearPlaceSelection:()=>{stop();ring.visible=false;select();},clearInformationFocus:()=>{stop();objectPrevious=undefined;overlays.focus(null);terrainFocus.setActive(false);},focusSpatialInformation:(id,options)=>focusInformation([id],options?.directoryOpen),returnFromFocus:()=>{if(objectPrevious){fly(objectPrevious,1000);objectPrevious=undefined;}},focusObjects:ids=>focusInformation(ids),hoverObject:id=>overlays.hover(id),setOverlays:(state)=>{overlayState=state;if(state.selectedObjectIds.length){overlays.focus(null);terrainFocus.setActive(false);}overlays.update(state);const selected=visibleObjects(state).find(o=>state.selectedObjectIds.includes(o.id));researchSelected=!!selected;researchWeight=selected?.form==='object'?.75:selected?.geometry.type==='Polygon'?.35:selected?.geometry.type==='LineString'?.18:0;built?.select(researchSelected?undefined:selectedId);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{objectPrevious=undefined;
+  return {explore:state=>exploration.set(state),lensMove:(x,y,r)=>exploration.moveLens(x,y,r),lensRead:(x,y)=>exploration.read(x,y,host.clientWidth,host.clientHeight,camera),atmosphere:value=>atmosphere.setPreference(value),rememberView:()=>{const saved=clonePose(rig.pose),id=selectedId;return ()=>{objectPrevious=undefined;previous=undefined;select(id);fly(saved,1000);};},clearPlaceSelection:()=>{stop();ring.visible=false;select();},clearInformationFocus:()=>{stop();objectPrevious=undefined;overlays.focus(null);terrainFocus.setActive(false);},focusSpatialInformation:(id,options)=>focusInformation([id],options?.directoryOpen),returnFromFocus:()=>{if(objectPrevious){fly(objectPrevious,1000);objectPrevious=undefined;}},focusObjects:ids=>focusInformation(ids),hoverObject:id=>overlays.hover(id),setOverlays:(state)=>{overlayState=state;if(state.selectedObjectIds.length){overlays.focus(null);terrainFocus.setActive(false);}overlays.update(state);const selected=visibleObjects(state).find(o=>state.selectedObjectIds.includes(o.id));researchSelected=!!selected;researchWeight=selected?.form==='object'?.75:selected?.geometry.type==='Polygon'?.35:selected?.geometry.type==='LineString'?.18:0;built?.select(researchSelected?undefined:selectedId);},start:tour,tour,stop,skip:()=>{stop();fly(CAMERA_PRESETS[0].pose,600);},navigate:(x,z)=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly({target:[x,0,z],distance:Math.min(100,Math.max(55,rig.pose.distance)),azimuth:rig.pose.azimuth,polar:.88});},reset:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(CAMERA_PRESETS[0].pose);},overview:()=>{objectPrevious=undefined;previous=undefined;ring.visible=false;select();fly(OVERVIEW_POSE,3600);},focus:(id)=>{objectPrevious=undefined;
    const p=navigationPlaces.find(p=>p.id===id);if(!p)return;previous??=clonePose(rig.pose);const [x,z]=project(p.coordinate);ring.position.set(x,(built?.terrain.height(x,z)??0)+.08,z);select(id);ring.visible=false;fly(framePlace(p));
   },back:()=>{ring.visible=false;select();fly(previous??CAMERA_PRESETS[0].pose);previous=undefined;},pan:(x,y)=>{stop();rig.pan(x*rig.pose.distance*.08,y*rig.pose.distance*.08);},dragMode:(mode)=>{stop();rig.dragMode=mode;},theme:(v)=>{nightTarget=v?1:0;},zoom:(f)=>{stop();rig.zoom(f);},orbit:(v)=>{stop();rig.orbit(v);},preset:(i)=>{const preset=CAMERA_PRESETS[i];if(!preset)return;const place=navigationPlaces.find(p=>p.id===selectedId);const pose=preset.mode==='research'?frameResearch()??preset.pose:preset.mode==='place'&&place?framePlace(place):preset.pose;previous=undefined;ring.visible=false;if(preset.mode==='macro')select();fly(pose);},dispose};
  }catch(e){dispose();throw e;}
