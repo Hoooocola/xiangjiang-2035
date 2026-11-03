@@ -1,0 +1,72 @@
+{
+  "width": 1440,
+  "height": 2040,
+  "bounds": [
+    112.9,
+    28.099999999999998,
+    113.02000000000001,
+    28.27
+  ],
+  "nodata": 0,
+  "rowOrder": "north-to-south",
+  "columnOrder": "west-to-east",
+  "crs": "EPSG:4326",
+  "pixelSpacing": [
+    8.333333333333333e-05,
+    8.333333333333333e-05
+  ],
+  "pixelOrigin": [
+    112.9,
+    28.27
+  ],
+  "pixelInterpretation": "pixel-is-area; read at centre",
+  "source": {
+    "sourceId": "esa-worldcover-2021-v200",
+    "sourceName": "ESA WorldCover 10m 2021 v200",
+    "sourceUrl": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N27E111_Map.tif",
+    "license": "CC-BY-4.0",
+    "attribution": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+    "period": {
+      "start": "2021-01-01",
+      "end": "2021-12-31"
+    },
+    "observedAt": null,
+    "publishedAt": null,
+    "retrievedAt": "2026-10-29T15:31:53.077574+00:00",
+    "spatialResolution": "approximately 10 m; native EPSG:4326 pixel spacing",
+    "coordinateReferenceSystem": "EPSG:4326",
+    "geometryAccuracy": "10m classification grid; not cadastral or legal wetland boundary",
+    "processingMethod": "Native pixel window from public COG; no resampling. Study polygon mask applied during analysis.",
+    "dataStatus": "public",
+    "bounds": [
+      112.9,
+      28.099999999999998,
+      113.02000000000001,
+      28.27
+    ],
+    "width": 1440,
+    "height": 2040,
+    "sha256": "6e6666d7f42239e1905db12319e88a3a65843d6162d937676de50abbbfbd2907"
+  },
+  "byteLength": 2937600,
+  "sha256": "e8a93e31b3d68ded0017cebb04dad721112e198312e3c518e6b6c8330d7fc2c9",
+  "classes": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    80
+  ],
+  "counts": {
+    "10": 757878,
+    "80": 312889,
+    "60": 100652,
+    "30": 69321,
+    "40": 114962,
+    "50": 1581895,
+    "20": 3
+  },
+  "verification": "All decoded TIFF pixels equal existing JSON; lossless R8, nearest sampling; no resampling"
+}
