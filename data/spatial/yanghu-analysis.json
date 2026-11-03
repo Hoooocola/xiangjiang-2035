@@ -1,0 +1,549 @@
+{
+  "analysisId": "yanghu-993cc555b93bfd96",
+  "studyAreaId": "yanghu",
+  "inputLayerIds": [
+    "ecology.gbif.snapshot",
+    "ecology.worldcover.2021",
+    "geography.roads.existing"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "gbif-core-snapshot",
+      "sourceName": "GBIF bounded occurrence snapshot",
+      "sourceUrl": "https://api.gbif.org/v1/occurrence/search?decimalLongitude=112.90,113.02&decimalLatitude=28.10,28.27&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0,1000&license=CC_BY_4_0&limit=100",
+      "license": "CC-BY-4.0 / CC0 per record",
+      "attribution": "GBIF.org; publishers linked per occurrence",
+      "observedAt": null,
+      "period": null,
+      "publishedAt": null,
+      "retrievedAt": "2026-10-29T17:06:03.736986+00:00",
+      "spatialResolution": "Per-record uncertainty <=1000m",
+      "coordinateReferenceSystem": "EPSG:4326",
+      "geometryAccuracy": "Reported uncertainty retained; not all records suitable for close-distance inference",
+      "processingMethod": "First 100 matching records; no complete inventory claim. Filtered coordinates, date and licenses",
+      "dataStatus": "public"
+    },
+    {
+      "sourceId": "esa-worldcover-2021-v200",
+      "sourceName": "ESA WorldCover 10m 2021 v200",
+      "sourceUrl": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N27E111_Map.tif",
+      "license": "CC-BY-4.0",
+      "attribution": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+      "observedAt": null,
+      "period": {
+        "start": "2021-01-01",
+        "end": "2021-12-31"
+      },
+      "publishedAt": null,
+      "retrievedAt": "2026-10-29T15:31:53.077574+00:00",
+      "spatialResolution": "approximately 10 m; native EPSG:4326 pixel spacing",
+      "coordinateReferenceSystem": "EPSG:4326",
+      "geometryAccuracy": "10m classification grid; not cadastral or legal wetland boundary",
+      "processingMethod": "Native pixel window from public COG; no resampling. Study polygon mask applied during analysis.",
+      "dataStatus": "public",
+      "bounds": [
+        112.9,
+        28.099999999999998,
+        113.02000000000001,
+        28.27
+      ],
+      "width": 1440,
+      "height": 2040,
+      "sha256": "6e6666d7f42239e1905db12319e88a3a65843d6162d937676de50abbbfbd2907"
+    },
+    {
+      "sourceId": "overture-osm-roads",
+      "sourceName": "Overture / OSM roads",
+      "sourceUrl": "https://tiles.overturemaps.org/2026-09-23.1/transportation.pmtiles",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors; Overture Maps Foundation",
+      "observedAt": null,
+      "period": null,
+      "publishedAt": null,
+      "retrievedAt": "2026-10-21",
+      "spatialResolution": "Vector roads; heterogeneous precision",
+      "coordinateReferenceSystem": "EPSG:4326",
+      "geometryAccuracy": "not surveyed",
+      "processingMethod": "Existing repository geometry reused",
+      "dataStatus": "public"
+    },
+    {
+      "sourceId": "osm-yanghu",
+      "sourceName": "OpenStreetMap 洋湖公园范围",
+      "sourceUrl": "https://www.openstreetmap.org/relation/15867482",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "observedAt": null,
+      "period": null,
+      "publishedAt": null,
+      "retrievedAt": "2026-10-20",
+      "spatialResolution": "OSM park polygon; not legal wetland boundary",
+      "coordinateReferenceSystem": "EPSG:4326",
+      "geometryAccuracy": "not surveyed",
+      "processingMethod": "Existing repository geometry reused",
+      "dataStatus": "public"
+    }
+  ],
+  "analysisMethod": "Native WorldCover pixel-centre polygon mask + road distance buffer overlap + uncertainty-aware observation proximity",
+  "parameters": {
+    "bufferMeters": 100,
+    "pixelInclusion": "centre-in-polygon, holes excluded",
+    "distanceMethod": "local equirectangular point-to-segment metres",
+    "scope": "existing OSM park polygon",
+    "inputLayerIds": [
+      "ecology.gbif.snapshot",
+      "ecology.worldcover.2021",
+      "geography.roads.existing"
+    ]
+  },
+  "spatialObservation": [
+    "洋湖OSM公园范围包含55076个网格中心，其中0个为无数据。",
+    "道路查询窗口含1888条候选线段；27320个有效分类像元中心落在道路100m邻近范围。",
+    "当前受限GBIF样本中57条落入研究面（1个唯一坐标）；不能外推完整物种分布。"
+  ],
+  "candidateResearchQuestion": "道路邻近的不同土地覆盖地块如何被使用？应在何处开展路径可达性、生态边界与活动方式的现场核验？",
+  "limitations": [
+    "空间邻近不证明活动破坏生态或其他因果关系",
+    "2021土地覆盖、2026下载道路与跨年生物记录不可当同年调查",
+    "OSM公园不是法定湿地范围；网格中心近似带来边界像元误差",
+    "道路不是完整步行网络，重复平行几何不作为独立道路数量解释",
+    "GBIF是前100条受限样本；未知精度已排除，距离结合误差判读；多条同坐标记录不代表独立地点",
+    "水质断面坐标未核验，不能声称覆盖洋湖",
+    "未提供通用跨年变化结论；可比方法与时期须独立审核"
+  ],
+  "evidenceReferences": [
+    "/data/spatial/worldcover-2021-core.tif",
+    "/data/spatial/yanghu-study-area.geojson",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5012539410",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5012609587",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5012656845",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5013196260",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5013323393",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5014290867",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5014854776",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5015691947",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5015897202",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5016397709",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5016537717",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5017538658",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5018798379",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5019144835",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5019328916",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5019426162",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5019863270",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5020042407",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5021239227",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5021273664",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5021532576",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5021916607",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5021920941",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5022348882",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5023409160",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5024172025",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5025045583",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5025460981",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5025553916",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5025566508",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5025862309",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5026252415",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5026869628",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5027115421",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5027730393",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5027942291",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5028252805",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5028426974",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5012533229",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5013059080",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5013091410",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5013822013",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5013920552",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5014551340",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5016400501",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5017630038",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5020039858",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5020683675",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5020948632",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5021013149",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5021270279",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5021412612",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5022204401",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5022472375",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5023235466",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5023994257",
+    "/api/spatial-data?action=object&layerId=ecology.gbif.snapshot&id=gbif-5025622421"
+  ],
+  "verificationStatus": "requires-field-verification",
+  "metrics": {
+    "uniqueObservationCoordinates": 1,
+    "insidePixelCount": 55076,
+    "nodataPixelCount": 0,
+    "classPixelCounts": {
+      "10": 13501,
+      "30": 9681,
+      "40": 15299,
+      "50": 6598,
+      "60": 1302,
+      "80": 8695
+    },
+    "approximatePixelAreaM2": 75.89182162466031,
+    "roadBufferPixelCount": 27320,
+    "roadBufferClassCounts": {
+      "10": 6949,
+      "30": 4565,
+      "40": 6966,
+      "50": 5650,
+      "60": 889,
+      "80": 2301
+    },
+    "observationProximity": [
+      {
+        "id": "gbif-5012539410",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5012609587",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5012656845",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5013196260",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5013323393",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5014290867",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5014854776",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5015691947",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5015897202",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5016397709",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5016537717",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5017538658",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5018798379",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5019144835",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5019328916",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5019426162",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5019863270",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5020042407",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5021239227",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5021273664",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5021532576",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5021916607",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5021920941",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5022348882",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5023409160",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5024172025",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5025045583",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5025460981",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5025553916",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5025566508",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5025862309",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5026252415",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5026869628",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5027115421",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5027730393",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5027942291",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5028252805",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5028426974",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5012533229",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5013059080",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5013091410",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5013822013",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5013920552",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5014551340",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5016400501",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5017630038",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5020039858",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5020683675",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5020948632",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5021013149",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5021270279",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5021412612",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5022204401",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5022472375",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5023235466",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5023994257",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      },
+      {
+        "id": "gbif-5025622421",
+        "distanceMeters": 41,
+        "uncertaintyMeters": 250,
+        "withinBuffer": "uncertain"
+      }
+    ],
+    "dataGaps": [
+      "unverified-water-station-coordinates",
+      "incomplete-walking-network",
+      "field-validation",
+      "complete-biodiversity-inventory"
+    ]
+  }
+}

@@ -60,3 +60,20 @@
 .objectReading .mainNav{display:none}
 
 .objectReading .cameraControls{visibility:hidden;pointer-events:none}
+
+/* Keep the formal name subordinate to the concise two-line title. */
+.intro .subtitle{line-height:1.85;max-width:min(40vw,470px);margin:0;font-size:12px;letter-spacing:.08em;overflow-wrap:break-word}.heroPhrase{white-space:nowrap}
+@media(max-width:700px){.intro .subtitle{max-width:calc(100vw - 52px);font-size:11px}}
+
+/* Preserve PR1 course-anchor visibility rule. */
+.marker[hidden]{display:none!important}
+
+@media(max-width:759px){.headerActions{gap:12px;justify-content:space-between}.headerActions>a{gap:5px;margin-left:0}.headerActions>button{min-width:0}.headerActions svg{width:14px}.headerActions>a svg{display:none}}
+/* Keep the optional shortcut outside active reading/index surfaces on small screens. */
+
+.mainNav[hidden]{display:none}
+/* A compact popover must rise above the course directory's stacking context. */
+.bottomDock:has([id="atmosphere-options"]){z-index:30}
+/* Shared reading-scrim tokens: theme only, never map-material colors. */
+.experience{--reading-rgb:var(--information-rgb);--reading-near:.97;--reading-middle:.9;--reading-soft:.48;--reading-fade:140px;--reading-tail:120px}
+.night{--reading-near:.98;--reading-middle:.91;--reading-soft:.54}

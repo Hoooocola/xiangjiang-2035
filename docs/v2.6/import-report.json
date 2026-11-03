@@ -1,0 +1,275 @@
+{
+  "sourceFile": "社会创新课程-湘江作品.xlsx",
+  "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+  "sheets": [
+    {
+      "name": "历年作业整理",
+      "nonemptyRows": 55
+    },
+    {
+      "name": "原始收集",
+      "nonemptyRows": 5
+    }
+  ],
+  "uniqueProjects": 51,
+  "existingStableIds": 24,
+  "newProjects": 27,
+  "years": {
+    "2024": 10,
+    "2025": 2,
+    "2026": 39
+  },
+  "duplicates": "原始收集表51个链接与整理表51行完全相同，按规范化作品URL去重为51件；不按标题相似合并。",
+  "preservedMetadataDifferences": [
+    {
+      "id": "pinwall-66168",
+      "field": "originalSite",
+      "retained": "油脂厂1936",
+      "workbook": "油脂厂"
+    },
+    {
+      "id": "pinwall-66187",
+      "field": "originalSite",
+      "retained": "渔人码头和裕湘纱厂",
+      "workbook": "渔人码头到裕湘…"
+    }
+  ],
+  "locationMatches": [
+    {
+      "id": "pinwall-55730",
+      "sourceRow": 7,
+      "sourcePlace": "橘子洲大桥",
+      "matchedPlaceIds": [
+        "student-juzizhou-bridge"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-55734",
+      "sourceRow": 8,
+      "sourcePlace": "橘子洲",
+      "matchedPlaceIds": [
+        "juzizhou"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-55735",
+      "sourceRow": 9,
+      "sourcePlace": "湘江整体",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-55736",
+      "sourceRow": 10,
+      "sourcePlace": "橘子洲",
+      "matchedPlaceIds": [
+        "juzizhou"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-55750",
+      "sourceRow": 11,
+      "sourcePlace": "兴马洲",
+      "matchedPlaceIds": [
+        "xingma"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-55758",
+      "sourceRow": 12,
+      "sourcePlace": "柏家洲",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-55773",
+      "sourceRow": 13,
+      "sourcePlace": "大王山",
+      "matchedPlaceIds": [
+        "site-025"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-55784",
+      "sourceRow": 14,
+      "sourcePlace": "湘江整体",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-55785",
+      "sourceRow": 15,
+      "sourcePlace": "湘江欢乐城",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-55792",
+      "sourceRow": 16,
+      "sourcePlace": "",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-60496",
+      "sourceRow": 17,
+      "sourcePlace": "湘江整体",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-60519",
+      "sourceRow": 18,
+      "sourcePlace": "湘江整体",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-62142",
+      "sourceRow": 19,
+      "sourcePlace": "渔人码头",
+      "matchedPlaceIds": [
+        "site-011"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-62168",
+      "sourceRow": 20,
+      "sourcePlace": "城南书院和岳麓书院",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-62175",
+      "sourceRow": 21,
+      "sourcePlace": "橘子洲",
+      "matchedPlaceIds": [
+        "juzizhou"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-62177",
+      "sourceRow": 22,
+      "sourcePlace": "兴马洲",
+      "matchedPlaceIds": [
+        "xingma"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-62179",
+      "sourceRow": 23,
+      "sourcePlace": "城南街区",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-62181",
+      "sourceRow": 24,
+      "sourcePlace": "湘江整体",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-62185",
+      "sourceRow": 25,
+      "sourcePlace": "大王山",
+      "matchedPlaceIds": [
+        "site-025"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-62187",
+      "sourceRow": 26,
+      "sourcePlace": "裕湘纱厂",
+      "matchedPlaceIds": [
+        "student-yuxiang"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-62188",
+      "sourceRow": 27,
+      "sourcePlace": "霞凝港",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-62189",
+      "sourceRow": 28,
+      "sourcePlace": "橘子洲",
+      "matchedPlaceIds": [
+        "juzizhou"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-62191",
+      "sourceRow": 29,
+      "sourcePlace": "文津码头",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-62192",
+      "sourceRow": 30,
+      "sourcePlace": "长沙锌厂",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-62197",
+      "sourceRow": 31,
+      "sourcePlace": "霞凝港",
+      "matchedPlaceIds": [],
+      "basis": "unlocated-no-coordinate-inference"
+    },
+    {
+      "id": "pinwall-66198",
+      "sourceRow": 56,
+      "sourcePlace": "裕湘纱厂",
+      "matchedPlaceIds": [
+        "student-yuxiang"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    },
+    {
+      "id": "pinwall-66200",
+      "sourceRow": 57,
+      "sourcePlace": "橘子洲",
+      "matchedPlaceIds": [
+        "juzizhou"
+      ],
+      "basis": "explicit-source-name-to-existing-navigation"
+    }
+  ],
+  "unavailableAttachments": [
+    {
+      "workId": "pinwall-66198",
+      "attachmentId": "QzEbefsfeaxWaaRNPC8n",
+      "type": "pdf",
+      "path": "/pdf/QzEbefsfeaxWaaRNPC8n.pdf",
+      "status": "404"
+    }
+  ],
+  "retiredAttachments": [
+    {
+      "id": "csZzG22RP2wasbnQXSDx",
+      "type": "pdf",
+      "title": "旧版附件（源页已变更）",
+      "accessStatus": "unverified",
+      "sourcePageUrl": "https://pinwall.cn/project/66190",
+      "reason": "此前登记ID已不在当前作品详情页；旧链接回退原作品页，不冒充当前附件。",
+      "workId": "pinwall-66190"
+    }
+  ],
+  "locationRule": "保留原24件已确认映射。新作品只使用表格中的明确地名匹配已有Place；未定位名称和宽泛范围不推断坐标。"
+}

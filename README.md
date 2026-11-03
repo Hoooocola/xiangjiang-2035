@@ -1,3 +1,15 @@
+> **V3.1 空间信息与跨图层演示**：[使用、计算方法与核心边界](docs/v3.1/README.md) · [15项数据状态](docs/v3.1/DATA_STATUS.md) · [累计合并方案](docs/v3.1/MERGE_PLAN.md)。图层 → 文化/社会/经济可点击定位；文化地点 → 分析周边资源为明确标注的DEMO直线距离计算。以下旧版说明保留为历史记录。
+
+> **V2.6 候选**：[课程档案与验收说明](docs/v2.6/README.md)。2024/2025/2026分别10/2/39件，汇总51件；新增全部媒体目录、滚动修复与可关闭的空间微光/河雾。旧DEMO方案及空间导读已按负责人要求移除。仅Preview验收，正式域名本轮不自动更新；以下旧版本说明保留为历史记录。
+
+> **V2.5 课程化候选**：顶部「设计方案」直接进入「2026 社会创新设计」，与独立课程成果模式共用24件作品、四主题、统计和媒体组件。[数据/交互与验收边界](docs/v2.5/README.md)。本轮只发布独立Preview；当前正式入口为 https://xiangjiang-2035-huo2.vercel.app/experience ，下方旧域名与V2.4导航说明保留为历史记录。
+
+> **V2.4 候选导航更新（2026-10-31）**：顶部“图层 / 资料 / 设计方案 / 研究平台”。现实GIS目录为五类；正式Proposal使用独立目录，课程成果在该目录底部的独立演示入口，兼容 `/experience?showcase=student-work`。课程与设计方案分离，旧版说明保留为历史记录。见 [V2.4交接](docs/v2.4/README.md)。
+
+> 在线访问：[湘江 2035 公共网站](https://xiangjiang-2035.vercel.app)。课程成果入口：图层 → 设计方案 → 浏览课程设计作品。无需登录即可查看地图与作品。
+
+> 学生课程成果 V4（Issue #3）：开发分支 `codex/student-work-media-v4`，基于 `demo/student-work-showcase` 继续迭代。使用用户修订表，核对 24 件作品、25 份 PDF 与 3 个视频；未确定的作品归入“未绑定地点”。[逐项核对表](docs/student-work-media-audit-v4.md) · [地图检索与定位精度](docs/student-work-locations-v4.md)。通过 PR 审核，不直接合并 main。
+
 > 2026-10-29 协作副本说明：下文保留首次审计记录；最新清理、历史映射与限制以 [安全协作版本](docs/SAFE_COLLABORATION.md) 为准。原始文件未获得新增版权授权，本副本按明确排除原则处理。
 
 # 湘江 2035 · 将来的江来
@@ -37,6 +49,7 @@ pnpm exec next dev --hostname 127.0.0.1 --port 3002
 | 路径 | 用途 |
 |---|---|
 | `/experience` | 三维湘江、六类图层、空间解释与研究资料 |
+| `/experience?showcase=student-work` | 兼容直达设计方案图层；日常从首页“图层 → 设计方案 → 浏览课程设计作品”进入；[V3 列表与验收截图](docs/student-work-showcase-v3.md)；[数据映射](docs/student-work-showcase.md) |
 | `/experience/sites/ezhou` | 鹅洲概念研究现场；不是扫描实测模型 |
 | `/experience/style-frame` | 保留的色彩/材质研究预览 |
 | `/experience/style-frame-v4` | 保留的 V4 风格帧与调色研究；不代表获批主版本 |
@@ -109,3 +122,20 @@ pnpm exec next start --hostname 127.0.0.1 --port 3003
 - [首次上传审计与阻塞项](docs/GITHUB_UPLOAD_AUDIT.md)
 - [Spatial Information V1.1 交付](docs/spatial-information-v1-1.md)
 - [前版 README（历史记录）](docs/README-before-collaboration-2026-10-28.md)
+
+## 查看课程成果 V3 分支
+
+V3 当前位于独立分支 `demo/student-work-showcase`，尚未合并 main。其他成员可直接读取公开仓库或克隆该分支：
+
+```bash
+git clone --branch demo/student-work-showcase --single-branch https://github.com/Hoooocola/xiangjiang-2035.git
+cd xiangjiang-2035
+pnpm install --frozen-lockfile
+pnpm exec next dev --hostname 127.0.0.1 --port 3002 --webpack
+```
+
+在运行项目的电脑打开 `http://127.0.0.1:3002/experience?showcase=student-work`。本地预览地址仅用于该电脑；跨电脑阅读请使用 GitHub 分支链接，或自行克隆运行。
+
+本轮只把右侧大图轮播改为小封面纵向列表。说明与实际截图见 [V3 验收](docs/student-work-showcase-v3.md)，正式封面来源见 [24 项封面核对](docs/student-work-cover-audit-v2.md)。无需数据库、地图 Token 或个人环境文件即可查看三维课程成果。
+
+最新交互修复：课程成果已接入“设计方案”图层，可与其余图层叠加；右侧作品、空间说明和资料详情互斥显示。见 [图层与详情修复记录](docs/design-proposal-layer.md)。

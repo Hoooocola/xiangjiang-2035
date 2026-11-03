@@ -19,7 +19,7 @@ describe('knowledge map data contract',()=>{
  it('honors layer, place and scenario switches without removing other enabled layers',()=>{
   expect(visibleObjects({...state,layers:['ecology','culture']}).map(o=>o.id)).toEqual(['ecology-context','culture-index','research-index']);
   expect(visibleObjects({...state,placeId:'juzizhou'}).every(o=>o.placeId==='juzizhou')).toBe(true);
-  expect(visibleObjects({...state,proposal:{proposalId:'proposal-care',view:'intervention'}}).filter(o=>o.layer==='proposal')).toHaveLength(4);
+  expect(visibleObjects({...state,proposal:{proposalId:'proposal-care',view:'intervention'}}).filter(o=>o.layer==='proposal')).toHaveLength(0);
   expect(visibleObjects({...state,proposal:{proposalId:'proposal-care',view:'baseline'}}).filter(o=>o.layer==='proposal')).toHaveLength(0);
  });
  it('does not leak intervention geometry to another place or proposal',()=>{
@@ -27,7 +27,7 @@ describe('knowledge map data contract',()=>{
  });
  it('separates gaps, issues, conflicts, opportunities and proposals with a traceable path',()=>{
   const conflict=recordById('conflict-use')!;expect(conflict.dataStatus).toBe('demo');expect(conflict.relatedIds).toContain('opportunity-care');
-  expect(recordById('opportunity-care')!.relatedIds).toContain('proposal-care');expect(recordById('proposal-care')!.proposalType).toBe('Product-Service System');
+  expect(recordById('opportunity-care')).toBeDefined();expect(recordById('proposal-care')).toBeUndefined();expect(RECORDS.some(r=>r.kind==='Proposal'&&r.dataStatus==='demo')).toBe(false);
   expect(layersForObjects(conflict.objectIds)).toEqual(['ecology','society']);
   for(const id of conflict.evidenceIds)expect(recordById(id)?.kind).toBe('FieldRecord');
   expect(recordById('issue-water')!.dataStatus).toBe('public');expect(recordById('issue-water')!.sourceIds).toContain('water2026');

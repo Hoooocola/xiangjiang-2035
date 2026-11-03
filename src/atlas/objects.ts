@@ -18,10 +18,6 @@ const RAW_OBJECTS:MapObject[]=[
  {...shared,id:'society-route',title:'活动观察路线 · 演示',layer:'society',recordId:'conflict-use',geometry:{type:'LineString',coordinates:[[112.944540,28.0207],[112.946701,28.0161],[112.948727,28.0117],[112.950613,28.0078]]},anchor:[112.946701,28.0161]},
  {...shared,id:'research-index',title:'历年研究 · 地点索引',layer:'ecology',recordId:'research-2018',sourceIds:['study2018'],dataStatus:'public',geometry:{type:'Point',coordinates:[[112.946407,28.0167]]},anchor:[112.946407,28.0167],precision:'地点级关联，没有原始 GPS'},
  {...shared,id:'field-demo',title:'观察记录模板 · 演示',layer:'society',recordId:'field-template',geometry:{type:'Point',coordinates:[[112.950315,28.0086]]},anchor:[112.950315,28.0086]},
- {...shared,id:'proposal-arrival',title:'到达说明触点 · 概念',layer:'proposal',recordId:'proposal-care',proposalId:'proposal-care',geometry:{type:'Point',coordinates:[[112.944540,28.0207]]},anchor:[112.944540,28.0207]},
- {...shared,id:'proposal-route',title:'轻行服务连接线 · 概念',layer:'proposal',recordId:'proposal-care',proposalId:'proposal-care',geometry:{type:'LineString',coordinates:[[112.944540,28.0207],[112.946701,28.0161],[112.948727,28.0117],[112.950613,28.0078]]},anchor:[112.946701,28.0161]},
- {...shared,id:'proposal-rest',title:'环境说明触点 · 概念',layer:'proposal',recordId:'proposal-care',proposalId:'proposal-care',geometry:{type:'Point',coordinates:[[112.948727,28.0117]]},anchor:[112.948727,28.0117]},
- {...shared,id:'proposal-feedback',title:'维护反馈触点 · 概念',layer:'proposal',recordId:'proposal-care',proposalId:'proposal-care',geometry:{type:'Point',coordinates:[[112.950613,28.0078]]},anchor:[112.950613,28.0078]},
 ];
 const legacySubtypes:Record<string,string>={'illustrative-study-area':'context','planned-observation-route':'activity','content-index':'memory'};
 export const MAP_OBJECTS:InformationFeature[]=RAW_OBJECTS.map(o=>{

@@ -40,3 +40,17 @@ AOI 改材质权重，不能删除外围模型或生成新研究结论。对象�
 ## 部署边界
 
 本地 `/experience` 不需要地图 Token。研究平台生产认证、对象存储尚未接入；不要把 DEV ONLY 开关带到公开部署。数据库文件与用户上传不纳入 Git。构建应在独立 clone/worktree 中进行，避免与运行中的 dev 输出互相干扰。
+
+## V2.4 空间阅读与氛围增量
+
+PlaceIntroduction负责首次选中的编辑式介绍，PlaceDetail/ResearchReader仅用于主动长文阅读；AtlasLibrary负责标题索引。ProposalExplorer读取src/atlas/proposals.ts的既有Proposal集合，StudentWork仍独立。内部proposal图层标识保留，但不属于五类现实GIS导航。rememberView通过原CameraRig保存/恢复视角，不在UI计算相机。
+
+terrain-focus.ts把既有DEM插值渲染为柔化视觉焦点，不改变源高程或连续AOI。atmosphere.ts提供一个Points批次和最多5个世界雾层，按偏好、减少动态效果和帧率降级；lighting.ts原光照及曝光不变，仅可选距离雾增强。见docs/v2.4。
+
+## V2.5 课程目录复用
+
+顶部设计方案改用StudentWorkShowcase的integrated布局与原StudentWorkExhibition，不再使用旧ProposalExplorer。课程模型只组织既有作品ID，搜索、统计、媒体入口与独立课程演示共用。所有运镜仍调用现有引擎接口；本轮不修改src/experience、AOI或基础GIS。见docs/v2.5/README.md。
+
+## V2.6 模块边界
+
+课程导入与媒体审计位于src/student-works，课程/媒体UI复用原组件；AtmosphereControl是底部工具行中的紧凑偏好控制。可关闭粒子/雾仅修改atmosphere.ts和环境fog段，不改CameraRig、AOI、材质或GIS数据。空间导读用户UI移除，原对象聚焦与返回接口保留。课程标题/统计、全附件、四尺寸及实际动态录屏验收见docs/v2.6。

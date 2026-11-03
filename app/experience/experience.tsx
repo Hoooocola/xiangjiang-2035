@@ -1,119 +1,176 @@
 'use client';
+import {EMPTY_EXPLORATION,type ExplorationState} from '@/src/exploration/data';
+import {ExplorationControls,DataLens,ExplorationStory} from './exploration-tools';
+import explorationStyles from './exploration.module.css';
+import {ResourceMarkers,ResourceReading} from './resource-explorer';
+import {RESOURCE_NODES,focusedNode,stateAnalysis,type NodeKind} from '@/src/exploration/relations';
+
 import {useEffect,useRef,useState} from 'react';
-import Link from 'next/link';
-import {ArrowUpRight,ArrowRight,RotateCcw,Sun,Moon,X,Compass,Play,Pause,Info,ChevronLeft,MapPin,Layers,BookOpen,SlidersHorizontal} from 'lucide-react';
+import {ArrowUpRight,ArrowRight,RotateCcw,Sun,Moon,X,Compass,Play,Pause,Info,MapPin,Layers,BookOpen,SlidersHorizontal,Lightbulb} from 'lucide-react';
 import {CAMERA_PRESETS,PLACES} from '@/src/experience/config';
 import {MINI_MAP,miniPoint,worldPoint} from '@/src/experience/minimap';
 import {project} from '@/src/experience/geo';
+import type {AtmospherePreference} from '@/src/experience/atmosphere';
 import type {ExperienceEngine} from '@/src/experience/engine';
 import styles from './experience.module.css';
-import {PlaceDetail,AtlasLibrary,type DetailTab} from './place-detail';
+import {designRecordById} from '@/src/atlas/proposals';
+import {PlaceIntroduction} from './place-introduction';
+import {PlaceDetail,AtlasLibrary,ResearchReader,type DetailTab} from './place-detail';
 import {FocusLabel} from './focus-label';
 import infoStyles from './information.module.css';
 import {SUBTYPES,subtypeOf,focusState} from '@/src/atlas/information';
 import {LayerPanel} from './layer-panel';
 import {LayerSymbol} from './layer-symbol';
 import {LAYER_VISUALS} from '@/src/atlas/visuals';
+import {AtmosphereControl} from './atmosphere-control';
 import {CameraControls} from './camera-controls';
 import {recordById} from '@/src/atlas/catalog';
 import {MAP_OBJECTS,layersForObjects,visibleObjects} from '@/src/atlas/objects';
 import type {LayerId,OverlayState,ProposalScenario} from '@/src/atlas/types';
+import {SHOWCASE_PLACES,studentMarkerCount,visibleStudentWorks,worksForPlace,type ThemeFilter} from '@/src/student-works/catalog';
+import {StudentWorkShowcase,StudentWorkExhibition,type CourseIndexView} from './student-work-showcase';
+import {courseById} from '@/src/student-works/courses';
+import {selectionGroup} from '@/src/student-works/selection';
+import {preferredWorkPlace} from '@/src/student-works/relationships';
+import {activeSceneDetail} from './panel-selection';
+import workStyles from './student-work-showcase.module.css';
 
 
 
-export default function Experience({initialPlace}:{initialPlace?:string}){
+export default function Experience({initialPlace,studentShowcase:initialStudentShowcase=false}:{initialPlace?:string;studentShowcase?:boolean}){
+ const [layers,setLayers]=useState<LayerId[]>([]);
+ const [studentShowcase,setStudentShowcase]=useState(initialStudentShowcase);
+ const [proposalOpen,setProposalOpen]=useState(false);
+ const courseActive=studentShowcase||proposalOpen;
+ const [courseId,setCourseId]=useState('social-innovation-design-2026');const activeCourse=courseById(courseId);
+ const proposalReturn=useRef<(()=>void)|undefined>(undefined),proposalContext=useRef<{selected:string|null;overview:boolean;freeExplore:boolean;showDemo:boolean;proposal:ProposalScenario|null;objectIds:string[]} | null>(null);
+ const navigationPlaces=SHOWCASE_PLACES;
+ const [workTheme,setWorkTheme]=useState<ThemeFilter>('all'),[worksOpen,setWorksOpen]=useState(studentShowcase);
+ const [workQuery,setWorkQuery]=useState(''),[workView,setWorkView]=useState<CourseIndexView>('places'),[workIndexOpen,setWorkIndexOpen]=useState(false),[courseWorkId,setCourseWorkId]=useState<string|null>(null);
  const host=useRef<HTMLDivElement>(null),engine=useRef<ExperienceEngine|null>(null),markers=useRef(new Map<string,HTMLButtonElement>());
  const [loaded,setLoaded]=useState(false),[progress,setProgress]=useState(0),[loadingLabel,setLoadingLabel]=useState('准备一段湘江之旅');
- const [error,setError]=useState(''),[started,setStarted]=useState(false),[night,setNight]=useState(true),[moving,setMoving]=useState(false);
+ const [error,setError]=useState(''),[started,setStarted]=useState(studentShowcase),[night,setNight]=useState(true),[moving,setMoving]=useState(false);
+ const [exploration,setExploration]=useState<ExplorationState>({...EMPTY_EXPLORATION}),[explorationError,setExplorationError]=useState(''),[explorationBusy,setExplorationBusy]=useState(false),[act,setAct]=useState<number|null>(null);
+ const explorationReturn=useRef<(()=>void)|null>(null),explorationSaved=useRef<ExplorationState>({...EMPTY_EXPLORATION});
+ const resourceReturn=useRef<(()=>void)|null>(null);
+ useEffect(()=>{if(!loaded)return;let active=true;Promise.resolve().then(()=>{if(active){setExplorationBusy(true);setExplorationError('');}return engine.current?.explore(exploration);}).catch(()=>{if(active)setExplorationError('分类数据暂不可用，请关闭后重试；不会生成模拟读数。');}).finally(()=>{if(active)setExplorationBusy(false);});return()=>{active=false;};},[exploration,loaded]);
+ const changeAct=(n:number)=>{if(act===null){explorationReturn.current=engine.current?.rememberView()??null;explorationSaved.current={...exploration};}setAct(n);setAtlasPanel(null);setDrawer(null);setDetailOpen(false);setProposalOpen(false);setStudentShowcase(false);
+  setExploration({...EMPTY_EXPLORATION,shore:true,roads:true,cover:n===2?30:10,lens:n===1,culture:n>0,services:n>0,commerce:n>0,walk:n===2});
+  if(n===0)engine.current?.reset();if(n===2)engine.current?.navigate(9.8,4.45);
+ };
+ const exitExploration=()=>{setAct(null);setExploration(explorationSaved.current);explorationReturn.current?.();explorationReturn.current=null;};
  const [overview,setOverview]=useState(true),[freeExplore,setFreeExplore]=useState(false),[drawer,setDrawer]=useState<'places'|'views'|'about'|null>(null),[selected,setSelected]=useState<string|null>(null);
  const [detailOpen,setDetailOpen]=useState(false),[detailTab,setDetailTab]=useState<DetailTab>('overview'),[recordId,setRecordId]=useState<string|null>(null);
- const [atlasPanel,setAtlasPanel]=useState<'layers'|'library'|null>(null),[layers,setLayers]=useState<LayerId[]>([]),[proposal,setProposal]=useState<ProposalScenario|null>(null),[objectIds,setObjectIds]=useState<string[]>([]);
- const [showDemo,setShowDemo]=useState(false),[subtypes,setSubtypes]=useState(['shoreline','bridge','context','memory','activity','intervention']),[guidedStep,setGuidedStep]=useState<number|null>(null);
+ const [atlasPanel,setAtlasPanel]=useState<'layers'|'library'|null>(null),[proposal,setProposal]=useState<ProposalScenario|null>(null),[objectIds,setObjectIds]=useState<string[]>([]);
+ const [showDemo,setShowDemo]=useState(false),[subtypes,setSubtypes]=useState(['shoreline','bridge','context','memory','activity','intervention']);
  const objectAction=useRef<(id:string)=>void>(()=>{});
  const informationContext=useRef<{selected:string|null;overview:boolean;freeExplore:boolean;proposal:ProposalScenario|null}|null>(null);
  const [informationReady,setInformationReady]=useState(true);
  const [layerScope,setLayerScope]=useState<'all'|'place'>('all');
+ const [atmosphereMode,setAtmosphereMode]=useState<AtmospherePreference>('auto');
+ useEffect(()=>{const read=()=>{try{const value=localStorage.getItem('xiangjiang-atmosphere');if(value==='auto'||value==='low'||value==='off')setAtmosphereMode(value);}catch{}};const timer=setTimeout(read,0);window.addEventListener('storage',read);return()=>{clearTimeout(timer);window.removeEventListener('storage',read);};},[]);
+ useEffect(()=>{engine.current?.atmosphere(atmosphereMode);},[atmosphereMode,loaded]);
  const [preset,setPreset]=useState(0),[mapPaths,setMapPaths]=useState<string[]>([]);
- const [metrics,setMetrics]=useState<{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number}|null>(null);
+ const [metrics,setMetrics]=useState<{fps:number;calls:number;triangles:number;geometries:number;buildings:number;knownHeight:number;trees:number;atmosphere?:string}|null>(null);
  const closeRef=useRef<HTMLButtonElement>(null),drawerCloseRef=useRef<HTMLButtonElement>(null),previousOverview=useRef(false);
  useEffect(()=>{
   if(!host.current)return;const target=host.current,controller=new AbortController();let disposed=false,instance:ExperienceEngine|null=null;
   import('@/src/experience/engine').then(({createExperience})=>createExperience(target,markers.current,{
-   informationReady:value=>{if(!disposed)setInformationReady(value);},object:id=>objectAction.current(id),interact:()=>setGuidedStep(null),progress:(n,label)=>{if(disposed)return;if(n<0)setError(label);else{setProgress(n);setLoadingLabel(label);}},ready:()=>{if(!disposed)setLoaded(true);},motion:(v)=>{if(!disposed)setMoving(v);},metrics:(v)=>{if(!disposed)setMetrics(v);},minimap:(paths)=>{if(!disposed)setMapPaths(paths);},
-  },controller.signal)).then(e=>{instance=e;if(disposed)e.dispose();else {engine.current=e;if(initialPlace&&PLACES.some(p=>p.id===initialPlace)){setStarted(true);setSelected(initialPlace);e.focus(initialPlace);}}}).catch(e=>{if(!disposed&&e.name!=='AbortError')setError(e.message||'三维场景载入失败，请刷新后重试。');});
+   informationReady:value=>{if(!disposed)setInformationReady(value);},object:id=>objectAction.current(id),interact:()=>{},progress:(n,label)=>{if(disposed)return;if(n<0)setError(label);else{setProgress(n);setLoadingLabel(label);}},ready:()=>{if(!disposed)setLoaded(true);},motion:(v)=>{if(!disposed)setMoving(v);},metrics:(v)=>{if(!disposed)setMetrics(v);},minimap:(paths)=>{if(!disposed)setMapPaths(paths);},
+  },controller.signal,SHOWCASE_PLACES)).then(e=>{instance=e;if(disposed)e.dispose();else {engine.current=e;if(initialStudentShowcase)e.overview();if(initialPlace&&SHOWCASE_PLACES.some(p=>p.id===initialPlace)){setStarted(true);setSelected(initialPlace);e.focus(initialPlace);}}}).catch(e=>{if(!disposed&&e.name!=='AbortError')setError(e.message||'三维场景载入失败，请刷新后重试。');});
   return()=>{disposed=true;controller.abort();instance?.dispose();engine.current=null;};
- },[initialPlace]);
+ },[initialPlace,initialStudentShowcase]);
  useEffect(()=>{if(drawer)drawerCloseRef.current?.focus({preventScroll:true});else if(selected&&!moving)closeRef.current?.focus({preventScroll:true});},[drawer,selected,moving]);
  const overlayState:OverlayState={layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null,showDemo,subtypes};
  useEffect(()=>{engine.current?.setOverlays({layers,proposal,selectedObjectIds:objectIds,placeId:proposal||layerScope==='place'?selected:null,showDemo,subtypes});},[loaded,layers,proposal,objectIds,selected,layerScope,showDemo,subtypes]);
  const begin=()=>{setStarted(true);setOverview(false);setDrawer(null);engine.current?.start();};
- const clearRecord=()=>{informationContext.current=null;setRecordId(null);setProposal(null);setObjectIds([]);setGuidedStep(null);};
- const reset=()=>{setAtlasPanel(null);clearRecord();setFreeExplore(false);setDetailOpen(false);setSelected(null);setOverview(false);setDrawer(null);setPreset(0);engine.current?.reset();};
- const focus=(id:string)=>{setAtlasPanel(null);if(id!==selected){clearRecord();setDetailTab('overview');}if(!selected)previousOverview.current=overview;setStarted(true);setDetailOpen(false);setSelected(id);setOverview(false);setDrawer(null);engine.current?.focus(id);};
- const closePlace=()=>{clearRecord();setDetailOpen(false);setSelected(null);setAtlasPanel(null);setOverview(previousOverview.current);engine.current?.back();};
- const showOverview=()=>{setAtlasPanel(null);clearRecord();setStarted(true);setDetailOpen(false);setSelected(null);setDrawer(null);setOverview(true);engine.current?.overview();};
+ const clearRecord=()=>{informationContext.current=null;setRecordId(null);setProposal(null);setObjectIds([]);};
+ const closeCourseWork=()=>{setCourseWorkId(null);setWorksOpen(true);setDetailOpen(false);clearRecord();setSelected(null);setAtlasPanel(null);setDrawer(null);if(selected)engine.current?.back();else engine.current?.stop();setOverview(previousOverview.current);};
+ const openCourseWork=(id:string,contextPlace?:string)=>{const work=visibleStudentWorks(workTheme,workQuery,courseId).find(item=>item.id===id);if(!work)return;const target=preferredWorkPlace(work,contextPlace);clearRecord();setStarted(true);setDetailOpen(false);setAtlasPanel(null);setDrawer(null);setWorksOpen(proposalOpen);setCourseWorkId(id);if(target){if(!selected)previousOverview.current=overview;setSelected(target);setOverview(false);if(selected!==target)engine.current?.focus(target);}else{setSelected(null);engine.current?.clearPlaceSelection();}};
+ const changeWorkFilter=(theme:ThemeFilter,query:string)=>{setWorkTheme(theme);setWorkQuery(query);if(courseWorkId&&!visibleStudentWorks(theme,query,courseId).some(item=>item.id===courseWorkId)){setCourseWorkId(null);setSelected(null);setDetailOpen(false);setWorksOpen(true);clearRecord();engine.current?.clearPlaceSelection();}};
+ const changeCourse=(id:string)=>{setCourseId(id);setWorkTheme('all');setWorkQuery('');setCourseWorkId(null);setSelected(null);setWorksOpen(true);setWorkIndexOpen(true);setDetailOpen(false);clearRecord();engine.current?.clearPlaceSelection();};
+ const reset=()=>{setExploration(v=>({...v,focusId:null,analysisRadius:null}));resourceReturn.current=null;if(courseActive){setCourseWorkId(null);setWorksOpen(true);}setAtlasPanel(null);clearRecord();setFreeExplore(false);setDetailOpen(false);setSelected(null);setOverview(false);setDrawer(null);setPreset(0);engine.current?.reset();};
+ const focus=(id:string)=>{setExploration(v=>({...v,focusId:null,analysisRadius:null}));resourceReturn.current=null;if(courseActive){const work=worksForPlace(id,workTheme,workQuery,courseId)[0];if(work){openCourseWork(work.id,id);return;}setCourseWorkId(null);setWorksOpen(false);}setAtlasPanel(null);if(id!==selected){clearRecord();setDetailTab('overview');}if(!selected)previousOverview.current=overview;setStarted(true);setDetailOpen(false);setSelected(id);setOverview(false);setDrawer(null);engine.current?.focus(id);};
+ const closePlace=()=>{if(courseActive){closeCourseWork();return;}clearRecord();setDetailOpen(false);setSelected(null);setAtlasPanel(null);setOverview(previousOverview.current);engine.current?.back();};
+ const showOverview=()=>{setExploration(v=>({...v,focusId:null,analysisRadius:null}));resourceReturn.current=null;if(courseActive){setCourseWorkId(null);setWorksOpen(true);}setAtlasPanel(null);clearRecord();setStarted(true);setDetailOpen(false);setSelected(null);setDrawer(null);setOverview(true);engine.current?.overview();};
  const changeTheme=(value:boolean)=>{engine.current?.theme(value);setNight(value);};
  const revealObjects=(ids:string[])=>{setObjectIds(ids);setLayers(current=>Array.from(new Set([...current,...layersForObjects(ids)])));setSubtypes(current=>Array.from(new Set([...current,...MAP_OBJECTS.filter(o=>ids.includes(o.id)).map(subtypeOf)])));};
- const openRecord=(id:string|null)=>{if(!id){clearRecord();return;}const r=recordById(id);if(!r)return;if(selected!==r.placeId)setSelected(r.placeId);setStarted(true);setAtlasPanel(null);setDrawer(null);setDetailOpen(true);setRecordId(id);if(id!==proposal?.proposalId)setProposal(null);setDetailTab(r.kind==='ResearchProject'||r.kind==='ResearchSession'?'research':r.kind==='FieldRecord'?'evidence':['Proposal','DesignOpportunity'].includes(r.kind)?'design':'questions');revealObjects(r.objectIds);};
+ const openRecord=(id:string|null)=>{if(!id){clearRecord();return;}setCourseWorkId(null);setWorksOpen(false);const r=designRecordById(id);if(!r)return;const location=(r.placeIds??[r.placeId]).find(id=>navigationPlaces.some(p=>p.id===id));setSelected(location??null);setStarted(true);setAtlasPanel(null);setDrawer(null);setDetailOpen(true);setRecordId(id);if(id!==proposal?.proposalId)setProposal(null);setDetailTab(r.kind==='ResearchProject'||r.kind==='ResearchSession'?'research':r.kind==='FieldRecord'?'evidence':['Proposal','DesignOpportunity'].includes(r.kind)?'design':'questions');revealObjects(r.objectIds);};
  const focusInformation=(id:string,directoryOpen=false)=>{informationContext.current??={selected,overview,freeExplore,proposal};setOverview(false);setFreeExplore(false);engine.current?.focusSpatialInformation(id,{directoryOpen});};
- const openObject=(id:string,autoFocus=false)=>{const o=MAP_OBJECTS.find(o=>o.id===id);if(!o)return;engine.current?.stop();setStarted(true);setDetailOpen(false);setDrawer(null);setRecordId(null);setGuidedStep(null);if(o.proposalId){setSelected(o.placeId);setProposal({proposalId:o.proposalId,view:'intervention'});}else setProposal(null);revealObjects([id]);const keepDirectory=window.innerWidth>=1100&&atlasPanel==='layers';if(window.innerWidth<1100)setAtlasPanel(null);if(autoFocus)focusInformation(id,keepDirectory);};
+ const openObject=(id:string,autoFocus=false)=>{const o=MAP_OBJECTS.find(o=>o.id===id);if(!o)return;setCourseWorkId(null);setWorksOpen(false);engine.current?.stop();setStarted(true);setDetailOpen(false);setDrawer(null);setRecordId(null);if(o.proposalId){setSelected(o.placeId);setProposal({proposalId:o.proposalId,view:'intervention'});}else setProposal(null);revealObjects([id]);const keepDirectory=window.innerWidth>=1100&&atlasPanel==='layers';if(window.innerWidth<1100)setAtlasPanel(null);if(autoFocus)focusInformation(id,keepDirectory);};
  useEffect(()=>{objectAction.current=id=>openObject(id);});
- const reconcile=(next:OverlayState)=>{const visible=new Set(visibleObjects(next).map(o=>o.id));if(objectIds.some(id=>!visible.has(id))){engine.current?.clearInformationFocus();informationContext.current=null;}setObjectIds(ids=>ids.filter(id=>visible.has(id)));setGuidedStep(null);};
+ const reconcile=(next:OverlayState)=>{const visible=new Set(visibleObjects(next).map(o=>o.id));if(objectIds.some(id=>!visible.has(id))){engine.current?.clearInformationFocus();informationContext.current=null;}setObjectIds(ids=>ids.filter(id=>visible.has(id)));};
  const toggleLayer=(id:LayerId)=>{const next=layers.includes(id)?layers.filter(x=>x!==id):[...layers,id];setLayers(next);reconcile({...overlayState,layers:next});};
- const toggleSubtype=(id:string)=>{const layer=SUBTYPES.find(s=>s.id===id)?.layer;if(!layer)return;const next=subtypes.includes(id)&&layers.includes(layer)?subtypes.filter(x=>x!==id):Array.from(new Set([...subtypes,id]));const nextLayers=Array.from(new Set([...layers,layer]));setLayers(nextLayers);setSubtypes(next);reconcile({...overlayState,layers:nextLayers,subtypes:next});};
- const demoVisibility=(value:boolean)=>{setShowDemo(value);reconcile({...overlayState,showDemo:value});};
- const changeScope=(scope:'all'|'place')=>{setLayerScope(scope);reconcile({...overlayState,placeId:scope==='place'?selected:null});};
- const guideIds=[MAP_OBJECTS.find(o=>o.subtype==='shoreline')?.id,'pilot-juzizhou-bridge','pilot-contour-100','pilot-park-16734077'].filter((id):id is string=>!!id&&MAP_OBJECTS.some(o=>o.id===id));
- const guide=(step:number)=>{const id=guideIds[step];if(!id)return;setStarted(true);setAtlasPanel(null);setDetailOpen(false);setDrawer(null);setLayerScope('all');setProposal(null);setRecordId(null);setGuidedStep(step);revealObjects([id]);focusInformation(id);};
- const closeExplanation=(preserveView=false)=>{setObjectIds([]);setGuidedStep(null);if(preserveView)engine.current?.stop();else{engine.current?.clearInformationFocus();informationContext.current=null;}};
- const clearLayers=()=>{informationContext.current=null;setLayers([]);setObjectIds([]);setGuidedStep(null);setProposal(null);engine.current?.clearInformationFocus();};
+ const closeStudent=()=>{setStudentShowcase(false);setCourseWorkId(null);setWorksOpen(false);setSelected(null);setDetailOpen(false);clearRecord();engine.current?.back();};
+ const closeDesign=()=>{setProposalOpen(false);setCourseWorkId(null);setWorksOpen(false);setDetailOpen(false);setRecordId(null);const context=proposalContext.current;setProposal(context?.proposal??null);setObjectIds(context?.objectIds??[]);setShowDemo(context?.showDemo??false);setSelected(context?.selected??null);setOverview(context?.overview??false);setFreeExplore(context?.freeExplore??false);proposalReturn.current?.();proposalReturn.current=undefined;proposalContext.current=null;};
+ const openDesign=()=>{setExploration(v=>({...v,focusId:null,analysisRadius:null}));resourceReturn.current=null;if(proposalOpen){closeDesign();return;}proposalReturn.current=engine.current?.rememberView();proposalContext.current={selected,overview,freeExplore,showDemo,proposal,objectIds};setStudentShowcase(false);setProposalOpen(true);setStarted(true);setAtlasPanel(null);setDrawer(null);setDetailOpen(false);setCourseWorkId(null);setWorksOpen(true);setWorkIndexOpen(true);setSelected(null);clearRecord();engine.current?.clearPlaceSelection();};
+ const openCourseLayer=()=>{if(proposalOpen)closeDesign();setStudentShowcase(true);setWorksOpen(true);setCourseWorkId(null);setDetailOpen(false);clearRecord();setSelected(null);setStarted(true);setAtlasPanel(null);setDrawer(null);engine.current?.clearPlaceSelection();};
+ const closeExplanation=(preserveView=false)=>{setObjectIds([]);if(preserveView)engine.current?.stop();else{engine.current?.clearInformationFocus();informationContext.current=null;}};
+ const clearLayers=()=>{informationContext.current=null;setLayers(value=>value.filter(id=>id==='proposal'));setObjectIds(ids=>ids.filter(id=>MAP_OBJECTS.find(o=>o.id===id)?.layer==='proposal'));engine.current?.clearInformationFocus();};
  const currentObject=visibleObjects(overlayState).find(o=>objectIds.includes(o.id));
- const sceneFocus=focusState(overlayState,MAP_OBJECTS,guidedStep);
+ const sceneFocus=focusState(overlayState,MAP_OBJECTS,null);
  const changeProposal=(view:ProposalScenario['view'])=>{const record=recordId?recordById(recordId):undefined;if(record?.kind!=='Proposal'||record.placeId!==selected)return;setLayerScope('place');setProposal({proposalId:record.id,view});revealObjects(record.objectIds);};
 
- const place=PLACES.find(p=>p.id===selected);
- const currentLabel=place?.name??(overview?'湘江全段':freeExplore?'沿江自由探索':'长沙核心河段');
- const miniPlaces=PLACES.filter(p=>['tongguan','juzizhou','zhaoshan'].includes(p.id));
- return <main style={{...Object.fromEntries(Object.entries(LAYER_VISUALS).map(([id,v])=>[`--layer-${id}`,night?v.night:v.day])),'--information-rgb':night?'8,23,28':'246,249,248'} as React.CSSProperties} className={`${styles.experience} ${night?styles.night:''} ${started?styles.exploring:''} ${drawer?styles.drawerOpen:''} ${detailOpen||atlasPanel?styles.reading:''} ${currentObject?styles.objectReading:''}`} onKeyDown={e=>{if(e.key==='Escape'){if(detailOpen){setDetailOpen(false);}else if(currentObject){closeExplanation();}else if(atlasPanel)setAtlasPanel(null);else if(drawer)setDrawer(null);else if(detailOpen)setDetailOpen(false);else if(selected)closePlace();else engine.current?.stop();}else if(e.key==='Home'&&e.target instanceof HTMLCanvasElement){e.preventDefault();reset();}}}>
-  <div ref={host} className={styles.scene}/><div className={styles.vignette}/>
+ const courseGroup=selectionGroup(courseWorkId,workTheme,workQuery,selected,courseId);
+ const courseWork=courseGroup.find(work=>work.id===courseWorkId);
+ const rightDetail=activeSceneDetail({detailOpen,objectId:currentObject?.id,courseWorkId:courseWork?.id,atlasPanel,drawer});
+ const place=navigationPlaces.find(p=>p.id===selected);
+ const explorationActive=(['geography','ecology','culture','society','economy'] as LayerId[]).filter(id=>layers.includes(id)||(id==='geography'?exploration.shore||exploration.roads:id==='ecology'?!!exploration.cover||exploration.lens:id==='culture'?exploration.culture:id==='society'?exploration.services||exploration.walk:exploration.commerce));
+ const changeExploration=(next:ExplorationState)=>{if(next.focusId&&!focusedNode(next)){resourceReturn.current=null;setExploration({...next,focusId:null,analysisRadius:null});}else setExploration(next);};
+ const locateResource=(ids:string[])=>{const restore=resourceReturn.current?null:engine.current?.rememberView(),context={selected,overview,freeExplore};const result=engine.current?.locateResources(ids);if(!result?.ok){setExplorationError(result?.message??'地图尚未就绪');return;}if(!resourceReturn.current)resourceReturn.current=()=>{restore?.();setSelected(context.selected);setOverview(context.overview);setFreeExplore(context.freeExplore);};setOverview(false);setFreeExplore(false);const node=ids.length===1?RESOURCE_NODES.find(n=>n.id===ids[0]):null;setExploration(v=>({...v,...(node?{[node.kind]:true}:{}),focusId:node?.id??null,analysisRadius:null}));setAtlasPanel(null);setDrawer(null);setDetailOpen(false);setSelected(null);setObjectIds([]);setExplorationError('');};
+ const showAllResources=(kind:NodeKind)=>{const ids=RESOURCE_NODES.filter(n=>n.kind===kind).map(n=>n.id),directoryOpen=window.innerWidth>=760;const result=engine.current?.locateResources(ids,{directoryOpen});if(!result?.ok){setExplorationError(result?.message??'地图尚未就绪');return;}resourceReturn.current=null;setSelected(null);setOverview(false);setFreeExplore(true);setExploration(v=>({...v,[kind]:true,focusId:null,analysisRadius:null}));if(!directoryOpen)setAtlasPanel(null);};
+ const closeResource=(restore=false)=>{setExploration(v=>({...v,focusId:null,analysisRadius:null}));if(restore)resourceReturn.current?.();resourceReturn.current=null;};
+ const analyzeResource=(radius:number)=>{const node=focusedNode(exploration);if(!node||node.kind!=='culture')return;setExploration(v=>({...v,services:true,commerce:true,roads:true,analysisRadius:radius}));const result=engine.current?.locateResources([node.id],{radius});if(!result?.ok)setExplorationError(result?.message??'地图尚未就绪');};
+ const currentLabel=focusedNode(exploration)?.name??place?.name??(overview?'湘江全段':freeExplore?'沿江自由探索':'长沙核心河段');
+ const miniPlaces=navigationPlaces.filter(p=>['tongguan','juzizhou','zhaoshan'].includes(p.id));
+ return <main data-course-integrated={proposalOpen} data-work-open={rightDetail==='course'} style={{...Object.fromEntries(Object.entries(LAYER_VISUALS).map(([id,v])=>[`--layer-${id}`,night?v.night:v.day])),'--information-rgb':night?'8,23,28':'246,249,248','--directory-rgb':night?'8,23,28':'249,249,244'} as React.CSSProperties} className={`${styles.experience} ${courseActive?workStyles.mode:''} ${proposalOpen?workStyles.integratedMode:''} ${night?styles.night:''} ${started?styles.exploring:''} ${drawer?styles.drawerOpen:''} ${detailOpen||atlasPanel?styles.reading:''} ${currentObject?styles.objectReading:''}`} onKeyDown={e=>{if(e.key==='Escape'){if(exploration.lens){e.preventDefault();setExploration(v=>({...v,lens:false}));return;}if(atlasPanel)setAtlasPanel(null);else if(focusedNode(exploration))closeResource();else if(drawer)setDrawer(null);else if(detailOpen)setDetailOpen(false);else if(courseActive&&courseWorkId)closeCourseWork();else if(currentObject)closeExplanation();else if(proposalOpen)closeDesign();else if(worksOpen)setWorksOpen(false);else if(selected)closePlace();else engine.current?.stop();}else if(e.key==='Home'&&e.target instanceof HTMLCanvasElement){e.preventDefault();reset();}}}>
+  <div ref={host} className={styles.scene}/><div className={`${styles.vignette} ${studentShowcase?workStyles.sceneVeil:''}`}/>
   <header className={styles.header}>
-   <button className={styles.wordmark} onClick={reset} aria-label="湘江 2035，返回核心河段" disabled={!loaded}><span>湘江 <b>2035</b></span><small>将来的江来 · A LIVING ATLAS</small></button>
+   <button className={styles.wordmark} onClick={reset} aria-label="湘江 2035，返回核心河段" disabled={!loaded}><span>湘江 <b>2035</b></span><small>XIANGJIANG-2035</small></button>
    <nav className={styles.headerActions} aria-label="知识地图工具">
-    {loaded&&<><button aria-expanded={atlasPanel==='layers'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='layers'?null:'layers');}}><SlidersHorizontal size={16}/>图层 <small>{layers.length}</small></button><button aria-expanded={atlasPanel==='library'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='library'?null:'library');}}><BookOpen size={16}/>资料</button></>}
+    <button disabled={!loaded} aria-expanded={atlasPanel==='layers'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='layers'?null:'layers');}}><SlidersHorizontal size={16}/>图层 <small>{explorationActive.length}</small></button><button disabled={!loaded} aria-expanded={atlasPanel==='library'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='library'?null:'library');}}><BookOpen size={16}/>资料</button>
+    <button disabled={!loaded} aria-expanded={proposalOpen} onClick={openDesign}><Lightbulb size={16}/>设计方案</button>
+    {studentShowcase&&<button onClick={closeStudent}>退出课程成果</button>}
     <a className={styles.platformLink} href="/create-research">研究平台 <ArrowUpRight size={16}/></a>
    </nav>
   </header>
 
   <div className={`${styles.markers} ${selected?styles.hasSelection:''}`} aria-label="地图地点">
-   {PLACES.map(p=><button key={p.id} ref={el=>{if(el)markers.current.set(p.id,el);else markers.current.delete(p.id);}} className={`${styles.marker} ${selected===p.id?styles.selectedMarker:''}`} onClick={()=>focus(p.id)} aria-label={`探索${p.name}`} style={{visibility:'hidden'}} disabled={!loaded} data-place={p.id} data-category={p.siteCategory}><i aria-hidden="true"/><span>{p.name}<small>{p.category}</small></span></button>)}
+   {navigationPlaces.map(p=><button key={p.id} ref={el=>{if(el)markers.current.set(p.id,el);else markers.current.delete(p.id);}} className={`${styles.marker} ${selected===p.id?styles.selectedMarker:''} ${courseActive&&studentMarkerCount(p.id,workTheme,workQuery,courseId)>0?workStyles.workMarker:''}`} aria-pressed={selected===p.id} hidden={!PLACES.some(place=>place.id===p.id)&&(!courseActive||studentMarkerCount(p.id,workTheme,workQuery,courseId)===0)} onClick={()=>focus(p.id)} aria-label={courseActive&&studentMarkerCount(p.id,workTheme,workQuery,courseId)>0?`${p.name}，${studentMarkerCount(p.id,workTheme,workQuery,courseId)}个课程作品`:`探索${p.name}`} style={{visibility:'hidden'}} disabled={!loaded} data-place={p.id} data-category={p.siteCategory} data-course-relevant={courseActive?studentMarkerCount(p.id,workTheme,workQuery,courseId)>0:undefined}><i aria-hidden="true"/>{courseActive&&studentMarkerCount(p.id,workTheme,workQuery,courseId)>0&&<em>{studentMarkerCount(p.id,workTheme,workQuery,courseId)}</em>}<span>{p.name}<small>{courseActive&&studentMarkerCount(p.id,workTheme,workQuery,courseId)>0?`${studentMarkerCount(p.id,workTheme,workQuery,courseId)} 个课程作品`:p.category}</small></span></button>)}
   </div>
   <div className={styles.knowledgeMarkers} data-has-selection={objectIds.length>0} aria-label="空间资料对象">{MAP_OBJECTS.map(o=><button key={o.id} ref={el=>{if(el)markers.current.set('object:'+o.id,el);else markers.current.delete('object:'+o.id);}} style={{visibility:'hidden','--object-color':`var(--layer-${o.layer})`} as React.CSSProperties} data-layer={o.layer} className={`${styles.objectMarker} ${objectIds.includes(o.id)?styles.activeObject:''}`} onPointerEnter={()=>engine.current?.hoverObject(o.id)} onPointerLeave={()=>engine.current?.hoverObject(null)} onFocus={()=>engine.current?.hoverObject(o.id)} onBlur={()=>engine.current?.hoverObject(null)} onClick={()=>openObject(o.id)} aria-pressed={objectIds.includes(o.id)} aria-label={`空间对象：${o.title}`}><i><LayerSymbol layer={o.layer} size={19}/></i><span>{o.title}<small>{o.dataStatus==='demo'?'DEMO DATA / 模拟研究资料':o.subtype?'公开空间资料':'公开资料 / 地点级索引'}</small></span></button>)}</div>
-  {atlasPanel==='layers'&&<LayerPanel scope={selected?layerScope:'all'} onScope={changeScope} selectedPlace={place?.name} state={overlayState} onToggle={toggleLayer} onSubtype={toggleSubtype} onDemo={demoVisibility} onGuide={()=>guide(0)} onClear={clearLayers} onObject={id=>openObject(id,true)} onClose={()=>setAtlasPanel(null)}/>}
+  {courseActive&&!atlasPanel&&!drawer&&!detailOpen&&!currentObject&&<StudentWorkShowcase course={activeCourse} onCourse={changeCourse} theme={workTheme} query={workQuery} view={workView} expanded={workIndexOpen} selectedPlace={selected} active={proposalOpen||(worksOpen&&!courseWorkId)} integrated={proposalOpen} loaded={loaded} onTheme={value=>changeWorkFilter(value,workQuery)} onQuery={value=>changeWorkFilter(workTheme,value)} onView={setWorkView} onExpanded={setWorkIndexOpen} onLocate={focus} onWork={openCourseWork} onClose={proposalOpen?closeDesign:()=>setWorksOpen(false)} onOverview={showOverview} onLecture={openCourseLayer}/>}
+  {courseActive&&courseWork&&rightDetail==='course'&&<StudentWorkExhibition works={courseGroup} placeName={place?.name??(courseWork.originalSite||'未绑定地点')} ready={loaded&&!moving} integrated={proposalOpen} selectedPlace={selected} onLocate={focus} onClose={closeCourseWork} onArchive={place?()=>{setDetailOpen(true);setDetailTab('overview');setRecordId(null);}:undefined}/>}
+  {studentShowcase&&!worksOpen&&!courseWork&&!detailOpen&&!atlasPanel&&!drawer&&<button className={workStyles.reopen} onClick={()=>setWorksOpen(true)}>2026 社会创新设计 <ArrowUpRight size={13}/></button>}
+  {atlasPanel==='layers'&&<LayerPanel active={explorationActive} onExploreDemo={()=>changeAct(0)} content={Object.fromEntries((['geography','ecology','culture','society','economy'] as LayerId[]).map(layer=>[layer,<ExplorationControls key={layer} layer={layer} state={exploration} onChange={changeExploration} onLocate={locateResource} onAll={showAllResources}/>]))} onToggle={id=>{
+   const keys:Partial<Record<LayerId,(keyof ExplorationState)[]>>={geography:['shore','roads'],ecology:['cover','lens'],culture:['culture'],society:['services','walk'],economy:['commerce']};const group=keys[id]??[],enabled=explorationActive.includes(id);if(layers.includes(id))toggleLayer(id);changeExploration({...exploration,...Object.fromEntries(group.map(k=>[k,enabled?(k==='cover'?0:false):k==='cover'?10:k==='lens'?false:true]))});
+  }} onClear={()=>{clearLayers();setExploration({...EMPTY_EXPLORATION});resourceReturn.current=null;}} onClose={()=>setAtlasPanel(null)}/>}
   {atlasPanel==='library'&&<AtlasLibrary onOpen={openRecord} onClose={()=>setAtlasPanel(null)}/>}
-  {currentObject&&!detailOpen&&!drawer&&<FocusLabel key={currentObject.id} object={currentObject} ready={informationReady} onExitStart={()=>engine.current?.stop()} onPlace={()=>{setAtlasPanel(null);setSelected(currentObject.placeId);setRecordId(null);setDetailTab('overview');setDetailOpen(true);}} onClose={()=>closeExplanation()} onFocus={()=>{setAtlasPanel(null);focusInformation(currentObject.id);}} onReturn={()=>{const context=informationContext.current;closeExplanation(true);setRecordId(null);setDetailOpen(false);setProposal(context?.proposal??null);if(context){setSelected(context.selected);setOverview(context.overview);setFreeExplore(context.freeExplore);}informationContext.current=null;engine.current?.returnFromFocus();}} onDetails={()=>{setAtlasPanel(null);setGuidedStep(null);if(currentObject.recordId)openRecord(currentObject.recordId);else{const details=document.getElementById(`source-${currentObject.id}`) as HTMLDetailsElement|null;if(details){details.open=true;details.scrollIntoView({block:'nearest'});}}}} step={guidedStep} steps={guideIds.length} onStep={guide}/>}
+  {currentObject&&rightDetail==='object'&&<FocusLabel key={currentObject.id} object={currentObject} ready={informationReady} onExitStart={()=>engine.current?.stop()} onPlace={()=>{setAtlasPanel(null);setSelected(currentObject.placeId);setRecordId(null);setDetailTab('overview');setDetailOpen(true);}} onClose={()=>closeExplanation()} onFocus={()=>{setAtlasPanel(null);focusInformation(currentObject.id);}} onReturn={()=>{const context=informationContext.current;closeExplanation(true);setRecordId(null);setDetailOpen(false);setProposal(context?.proposal??null);if(context){setSelected(context.selected);setOverview(context.overview);setFreeExplore(context.freeExplore);}informationContext.current=null;engine.current?.returnFromFocus();}} onDetails={()=>{setAtlasPanel(null);if(currentObject.recordId)openRecord(currentObject.recordId);else{const details=document.getElementById(`source-${currentObject.id}`) as HTMLDetailsElement|null;if(details){details.open=true;details.scrollIntoView({block:'nearest'});}}}}/>}
   {!atlasPanel&&layers.length>0&&!detailOpen&&<div className={infoStyles.legend} aria-label="当前图层图例">{SUBTYPES.filter(sub=>visibleObjects(overlayState).some(o=>subtypeOf(o)===sub.id)).map(sub=><span key={sub.id} style={{color:`var(--layer-${sub.layer})`}}>{sub.label}<small>{sub.form}</small></span>)}</div>}
-  <div className={styles.metrics} data-testid="atlas-state">{JSON.stringify({place:selected,layers,proposal,record:recordId,objects:visibleObjects(overlayState).map(o=>o.id),detailOpen,objectIds,showDemo,subtypes,sceneFocus,informationReady,moving})}</div>
+  {started&&!courseActive&&!drawer&&!detailOpen&&!currentObject&&<ResourceMarkers state={exploration} register={(id,el)=>{if(el)markers.current.set('resource:'+id,el);else markers.current.delete('resource:'+id);}} onLocate={locateResource}/>}
+  {started&&!courseActive&&!drawer&&!detailOpen&&!atlasPanel&&!currentObject&&<ResourceReading key={exploration.focusId??'none'} state={exploration} moving={moving} onRadius={analyzeResource} onClearAnalysis={()=>setExploration(v=>({...v,analysisRadius:null}))} onClose={()=>closeResource()} onReturn={()=>closeResource(true)} onPlace={id=>{closeResource();focus(id);setDetailOpen(true);setDetailTab('research');}}/>}
+  {exploration.lens&&<DataLens engine={engine} onClose={()=>setExploration(v=>({...v,lens:false}))}/>}
+  {act!==null&&<ExplorationStory act={act} onAct={changeAct} onExit={exitExploration}/>}
+  {(explorationBusy||explorationError)&&<div role="status" className={explorationStyles.status}>{explorationError||'读取地理分类…'}</div>}
+  <div className={styles.metrics} data-testid="exploration-state">{JSON.stringify({exploration,act,analysis:stateAnalysis(exploration)})}</div>
+  <div className={styles.metrics} data-testid="atlas-state">{JSON.stringify({place:selected,layers,proposal,record:recordId,objects:visibleObjects(overlayState).map(o=>o.id),detailOpen,objectIds,showDemo,subtypes,sceneFocus,informationReady,moving,proposalOpen,studentShowcase,workTheme,workQuery,courseWorkId,courseId})}</div>
   <section className={`${styles.intro} ${started?styles.introHidden:''}`} aria-label="开始探索" aria-hidden={started} inert={started}>
    <p className={styles.eyebrow}>CHANGSHA, CHINA <span>28°11′ N · 112°58′ E</span></p>
-   <h1>一条江，<br/><span>一种未来。</span></h1>
-   <p className={styles.subtitle}>湘江生态文化与社会创新地图</p>
+   <h1>一条江<br/><span>另一种未来</span></h1>
+   <p className={styles.subtitle}>湘江生态、文化与社会创新数字地图：<br/>基于D—E—C<span className={styles.heroPhrase}>产品总值指标</span>的设计平台</p>
    <button className={styles.start} onClick={begin} disabled={!loaded||!!error}><span className={styles.startCircle}><ArrowRight size={24}/></span><span>{loaded?'开始探索':'正在构建湘江'}<small>{loaded?'START THE EXPERIENCE':`${String(progress).padStart(2,'0')} / 100`}</small></span></button>
   </section>
   {!loaded&&!error&&<div className={styles.loading} role="status" aria-live="polite"><span>{loadingLabel}</span><div><i style={{width:`${progress}%`}}/></div></div>}
   {error&&<section className={styles.error} role="alert"><h2>暂时无法展开这段湘江</h2><p>{error}</p><button onClick={()=>window.location.reload()}>重新载入 <RotateCcw size={15}/></button><a href="/create-research">进入研究平台 <ArrowUpRight size={15}/></a></section>}
-  {place&&detailOpen&&!atlasPanel&&!drawer&&!moving&&<PlaceDetail key={place.id} place={place} onClose={()=>setDetailOpen(false)} onMap={()=>{setDetailOpen(false);const ids=visibleObjects(overlayState).filter(o=>objectIds.includes(o.id)).map(o=>o.id);if(ids.length)engine.current?.focusObjects(ids);else engine.current?.focus(place.id);}} tab={detailTab} onTab={setDetailTab} recordId={recordId} onRecord={openRecord} proposal={proposal} onProposal={changeProposal}/>}
-  {place&&!currentObject&&!detailOpen&&!atlasPanel&&!drawer&&!moving&&<aside className={styles.placePanel} aria-label={`${place.name}地点信息`}>
-   <button ref={closeRef} className={styles.close} onClick={closePlace} aria-label="关闭地点并返回原视角"><X size={20}/></button>
-   <p className={styles.eyebrow}>FIELD NOTES <span>/ {place.index}</span></p><small className={styles.placeEnglish}>{place.en}</small><h2>{place.name}</h2>
-   <p className={styles.category}>{place.category}</p><p className={styles.description}>{place.description}</p>
-   <div className={styles.location}><span>{place.coordinate[1].toFixed(4)}° N</span><span>{place.coordinate[0].toFixed(4)}° E</span></div>
-   <p className={styles.dataNote}>{place.note}</p>{place.id==='ezhou'&&<Link className={styles.siteEntry} href="/experience/sites/ezhou">进入三维研究现场 <ArrowUpRight size={15}/><small>概念场景 · 非真实扫描</small></Link>}<p className={styles.dataNote}>{`关联研究 ${place.relatedResearchIds.length} · 关联方案 ${place.relatedProposalIds.length}（含明确标记的演示资料）`}</p><button className={styles.detailEntry} onClick={()=>setDetailOpen(true)}>进入地点详情 <ArrowRight size={14}/></button><button className={styles.textButton} onClick={closePlace}><ChevronLeft size={16}/> 返回原视角</button>
-  </aside>}
+  {!place&&recordId&&detailOpen&&!atlasPanel&&designRecordById(recordId)&&<ResearchReader record={designRecordById(recordId)!} onClose={()=>setDetailOpen(false)} onOpen={openRecord}/>}
+  {place&&rightDetail==='place'&&!moving&&<PlaceDetail key={place.id} place={place} onClose={()=>setDetailOpen(false)} onMap={()=>{setDetailOpen(false);const ids=visibleObjects(overlayState).filter(o=>objectIds.includes(o.id)).map(o=>o.id);if(ids.length)engine.current?.focusObjects(ids);else engine.current?.focus(place.id);}} tab={detailTab} onTab={setDetailTab} recordId={recordId} onRecord={openRecord} proposal={proposal} onProposal={changeProposal}/>}
+  {place&&!currentObject&&!detailOpen&&!atlasPanel&&!drawer&&!moving&&!courseWork&&!proposalOpen&&<PlaceIntroduction place={place} onClose={closePlace} onResearch={()=>{setDetailTab('research');setDetailOpen(true);}} onDetails={()=>{setDetailTab('overview');setDetailOpen(true);}}/>}
   {drawer&&<aside className={styles.drawer} aria-label={drawer==='places'?'地点列表':drawer==='views'?'镜头预设':'关于此地图'}>
    <button ref={drawerCloseRef} className={styles.close} onClick={()=>setDrawer(null)} aria-label="关闭面板"><X size={20}/></button>
    <p className={styles.eyebrow}>{drawer==='places'?'PLACES ALONG THE RIVER':drawer==='views'?'PERSPECTIVES':'ABOUT THE ATLAS'}</p>
    <h2>{drawer==='places'?'沿江探索':drawer==='views'?'观察视角':'关于湘江 2035'}</h2>
-   {drawer==='places'?<div className={styles.placeList}>{PLACES.map(p=><button key={p.id} onClick={()=>focus(p.id)} aria-pressed={selected===p.id}><span>{p.index}</span><div>{p.name}<small>{p.category}</small></div><ArrowUpRight size={19}/></button>)}</div>:drawer==='views'?<div className={styles.placeList}>{CAMERA_PRESETS.map((p,i)=><button key={p.id} aria-pressed={preset===i} onClick={()=>{setPreset(i);setFreeExplore(false);setStarted(true);setDetailOpen(p.mode==='research'&&!!recordId);if(p.mode==='macro'){setSelected(null);clearRecord();}setAtlasPanel(null);setOverview(p.mode==='macro');engine.current?.preset(i);setDrawer(null);}}><span>0{i+1}</span><div>{p.name}<small>{p.description}</small></div><ArrowUpRight size={19}/></button>)}</div>:<div className={styles.about}><p>以真实地点为索引，连接湘江的生态、文化与社会创新。此版本是三维空间体验 Demo。</p><p>河岸与核心建筑轮廓来自 OpenStreetMap；外围建筑与道路补充自 Overture Maps。外围采用轮廓推导的简化体量，未知高度为估算。树木根据 OSM 与 ESA WorldCover 林地范围布置；山体来自公开高程瓦片，并做了河岸平顺处理。鹅洲标记采用公开地名近似坐标，尚非测绘定位。</p><p>© OpenStreetMap contributors, Overture Maps Foundation；East Asian Buildings。© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium。地形：Mapzen / USGS。</p><p>坐标来源 WGS84，尚未完成 CGCS2000 基准校准。小地图采用真实河岸轮廓旋转排列，左北右南；紫色矩形为随镜头旋转和缩放的近似视野指示；全段时适配小地图范围，不是透视投影的测绘边界。</p><p>拖动平移；右键或 Shift 拖动旋转；滚轮缩放；方向键旋转，Home 重置，Esc 返回。</p></div>}
+   {drawer==='places'?<div className={styles.placeList}>{navigationPlaces.map(p=><button key={p.id} onClick={()=>focus(p.id)} aria-pressed={selected===p.id}><span>{p.index}</span><div>{p.name}<small>{p.category}</small></div><ArrowUpRight size={19}/></button>)}</div>:drawer==='views'?<div className={styles.placeList}>{CAMERA_PRESETS.map((p,i)=><button key={p.id} aria-pressed={preset===i} onClick={()=>{setPreset(i);setFreeExplore(false);setStarted(true);setDetailOpen(p.mode==='research'&&!!recordId);if(p.mode==='macro'){setSelected(null);clearRecord();}setAtlasPanel(null);setOverview(p.mode==='macro');engine.current?.preset(i);setDrawer(null);}}><span>0{i+1}</span><div>{p.name}<small>{p.description}</small></div><ArrowUpRight size={19}/></button>)}</div>:<div className={styles.about}><p>以真实地点为索引，连接湘江的生态、文化与社会创新。此版本是三维空间体验 Demo。</p><p>河岸与核心建筑轮廓来自 OpenStreetMap；外围建筑与道路补充自 Overture Maps。外围采用轮廓推导的简化体量，未知高度为估算。树木根据 OSM 与 ESA WorldCover 林地范围布置；山体来自公开高程瓦片，并做了河岸平顺处理。鹅洲标记采用公开地名近似坐标，尚非测绘定位。</p><p>© OpenStreetMap contributors, Overture Maps Foundation；East Asian Buildings。© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium。地形：Mapzen / USGS。</p><p>坐标来源 WGS84，尚未完成 CGCS2000 基准校准。小地图采用真实河岸轮廓旋转排列，左北右南；紫色矩形为随镜头旋转和缩放的近似视野指示；全段时适配小地图范围，不是透视投影的测绘边界。</p><p>拖动平移；右键或 Shift 拖动旋转；滚轮缩放；方向键旋转，Home 重置，Esc 返回。</p></div>}
   </aside>}
   <div className={`${styles.bottomDock} ${!started?styles.dockIntro:''}`}>
    <div className={styles.themeSwitch} role="group" aria-label="昼夜模式">
@@ -129,13 +186,14 @@ export default function Experience({initialPlace}:{initialPlace?:string}){
     <span className={styles.miniNorth}>N</span><span className={styles.mapLocation}>{moving?'镜头移动中':currentLabel}</span>
    </div>
    <div className={styles.utilities}>
+    <AtmosphereControl quality={metrics?.atmosphere} value={atmosphereMode} disabled={!loaded} onChange={value=>{setAtmosphereMode(value);try{localStorage.setItem('xiangjiang-atmosphere',value);}catch{}}}/>
     {moving&&!currentObject&&<button className={styles.skipTour} onClick={()=>{setOverview(false);engine.current?.skip();}} aria-label="跳过导览，进入核心河段">跳过</button>}
     <button onClick={()=>{setStarted(true);if(moving)engine.current?.stop();else{setFreeExplore(false);setDetailOpen(false);setSelected(null);clearRecord();setAtlasPanel(null);setOverview(false);engine.current?.tour();}}} aria-label={moving?'停止镜头运动':'播放沿江巡游'} disabled={!loaded}>{moving?<Pause size={18}/>:<Play size={18}/>}</button>
     <button onClick={()=>{setAtlasPanel(null);setDrawer(drawer==='views'?null:'views');}} aria-label="选择镜头预设" disabled={!loaded}><Layers size={18}/></button>
     <button onClick={()=>{setAtlasPanel(null);setDrawer(drawer==='about'?null:'about');}} aria-label="关于地图与数据"><Info size={18}/></button>
    </div>
   </div>
-  <nav className={styles.mainNav} aria-label="地图导航">
+  <nav className={styles.mainNav} aria-label="地图导航" hidden={courseActive}>
    <button disabled={!loaded} onClick={showOverview} aria-pressed={overview}><span>湘江全段<small>THE RIVER CORRIDOR</small></span><i><Compass size={20} strokeWidth={1}/></i></button>
    <button disabled={!loaded} aria-expanded={drawer==='places'} onClick={()=>{setAtlasPanel(null);setDrawer(drawer==='places'?null:'places');}}><span>地点探索<small>EXPLORE THE PLACES</small></span><i><MapPin size={20} strokeWidth={1}/></i></button>
   </nav>

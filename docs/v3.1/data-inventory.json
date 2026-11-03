@@ -1,0 +1,281 @@
+{
+  "generatedAt": "2026-11-03",
+  "coordinateSystem": "WGS84，bounds=[west,south,east,north]；null不是零覆盖",
+  "inventory": [
+    {
+      "id": "geography.shore",
+      "name": "河流岸线",
+      "status": "已接入真实数据",
+      "file": [
+        "public/data/xiangjiang.geojson",
+        "public/data/environment.json"
+      ],
+      "source": "OpenStreetMap / ODbL-1.0；数据原署名保留",
+      "count": 1,
+      "bounds": [
+        112.700389,
+        27.232807,
+        113.16175,
+        28.772725
+      ],
+      "interaction": "沿真实河流多边形边界批量细线；核心窗口按现有预算裁剪，非全河段测绘岸线"
+    },
+    {
+      "id": "geography.roads",
+      "name": "道路桥梁",
+      "status": "已接入真实数据",
+      "file": [
+        "public/data/xiangjiang.geojson",
+        "public/data/environment.json"
+      ],
+      "source": "OSM / Overture；异质精度，下载年不是调查年",
+      "count": 35095,
+      "bridgeFeatures": 1819,
+      "bounds": [
+        112.719383,
+        27.916463,
+        113.071632,
+        28.497963
+      ],
+      "interaction": "主路/支路/桥梁分批，核心窗口最多14,000线段；有几何可作距离参照，但未构建连通步行拓扑、通行限制或路径成本"
+    },
+    {
+      "id": "geography.terrain",
+      "name": "地形高程",
+      "status": "已接入真实数据",
+      "file": "public/data/terrain.json",
+      "source": "Mapzen / Tilezen Terrain Tiles on AWS; USGS SRTM/GMTED2010",
+      "count": 163840,
+      "bounds": [
+        112.7,
+        27.86,
+        113.18,
+        28.58
+      ],
+      "interaction": "已有DEM与渲染地面；等高线/剖面尚未实现"
+    },
+    {
+      "id": "ecology.cover",
+      "name": "土地覆盖",
+      "status": "已接入真实数据",
+      "file": [
+        "public/data/spatial/worldcover-2021-core.tif",
+        "public/data/spatial/worldcover-2021-core.bin",
+        "public/data/spatial/worldcover-2021-texture.json"
+      ],
+      "source": "ESA WorldCover 2021 v200 / CC BY4.0；约10m",
+      "count": 2937600,
+      "classes": [
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        80
+      ],
+      "bounds": [
+        112.9,
+        28.099999999999998,
+        113.02000000000001,
+        28.27
+      ],
+      "interaction": "真实像元B渐显+C坐标显影镜；无裁剪中不存在的湿地90类，无面积或跨年变化推断"
+    },
+    {
+      "id": "ecology.history-water",
+      "name": "历史水体",
+      "status": "尚未实现",
+      "file": "无时间序列文件",
+      "source": "现有河流/WorldCover单期不能替代历史水体序列",
+      "count": 0,
+      "bounds": null,
+      "interaction": "仅状态说明，没有伪装的图层开关"
+    },
+    {
+      "id": "ecology.observations",
+      "name": "生物观察记录",
+      "status": "已接入真实数据（API；地图尚未实现）",
+      "file": [
+        "public/data/spatial/gbif-core.geojson",
+        "data/spatial/gbif-query.json",
+        "src/spatial-data/service.ts"
+      ],
+      "source": "GBIF公开受限快照；逐条CC BY4.0 / CC0，≤1000m报告误差保留",
+      "count": 100,
+      "bounds": [
+        112.926666,
+        28.123913,
+        112.985253,
+        28.189445
+      ],
+      "interaction": "查询/洋湖分析API已有；三维聚合、按类群筛选和点击记录尚未实现，不显示正常开关"
+    },
+    {
+      "id": "culture.heritage",
+      "name": "文化遗产/文化地点",
+      "status": "已接入真实数据（地点级索引）",
+      "file": [
+        "src/places/registry.ts",
+        "src/places/index.ts",
+        "src/exploration/relations.ts"
+      ],
+      "source": [
+        {
+          "name": "橘子洲",
+          "source": [
+            "docs/references/xiangjiang-site-classification.pdf",
+            "OpenStreetMap relation/16734076 · repository data/osm"
+          ],
+          "precision": "真实河岸轮廓 · 场域导览，非研究结论"
+        },
+        {
+          "name": "岳麓山",
+          "source": [
+            "docs/references/xiangjiang-site-classification.pdf",
+            "OpenStreetMap way/57009806 · repository data/osm"
+          ],
+          "precision": "全球公开高程模型 · 河岸做了视觉平顺处理"
+        },
+        {
+          "name": "开福寺",
+          "source": [
+            "docs/references/xiangjiang-site-classification.pdf",
+            "OpenStreetMap way/448727040 · repository data/osm"
+          ],
+          "precision": " 已匹配开放地图对象，不代表测绘或研究范围认证。"
+        }
+      ],
+      "count": 3,
+      "bounds": [
+        112.929,
+        28.1857,
+        112.9726667,
+        28.2283286
+      ],
+      "interaction": "注册地点定位、聚合、取景、来源和原资料入口；不是完整遗产普查或新建筑精确识别"
+    },
+    {
+      "id": "culture.facilities",
+      "name": "文化设施分类",
+      "status": "尚未实现",
+      "file": "src/places；无本轮独立设施数据集",
+      "source": "现有文化地点不能冒充博物馆/图书馆完整分类",
+      "count": 0,
+      "bounds": null,
+      "interaction": "仅状态说明，没有伪装的图层开关"
+    },
+    {
+      "id": "culture.stories",
+      "name": "地方历史与故事",
+      "status": "已接入示意数据（既有研究资料索引）",
+      "file": [
+        "src/atlas/catalog.ts",
+        "src/atlas/demo-v21.ts",
+        "src/atlas/demo-information-v11.ts"
+      ],
+      "source": "既有RECORDS，保留public/demo声明；不能将课程提案当成历史事实",
+      "count": 4,
+      "bounds": [
+        112.9559,
+        28.1857,
+        112.9559,
+        28.1857
+      ],
+      "interaction": "通过顶部资料及地点资料访问，研究数据与作品关系未删；未新增时空历史故事专用图层"
+    },
+    {
+      "id": "society.population",
+      "name": "人口分布",
+      "status": "尚未实现",
+      "file": "无可计算人口栅格/统计边界",
+      "source": "无真实人口数据，未随机补点",
+      "count": 0,
+      "bounds": null,
+      "interaction": "仅状态说明，没有伪装的图层开关"
+    },
+    {
+      "id": "society.services",
+      "name": "公共服务设施",
+      "status": "已接入示意数据",
+      "file": [
+        "src/exploration/data.ts",
+        "src/exploration/relations.ts"
+      ],
+      "source": "3个既有V3固定DEMO点，不是调查设施",
+      "count": 3,
+      "bounds": [
+        112.972,
+        28.181,
+        112.98,
+        28.199
+      ],
+      "interaction": "44px标记、列表定位、范围取景、信息来源；可按球面直线距离计算示意样本数"
+    },
+    {
+      "id": "society.walk",
+      "name": "步行可达性",
+      "status": "已接入示意数据（非可达性计算）",
+      "file": [
+        "src/exploration/render.ts",
+        "public/data/xiangjiang.geojson",
+        "public/data/environment.json"
+      ],
+      "source": "已有道路；东岸研究窗口112.975E/28.191N周围600m近邻路段",
+      "count": null,
+      "bounds": [
+        112.9688,
+        28.1856,
+        112.9812,
+        28.1964
+      ],
+      "interaction": "仅DEMO道路参照；没有最短路/等时圈/完整可达性。V3.1资源分析是另一个明确命名的直线距离计算"
+    },
+    {
+      "id": "economy.commerce",
+      "name": "商业服务设施",
+      "status": "已接入示意数据",
+      "file": [
+        "src/exploration/data.ts",
+        "src/exploration/relations.ts"
+      ],
+      "source": "3个既有V3固定DEMO点，不是商户名录",
+      "count": 3,
+      "bounds": [
+        112.977,
+        28.185,
+        112.983,
+        28.205
+      ],
+      "interaction": "可发现标记、列表定位、范围取景与按坐标的距离筛选"
+    },
+    {
+      "id": "economy.industry",
+      "name": "产业空间",
+      "status": "尚未实现",
+      "file": "无可信园区/产业用地独立数据",
+      "source": "未将基础建筑轮廓当作产业边界",
+      "count": 0,
+      "bounds": null,
+      "interaction": "仅状态说明，没有伪装的图层开关"
+    },
+    {
+      "id": "economy.nightlights",
+      "name": "夜间灯光",
+      "status": "尚未实现",
+      "file": "无遥感夜光栅格",
+      "source": "场景建筑窗灯是美术表达，不是夜光观测数据",
+      "count": 0,
+      "bounds": null,
+      "interaction": "仅状态说明，没有伪装的图层开关"
+    }
+  ],
+  "extra": {
+    "name": "水质断面月报（不是历史水域范围）",
+    "file": "public/data/spatial/water-quality-2025-11.json",
+    "count": 30,
+    "source": "湖南省生态环境厅2025-11公开事实表",
+    "status": "真实数据API / 坐标未核验 / 不上三维地图",
+    "bounds": null
+  }
+}

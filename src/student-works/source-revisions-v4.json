@@ -1,0 +1,21 @@
+{
+  "previousExcelSha256": "67019f943b93f702fe77032b3656ead6bf3b75fe113a15d68bce99c53945f726",
+  "excelFile": "副本副本社会创新设计_作业标题与小组成员(1)(1).xlsx",
+  "excelSha256": "7e8be5b13c2ccfb2610da156d0c8cdbf7936d6d0e1922c0c2d4bb93bc1d97af8",
+  "changes": [
+    {
+      "id": "pinwall-66185",
+      "row": 22,
+      "field": "originalSite",
+      "before": "大王山",
+      "after": "巴溪洲"
+    },
+    {
+      "id": "pinwall-66187",
+      "row": 23,
+      "field": "originalSite",
+      "before": "渔人码头到裕湘…",
+      "after": "渔人码头和裕湘纱厂"
+    }
+  ]
+}

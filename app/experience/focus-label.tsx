@@ -1,12 +1,12 @@
 'use client';
 import {useEffect,useRef} from 'react';
-import {X,ArrowUpRight,LocateFixed,ChevronLeft,ChevronRight} from 'lucide-react';
+import {X,ArrowUpRight,LocateFixed,ChevronLeft} from 'lucide-react';
 import type {InformationFeature} from '@/src/atlas/types';
 import {SUBTYPES,subtypeOf} from '@/src/atlas/information';
 import {SOURCES} from '@/src/atlas/places';
 import styles from './information.module.css';
 const english={geography:'GEOGRAPHY',ecology:'ECOLOGY',culture:'CULTURE',society:'SOCIETY',economy:'ECONOMY',proposal:'PROPOSAL'};
-export function FocusLabel({object,onClose,onFocus,onReturn,onDetails,onPlace,step,steps,onStep,ready=true,onExitStart}:{object:InformationFeature;onClose:()=>void;onFocus:()=>void;onReturn:()=>void;onDetails:()=>void;onPlace:()=>void;step:number|null;steps:number;onStep:(n:number)=>void;ready?:boolean;onExitStart:()=>void}){
+export function FocusLabel({object,onClose,onFocus,onReturn,onDetails,onPlace,ready=true,onExitStart}:{object:InformationFeature;onClose:()=>void;onFocus:()=>void;onReturn:()=>void;onDetails:()=>void;onPlace:()=>void;ready?:boolean;onExitStart:()=>void}){
  const root=useRef<HTMLElement>(null),exit=useRef<Animation|null>(null);
  useEffect(()=>()=>exit.current?.cancel(),[]);
  const dismiss=(action:()=>void)=>{
@@ -31,6 +31,5 @@ export function FocusLabel({object,onClose,onFocus,onReturn,onDetails,onPlace,st
    </details>
   </div>
   <nav className={styles.focusActions} aria-label="空间解释操作"><button onClick={()=>dismiss(onReturn)}><ChevronLeft size={15}/>返回原视角</button><button onClick={onFocus}><LocateFixed size={14}/>重新聚焦</button></nav>
-  {step!==null&&<div className={styles.guide}><button disabled={step===0} onClick={()=>onStep(step-1)}><ChevronLeft size={15}/>上一节</button><span>{step+1} / {steps}</span><button disabled={step===steps-1} onClick={()=>onStep(step+1)}>下一节<ChevronRight size={15}/></button></div>}
  </aside>;
 }

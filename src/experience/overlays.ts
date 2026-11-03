@@ -17,7 +17,7 @@ import {LineMaterial} from 'three/addons/lines/LineMaterial.js';
 export function buildOverlays(height:(x:number,z:number)=>number,sourceGeometry=new Map<string,THREE.BufferGeometry[]>(),relief=height,objects:MapObject[]=MAP_OBJECTS){
  const root=new THREE.Group();root.name='knowledge-layers';
  const groups=new Map<string,THREE.Group>(),anchors=new Map<string,THREE.Vector3>();
- let current:OverlayState={layers:[],proposal:null,selectedObjectIds:[],placeId:null},hovered:string|null=null,night=1;
+ let current:OverlayState={layers:[],proposal:null,selectedObjectIds:[],placeId:null},hovered:string|null=null,focusId:string|null=null,night=1;
  const dayColors=new Map(objects.map(o=>[o.id,new THREE.Color(LAYER_VISUALS[o.layer].day)]));
  const nightColors=new Map(objects.map(o=>[o.id,new THREE.Color(LAYER_VISUALS[o.layer].night)]));
  const point=(o:MapObject,c:Coordinate)=>informationPoint(o,c,height,relief);
@@ -71,12 +71,13 @@ export function buildOverlays(height:(x:number,z:number)=>number,sourceGeometry=
   }
   g.traverse(obj=>{obj.userData.informationId=o.id;});
  }
- function paint(){const visible=new Set(objects.filter(o=>isVisible(o,current)).map(o=>o.id));for(const [id,g] of groups){g.visible=visible.has(id);const selected=current.selectedObjectIds.includes(id),active=selected||hovered===id,muted=current.selectedObjectIds.some(id=>visible.has(id))&&!active;
+ function paint(){const visible=new Set(objects.filter(o=>isVisible(o,current)).map(o=>o.id));for(const [id,g] of groups){g.visible=visible.has(id)||focusId===id;const selected=current.selectedObjectIds.includes(id),active=selected||hovered===id||focusId===id,muted=current.selectedObjectIds.some(id=>visible.has(id))&&!active;
   g.traverse(obj=>{const m=(obj as THREE.Mesh).material as THREE.MeshBasicMaterial|undefined;if(!m)return;
    m.color.copy(dayColors.get(id)!).lerp(nightColors.get(id)!,night);
-   m.opacity=(obj.userData.modelFill?active?.9:.28:obj.userData.overlayFill?active?.19:.06:active?1:.72)*(muted?.4:1);
+   m.opacity=(obj.userData.modelFill?active?.9:.28:obj.userData.overlayFill?focusId===id?.26:active?.19:.06:active?1:.72)*(muted?.4:1);
+   if(focusId===id&&obj.userData.overlayFill)m.color.lerp(new THREE.Color('#d9b8ff'),.45);
    if(obj instanceof LineSegments2)obj.material.linewidth=active?2.8:1.6;
   });
  }}
- return {root,groups,anchors,update:(state:OverlayState)=>{current=state;paint();},hover:(id:string|null)=>{hovered=id;paint();},theme:(value:number)=>{if(Math.abs(value-night)<.002)return;night=value;paint();}};
+ return {root,groups,anchors,update:(state:OverlayState)=>{const focused=objects.find(o=>o.id===focusId);if(focused&&(current.layers.includes(focused.layer)&&!state.layers.includes(focused.layer)||isVisible(focused,current)&&!isVisible(focused,state)))focusId=null;current=state;paint();},focus:(id:string|null)=>{focusId=id;paint();},hover:(id:string|null)=>{hovered=id;paint();},theme:(value:number)=>{if(Math.abs(value-night)<.002)return;night=value;paint();}};
 }

@@ -5,7 +5,6 @@ export const SOURCES:Source[]=[
  {id:'demo-v11',title:'DEMO DATA / 模拟研究资料 · 空间信息 V1.1',year:2026,author:'概念演示编辑；编制年份，非调查年份；未实施调查',status:'demo'},
  {id:'terrain-dem',title:'Mapzen / Tilezen 高程瓦片 · 本地 320 × 512 网格',url:'https://registry.opendata.aws/terrain-tiles/',year:2026,author:'Mapzen / USGS；2026-10-21 提取，不代表采集年份',status:'public'},
  {id:'demo-v21',title:'DEMO DATA / 模拟研究资料 · V2.1 独立示例集',year:2026,author:'src/atlas/demo-v21.ts · 编辑示意，未实施调查',status:'demo'},
- {id:'legacy-prototype',title:'旧 HTML 原型中的 9 条方案记录（原型演示，不是核实成果）',year:2026,author:'prototype-html/js/data.js · Git 3bf2d3e，内容与首次归档一致',status:'demo'},
  {id:'gazetteer',title:'公开地名目录：Ezhou / 鹅洲',url:'https://fallingrain.com/world/CH/11/Ezhou.html',year:2026,author:'Falling Rain 地名目录；2026-10-22 核对',status:'approximate'},
  {id:'osm',title:'OpenStreetMap 河道与洲岛轮廓',url:'https://www.openstreetmap.org/relation/8727387',year:2026,author:'OpenStreetMap contributors',status:'public'},
  {id:'walk2024',title:'“洲”游长沙：鹅洲走读报道',url:'https://xjzb.icswb.com/h/106002/20240618/875653.html',year:2024,author:'长沙晚报 · 邬伟、周游、李金',status:'public'},

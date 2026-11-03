@@ -1,0 +1,2405 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "gbif-5087700359",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.936758,
+          28.187544
+        ]
+      },
+      "properties": {
+        "gbifId": 5087700359,
+        "scientificName": "Pterorhinus pectoralis (Gould, 1836)",
+        "species": "Garrulax pectoralis",
+        "observedAt": "2025-03-07T00:51",
+        "coordinateUncertaintyInMeters": 199.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5087700359",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5935348672",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.95533,
+          28.18642
+        ]
+      },
+      "properties": {
+        "gbifId": 5935348672,
+        "scientificName": "Turdus mandarinus Bonaparte, 1850",
+        "species": "Turdus mandarinus",
+        "observedAt": "2025-12-18T12:27:28",
+        "coordinateUncertaintyInMeters": 21.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5935348672",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5935416219",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.954178,
+          28.172087
+        ]
+      },
+      "properties": {
+        "gbifId": 5935416219,
+        "scientificName": "Cyanopica cyanus (Pallas, 1776)",
+        "species": "Cyanopica cyanus",
+        "observedAt": "2025-12-18T12:06:01",
+        "coordinateUncertaintyInMeters": 21.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5935416219",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5935509928",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.954155,
+          28.172328
+        ]
+      },
+      "properties": {
+        "gbifId": 5935509928,
+        "scientificName": "Cyanopica cyanus (Pallas, 1776)",
+        "species": "Cyanopica cyanus",
+        "observedAt": "2025-12-18T12:08:59",
+        "coordinateUncertaintyInMeters": 21.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5935509928",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5935581170",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.954253,
+          28.172255
+        ]
+      },
+      "properties": {
+        "gbifId": 5935581170,
+        "scientificName": "Pycnonotus sinensis (Gmelin, 1789)",
+        "species": "Pycnonotus sinensis",
+        "observedAt": "2025-12-18T12:10:06",
+        "coordinateUncertaintyInMeters": 15.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5935581170",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5935648943",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.956047,
+          28.17292
+        ]
+      },
+      "properties": {
+        "gbifId": 5935648943,
+        "scientificName": "Turdus mandarinus Bonaparte, 1850",
+        "species": "Turdus mandarinus",
+        "observedAt": "2025-12-18T11:32:34",
+        "coordinateUncertaintyInMeters": 21.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5935648943",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5935914319",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.95423,
+          28.172137
+        ]
+      },
+      "properties": {
+        "gbifId": 5935914319,
+        "scientificName": "Pterorhinus perspicillatus (J.F.Gmelin, 1789)",
+        "species": "Garrulax perspicillatus",
+        "observedAt": "2025-12-18T12:07:32",
+        "coordinateUncertaintyInMeters": 19.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5935914319",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5935934765",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.93505,
+          28.184167
+        ]
+      },
+      "properties": {
+        "gbifId": 5935934765,
+        "scientificName": "Clogmia albipunctatus (Williston, 1893)",
+        "species": "Clogmia albipunctatus",
+        "observedAt": "2025-12-18T14:14:23",
+        "coordinateUncertaintyInMeters": 11.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5935934765",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5935966220",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.955292,
+          28.174922
+        ]
+      },
+      "properties": {
+        "gbifId": 5935966220,
+        "scientificName": "Pica serica Gould, 1845",
+        "species": "Pica serica",
+        "observedAt": "2025-12-18T11:20:44",
+        "coordinateUncertaintyInMeters": 21.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5935966220",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-6171369089",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.936042,
+          28.160761
+        ]
+      },
+      "properties": {
+        "gbifId": 6171369089,
+        "scientificName": "Phragmites australis (Cav.) Trin. ex Steud.",
+        "species": "Phragmites australis",
+        "observedAt": "2025-12-20T10:31:30",
+        "coordinateUncertaintyInMeters": 27.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/6171369089",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-6320420727",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.954078,
+          28.17232
+        ]
+      },
+      "properties": {
+        "gbifId": 6320420727,
+        "scientificName": "Turdus mandarinus Bonaparte, 1850",
+        "species": "Turdus mandarinus",
+        "observedAt": "2025-12-18T12:08:47",
+        "coordinateUncertaintyInMeters": 21.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/6320420727",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-6551459244",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.954147,
+          28.172258
+        ]
+      },
+      "properties": {
+        "gbifId": 6551459244,
+        "scientificName": "Spodiopsar sericeus (Gmelin, 1789)",
+        "species": "Spodiopsar sericeus",
+        "observedAt": "2025-12-18T12:08:13",
+        "coordinateUncertaintyInMeters": 44.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/6551459244",
+        "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "datasetUrl": "https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-3958159983",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.985253,
+          28.13317
+        ]
+      },
+      "properties": {
+        "gbifId": 3958159983,
+        "scientificName": "Broussonetia papyrifera (L.) L'Hér. ex Vent.",
+        "species": "Broussonetia papyrifera",
+        "observedAt": "2021-06-29T00:11:00.185Z",
+        "coordinateUncertaintyInMeters": 30.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/3958159983",
+        "datasetKey": "14d5676a-2c54-4f94-9023-1e8dcd822aa0",
+        "datasetUrl": "https://www.gbif.org/dataset/14d5676a-2c54-4f94-9023-1e8dcd822aa0",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5012539410",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5012539410,
+        "scientificName": "Turdus mandarinus Bonaparte, 1850",
+        "species": "Turdus mandarinus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5012539410",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5012609587",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5012609587,
+        "scientificName": "Lanius schach Linnaeus, 1758",
+        "species": "Lanius schach",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5012609587",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5012656845",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5012656845,
+        "scientificName": "Lanius cristatus Linnaeus, 1758",
+        "species": "Lanius cristatus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5012656845",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5012661244",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5012661244,
+        "scientificName": "Ixobrychus flavicollis (Latham, 1790)",
+        "species": "Dupetor flavicollis",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5012661244",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5012703111",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5012703111,
+        "scientificName": "Copsychus saularis (Linnaeus, 1758)",
+        "species": "Copsychus saularis",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5012703111",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5012888608",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5012888608,
+        "scientificName": "Dendronanthus indicus (Gmelin, 1789)",
+        "species": "Dendronanthus indicus",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5012888608",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5013196260",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5013196260,
+        "scientificName": "Cecropis F.Boie, 1826",
+        "species": null,
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5013196260",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5013323393",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5013323393,
+        "scientificName": "Egretta garzetta (Linnaeus, 1766)",
+        "species": "Egretta garzetta",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5013323393",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5014290867",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5014290867,
+        "scientificName": "Terpsiphone paradisi (Linnaeus, 1758)",
+        "species": "Terpsiphone paradisi",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5014290867",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5014854776",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5014854776,
+        "scientificName": "Ardea intermedia Wagler, 1829",
+        "species": "Egretta intermedia",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5014854776",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5015691947",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5015691947,
+        "scientificName": "Dicrurus macrocercus Vieillot, 1817",
+        "species": "Dicrurus macrocercus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5015691947",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5015897202",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5015897202,
+        "scientificName": "Garrulax perspicillatus (Gmelin, 1789)",
+        "species": "Garrulax perspicillatus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5015897202",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5016057325",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5016057325,
+        "scientificName": "Spilopelia chinensis (Scopoli, 1786)",
+        "species": "Spilopelia chinensis",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5016057325",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5016397709",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5016397709,
+        "scientificName": "Charadrius dubius Scopoli, 1786",
+        "species": "Charadrius dubius",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5016397709",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5016537717",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5016537717,
+        "scientificName": "Eophona migratoria Hartert, 1903",
+        "species": "Eophona migratoria",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5016537717",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5016798751",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5016798751,
+        "scientificName": "Terpsiphone paradisi (Linnaeus, 1758)",
+        "species": "Terpsiphone paradisi",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5016798751",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5016851910",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5016851910,
+        "scientificName": "Acridotheres cristatellus (Linnaeus, 1758)",
+        "species": "Acridotheres cristatellus",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5016851910",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5016972587",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5016972587,
+        "scientificName": "Parus major Linnaeus, 1758",
+        "species": "Parus major",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5016972587",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5017538658",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5017538658,
+        "scientificName": "Spilopelia chinensis (Scopoli, 1786)",
+        "species": "Spilopelia chinensis",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5017538658",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5017802791",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5017802791,
+        "scientificName": "Turdus mandarinus Bonaparte, 1850",
+        "species": "Turdus mandarinus",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5017802791",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5018798379",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5018798379,
+        "scientificName": "Pica pica (Linnaeus, 1758)",
+        "species": "Pica pica",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5018798379",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5019144835",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5019144835,
+        "scientificName": "Butorides striata (Linnaeus, 1758)",
+        "species": "Butorides striata",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5019144835",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5019328916",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5019328916,
+        "scientificName": "Zapornia akool (Sykes, 1832)",
+        "species": "Amaurornis akool",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5019328916",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5019426162",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5019426162,
+        "scientificName": "Chloris sinica (Linnaeus, 1766)",
+        "species": "Chloris sinica",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5019426162",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5019863270",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5019863270,
+        "scientificName": "Tringa nebularia (Gunnerus, 1767)",
+        "species": "Tringa nebularia",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5019863270",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5020023630",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5020023630,
+        "scientificName": "Nycticorax nycticorax (Linnaeus, 1758)",
+        "species": "Nycticorax nycticorax",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5020023630",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5020042407",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5020042407,
+        "scientificName": "Hydrophasianus chirurgus (Scopoli, 1786)",
+        "species": "Hydrophasianus chirurgus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5020042407",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5020225772",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5020225772,
+        "scientificName": "Cecropis F.Boie, 1826",
+        "species": null,
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5020225772",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5020695458",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5020695458,
+        "scientificName": "Hirundo rustica Linnaeus, 1758",
+        "species": "Hirundo rustica",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5020695458",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5021136429",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5021136429,
+        "scientificName": "Pica pica (Linnaeus, 1758)",
+        "species": "Pica pica",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5021136429",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5021239227",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5021239227,
+        "scientificName": "Hirundo rustica Linnaeus, 1758",
+        "species": "Hirundo rustica",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5021239227",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5021273664",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5021273664,
+        "scientificName": "Ardeola bacchus (Bonaparte, 1855)",
+        "species": "Ardeola bacchus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5021273664",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5021532576",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5021532576,
+        "scientificName": "Garrulax sannio Swinhoe, 1867",
+        "species": "Garrulax sannio",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5021532576",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5021916607",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5021916607,
+        "scientificName": "Pycnonotus sinensis (Gmelin, 1789)",
+        "species": "Pycnonotus sinensis",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5021916607",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5021920941",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5021920941,
+        "scientificName": "Ixobrychus sinensis (Gmelin, 1789)",
+        "species": "Ixobrychus sinensis",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5021920941",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5022319245",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5022319245,
+        "scientificName": "Passer montanus (Linnaeus, 1758)",
+        "species": "Passer montanus",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5022319245",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5022348882",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5022348882,
+        "scientificName": "Gallinula chloropus (Linnaeus, 1758)",
+        "species": "Gallinula chloropus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5022348882",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5023409160",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5023409160,
+        "scientificName": "Nycticorax nycticorax (Linnaeus, 1758)",
+        "species": "Nycticorax nycticorax",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5023409160",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5024055406",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5024055406,
+        "scientificName": "Pycnonotus sinensis (Gmelin, 1789)",
+        "species": "Pycnonotus sinensis",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5024055406",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5024172025",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5024172025,
+        "scientificName": "Streptopelia orientalis (Latham, 1790)",
+        "species": "Streptopelia orientalis",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5024172025",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5024236296",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5024236296,
+        "scientificName": "Turdus cardis Temminck, 1831",
+        "species": "Turdus cardis",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5024236296",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025045583",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5025045583,
+        "scientificName": "Ixobrychus flavicollis (Latham, 1790)",
+        "species": "Dupetor flavicollis",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025045583",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025460981",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5025460981,
+        "scientificName": "Prinia inornata Sykes, 1832",
+        "species": "Prinia inornata",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025460981",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025553916",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5025553916,
+        "scientificName": "Tachybaptus ruficollis (Pallas, 1764)",
+        "species": "Tachybaptus ruficollis",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025553916",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025566508",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5025566508,
+        "scientificName": "Ixobrychus cinnamomeus (Gmelin, 1789)",
+        "species": "Ixobrychus cinnamomeus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025566508",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025862309",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5025862309,
+        "scientificName": "Alcedo atthis (Linnaeus, 1758)",
+        "species": "Alcedo atthis",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025862309",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5026252415",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5026252415,
+        "scientificName": "Motacilla alba Linnaeus, 1758",
+        "species": "Motacilla alba",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5026252415",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5026869628",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5026869628,
+        "scientificName": "Acridotheres cristatellus (Linnaeus, 1758)",
+        "species": "Acridotheres cristatellus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5026869628",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5027115421",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5027115421,
+        "scientificName": "Cisticola juncidis (Rafinesque, 1810)",
+        "species": "Cisticola juncidis",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5027115421",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5027338336",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.960358,
+          28.14378
+        ]
+      },
+      "properties": {
+        "gbifId": 5027338336,
+        "scientificName": "Garrulax perspicillatus (Gmelin, 1789)",
+        "species": "Garrulax perspicillatus",
+        "observedAt": "2014-07-24T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5027338336",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5027730393",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5027730393,
+        "scientificName": "Alauda gulgula Franklin, 1831",
+        "species": "Alauda gulgula",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5027730393",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5027942291",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5027942291,
+        "scientificName": "Sinosuthora webbiana (Gould, 1852)",
+        "species": "Sinosuthora webbiana",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5027942291",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5028252805",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5028252805,
+        "scientificName": "Spodiopsar cineraceus (Temminck, 1835)",
+        "species": "Spodiopsar cineraceus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5028252805",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5028426974",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5028426974,
+        "scientificName": "Passer montanus (Linnaeus, 1758)",
+        "species": "Passer montanus",
+        "observedAt": "2014-07-26T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5028426974",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5012533229",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5012533229,
+        "scientificName": "Pycnonotus sinensis (Gmelin, 1789)",
+        "species": "Pycnonotus sinensis",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5012533229",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5012919891",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5012919891,
+        "scientificName": "Urocissa erythroryncha (Boddaert, 1783)",
+        "species": "Urocissa erythroryncha",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5012919891",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5013059080",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5013059080,
+        "scientificName": "Spilopelia chinensis (Scopoli, 1786)",
+        "species": "Spilopelia chinensis",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5013059080",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5013091410",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5013091410,
+        "scientificName": "Gallinula chloropus (Linnaeus, 1758)",
+        "species": "Gallinula chloropus",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5013091410",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5013822013",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5013822013,
+        "scientificName": "Cyanopica cyanus (Pallas, 1776)",
+        "species": "Cyanopica cyanus",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5013822013",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5013920552",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5013920552,
+        "scientificName": "Eophona migratoria Hartert, 1903",
+        "species": "Eophona migratoria",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5013920552",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5014344102",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5014344102,
+        "scientificName": "Pycnonotus sinensis (Gmelin, 1789)",
+        "species": "Pycnonotus sinensis",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5014344102",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5014551340",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5014551340,
+        "scientificName": "Lanius schach Linnaeus, 1758",
+        "species": "Lanius schach",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5014551340",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5016400501",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5016400501,
+        "scientificName": "Alcedo atthis (Linnaeus, 1758)",
+        "species": "Alcedo atthis",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5016400501",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5016581554",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5016581554,
+        "scientificName": "Garrulax canorus (Linnaeus, 1758)",
+        "species": "Garrulax canorus",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5016581554",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5017630038",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5017630038,
+        "scientificName": "Sinosuthora webbiana (Gould, 1852)",
+        "species": "Sinosuthora webbiana",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5017630038",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5019604194",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5019604194,
+        "scientificName": "Streptopelia orientalis (Latham, 1790)",
+        "species": "Streptopelia orientalis",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5019604194",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5020039858",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5020039858,
+        "scientificName": "Hirundo rustica Linnaeus, 1758",
+        "species": "Hirundo rustica",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5020039858",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5020683675",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5020683675,
+        "scientificName": "Passer montanus (Linnaeus, 1758)",
+        "species": "Passer montanus",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5020683675",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5020948632",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5020948632,
+        "scientificName": "Egretta garzetta (Linnaeus, 1766)",
+        "species": "Egretta garzetta",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5020948632",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5021013149",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5021013149,
+        "scientificName": "Garrulax perspicillatus (Gmelin, 1789)",
+        "species": "Garrulax perspicillatus",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5021013149",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5021270279",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5021270279,
+        "scientificName": "Lonchura punctulata (Linnaeus, 1758)",
+        "species": "Lonchura punctulata",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5021270279",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5021412612",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5021412612,
+        "scientificName": "Dicrurus macrocercus Vieillot, 1817",
+        "species": "Dicrurus macrocercus",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5021412612",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5022204401",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5022204401,
+        "scientificName": "Tachybaptus ruficollis (Pallas, 1764)",
+        "species": "Tachybaptus ruficollis",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5022204401",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5022472375",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5022472375,
+        "scientificName": "Parus major Linnaeus, 1758",
+        "species": "Parus major",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5022472375",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5022946083",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5022946083,
+        "scientificName": "Spilopelia chinensis (Scopoli, 1786)",
+        "species": "Spilopelia chinensis",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5022946083",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5023235466",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5023235466,
+        "scientificName": "Streptopelia orientalis (Latham, 1790)",
+        "species": "Streptopelia orientalis",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5023235466",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5023489015",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5023489015,
+        "scientificName": "Copsychus saularis (Linnaeus, 1758)",
+        "species": "Copsychus saularis",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5023489015",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5023775463",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5023775463,
+        "scientificName": "Parus major Linnaeus, 1758",
+        "species": "Parus major",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5023775463",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5023994257",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5023994257,
+        "scientificName": "Ixobrychus sinensis (Gmelin, 1789)",
+        "species": "Ixobrychus sinensis",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5023994257",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5024121340",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5024121340,
+        "scientificName": "Turdus mandarinus Bonaparte, 1850",
+        "species": "Turdus mandarinus",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5024121340",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5024926010",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5024926010,
+        "scientificName": "Passer montanus (Linnaeus, 1758)",
+        "species": "Passer montanus",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5024926010",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025320756",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5025320756,
+        "scientificName": "Accipiter trivirgatus (Temminck, 1824)",
+        "species": "Accipiter trivirgatus",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025320756",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025448880",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5025448880,
+        "scientificName": "Cyanopica cyanus (Pallas, 1776)",
+        "species": "Cyanopica cyanus",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025448880",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025454130",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5025454130,
+        "scientificName": "Hirundo rustica Linnaeus, 1758",
+        "species": "Hirundo rustica",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025454130",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025604298",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5025604298,
+        "scientificName": "Cecropis F.Boie, 1826",
+        "species": null,
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025604298",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025622421",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.926666,
+          28.123913
+        ]
+      },
+      "properties": {
+        "gbifId": 5025622421,
+        "scientificName": "Lanius cristatus Linnaeus, 1758",
+        "species": "Lanius cristatus",
+        "observedAt": "2014-08-07T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025622421",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gbif-5025998764",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.940918,
+          28.189445
+        ]
+      },
+      "properties": {
+        "gbifId": 5025998764,
+        "scientificName": "Acridotheres cristatellus (Linnaeus, 1758)",
+        "species": "Acridotheres cristatellus",
+        "observedAt": "2014-08-01T00:00",
+        "coordinateUncertaintyInMeters": 250.0,
+        "sourceUrl": "https://www.gbif.org/occurrence/5025998764",
+        "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "datasetUrl": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "basisOfRecord": "HUMAN_OBSERVATION",
+        "sourceId": "gbif-core-snapshot"
+      }
+    }
+  ]
+}

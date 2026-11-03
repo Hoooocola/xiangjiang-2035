@@ -1,0 +1,6 @@
+# Deployment needs runtime assets and metadata, not offline preparation inputs.
+docs/
+exports/
+data/osm/
+data/terrain/
+data/context/

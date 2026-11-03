@@ -69,3 +69,15 @@ KJ / Insight、Design Opportunity / Proposal 等完整数据库流程尚未接�
 ## 数据 PR 验收
 
 稳定 ID 不随标题重命名；引用必须解析；来源与权限明确；几何闭合、坐标有限且符合 WGS84；新增子类能在目录选择；统计带单位/范围/时间；Demo 不包装成事实。执行目录、关系、几何与 overlay 测试，并浏览器验证选择和资料入口。涉及真实田野资料时先审核隐私和上传权限。
+
+## V2.4 导航与数据语义
+
+LayerId仍含proposal，以保持资料、情景和数据库关联兼容；现实GIS导航只列geography/ecology/culture/society/economy。DESIGN_PROPOSALS仅由既有AtlasRecord.kind=Proposal派生，支持placeIds及无可核验地点；不把StudentWork隐式转换为Proposal。学生作品地点ID绑定及全部媒体映射未变。昭山同一地点ID的近似导航点来源纠偏见docs/v2.4/ZHAOSHAN_SOURCE.md，不新增山体边界契约。
+
+## V2.5 Course / StudentWork
+
+Course身份、年份、简介、主题、studentWorkIds及sourceUrl定义在src/student-works/courses.ts；目前只存在2026社会创新设计。它引用既有StudentWork稳定ID，不创建新的作品副本，也不转换成正式Proposal。检索复用visibleStudentWorks，统计复用statsForWorks，地点复用workPlaceIds。多地点去重、未定位资料保留；原Proposal与数据库契约不变。
+
+## V2.6 历年课程与多附件
+
+StudentWork目录合并原24件及archive-works.json的27件，归属2024/2025/2026 Course，支持显式all-courses汇总。每条媒体包含稳定id、type、title、order、sourcePageUrl/sourceUrl/resourcePath及accessStatus；签名由按需路由解析，不存Git。退役附件只保留迁移来源，不虚增当前附件数。原24件地点与作者不覆盖。旧14条DEMO Proposal经负责人授权删除，Proposal类型和持久化契约仍保留。见docs/v2.6。
