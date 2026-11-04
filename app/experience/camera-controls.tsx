@@ -8,8 +8,8 @@ type CameraActions=Pick<ExperienceEngine,'pan'|'orbit'|'zoom'|'dragMode'>;
 export function CameraControls({actions,onReset}:{actions:CameraActions;onReset:()=>void}){
  const [open,setOpen]=useState(false),[mode,setMode]=useState<'pan'|'orbit'>('pan');
  return <div className={styles.cameraControls} aria-label="镜头控制">
-  <button className={styles.compassButton} onClick={()=>setOpen(!open)} aria-expanded={open} aria-controls="camera-tools" aria-label="展开镜头控制"><span>N</span><Compass size={30} strokeWidth={1} data-compass/></button>
-  <button onClick={onReset} aria-label="重置镜头"><RotateCcw size={17}/></button>
+  <button data-glass="control" className={styles.compassButton} onClick={()=>setOpen(!open)} aria-expanded={open} aria-controls="camera-tools" aria-label="展开镜头控制"><span>N</span><Compass size={30} strokeWidth={1} data-compass/></button>
+  <button data-glass="control" onClick={onReset} aria-label="重置镜头"><RotateCcw size={17}/></button>
   {open&&<section id="camera-tools" className={styles.cameraTools} aria-label="镜头操作面板">
    <div className={styles.cameraHeading}><span>观察视角</span><button onClick={()=>setOpen(false)} aria-label="收起镜头控制"><X size={16}/></button></div>
    <div className={styles.dragModes} role="group" aria-label="拖动方式">{(['pan','orbit'] as const).map(m=><button key={m} aria-pressed={mode===m} onClick={()=>{setMode(m);actions.dragMode(m);}}>{m==='pan'?'拖动平移':'拖动旋转'}</button>)}</div>

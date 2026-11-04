@@ -5,3 +5,11 @@
 @media(max-height:800px) and (min-width:760px){.introduction{top:22%;max-height:calc(78% - 145px)}.introduction h2{margin-bottom:16px}.kicker{margin-top:12px}.lede{font-size:14px;line-height:1.85;margin-bottom:12px}.provenance{margin-top:12px}}
 @media(max-width:759px){.introduction{left:24px;right:24px;top:auto;bottom:125px;width:auto;max-height:38%;padding:0;}.introduction:before{width:100%;top:auto;bottom:78px;height:48%;background:linear-gradient(0deg,rgba(var(--information-rgb),.96),rgba(var(--information-rgb),.88) 65%,transparent)}.introduction h2{font-size:28px;margin-bottom:10px}.kicker{margin:4px 0 7px}.lede{font-size:12px;line-height:1.8;margin-bottom:10px}.actions{flex-direction:row;gap:16px}.actions button{font-size:11px!important}.provenance{margin-top:8px}.return{margin-top:2px}.introduction header{font-size:8px}.introduction header button{height:32px}}
 @media(prefers-reduced-motion:reduce){.introduction{animation:none}}
+
+/* The scrim is outside the scroll port: no rectangular crop or fixed-position
+   pseudo-element inside a transformed arrival animation. */
+.introduction{overflow:visible;display:flex;flex-direction:column;animation:introFade var(--glass-enter) ease both}
+.introduction::before{position:fixed;inset:15vh 0 15vh auto;width:min(650px,48vw);height:auto;background:linear-gradient(270deg,rgba(var(--reading-rgb),var(--reading-near)),rgba(var(--reading-rgb),var(--reading-middle)) 45%,transparent);mask-image:linear-gradient(transparent,#000 16%,#000 78%,transparent)}
+@keyframes introFade{from{opacity:0}to{opacity:1}}
+.introduction>header{flex-shrink:0}.introductionBody{overflow:auto;min-height:0;overscroll-behavior:contain;scrollbar-width:thin;mask-image:linear-gradient(#000 calc(100% - 15px),transparent);padding-bottom:15px}
+@media(max-width:759px){.introduction::before{position:absolute;inset:-35px -55px -50px;width:auto;background:radial-gradient(ellipse,rgba(var(--reading-rgb),var(--reading-near)) 35%,rgba(var(--reading-rgb),var(--reading-middle)) 56%,transparent 80%);mask-image:none}}

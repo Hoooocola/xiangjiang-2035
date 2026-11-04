@@ -9,11 +9,11 @@ export async function loadExperienceAssets(signal:AbortSignal){
   if(!response.ok)throw new Error('地理数据加载失败，请重试。');
   return response.json() as Promise<T>;
  }
- const [source,grid,context,environment]=await Promise.all([
+ const [source,grid,context,environment,inland]=await Promise.all([
   read<SceneData>('/data/xiangjiang.geojson'),read<TerrainGrid>('/data/terrain.json'),
-  read<ContextData>('/data/context.json'),read<SceneData&{forest:number[]}>('/data/environment.json'),
+  read<ContextData>('/data/context.json'),read<SceneData&{forest:number[]}>('/data/environment.json'),read<SceneData>('/data/inland-water.geojson'),
  ]);
- return {data:{...source,features:[...source.features,...environment.features]},grid:{...grid,forest:environment.forest},context};
+ return {data:{...source,features:[...source.features,...environment.features,...inland.features.filter(f=>!source.features.some(existing=>existing.id===f.id))]},grid:{...grid,forest:environment.forest},context};
 }
 
 /** Preserve V1 sampling budget independently of visual emphasis. Units: 100 metres. */
