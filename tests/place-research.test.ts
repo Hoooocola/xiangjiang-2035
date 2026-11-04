@@ -1,0 +1,14 @@
+import {describe,it,expect} from 'vitest';
+import fs from 'node:fs';
+import {connectedHomes,analyzePaths,profile,slopeDegrees} from '../src/place-research/analysis';
+import type {IslandStudy,QuarryAsset} from '../src/place-research/types';
+const study=JSON.parse(fs.readFileSync('public/data/research/ezhou-study.json','utf8')) as IslandStudy;
+const quarry=JSON.parse(fs.readFileSync('public/data/research/quarry.json','utf8')) as QuarryAsset;
+describe('place-based research computations',()=>{
+ it('computes connectivity from two service roots and changes when an edge is removed',()=>{const r=connectedHomes(study);expect(r.connected).toHaveLength(8);expect(r.unconnected).toHaveLength(4);expect(connectedHomes({...study,edges:study.edges.slice(1)}).connected).toHaveLength(7);expect(connectedHomes({...study,edges:[]}).connected).toHaveLength(0)});
+ it('does not mistake a disconnected cycle for a serviced network',()=>{const edge=study.edges[0];const orphan=[{...edge,from:'home-5',to:'home-6'},{...edge,from:'home-6',to:'home-5'}];expect(connectedHomes({...study,edges:orphan}).connected).toHaveLength(0)});
+ it('rejects invalid threshold and recomputes path overlap from height samples',()=>{expect(()=>analyzePaths(quarry,NaN)).toThrow();const low=analyzePaths(quarry,10),high=analyzePaths(quarry,70);expect(low).toHaveLength(5);expect(low.some(p=>p.overlapMeters>0)).toBe(true);expect(low.reduce((n,p)=>n+p.overlapMeters,0)).toBeGreaterThan(high.reduce((n,p)=>n+p.overlapMeters,0));for(const p of low)expect(p.overlapMeters).toBeLessThanOrEqual(p.totalMeters);expect(analyzePaths({...quarry,paths:quarry.paths.map(p=>({...p,points:p.points.map(([x,z])=>[x*3,z*3])}))},35)).not.toEqual(analyzePaths(quarry,35))});
+ it('shares the profile and slope surface, with no invented underwater depth',()=>{for(const axis of ['east-west','north-south'] as const){const r=profile(quarry,axis);expect(r[80].water).toBe(true);expect(r[80].height).toBe(0);expect(r.every(p=>p.height>=0)).toBe(true);expect(r.some(p=>p.height>30)).toBe(true);}expect(slopeDegrees(0,0,quarry.outline)).toBe(0)});
+ it('keeps quarry coordinates explicitly unknown and graph identifiers/precision states valid',()=>{expect(quarry.coordinate).toBe(null);expect(quarry.state).toBe('RECONSTRUCTED');const ids=new Set(study.nodes.map(n=>n.id));expect(ids.size).toBe(study.nodes.length);for(const e of study.edges){expect(ids.has(e.from)&&ids.has(e.to)).toBe(true);expect(e.state).toBe('DEMO')}expect(study.nodes.every(n=>n.state==='DEMO')).toBe(true)});
+ it('keeps versioned asset URLs tied to actual file content',async()=>{const {createHash}=await import('node:crypto');const versions=JSON.parse(fs.readFileSync('src/experience/asset-versions.json','utf8'));for(const [file,version]of Object.entries(versions))expect(createHash('sha256').update(fs.readFileSync('public/data/'+file)).digest('hex').slice(0,12)).toBe(version)});
+});

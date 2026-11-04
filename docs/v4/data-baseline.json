@@ -1,0 +1,43 @@
+{
+  "files": [
+    {
+      "file": "xiangjiang.geojson",
+      "bytes": 7129381,
+      "brotli": 799915,
+      "parseMs": 34.67700000000001
+    },
+    {
+      "file": "environment.json",
+      "bytes": 7921174,
+      "brotli": 1112905,
+      "parseMs": 22.010749999999973
+    },
+    {
+      "file": "context.json",
+      "bytes": 5533814,
+      "brotli": 1487639,
+      "parseMs": 18.736541999999986
+    },
+    {
+      "file": "terrain.json",
+      "bytes": 1725900,
+      "brotli": 190269,
+      "parseMs": 2.758291999999983
+    }
+  ],
+  "forest": {
+    "json": {
+      "raw": 327681,
+      "brotli": 6024
+    },
+    "uint8": {
+      "raw": 163840,
+      "brotli": 4792
+    },
+    "bitset": {
+      "raw": 20480,
+      "brotli": 4168
+    }
+  },
+  "note": "Brotli sizes are local theoretical comparison only; actual transferred bytes are in cloud transfer evidence. Parse timing excludes compression."
+}

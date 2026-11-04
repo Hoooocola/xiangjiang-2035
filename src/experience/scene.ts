@@ -1,3 +1,4 @@
+import {waterSurfaces,cutInlandWater} from './water';
 import {vegetationSpacing} from './assets';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -34,6 +35,7 @@ export interface ContextData {buildings:number[][];counts:{knownHeight:number}}
 export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:ContextData,materials:Materials,onProgress:(value:number)=>void,studyAttributes=false,captureSourceIds:ReadonlySet<string>=new Set()) {
  const root=new THREE.Group(),city=new THREE.Group(),detail=new THREE.Group();root.add(city,detail);
  const terrain=terrainSampler(grid),height=terrain.height;
+ const waters=waterSurfaces(data,height);
  const sourceGeometry=new Map<string,THREE.BufferGeometry[]>();
  const capture=(id:string,g:THREE.BufferGeometry)=>{if(captureSourceIds.has(id)){const list=sourceGeometry.get(id)??[];list.push(g.clone());sourceGeometry.set(id,list);}return g;};
  const weighted=(g:THREE.BufferGeometry,constant?:number)=>{const p=g.attributes.position;g.setAttribute('importance',new THREE.Float32BufferAttribute(Array.from({length:p.count},(_,i)=>constant??terrain.importance(p.getX(i),p.getZ(i))),1));return g;};
@@ -43,8 +45,10 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  const baseMaterial=materials.ground.clone();baseMaterial.transparent=false;baseMaterial.onBeforeCompile=materials.ground.onBeforeCompile;
  const ground=new THREE.Mesh(groundGeo,baseMaterial);ground.receiveShadow=true;ground.renderOrder=-2;root.add(ground);
  const cols=Math.floor((grid.width-1)/2),rows=Math.floor((grid.height-1)/2);
- const relief=new THREE.PlaneGeometry(grid.dx*(grid.width-1),grid.dz*(grid.height-1),cols,rows);relief.rotateX(-Math.PI/2);relief.translate(grid.x0+grid.dx*(grid.width-1)/2,0,grid.z0+grid.dz*(grid.height-1)/2);
- const rp=relief.attributes.position;for(let i=0;i<rp.count;i++)rp.setY(i,height(rp.getX(i),rp.getZ(i))-.025);relief.computeVertexNormals();
+ let relief:THREE.BufferGeometry=new THREE.PlaneGeometry(grid.dx*(grid.width-1),grid.dz*(grid.height-1),cols,rows);relief.rotateX(-Math.PI/2);relief.translate(grid.x0+grid.dx*(grid.width-1)/2,0,grid.z0+grid.dz*(grid.height-1)/2);
+ let rp=relief.attributes.position;for(let i=0;i<rp.count;i++)rp.setY(i,height(rp.getX(i),rp.getZ(i))-.025);relief.computeVertexNormals();
+ const uncutRelief=relief;relief=cutInlandWater(uncutRelief,waters);uncutRelief.dispose();
+ rp=relief.attributes.position;
  const groundColors=new Float32Array(rp.count*3),groundTint=new THREE.Color(),forestCore=new THREE.Color('#9db18d'),forestContext=new THREE.Color('#ffffff'),white=new THREE.Color('white');
  for(let i=0;i<rp.count;i++){
   const x=rp.getX(i),z=rp.getZ(i),weight=terrain.forest(x,z);
@@ -61,8 +65,7 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  const waterGs:THREE.BufferGeometry[]=[],shoreGs:THREE.BufferGeometry[]=[],parks:THREE.BufferGeometry[][]=[[],[]],roads:THREE.BufferGeometry[][]=[[],[]],bridgeGs:THREE.BufferGeometry[]=[],bridgeRails:THREE.BufferGeometry[]=[];
  const chunks=new Map<string,THREE.BufferGeometry[]>(),treePositions:[number,number,number,number][]=[];
  const selection=new THREE.Group();selection.visible=false;root.add(selection);
- const waterRings:[number,number][][][]=data.features.filter(f=>f.properties.water==='river'||f.properties.waterway==='riverbank').flatMap(f=>polygons(f).map(r=>r.map(r=>r.map(project))));
- const onWater=(x:number,z:number)=>waterRings.some(r=>inRing(x,z,r[0])&&!r.slice(1).some(h=>inRing(x,z,h)));
+ const onWater=(x:number,z:number)=>!!waters.at(x,z);
  const treeCells=new Set<string>(),bridgePiers:[number,number,number][]=[];
  function plant(rings:Coordinate[][],island=false){
   const projected=rings.map(r=>r.map(project)),pts=projected[0],xs=pts.map(v=>v[0]),zs=pts.map(v=>v[1]);
@@ -81,15 +84,6 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  for(let fi=0;fi<data.features.length;fi++){
   const f=data.features[fi],p=f.properties;
   if(fi%600===0){onProgress(35+fi/data.features.length*48);await new Promise<void>(r=>setTimeout(r,0));}
-  if(p.water==='river'||p.waterway==='riverbank'){
-   for(const rings of polygons(f)){
-    waterGs.push(flat(rings,.015));
-    for(let ri=0;ri<rings.length;ri++){
-     shoreGs.push(ribbon(rings[ri].map(project),.065,()=>.035));
-     if(ri>0){parks[0].push(weighted(flat([rings[ri]],.028),.88));plant([rings[ri]],true);}
-    }
-   }continue;
-  }
   if(p.place==='island'&&p.name?.includes('橘子洲')){
    for(const rings of polygons(f)){
     const g=flat(rings,.065);selection.add(new THREE.Mesh(g,materials.selection));
@@ -125,9 +119,16 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
   }else if(p.leisure==='park'||p.natural==='wood'||p.landuse==='forest'){
    for(const rings of polygons(f)){
     // Natural objects no longer switch materials from one arbitrary vertex.
-    const base=flat(rings,0),pg=new TessellateModifier(1.8,5).modify(base);base.dispose();
+    const source=flat(rings,0),base=cutInlandWater(source,waters);source.dispose();const pg=new TessellateModifier(1.8,5).modify(base);base.dispose();
     const a=pg.attributes.position;for(let i=0;i<a.count;i++)a.setY(i,height(a.getX(i),a.getZ(i))+.025);pg.computeVertexNormals();parks[0].push(weighted(pg));plant(rings);
    }
+  }
+ }
+ for(const surface of waters.surfaces){
+  waterGs.push(flat(surface.rings,surface.level));
+  for(let ri=0;ri<surface.rings.length;ri++){
+   shoreGs.push(ribbon(surface.rings[ri].map(project),.065,()=>surface.level+.02));
+   if(surface.river&&ri>0){parks[0].push(weighted(flat([surface.rings[ri]],.028),.88));plant([surface.rings[ri]],true);}
   }
  }
  combine(waterGs,materials.water,root);combine(shoreGs,materials.shore,root);
@@ -138,7 +139,7 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  bridgePiers.forEach(([x,z,h],i)=>{supportTransform.position.set(x,h/2,z);supportTransform.scale.set(1,h,1);supportTransform.updateMatrix();supports.setMatrixAt(i,supportTransform.matrix);});supports.castShadow=true;supports.receiveShadow=true;supports.computeBoundingSphere();root.add(supports);
  const contextChunks=new Map<string,number[][]>();
  for(const item of contextData.buildings){
-  const [x,z]=item;if(terrain.distance(x,z)<3&&onWater(x,z))continue;
+  const [x,z]=item;if(onWater(x,z))continue;
   const key=`${Math.floor(x/40)},${Math.floor(z/40)}`;if(!contextChunks.has(key))contextChunks.set(key,[]);contextChunks.get(key)!.push(item);
  }
  const boxGeometry=new THREE.BoxGeometry(1,1,1),contextTransform=new THREE.Object3D();let contextCount=0;
@@ -154,7 +155,7 @@ export async function buildScene(data:SceneData,grid:TerrainGrid,contextData:Con
  // Additional trees follow the downloaded forest mask over the entire reach.
  for(let x=grid.x0;x<grid.x0+grid.dx*(grid.width-1);x+=1.05)for(let z=grid.z0;z<grid.z0+grid.dz*(grid.height-1);z+=1.15){
   const tx=x+Math.sin(x*11+z*17)*.35,tz=z+Math.cos(x*13-z*23)*.35;
-  if(terrain.forest(tx,tz)<.7||terrain.distance(tx,tz)>75||terrain.distance(tx,tz)<2.5&&onWater(tx,tz))continue;
+  if(terrain.forest(tx,tz)<.7||terrain.distance(tx,tz)>75||onWater(tx,tz))continue;
   treePositions.push([tx,height(tx,tz)+.025,tz,terrain.importance(tx,tz)]);
  }
  const treeChunks=new Map<string,typeof treePositions>();
