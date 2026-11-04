@@ -1,0 +1,13 @@
+'use client';
+import {useRouter} from 'next/navigation';
+import {useEffect,useRef,useState} from 'react';
+import {INITIAL_RESEARCH,type ResearchState,type QuarryAsset} from '@/src/place-research/types';
+import {loadQuarry} from '@/src/place-research/runtime';
+import {ResearchPanel} from '../../research-panel';
+import styles from '../../research.module.css';
+import type {mountQuarry} from '@/src/place-research/standalone';
+export default function QuarryResearch(){
+ const router=useRouter();const host=useRef<HTMLDivElement>(null),engine=useRef<Awaited<ReturnType<typeof mountQuarry>>|null>(null);const [night,setNight]=useState(true),[ready,setReady]=useState(false),[error,setError]=useState(''),[metrics,setMetrics]=useState<Record<string,number>>({}),[data,setData]=useState<QuarryAsset>(),[state,setState]=useState<ResearchState>({site:'quarry',...INITIAL_RESEARCH});
+ useEffect(()=>{const abort=new AbortController();let disposed=false;void(async()=>{try{const [module,asset]=await Promise.all([import('@/src/place-research/standalone'),loadQuarry()]);const instance=await module.mountQuarry(host.current!,abort.signal,setMetrics);if(disposed){instance.dispose();return;}engine.current=instance;setData(asset);setReady(true);const next={site:'quarry' as const,...INITIAL_RESEARCH,guided:new URLSearchParams(location.search).get('guided')==='1'};setState(next);instance.state(next,false)}catch(e){if(!abort.signal.aborted)setError(e instanceof Error?e.message:'载入失败')}})();return()=>{disposed=true;abort.abort();engine.current?.dispose();engine.current=null}},[]);
+ return <main className={styles.standalone} data-night={night}><div ref={host} className={styles.canvas}/><header><a className={styles.brand} href="/experience">湘江 2035<small>PLACE-BASED RESEARCH / V4.0</small></a><a href="/experience">返回湘江全域 ↗</a></header><p className={styles.centerNote}>坪塘“长沙纳木措” · 独立重建<br/>准确坐标尚未确认 · 不代表测绘或安全方案</p>{ready&&data&&<ResearchPanel state={state} quarry={data} onChange={(next,move)=>{setState(next);engine.current?.state(next,move)}} onNode={id=>engine.current?.node(id)} onExit={()=>router.push('/experience')}/>}<nav className={styles.global}><button aria-pressed={!night} onClick={()=>{setNight(false);engine.current?.theme(false)}}>日间</button><button aria-pressed={night} onClick={()=>{setNight(true);engine.current?.theme(true)}}>夜间</button><button onClick={()=>engine.current?.reset()}>重置视角</button></nav><footer>RECONSTRUCTED / DEMO ANALYSIS · 局部相对坐标 · 场地几何未地理配准</footer>{!ready&&!error&&<p className={styles.loading}>按需载入矿坑地形与研究对象…</p>}{error&&<p className={styles.loading} role="alert">{error}</p>}<output className={styles.debug} data-testid="quarry-metrics">{JSON.stringify(metrics)}</output></main>;
+}

@@ -1,0 +1,13 @@
+import fs from 'node:fs';import osm from 'osmtogeojson';
+const source=JSON.parse(fs.readFileSync('public/data/xiangjiang.geojson'));
+const river=source.features.find(f=>f.id==='relation/8727387');
+const boundary=river.geometry.coordinates.flatMap(r=>r.slice(1)).find(r=>Math.min(...r.map(p=>p[1]))<28.01&&Math.max(...r.map(p=>p[1]))>28.02&&Math.min(...r.map(p=>p[0]))>112.94&&Math.max(...r.map(p=>p[0]))<112.956);
+if(!boundary)throw Error('Ezhou river island geometry unavailable');
+const inside=([x,y])=>{let v=false;for(let i=0,j=boundary.length-1;i<boundary.length;j=i++){const a=boundary[i],b=boundary[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])v=!v;}return v;};
+if(!process.argv[2])throw Error('Usage: node scripts/research/prepare-sites.mjs <OSM JSON file>');
+const geo=osm(JSON.parse(fs.readFileSync(process.argv[2])));
+const features=geo.features.filter(f=>!f.properties.tainted&&(f.properties.building||f.properties.highway||f.properties.landuse||f.properties.natural)).map(f=>({type:f.type,id:f.id,properties:Object.fromEntries(['name','building','height','building:levels','highway','bridge','landuse','natural'].filter(k=>f.properties[k]!==undefined).map(k=>[k,f.properties[k]])),geometry:f.geometry}));
+const context=JSON.parse(fs.readFileSync('public/data/context.json'));const cos=Math.cos(28.195*Math.PI/180);const wgs=([x,z])=>[112.965+x/(1113.2*cos),28.195-z/1113.2];
+const buildings=context.buildings.filter(b=>inside(wgs(b)));
+const asset={id:'ezhou',version:1,crs:'EPSG:4326',source:'OSM river relation/8727387 inner ring; OSM map API 2026-11-05; Overture context snapshot 2026-09-23.1',license:'ODbL-1.0 / © OpenStreetMap contributors; Overture Maps',boundary,features,contextBuildings:buildings,accuracy:'Shoreline from existing OSM river ring. OSM footprints REAL; context volumes and all roof/vegetation detail RECONSTRUCTED; no household census.'};
+fs.writeFileSync('public/data/research/ezhou.json',JSON.stringify(asset));console.log({points:boundary.length,features:features.length,osmBuildings:features.filter(f=>f.properties.building).length,contextBuildings:buildings.length,bytes:fs.statSync('public/data/research/ezhou.json').size});

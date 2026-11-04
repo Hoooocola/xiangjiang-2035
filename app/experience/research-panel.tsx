@@ -1,0 +1,41 @@
+'use client';
+import {useEffect,useMemo,useState} from 'react';
+import type {IslandStudy,QuarryAsset,ResearchState,ResearchNode} from '@/src/place-research/types';
+import {connectedHomes,analyzePaths,profile} from '@/src/place-research/analysis';
+import {ISLAND_STEPS,QUARRY_STEPS,SOURCES} from '@/src/place-research/content';
+import styles from './research.module.css';
+import {readRecords,saveRecord} from '@/src/place-research/records';
+export function ResearchPanel({state,onChange,onExit,onNode,onGraph,study,quarry}:{state:ResearchState;onChange:(s:ResearchState,move?:boolean)=>void;onExit:()=>void;onNode:(id:string)=>void;onGraph?:(study:IslandStudy)=>void;study?:IslandStudy;quarry?:QuarryAsset}){
+ const steps=state.site==='ezhou'?ISLAND_STEPS:QUARRY_STEPS,current=steps[state.step];const [selected,setSelected]=useState<string|null>(null),[disconnected,setDisconnected]=useState<string|null>(null);
+ const modified=useMemo(()=>study?{...study,edges:study.edges.filter(e=>e.id!==disconnected)}:undefined,[study,disconnected]);
+ const result=useMemo(()=>modified?connectedHomes(modified):null,[modified]),paths=useMemo(()=>quarry?analyzePaths(quarry,state.threshold):[],[quarry,state.threshold]);
+ const [previousRecords]=useState(readRecords);
+ useEffect(()=>{if(!state.analysis)return;const computedAt=new Date().toISOString();if(result)saveRecord({site:'ezhou',status:'DEMO ANALYSIS',computedAt,connected:result.connected.length,unconnected:result.unconnected.length});if(quarry)saveRecord({site:'quarry',status:'DEMO ANALYSIS',computedAt,threshold:state.threshold,overlapMeters:paths.reduce((n,p)=>n+p.overlapMeters,0)})},[state.analysis,state.threshold,result,quarry,paths]);
+ const choose=(step:number)=>{onChange({...state,step,guided:true,activities:step>=1,networks:state.site==='ezhou'&&step>=2,ecology:state.site==='ezhou'?step>=4:step>=2,analysis:state.site==='ezhou'?step>=3:step>=4,section:state.site==='quarry'&&step>=1},true)};
+ useEffect(()=>{if(modified)onGraph?.(modified)},[modified,onGraph]);
+ const select=(id:string)=>{setSelected(id);onNode(id)};
+ const home=study?.nodes.find(n=>n.id===selected),values=quarry?profile(quarry,state.axis):[];
+ const node=(n:ResearchNode)=><button key={n.id} data-research-node={n.id} className={styles.pin} style={{visibility:'hidden'}} onClick={()=>select(n.id)} aria-label={`研究对象：${n.name}`} aria-pressed={selected===n.id}><i/>{(selected===n.id||state.analysis&&result?.unconnected.includes(n.id))&&<span>{n.name}<small>{result?.unconnected.includes(n.id)?'DEMO · 未接入模拟网络':'DEMO · 模拟空间对象'}</small></span>}</button>;
+ return <>
+ <aside className={styles.panel} aria-label="场地研究" data-information-panel>
+ <header><small>PLACE RESEARCH / {state.site==='ezhou'?'E ZHOU':'PINGTANG'}</small><button onClick={onExit} aria-label="退出场地研究">×</button></header>
+ <h1>{state.site==='ezhou'?'鹅洲岛':'坪塘深坑'}</h1><p className={styles.status}>{state.site==='ezhou'?'REAL 骨架 · RECONSTRUCTED 细节 · DEMO 研究':'RECONSTRUCTED · 未地理配准 · 水下深度未知'}</p>
+ <nav className={styles.phases} aria-label="研究阶段">{['Context','Resources','Evidence','Findings','Proposal'].map(phase=><button key={phase} aria-pressed={current.phase===phase} onClick={()=>choose(steps.findIndex(s=>s.phase===phase))}>{phase}</button>)}</nav>
+ <div className={styles.reading}>
+ <small>{String(state.step+1).padStart(2,'0')} / {steps.length} · {state.guided?'引导式研究 · 人工下一步':'自由探索'}</small><h2>{current.title}</h2><p>{current.body}</p>
+ <details open={!state.guided}><summary>场景叠加与开关</summary><fieldset><legend>场景叠加</legend>{([['activities','活动 / 研究节点'],[state.site==='ezhou'?'networks':'section',state.site==='ezhou'?'模拟污水网络':'地形剖面'],['ecology','生态关注区'],['analysis','执行模拟分析']] as const).map(([key,label])=><label key={key}><input type="checkbox" checked={state[key]} onChange={e=>onChange({...state,[key]:e.target.checked},false)}/>{label}</label>)}</fieldset></details>
+ {result&&state.analysis&&<section className={styles.analysis} aria-label="模拟连接分析"><small>DEMO ANALYSIS / 图网络可达性</small><p><strong>{result.connected.length}</strong> 接入 · <strong>{result.unconnected.length}</strong> 未接入</p><label>移除模拟连接 <select aria-label="模拟移除连接" value={disconnected??''} onChange={e=>setDisconnected(e.target.value||null)}><option value="">保留全部连接</option>{study!.edges.map(e=><option key={e.id} value={e.id}>{e.to}</option>)}</select></label><p>结果来自当前网络，不代表真实接入或污染事实。</p></section>}
+ {quarry&&state.section&&<section className={styles.profile} aria-label="矿坑示意剖面"><div><button aria-pressed={state.axis==='east-west'} onClick={()=>onChange({...state,axis:'east-west'},false)}>东西剖切</button><button aria-pressed={state.axis==='north-south'} onClick={()=>onChange({...state,axis:'north-south'},false)}>南北剖切</button></div><svg viewBox="0 0 300 100" aria-label="相对模型水面的地表剖面"><path d={values.map((p,i)=>`${i?'L':'M'}${i/160*300},${88-p.height}`).join(' ')} fill="none" stroke="currentColor" strokeWidth="1.4"/><path d="M0 88H300" stroke="currentColor" opacity=".3"/></svg><small>模型水面=0m · 坑缘约 +28～+66m<br/>示意地表，不显示虚构水下地形。</small></section>}
+ {quarry&&state.analysis&&<section className={styles.analysis} aria-label="模拟坡度路径分析"><small>DEMO ANALYSIS / 非安全评价</small><label>筛选参数 {state.threshold}°<input aria-label="模拟坡度阈值" type="range" min="10" max="70" step="5" value={state.threshold} onChange={e=>onChange({...state,threshold:Number(e.target.value)},false)}/></label>{paths.map(p=><p key={p.id}>{p.name} <b>{Math.round(p.overlapMeters)}m</b> 交叠</p>)}<p>从重建模型计算，不用于真实通行或安全判断。</p></section>}
+ <details><summary>选择研究对象 / 重叠热点</summary><label>对象 <select aria-label="选择研究对象" value={selected??''} onChange={e=>{if(e.target.value)select(e.target.value)}}><option value="">从场景或列表选择</option>{(study?.nodes??[...(quarry?.nodes??[]),...(quarry?.paths??[])]).map(n=><option key={n.id} value={n.id}>{n.name} · DEMO</option>)}</select></label></details>
+ {selected&&<section className={styles.object}><small>所选空间对象</small><h3>{home?.name??quarry?.nodes.find(n=>n.id===selected)?.name??quarry?.paths.find(n=>n.id===selected)?.name}</h3><p>{home?'DEMO / 固定代表点；可用于模拟网络连接分析，不代表实际住户。':'DEMO / 附着于重建地形的研究对象；无实测属性。'}</p></section>}
+ <details><summary>资料来源与待验证信息</summary><p>{state.site==='ezhou'?'OSM 岸线与道路；Overture 简化体量。屋顶、植被、模拟设施均不是实地调查。':'参考新闻航拍重建；真实坑址、尺寸、标高、水深仍待核实，不是欢乐雪域矿坑。'}</p><a href={state.site==='ezhou'?SOURCES.island:SOURCES.quarry} target="_blank" rel="noreferrer">公开资料与现场参考 ↗</a><a href={state.site==='ezhou'?SOURCES.islandLife:SOURCES.quarryEarlier} target="_blank" rel="noreferrer">补充报道 / 影像出处 ↗</a></details>
+ {state.site==='ezhou'&&state.step===5&&<a className={styles.nextSite} href="/experience/research/quarry?guided=1">下一场地：坪塘深坑独立重建 →</a>}
+ {state.site==='quarry'&&state.step===6&&<section><h3>两处场地，一套研究逻辑</h3><div aria-label="双场地模拟研究记录"><small>本标签页记录 / DEMO ANALYSIS · 非田野调查</small><p>鹅洲：{previousRecords.ezhou?`${previousRecords.ezhou.connected} 个接入 / ${previousRecords.ezhou.unconnected} 个未接入模拟网络`:'尚未在本标签页执行分析'}</p><p>矿坑：{state.threshold}° 筛选，模拟路径交叠合计 {Math.round(paths.reduce((n,p)=>n+p.overlapMeters,0))}m</p></div><p>鹅洲：设施连接与生态生活。矿坑：垂直地形与公共使用。真实调查可以替换演示数据，研究线索仍需验证。</p><a href="/experience">返回湘江全域地图 →</a></section>}
+ </div>
+ <footer><button onClick={()=>choose(Math.max(0,state.step-1))} disabled={state.step===0}>← 上一步</button><button onClick={()=>choose(Math.min(steps.length-1,state.step+1))} disabled={state.step===steps.length-1}>下一步 →</button></footer><button className={styles.mode} onClick={()=>onChange({...state,guided:!state.guided},false)}>{state.guided?'退出引导，继续自由探索':'启动引导式研究'}</button>
+ </aside>
+ <div className={styles.pins}>{study&&(state.activities||state.networks||state.analysis)&&study.nodes.filter(n=>n.kind!=='visitor'||state.activities).map(node)}{quarry&&(state.activities||state.step===0)&&[...quarry.nodes.map(n=>({id:n.id,name:n.name})),...quarry.paths.map(n=>({id:n.id,name:n.name}))].map(n=><button key={n.id} data-research-node={n.id} className={styles.pin} style={{visibility:'hidden'}} aria-label={`研究对象：${n.name}`} onClick={()=>select(n.id)}><i/>{selected===n.id&&<span>{n.name}<small>DEMO / 重建场景对象</small></span>}</button>)}</div>
+ <output className={styles.debug} data-testid="research-state">{JSON.stringify({state,selected,result,paths:paths.map(p=>({id:p.id,overlap:p.overlapMeters}))})}</output>
+ </>;
+}

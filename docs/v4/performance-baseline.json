@@ -1,0 +1,43 @@
+{
+  "source": "V3.1 main fe9892a local archive; engine source SHA256 matched Git main",
+  "samples": [
+    {
+      "name": "main-night",
+      "fps": 60.275067434813025,
+      "p95": 16.700000000000728,
+      "heap": 166496240,
+      "metrics": {
+        "fps": 60,
+        "calls": 141,
+        "triangles": 2339579,
+        "geometries": 222,
+        "textures": 16,
+        "buildings": 158242,
+        "knownHeight": 1331,
+        "trees": 42023,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "main-orbit",
+      "fps": 60.196887056961025,
+      "p95": 16.700000000000728,
+      "heap": 184937860,
+      "metrics": {
+        "fps": 60,
+        "calls": 139,
+        "triangles": 2205991,
+        "geometries": 222,
+        "textures": 16,
+        "buildings": 158242,
+        "knownHeight": 1331,
+        "trees": 42023,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    }
+  ]
+}

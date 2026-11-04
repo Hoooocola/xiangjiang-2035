@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {isSurfaceWater} from '../src/experience/water-tags.mjs';
 import osmToGeoJSON from 'osmtogeojson';
 const files=fs.readdirSync('data/osm').filter(f=>f.endsWith('.json'));
 const elements=new Map();
@@ -19,11 +20,11 @@ const geo=osmToGeoJSON({elements:[...elements.values()]});
 const round=(v)=>Array.isArray(v)?v.map(round):typeof v==='number'?Math.round(v*1e6)/1e6:v;
 const features=geo.features.filter(f=>{
  const p=f.properties,g=f.geometry;
- if((p.water==='river'||p.waterway==='riverbank')&&!complete(f.id)){excludedWater.push(f.id);return false;}
+ if(isSurfaceWater(p)&&!complete(f.id)){excludedWater.push(f.id);return false;}
  if(p.tainted) return false;
  const islandPath = ['path','footway','cycleway'].includes(p.highway) && g.type==='LineString' && g.coordinates.every(([x,y])=>x>112.953&&x<112.962&&y>28.168&&y<28.226);
  if(islandPath)return true;
- return (p.water==='river'||p.waterway==='riverbank'||p.place==='island'||p.building||p['building:part']||p.leisure==='park'||p.landuse==='forest'||p.natural==='wood'||(p.highway&&!['steps','cycleway','path','footway','service','track','platform','corridor'].includes(p.highway))) && ['Polygon','MultiPolygon','LineString'].includes(g.type);
+ return (isSurfaceWater(p)||p.place==='island'||p.building||p['building:part']||p.leisure==='park'||p.landuse==='forest'||p.natural==='wood'||(p.highway&&!['steps','cycleway','path','footway','service','track','platform','corridor'].includes(p.highway))) && ['Polygon','MultiPolygon','LineString'].includes(g.type);
 }).map(f=>({type:'Feature',id:f.id,properties:Object.fromEntries(['name','name:en','building','building:part','building:levels','height','min_height','natural','water','waterway','place','leisure','landuse','highway','bridge','lanes'].filter(k=>f.properties[k]!==undefined).map(k=>[k,f.properties[k]])),geometry:{type:f.geometry.type,coordinates:round(f.geometry.coordinates)}}));
 const data={type:'FeatureCollection',license:'ODbL-1.0',attribution:'© OpenStreetMap contributors',source:'https://api.openstreetmap.org/api/0.6/',retrieved:'2026-10-20',crsNote:'WGS84 longitude/latitude (EPSG:4326); NOT CGCS2000',features};
 fs.writeFileSync('public/data/xiangjiang.geojson',JSON.stringify(data));

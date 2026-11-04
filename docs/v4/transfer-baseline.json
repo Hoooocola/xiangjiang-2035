@@ -1,0 +1,148 @@
+{
+  "responses": [
+    {
+      "file": "environment.json",
+      "encoding": "br",
+      "type": "application/json; charset=utf-8",
+      "cache": "public, max-age=0, must-revalidate",
+      "vercelCache": "HIT"
+    },
+    {
+      "file": "xiangjiang.geojson",
+      "encoding": "br",
+      "type": "application/geo+json",
+      "cache": "public, max-age=0, must-revalidate",
+      "vercelCache": "MISS"
+    },
+    {
+      "file": "context.json",
+      "encoding": "br",
+      "type": "application/json; charset=utf-8",
+      "cache": "public, max-age=0, must-revalidate",
+      "vercelCache": "MISS"
+    },
+    {
+      "file": "terrain.json",
+      "encoding": "br",
+      "type": "application/json; charset=utf-8",
+      "cache": "public, max-age=0, must-revalidate",
+      "vercelCache": "MISS"
+    },
+    {
+      "file": "terrain.json",
+      "encoding": "none",
+      "cache": "public, max-age=0, must-revalidate",
+      "vercelCache": "HIT"
+    },
+    {
+      "file": "xiangjiang.geojson",
+      "encoding": "none",
+      "cache": "public, max-age=0, must-revalidate",
+      "vercelCache": "HIT"
+    },
+    {
+      "file": "environment.json",
+      "encoding": "none",
+      "cache": "public, max-age=0, must-revalidate",
+      "vercelCache": "HIT"
+    },
+    {
+      "file": "context.json",
+      "encoding": "none",
+      "cache": "public, max-age=0, must-revalidate",
+      "vercelCache": "HIT"
+    }
+  ],
+  "cold": {
+    "interactiveMs": 10392,
+    "resources": [
+      {
+        "file": "xiangjiang.geojson",
+        "transfer": 1246429,
+        "encoded": 1246129,
+        "decoded": 7129381,
+        "duration": 1347.5
+      },
+      {
+        "file": "terrain.json",
+        "transfer": 268737,
+        "encoded": 268437,
+        "decoded": 1725900,
+        "duration": 1575.5999999046326
+      },
+      {
+        "file": "context.json",
+        "transfer": 1939552,
+        "encoded": 1939252,
+        "decoded": 5533814,
+        "duration": 1393.6000000238419
+      },
+      {
+        "file": "environment.json",
+        "transfer": 1477049,
+        "encoded": 1476749,
+        "decoded": 7921174,
+        "duration": 511.2000000476837
+      }
+    ],
+    "metrics": {
+      "fps": 0,
+      "calls": 240,
+      "triangles": 3406367,
+      "geometries": 222,
+      "textures": 15,
+      "buildings": 158242,
+      "knownHeight": 1331,
+      "trees": 42023,
+      "particles": 160,
+      "mistLayers": 6,
+      "atmosphere": "full"
+    }
+  },
+  "warm": {
+    "interactiveMs": 4243,
+    "resources": [
+      {
+        "file": "terrain.json",
+        "transfer": 300,
+        "encoded": 268437,
+        "decoded": 1725900,
+        "duration": 203.90000009536743
+      },
+      {
+        "file": "context.json",
+        "transfer": 300,
+        "encoded": 1939252,
+        "decoded": 5533814,
+        "duration": 233.80000007152557
+      },
+      {
+        "file": "xiangjiang.geojson",
+        "transfer": 300,
+        "encoded": 1246129,
+        "decoded": 7129381,
+        "duration": 237.40000009536743
+      },
+      {
+        "file": "environment.json",
+        "transfer": 300,
+        "encoded": 1476749,
+        "decoded": 7921174,
+        "duration": 238.30000007152557
+      }
+    ],
+    "metrics": {
+      "fps": 0,
+      "calls": 240,
+      "triangles": 3406367,
+      "geometries": 222,
+      "textures": 15,
+      "buildings": 158242,
+      "knownHeight": 1331,
+      "trees": 42023,
+      "particles": 160,
+      "mistLayers": 6,
+      "atmosphere": "full"
+    }
+  }
+}
