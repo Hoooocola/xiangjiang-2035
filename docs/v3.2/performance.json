@@ -1,0 +1,97 @@
+{
+  "baseline": "fe9892a6ec1e33d4b454c5d3b3efaad6a0936816",
+  "viewport": [
+    1440,
+    900
+  ],
+  "DPR": 1,
+  "durationPerStateMs": 3500,
+  "rendererDPRUnchanged": true,
+  "GPUTime": "not sampled",
+  "results": [
+    {
+      "state": "night",
+      "beforeFPS": 60.29,
+      "afterFPS": 60.09,
+      "beforeP95ms": 16.8,
+      "afterP95ms": 16.7,
+      "P95changePercent": -0.6,
+      "beforeCalls": 141,
+      "afterCalls": 141,
+      "beforeHeapBytes": 178688880,
+      "afterHeapBytes": 370335236,
+      "beforeLongTasks": [],
+      "afterLongTasks": []
+    },
+    {
+      "state": "day",
+      "beforeFPS": 60.12,
+      "afterFPS": 60.23,
+      "beforeP95ms": 16.7,
+      "afterP95ms": 16.8,
+      "P95changePercent": 0.6,
+      "beforeCalls": 128,
+      "afterCalls": 128,
+      "beforeHeapBytes": 164804150,
+      "afterHeapBytes": 264957356,
+      "beforeLongTasks": [],
+      "afterLongTasks": []
+    },
+    {
+      "state": "layers-cover",
+      "beforeFPS": 60.07,
+      "afterFPS": 60.1,
+      "beforeP95ms": 16.7,
+      "afterP95ms": 16.8,
+      "P95changePercent": 0.6,
+      "beforeCalls": 129,
+      "afterCalls": 129,
+      "beforeHeapBytes": 181129887,
+      "afterHeapBytes": 200354410,
+      "beforeLongTasks": [],
+      "afterLongTasks": []
+    },
+    {
+      "state": "lens-drag",
+      "beforeFPS": 60.17,
+      "afterFPS": 60.16,
+      "beforeP95ms": 16.7,
+      "afterP95ms": 16.7,
+      "P95changePercent": 0.0,
+      "beforeCalls": 129,
+      "afterCalls": 129,
+      "beforeHeapBytes": 182953118,
+      "afterHeapBytes": 216164694,
+      "beforeLongTasks": [],
+      "afterLongTasks": []
+    },
+    {
+      "state": "camera-orbit",
+      "beforeFPS": 60.16,
+      "afterFPS": 60.19,
+      "beforeP95ms": 16.8,
+      "afterP95ms": 16.8,
+      "P95changePercent": 0.0,
+      "beforeCalls": 140,
+      "afterCalls": 140,
+      "beforeHeapBytes": 170806630,
+      "afterHeapBytes": 200074501,
+      "beforeLongTasks": [],
+      "afterLongTasks": []
+    },
+    {
+      "state": "course",
+      "beforeFPS": 60.15,
+      "afterFPS": 60.21,
+      "beforeP95ms": 16.8,
+      "afterP95ms": 16.8,
+      "P95changePercent": -0.0,
+      "beforeCalls": 140,
+      "afterCalls": 140,
+      "beforeHeapBytes": 181265989,
+      "afterHeapBytes": 206777620,
+      "beforeLongTasks": [],
+      "afterLongTasks": []
+    }
+  ]
+}

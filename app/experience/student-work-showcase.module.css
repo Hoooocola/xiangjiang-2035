@@ -125,3 +125,10 @@
 @media(max-width:700px){.overview::before,.exhibition::before{inset:-65px -70px -100px;background:linear-gradient(90deg,rgba(var(--reading-rgb),0),rgba(var(--reading-rgb),var(--reading-middle)) 17%,rgba(var(--reading-rgb),var(--reading-near)) 50%,rgba(var(--reading-rgb),var(--reading-middle)) 83%,rgba(var(--reading-rgb),0));mask-image:linear-gradient(180deg,transparent,#000 60px,#000 calc(100% - 100px),transparent)}.courseOptions::before{inset:0 -50px -40px}}
 /* The title dropdown never takes the close button's independent hit target. */
 .overviewHeading{z-index:6}
+
+/* Retain compact covers/media clarity; only interactive selectors get local material. */
+.courseSelect>button{border-radius:16px;background:var(--glass-hover)!important;border:1px solid var(--glass-edge)!important;padding:8px 12px!important}
+.indexNavigation>button[aria-pressed=true],.indexNavigation>button[aria-expanded=true]{border-radius:12px;background:var(--glass-selected);box-shadow:inset 0 1px 0 var(--glass-highlight)}
+/* On a narrow reading canvas the catalogue occupies the camera-control column.
+   Closing the course restores those existing map controls. */
+@media(max-width:759px){.mode [aria-label="镜头控制"]{visibility:hidden;pointer-events:none}}

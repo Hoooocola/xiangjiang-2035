@@ -17,3 +17,12 @@
 @keyframes indexArrival{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
 @media(max-width:759px){.library{left:24px;right:24px;width:auto;top:155px;bottom:140px}.library:before{inset:-20px -30px;background:linear-gradient(90deg,rgba(var(--information-rgb),.98),rgba(var(--information-rgb),.92) 75%,rgba(var(--information-rgb),.6))}.library h2{font-size:25px;margin:10px 0 13px}.indexList li{margin-bottom:22px}}
 @media(prefers-reduced-motion:reduce){.library{animation:none}}
+
+.library::before{inset:-55px -125px -65px -85px;background:linear-gradient(90deg,rgba(var(--reading-rgb),var(--reading-near)),rgba(var(--reading-rgb),var(--reading-middle)) 52%,transparent);mask-image:linear-gradient(transparent,#000 55px,#000 calc(100% - 65px),transparent)}
+.indexList{overscroll-behavior:contain;mask-image:linear-gradient(#000 calc(100% - 14px),transparent);padding-bottom:14px}
+.indexTabs button[aria-pressed=true]{border-color:transparent!important;background:var(--glass-selected);border-radius:15px;box-shadow:inset 0 1px 0 var(--glass-highlight)}.indexTabs button{padding:0 12px!important}
+
+/* Long documents stay clear, backed by an editorial fade rather than glass. */
+.panel{background:none;border:0;box-shadow:none;isolation:isolate}
+.panel::before{content:'';position:absolute;inset:-45px -100px -55px -90px;z-index:-1;pointer-events:none;background:linear-gradient(270deg,rgba(var(--reading-rgb),var(--reading-near)),rgba(var(--reading-rgb),var(--reading-middle)) 55%,transparent);mask-image:linear-gradient(transparent,#000 45px,#000 calc(100% - 55px),transparent)}
+.panel .body{mask-image:linear-gradient(#000 calc(100% - 16px),transparent);padding-bottom:24px}.panel .tabs button[aria-selected=true]{border-color:transparent;border-radius:15px;background:var(--glass-selected);box-shadow:inset 0 1px 0 var(--glass-highlight)}

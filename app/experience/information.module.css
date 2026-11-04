@@ -30,3 +30,9 @@
 
 /* V3.1: only the layer directory; explanation, course and media UI retain their rules. */
 .directory{background:none;border:0;box-shadow:none;backdrop-filter:none}.directory>header,.directory>footer,.startExploration{flex-shrink:0}.directory>header button{min-width:44px;min-height:44px}.directoryBody{mask-image:linear-gradient(#000 0%,#000 calc(100% - 14px),transparent);padding-bottom:14px}.directory .layerSwitch{min-width:44px;min-height:44px}.startExploration{min-height:42px!important;text-align:left!important;color:var(--accent)!important;font-size:11px!important;margin-bottom:9px}.directorySubhead{max-width:245px}.directory footer small{font-size:9px;line-height:1.7}
+
+/* Directional editorial material shares the theme with the course and library. */
+.directory::before{background:linear-gradient(90deg,rgba(var(--reading-rgb),var(--reading-near)),rgba(var(--reading-rgb),var(--reading-middle)) 48%,rgba(var(--reading-rgb),var(--reading-soft)) 78%,transparent)!important}
+.layerSwitch>span{background:var(--glass-hover);border-color:var(--glass-edge);box-shadow:inset 0 1px 0 var(--glass-highlight)}
+.layerSwitch[aria-checked=true]>span{background:color-mix(in srgb,var(--accent) 15%,transparent)}
+.explanation::before{mask-image:linear-gradient(transparent,#000 50px,#000 calc(100% - 55px),transparent)}

@@ -1,0 +1,38 @@
+/* A control layer over the map, never a replacement for editorial reading surfaces. */
+.system {
+ --glass-rgb:247,249,247; --glass-alpha:.72; --glass-edge:rgba(255,255,255,.72);
+ --glass-highlight:rgba(255,255,255,.62); --glass-selected:rgba(255,255,255,.68);
+ --glass-shadow:0 3px 14px rgba(27,52,59,.10); --glass-fallback:#e9efed;
+ --glass-hover:rgba(255,255,255,.28); --glass-blur:8px; --glass-radius:24px;
+ --glass-label-radius:14px; --glass-fast:160ms; --glass-state:280ms; --glass-enter:360ms;
+ --glass-ease:cubic-bezier(.2,.75,.25,1); --scrim-top:55px; --scrim-bottom:65px;
+}
+.system[data-theme=night] {
+ --glass-rgb:20,45,53; --glass-alpha:.76; --glass-edge:rgba(199,225,228,.22);
+ --glass-highlight:rgba(219,240,240,.12); --glass-selected:rgba(211,230,231,.15);
+ --glass-shadow:0 4px 16px rgba(0,10,15,.14); --glass-fallback:#18343e;
+ --glass-hover:rgba(211,230,231,.08);
+}
+.system :global([data-glass]) {
+ background:linear-gradient(145deg,var(--glass-highlight),transparent 55%),rgba(var(--glass-rgb),var(--glass-alpha)) !important;
+ border:1px solid var(--glass-edge) !important; border-radius:var(--glass-radius);
+ box-shadow:inset 0 1px 0 var(--glass-highlight),var(--glass-shadow);
+ -webkit-backdrop-filter:blur(var(--glass-blur)); backdrop-filter:blur(var(--glass-blur));
+}
+/* No nested backdrop filters. The parent capsule owns the material. */
+.system :global([data-glass]) :global([data-glass]){backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:inset 0 1px 0 var(--glass-highlight)}
+.system :global([data-glass=label]){border-radius:var(--glass-label-radius);--glass-blur:6px}
+.system :global([data-glass=popover]){border-radius:18px;--glass-alpha:.94;--glass-blur:6px}
+.system :global([data-glass] button),.system :global([data-glass] a){transition:color var(--glass-fast),background var(--glass-fast),opacity var(--glass-fast),transform var(--glass-state) var(--glass-ease)}
+.system :global([data-glass] button:hover),.system :global([data-glass] a:hover){background-color:var(--glass-hover)}
+.system :global([data-glass] button:active){transform:scale(.97)}
+.system :global([data-glass] button:disabled){opacity:.4;cursor:default;transform:none}
+.navigation{position:relative;isolation:isolate;padding:5px!important;gap:3px!important}
+.navigation>button,.navigation>a{position:relative;z-index:1;border:0!important;border-radius:19px;min-height:44px!important;padding:0 14px!important;margin:0!important;gap:8px!important}
+.indicator{position:absolute;pointer-events:none;left:0;top:5px;height:calc(100% - 10px);width:var(--selection-width,0px);transform:translate3d(var(--selection-x,5px),0,0);opacity:var(--selection-opacity,0);background:var(--glass-selected);border-radius:19px;border:1px solid var(--glass-edge);box-sizing:border-box;box-shadow:inset 0 1px 0 var(--glass-highlight);transition:transform var(--glass-state) var(--glass-ease),width var(--glass-state) var(--glass-ease),opacity var(--glass-fast)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.system :global([data-glass]){background:var(--glass-fallback)!important}}
+@media(prefers-reduced-transparency:reduce){.system :global([data-glass]){backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--glass-fallback)!important}}
+@media(prefers-contrast:more){.system{--glass-alpha:.97;--glass-edge:var(--text);--glass-selected:var(--line)}}
+@media(prefers-reduced-motion:reduce){.system :global([data-glass]),.system :global([data-glass] *),.indicator{animation:none!important;transition:none!important}}
+@media(max-width:759px){.navigation{width:100%;box-sizing:border-box;justify-content:space-between!important}.navigation>button,.navigation>a{padding:0 9px!important;font-size:10px!important;gap:5px!important}.navigation{--glass-radius:23px}}
+@media(max-width:400px){.navigation>button,.navigation>a{padding-inline:6px!important}.navigation svg{width:13px!important}.navigation small{display:none}}
