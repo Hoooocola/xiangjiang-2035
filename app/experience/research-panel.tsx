@@ -4,10 +4,13 @@ import type {IslandStudy,QuarryAsset,ResearchState,ResearchNode} from '@/src/pla
 import {connectedHomes,analyzePaths,profile} from '@/src/place-research/analysis';
 import {ISLAND_STEPS,QUARRY_STEPS,SOURCES} from '@/src/place-research/content';
 import styles from './research.module.css';
+import {readRecords,saveRecord} from '@/src/place-research/records';
 export function ResearchPanel({state,onChange,onExit,onNode,onGraph,study,quarry}:{state:ResearchState;onChange:(s:ResearchState,move?:boolean)=>void;onExit:()=>void;onNode:(id:string)=>void;onGraph?:(study:IslandStudy)=>void;study?:IslandStudy;quarry?:QuarryAsset}){
  const steps=state.site==='ezhou'?ISLAND_STEPS:QUARRY_STEPS,current=steps[state.step];const [selected,setSelected]=useState<string|null>(null),[disconnected,setDisconnected]=useState<string|null>(null);
  const modified=useMemo(()=>study?{...study,edges:study.edges.filter(e=>e.id!==disconnected)}:undefined,[study,disconnected]);
- const result=modified?connectedHomes(modified):null,paths=quarry?analyzePaths(quarry,state.threshold):[];
+ const result=useMemo(()=>modified?connectedHomes(modified):null,[modified]),paths=useMemo(()=>quarry?analyzePaths(quarry,state.threshold):[],[quarry,state.threshold]);
+ const [previousRecords]=useState(readRecords);
+ useEffect(()=>{if(!state.analysis)return;const computedAt=new Date().toISOString();if(result)saveRecord({site:'ezhou',status:'DEMO ANALYSIS',computedAt,connected:result.connected.length,unconnected:result.unconnected.length});if(quarry)saveRecord({site:'quarry',status:'DEMO ANALYSIS',computedAt,threshold:state.threshold,overlapMeters:paths.reduce((n,p)=>n+p.overlapMeters,0)})},[state.analysis,state.threshold,result,quarry,paths]);
  const choose=(step:number)=>{onChange({...state,step,guided:true,activities:step>=1,networks:state.site==='ezhou'&&step>=2,ecology:state.site==='ezhou'?step>=4:step>=2,analysis:state.site==='ezhou'?step>=3:step>=4,section:state.site==='quarry'&&step>=1},true)};
  useEffect(()=>{if(modified)onGraph?.(modified)},[modified,onGraph]);
  const select=(id:string)=>{setSelected(id);onNode(id)};
@@ -28,7 +31,7 @@ export function ResearchPanel({state,onChange,onExit,onNode,onGraph,study,quarry
  {selected&&<section className={styles.object}><small>所选空间对象</small><h3>{home?.name??quarry?.nodes.find(n=>n.id===selected)?.name??quarry?.paths.find(n=>n.id===selected)?.name}</h3><p>{home?'DEMO / 固定代表点；可用于模拟网络连接分析，不代表实际住户。':'DEMO / 附着于重建地形的研究对象；无实测属性。'}</p></section>}
  <details><summary>资料来源与待验证信息</summary><p>{state.site==='ezhou'?'OSM 岸线与道路；Overture 简化体量。屋顶、植被、模拟设施均不是实地调查。':'参考新闻航拍重建；真实坑址、尺寸、标高、水深仍待核实，不是欢乐雪域矿坑。'}</p><a href={state.site==='ezhou'?SOURCES.island:SOURCES.quarry} target="_blank" rel="noreferrer">公开资料与现场参考 ↗</a><a href={state.site==='ezhou'?SOURCES.islandLife:SOURCES.quarryEarlier} target="_blank" rel="noreferrer">补充报道 / 影像出处 ↗</a></details>
  {state.site==='ezhou'&&state.step===5&&<a className={styles.nextSite} href="/experience/research/quarry?guided=1">下一场地：坪塘深坑独立重建 →</a>}
- {state.site==='quarry'&&state.step===6&&<section><h3>两处场地，一套研究逻辑</h3><p>鹅洲：设施连接与生态生活。矿坑：垂直地形与公共使用。真实调查可以替换演示数据，研究线索仍需验证。</p><a href="/experience">返回湘江全域地图 →</a></section>}
+ {state.site==='quarry'&&state.step===6&&<section><h3>两处场地，一套研究逻辑</h3><div aria-label="双场地模拟研究记录"><small>本标签页记录 / DEMO ANALYSIS · 非田野调查</small><p>鹅洲：{previousRecords.ezhou?`${previousRecords.ezhou.connected} 个接入 / ${previousRecords.ezhou.unconnected} 个未接入模拟网络`:'尚未在本标签页执行分析'}</p><p>矿坑：{state.threshold}° 筛选，模拟路径交叠合计 {Math.round(paths.reduce((n,p)=>n+p.overlapMeters,0))}m</p></div><p>鹅洲：设施连接与生态生活。矿坑：垂直地形与公共使用。真实调查可以替换演示数据，研究线索仍需验证。</p><a href="/experience">返回湘江全域地图 →</a></section>}
  </div>
  <footer><button onClick={()=>choose(Math.max(0,state.step-1))} disabled={state.step===0}>← 上一步</button><button onClick={()=>choose(Math.min(steps.length-1,state.step+1))} disabled={state.step===steps.length-1}>下一步 →</button></footer><button className={styles.mode} onClick={()=>onChange({...state,guided:!state.guided},false)}>{state.guided?'退出引导，继续自由探索':'启动引导式研究'}</button>
  </aside>

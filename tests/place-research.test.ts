@@ -1,10 +1,12 @@
 import {describe,it,expect} from 'vitest';
 import fs from 'node:fs';
 import {connectedHomes,analyzePaths,profile,slopeDegrees} from '../src/place-research/analysis';
+import {parseRecords} from '../src/place-research/records';
 import type {IslandStudy,QuarryAsset} from '../src/place-research/types';
 const study=JSON.parse(fs.readFileSync('public/data/research/ezhou-study.json','utf8')) as IslandStudy;
 const quarry=JSON.parse(fs.readFileSync('public/data/research/quarry.json','utf8')) as QuarryAsset;
 describe('place-based research computations',()=>{
+ it('keeps tab-local demo summaries separate and rejects malformed counts or unsafe thresholds',()=>{expect(parseRecords('{')).toEqual({});expect(parseRecords(JSON.stringify({ezhou:{site:'ezhou',status:'REAL',computedAt:'now',connected:8,unconnected:4}}))).toEqual({});const row={site:'ezhou',status:'DEMO ANALYSIS',computedAt:'2026-11-05T00:00:00Z',connected:7,unconnected:5};expect(parseRecords(JSON.stringify({ezhou:row})).ezhou).toEqual(row);expect(parseRecords(JSON.stringify({ezhou:{...row,connected:9}}))).toEqual({});expect(parseRecords(JSON.stringify({quarry:{site:'quarry',status:'DEMO ANALYSIS',computedAt:'now',threshold:95,overlapMeters:3}}))).toEqual({})});
  it('computes connectivity from two service roots and changes when an edge is removed',()=>{const r=connectedHomes(study);expect(r.connected).toHaveLength(8);expect(r.unconnected).toHaveLength(4);expect(connectedHomes({...study,edges:study.edges.slice(1)}).connected).toHaveLength(7);expect(connectedHomes({...study,edges:[]}).connected).toHaveLength(0)});
  it('does not mistake a disconnected cycle for a serviced network',()=>{const edge=study.edges[0];const orphan=[{...edge,from:'home-5',to:'home-6'},{...edge,from:'home-6',to:'home-5'}];expect(connectedHomes({...study,edges:orphan}).connected).toHaveLength(0)});
  it('rejects invalid threshold and recomputes path overlap from height samples',()=>{expect(()=>analyzePaths(quarry,NaN)).toThrow();const low=analyzePaths(quarry,10),high=analyzePaths(quarry,70);expect(low).toHaveLength(5);expect(low.some(p=>p.overlapMeters>0)).toBe(true);expect(low.reduce((n,p)=>n+p.overlapMeters,0)).toBeGreaterThan(high.reduce((n,p)=>n+p.overlapMeters,0));for(const p of low)expect(p.overlapMeters).toBeLessThanOrEqual(p.totalMeters);expect(analyzePaths({...quarry,paths:quarry.paths.map(p=>({...p,points:p.points.map(([x,z])=>[x*3,z*3])}))},35)).not.toEqual(analyzePaths(quarry,35))});

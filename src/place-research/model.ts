@@ -14,7 +14,7 @@ function toolkit(){const root=new THREE.Group(),batches=new Map<THREE.Material,T
  const box=(x:number,y:number,z:number,w:number,h:number,d:number,m:THREE.Material,angle=0)=>{const g=new THREE.BoxGeometry(w,h,d);g.rotateY(angle);g.translate(x,y,z);add(g,m)};
  const mark=(id:string,name:string,p:THREE.Vector3,m:THREE.Material,parent=root)=>{anchors.set(id,p);labels.set(id,name);const g=new THREE.OctahedronGeometry(.045,0);const mesh=new THREE.Mesh(g,m);mesh.position.copy(p);mesh.userData.researchId=id;parent.add(mesh);pickables.push(mesh);return mesh;};
  const finish=()=>{for(const[m,gs]of batches){if(!gs.length)continue;const merged=mergeGeometries(gs,false);gs.forEach(g=>g.dispose());if(merged){merged.computeBoundingSphere();const mesh=new THREE.Mesh(merged,m);mesh.receiveShadow=true;mesh.castShadow=true;root.add(mesh)}}batches.clear()};
- const theme=(n:number)=>{for(const p of palette)p.material.color.copy(p.day).lerp(p.night,n)};
+ const theme=(n:number)=>{for(const p of palette){p.material.color.copy(p.day).lerp(p.night,n);p.material.emissive.copy(p.material.color).multiplyScalar(n*.18)}};
  const dispose=()=>{root.removeFromParent();const gs=new Set<THREE.BufferGeometry>();root.traverse(o=>{if(o instanceof THREE.Mesh)gs.add(o.geometry);if(o instanceof THREE.InstancedMesh)o.dispose()});gs.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());};
  return {root,materials,anchors,labels,pickables,mat,add,box,mark,finish,theme,dispose};
 }
@@ -44,13 +44,13 @@ export function buildQuarry(asset:QuarryAsset):ResearchModel{
  const t=toolkit(),stone=t.mat('#d8d5ca','#718884'),grass=t.mat('#879c6c','#38594d'),water=t.mat('#4b9699','#224f60',.37),earth=t.mat('#b9b19a','#5c726e'),purple=t.mat('#8264a0','#c2a4df'),amber=t.mat('#a76a37','#e8bf89');
  const h=(x:number,z:number)=>quarryHeight(x,z,asset.outline)/100;
  const surface=(radius:number,segments:number)=>{const g=new THREE.PlaneGeometry(radius*2,radius*2,segments,segments);g.rotateX(-Math.PI/2);const p=g.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i)*100,z=p.getZ(i)*100;p.setY(i,h(x,z))}g.computeVertexNormals();return g};
- const terrain=surface(4.8,150);const colors=new Float32Array(terrain.attributes.position.count*3),a=terrain.attributes.position;for(let i=0;i<a.count;i++){const x=a.getX(i)*100,z=a.getZ(i)*100,slope=slopeDegrees(x,z,asset.outline),color=new THREE.Color(slope>32?'#b4b6ab':'#a5b58c');color.multiplyScalar(.94+.06*Math.sin(x*.11+z*.08));colors.set([color.r,color.g,color.b],i*3)}terrain.setAttribute('color',new THREE.BufferAttribute(colors,3));stone.vertexColors=true;t.add(terrain,stone);
+ const terrain=surface(4.8,150);const colors=new Float32Array(terrain.attributes.position.count*3),a=terrain.attributes.position;for(let i=0;i<a.count;i++){const x=a.getX(i)*100,z=a.getZ(i)*100,slope=slopeDegrees(x,z,asset.outline),color=new THREE.Color(slope>32?'#d8d3c4':'#85956f');color.multiplyScalar(.94+.06*Math.sin(x*.11+z*.08));colors.set([color.r,color.g,color.b],i*3)}terrain.setAttribute('color',new THREE.BufferAttribute(colors,3));stone.vertexColors=true;t.add(terrain,stone);
  const outline=asset.outline.map(([x,z])=>[x/100,z/100] as [number,number]);t.add(polygon([outline],.012),water);
  // Geological banding is part of the local rock material, not a screen-space effect.
  stone.onBeforeCompile=shader=>{shader.vertexShader=shader.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vRockPosition;varying float vRockSlope;').replace('#include <begin_vertex>','#include <begin_vertex>\nvRockPosition=position;vRockSlope=abs(normal.y);');shader.fragmentShader=shader.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vRockPosition;varying float vRockSlope;').replace('#include <color_fragment>',`#include <color_fragment>
  float band=.92+.08*sin(vRockPosition.y*250.+sin(vRockPosition.x*19.+vRockPosition.z*23.)*.8);
  float grain=fract(sin(dot(floor(vRockPosition.xz*180.),vec2(12.9898,78.233)))*43758.5453);
- float wall=1.-smoothstep(.35,.8,vRockSlope);diffuseColor.rgb*=mix(1.,band*(.92+grain*.12),wall);`)};
+ float wall=1.-smoothstep(.35,.8,vRockSlope);diffuseColor.rgb*=mix(1.,band*(.92+grain*.12),wall);`).replace('#include <emissivemap_fragment>','#include <emissivemap_fragment>\n totalEmissiveRadiance *= vColor.rgb * mix(1.,band,wall);')};
  const vegetation:THREE.Vector3[]=[];for(let x=-450;x<=450;x+=14)for(let z=-450;z<=450;z+=16){const tx=x+Math.sin(x*17+z*13)*5,tz=z+Math.cos(x*11-z*21)*5;if(h(tx,tz)<.2||slopeDegrees(tx,tz,asset.outline)>29||Math.sin(tx*.031+tz*.015)<-.28)continue;vegetation.push(new THREE.Vector3(tx/100,h(tx,tz),tz/100))}trees(t,vegetation,1.1);
 
  const routes=new THREE.Group(),ecology=new THREE.Group(),analysis=new THREE.Group(),section=new THREE.Group(),markers=new THREE.Group();t.root.add(routes,ecology,analysis,section,markers);
