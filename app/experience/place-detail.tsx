@@ -1,4 +1,5 @@
 'use client';
+import {SidePanelShell} from './shared/side-panel';
 import {useState,useRef,useEffect} from 'react';
 import Link from 'next/link';
 import {X,ArrowUpRight,MapPin,ChevronLeft} from 'lucide-react';
@@ -16,10 +17,10 @@ export function PlaceDetail({place,onClose,onMap,tab,onTab,recordId,onRecord,pro
  useEffect(()=>{close.current?.focus({preventScroll:true});},[]);
  useEffect(()=>{body.current?.scrollTo(0,0);},[recordId,tab,year]);
  const renderCards=(items:AtlasRecord[])=>items.length?items.map(r=><RecordCard key={r.id} record={r} onOpen={onRecord}/>):<p className={styles.empty}>该栏目尚未编入资料。没有记录不等于这个地点从未被研究。</p>;
- return <aside className={styles.panel} aria-label={`${place.name}地点详情`}>
+ return <SidePanelShell side="right" className={styles.panel} aria-label={`${place.name}地点详情`}>
   <header><div><small>PLACE / 地点档案</small><h2>{place.name}</h2></div><button ref={close} onClick={onClose} aria-label="关闭地点详情"><X size={20}/></button></header>
   <div className={styles.tabs} role="tablist" aria-label="地点资料栏目">{tabs.map(([id,label])=><button key={id} role="tab" aria-selected={tab===id} onClick={()=>{onRecord(null);onTab(id);}}>{label}</button>)}</div>
-  <div ref={body} className={styles.body} role="tabpanel">
+  <div ref={body} className={styles.body} data-panel-body role="tabpanel">
    {record?<article>
     <button className={styles.back} onClick={()=>onRecord(null)}><ChevronLeft size={14}/>返回栏目</button><p className={styles.badge}>{record.dataStatus==='demo'?'DEMO DATA / 模拟研究资料':'公开资料 · 保留原始语境'}</p>
     <small>{KIND_LABEL[record.kind]} · {record.dataStatus==='demo'?'示例编制 ':''}{record.year}{record.gapType?` · ${record.gapType}`:''}</small><h3 className={styles.recordTitle}>{record.title}</h3>
@@ -38,21 +39,21 @@ export function PlaceDetail({place,onClose,onMap,tab,onTab,recordId,onRecord,pro
     {tab==='design'&&<><h3>设计机会</h3>{renderCards(recordsFor(place.id,'DesignOpportunity'))}<h3>设计方案</h3>{renderCards(recordsFor(place.id,'Proposal'))}</>}
    </>}
   </div><footer><button onClick={onMap}><MapPin size={14}/>在地图中查看</button><button onClick={onClose}>收起详情</button></footer>
- </aside>;
+ </SidePanelShell>;
 }
 export function AtlasLibrary({onOpen,onClose}:{onOpen:(id:string)=>void;onClose:()=>void}){
  const [kind,setKind]=useState('research');
  const items=RECORDS.filter(r=>kind==='research'?r.kind==='ResearchProject':kind==='questions'?['Issue','Conflict','ResearchGap'].includes(r.kind):['Proposal','DesignOpportunity'].includes(r.kind));
- return <aside className={styles.library} aria-label="资料索引" data-information-panel>
+ return <SidePanelShell className={styles.library} aria-label="资料索引" data-information-panel>
   <header><div><small>THE RESEARCH INDEX</small><h2>沿江的研究与线索</h2></div><button onClick={onClose} aria-label="关闭资料索引"><X size={19}/></button></header>
-  <nav className={styles.indexTabs} aria-label="资料分类">{[['research','研究'],['questions','问题'],['design','方案']].map(([id,label])=><button key={id} aria-pressed={kind===id} onClick={()=>setKind(id)}>{label}</button>)}</nav>
+  <div data-panel-body><nav className={styles.indexTabs} aria-label="资料分类">{[['research','研究'],['questions','问题'],['design','方案']].map(([id,label])=><button key={id} aria-pressed={kind===id} onClick={()=>setKind(id)}>{label}</button>)}</nav>
   <p className={styles.indexHint}>从标题进入阅读，沿关联回到空间。</p>
   <ol className={styles.indexList}>{items.map((r,i)=><li key={r.id}><span className={styles.indexNumber}>{String(i+1).padStart(2,'0')}</span><div><small>{r.dataStatus==='demo'?'DEMO · 模拟研究资料':'公开资料'} · {r.year}</small><button onClick={()=>onOpen(r.id)}>{r.title}<ArrowUpRight size={14}/></button><details><summary>摘要与关联</summary><p>{r.summary}</p><p>{r.placeIds?.length??1} 个关联地点 · {r.sourceIds.length} 项来源</p></details></div></li>)}</ol>
-  {!items.length&&<p className={styles.empty}>此分类尚无资料。</p>}
- </aside>;
+  {!items.length&&<p className={styles.empty}>此分类尚无资料。</p>}</div>
+ </SidePanelShell>;
 }
 
 /** Long-form reading remains available when a record has no verified map location. */
 export function ResearchReader({record,onClose,onOpen}:{record:AtlasRecord;onClose:()=>void;onOpen:(id:string)=>void}){
- return <aside className={styles.panel} aria-label="研究资料阅读"><header><div><small>RESEARCH READER</small><h2>资料阅读</h2></div><button onClick={onClose} aria-label="关闭资料阅读"><X size={19}/></button></header><article className={styles.body}><p className={styles.badge}>{record.dataStatus==='demo'?'DEMO / 概念演示':'公开资料'} · {record.year}</p><h3 className={styles.recordTitle}>{record.title}</h3><p>{record.author}</p><p>{record.summary}</p><p className={styles.notice}>地点定位尚未核验；保留资料关联，不生成虚构地图标记。</p><p className={styles.notice}>{record.state}</p>{record.body.map((text,i)=><p key={i}>{text}</p>)}{record.relatedIds.map(recordById).filter((r):r is AtlasRecord=>!!r).map(r=><RecordCard key={r.id} record={r} onOpen={onOpen}/>)}<h3>来源与数据状态</h3><Sources ids={record.sourceIds}/></article><footer><button onClick={onClose}>返回目录</button></footer></aside>;
+ return <SidePanelShell side="right" className={styles.panel} aria-label="研究资料阅读"><header><div><small>RESEARCH READER</small><h2>资料阅读</h2></div><button onClick={onClose} aria-label="关闭资料阅读"><X size={19}/></button></header><article className={styles.body} data-panel-body><p className={styles.badge}>{record.dataStatus==='demo'?'DEMO / 概念演示':'公开资料'} · {record.year}</p><h3 className={styles.recordTitle}>{record.title}</h3><p>{record.author}</p><p>{record.summary}</p><p className={styles.notice}>地点定位尚未核验；保留资料关联，不生成虚构地图标记。</p><p className={styles.notice}>{record.state}</p>{record.body.map((text,i)=><p key={i}>{text}</p>)}{record.relatedIds.map(recordById).filter((r):r is AtlasRecord=>!!r).map(r=><RecordCard key={r.id} record={r} onOpen={onOpen}/>)}<h3>来源与数据状态</h3><Sources ids={record.sourceIds}/></article><footer><button onClick={onClose}>返回目录</button></footer></SidePanelShell>;
 }

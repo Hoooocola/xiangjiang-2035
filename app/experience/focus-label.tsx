@@ -1,4 +1,5 @@
 'use client';
+import {SidePanelShell} from './shared/side-panel';
 import {useEffect,useRef} from 'react';
 import {X,ArrowUpRight,LocateFixed,ChevronLeft} from 'lucide-react';
 import type {InformationFeature} from '@/src/atlas/types';
@@ -16,9 +17,9 @@ export function FocusLabel({object,onClose,onFocus,onReturn,onDetails,onPlace,re
   exit.current.onfinish=action;
  };
  const subtype=SUBTYPES.find(s=>s.id===subtypeOf(object));
- return <aside ref={root} className={styles.explanation} aria-label={`${object.title}空间解释`} data-information-panel data-information-explanation data-ready={ready} style={{'--category-color':`var(--layer-${object.layer})`} as React.CSSProperties}>
+ return <SidePanelShell side="right" ref={root} className={styles.explanation} aria-label={`${object.title}空间解释`} data-information-panel data-information-explanation data-ready={ready} style={{'--category-color':`var(--layer-${object.layer})`} as React.CSSProperties}>
   <header><span className={styles.type}>{english[object.layer]}<small>{subtype?.label} / {subtype?.form}</small></span><button aria-label="关闭空间解释" onClick={()=>dismiss(onClose)}><X size={19}/></button></header>
-  <div className={styles.explanationContent} key={object.id}>
+  <div className={styles.explanationContent} data-panel-body key={object.id}>
    <h2>{object.title}</h2><p className={styles.summary}>{object.shortDescription}</p>
    {object.metric&&<p className={styles.metric}><strong>{object.metric.value}<small>{object.metric.unit}</small></strong><span>{object.metric.label}</span></p>}
    <p className={styles.sourceStatus}>{object.isMock?<><span>DEMO DATA</span> / 模拟研究资料</>:<><span>PUBLIC SOURCE</span> / 公开资料</>}</p>
@@ -30,6 +31,6 @@ export function FocusLabel({object,onClose,onFocus,onReturn,onDetails,onPlace,re
     {object.sourceFeatureIds?.map(id=><a className={styles.sourceId} key={id} href={`https://www.openstreetmap.org/${id}`} target="_blank" rel="noreferrer">{id}</a>)}
    </details>
   </div>
-  <nav className={styles.focusActions} aria-label="空间解释操作"><button onClick={()=>dismiss(onReturn)}><ChevronLeft size={15}/>返回原视角</button><button onClick={onFocus}><LocateFixed size={14}/>重新聚焦</button></nav>
- </aside>;
+  <footer className={styles.focusActions} aria-label="空间解释操作"><button onClick={()=>dismiss(onReturn)}><ChevronLeft size={15}/>返回原视角</button><button onClick={onFocus}><LocateFixed size={14}/>重新聚焦</button></footer>
+ </SidePanelShell>;
 }

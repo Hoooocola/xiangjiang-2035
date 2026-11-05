@@ -10,4 +10,4 @@ export {MAP_PLACES as PLACES} from '../places/registry';
 import type {Place} from '../places/registry';
 export type {Place} from '../places/registry';
 export function placePose(place:Place):CameraPose {const [x,z]=project(place.coordinate);if(place.id==='zhaoshan')return {target:[x+11,0,z-16],distance:110,azimuth:-.45,polar:.65};const distance=Math.max(30,place.distance*.85);return {target:[x+distance*.12,0,z-distance*.06],distance,azimuth:.45,polar:1.05};}
-export const CAMERA_LIMITS = {minDistance:18,maxDistance:1200,minPolar:.18,maxPolar:1.18};
+export const CAMERA_LIMITS = {minDistance:4,maxDistance:1200,minPolar:.18,maxPolar:1.38};
