@@ -1,0 +1,114 @@
+{
+  "base": "http://127.0.0.1:3019",
+  "old": true,
+  "viewport": [
+    1440,
+    900
+  ],
+  "deviceScaleFactor": 1,
+  "samples": [
+    {
+      "name": "main-core-day",
+      "fps": 60.14887677692805,
+      "p95": 16.799999999999272,
+      "heap": 375625325,
+      "metrics": {
+        "fps": 60,
+        "calls": 128,
+        "triangles": 2351875,
+        "geometries": 222,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "main-core-night",
+      "fps": 60.36284036965966,
+      "p95": 16.799999999999272,
+      "heap": 266383159,
+      "metrics": {
+        "fps": 60,
+        "calls": 141,
+        "triangles": 2351888,
+        "geometries": 222,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "island-same-pose-night",
+      "fps": 60.364842454872075,
+      "p95": 16.799999999999272,
+      "heap": 180740499,
+      "metrics": {
+        "fps": 60,
+        "calls": 71,
+        "triangles": 1125510,
+        "geometries": 235,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "island-same-pose-day",
+      "fps": 60.12689765044448,
+      "p95": 16.700000000004366,
+      "heap": 178349185,
+      "metrics": {
+        "fps": 60,
+        "calls": 58,
+        "triangles": 1125497,
+        "geometries": 235,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "quarry-same-pose-day",
+      "fps": 60.13888427275096,
+      "p95": 16.799999999999272,
+      "heap": 28000440,
+      "metrics": {
+        "fps": 60,
+        "calls": 23,
+        "triangles": 277018,
+        "geometries": 23,
+        "textures": 3
+      }
+    },
+    {
+      "name": "quarry-same-pose-night",
+      "fps": 60.19288327236448,
+      "p95": 16.700000000000728,
+      "heap": 18298990,
+      "metrics": {
+        "fps": 60,
+        "calls": 23,
+        "triangles": 277018,
+        "geometries": 23,
+        "textures": 3
+      }
+    }
+  ],
+  "errors": []
+}
