@@ -57,3 +57,12 @@ fresh context默认日间；主动夜间在跨矿坑路由后保持。主图/矿
 最终课程1920×1080、1440×900、1366×768、390×844共28组流程通过，0 pageerror/0异常HTTP；此前一次外部封面503走既有回退，最后复测没有该异常。窄屏旧flex-shrink:0被统一正文flex约束修正；底部为主题、氛围与小地图预留190px（桌面180px/大屏220px），不会通过测试强制点击穿透。右侧/窄屏阅读时暂隐重叠的全域导航，关闭后恢复。
 
 DPR2原生事件量测，标签最大约0.0053px；父级CSS scale(.85)下因布局取整最大0.13px，仍为亚像素。20次实际浏览器wheel CSS delta累积按指数缩放，再逆向恢复距离15→12.37961→14.99999；DPR2下CDP派发delta与DOM收到值不同，验收按原生事件值，不能错误乘回DPR。实体触控板主观手感仍需人工确认。
+
+
+## 真实Preview网络与媒体
+
+完整云端功能/录屏基于产品代码提交 `0d7bd3809fd6de720740afd161ca1062daf4bfdd`，部署 `dpl_8P9BQD5pD719RweGaGVApxvroKFV`（target=null，READY）。后续仅补充本验收文档，无产品代码变化；最终部署URL/Commit元数据见PR #17。
+
+五个核心文件均HTTP Brotli、摘要URL一年immutable缓存；cold encoded body 4,961,594 bytes，transferSize合计4,963,094；warm transferSize合计0。冷/暖首次可操作 11.774s / 5.803s，含渲染初始化、受网络影响，不声称比历史测试更快。运行时JSON.parse单文件约0.3–27.5ms（首轮本机样本，不含下载解压；原始记录在独立验收包）。
+
+云端实际验证主图/土地覆盖、39课程作品、鹅洲图8/4→7/5、关闭/重开保持镜头/数据、昼夜继承、矿坑坡度与入口断连。两类真实媒体路由均302且private,no-store；未跟随签名下载URL，不把入口通过宣称为完整视频播放验证。pageerror为空。正式别名仍为dpl_GZSkZa6kLJaTtN1JEj7vuUe9VFPk。
