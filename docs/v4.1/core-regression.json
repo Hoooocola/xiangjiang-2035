@@ -1,0 +1,171 @@
+{
+  "base": "http://127.0.0.1:3021",
+  "errors": [],
+  "samples": [
+    {
+      "name": "A-default",
+      "metrics": {
+        "fps": 57,
+        "calls": 128,
+        "triangles": 2351875,
+        "geometries": 222,
+        "textures": 5,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "B-three-node-layers",
+      "metrics": {
+        "fps": 60,
+        "calls": 128,
+        "triangles": 2351875,
+        "geometries": 222,
+        "textures": 5,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "C-locate-camera",
+      "metrics": {
+        "fps": 60,
+        "calls": 94,
+        "triangles": 1777483,
+        "geometries": 222,
+        "textures": 5,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "D-cover-plus-nodes",
+      "metrics": {
+        "fps": 60,
+        "calls": 64,
+        "triangles": 1495967,
+        "geometries": 223,
+        "textures": 6,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "E-analysis",
+      "metrics": {
+        "fps": 60,
+        "calls": 115,
+        "triangles": 2079527,
+        "geometries": 227,
+        "textures": 6,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "F-drag-lens",
+      "metrics": {
+        "fps": 60,
+        "calls": 118,
+        "triangles": 2104355,
+        "geometries": 226,
+        "textures": 6,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "G-night-switch",
+      "metrics": {
+        "fps": 60,
+        "calls": 138,
+        "triangles": 2404703,
+        "geometries": 226,
+        "textures": 6,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    }
+  ],
+  "checks": [
+    "clean panel; stable editorial shell; wheel isolated; 9 bounded, distinct, 44px resource symbols",
+    "all culture bounds visible; smooth fly interrupted by input; original view restored",
+    "service/commercial interactive list and data-bound overview; explicit demo precision/source",
+    "computed 2km=2/0, 3km=3/2, 500m=0/0; excluded point hidden; selected place changes result and question",
+    "disabling target layer clears analysis; drag lens preserves view; camera updates coordinate; day/night/Escape retained",
+    "ten cycles clean resources/symbols; 2026 39 course works preserved"
+  ],
+  "loadMs": 5611,
+  "initialMetrics": {
+    "fps": 57,
+    "calls": 128,
+    "triangles": 2351875,
+    "geometries": 222,
+    "textures": 5,
+    "buildings": 158230,
+    "knownHeight": 1331,
+    "trees": 41544,
+    "particles": 160,
+    "mistLayers": 6,
+    "atmosphere": "full"
+  },
+  "panelMask": {
+    "mask": "none",
+    "pseudo": "none",
+    "blur": "none"
+  },
+  "afterClear": {
+    "fps": 60,
+    "calls": 148,
+    "triangles": 2346188,
+    "geometries": 222,
+    "textures": 16,
+    "buildings": 158230,
+    "knownHeight": 1331,
+    "trees": 41544,
+    "particles": 160,
+    "mistLayers": 6,
+    "atmosphere": "full"
+  },
+  "afterTen": {
+    "fps": 60,
+    "calls": 148,
+    "triangles": 2346188,
+    "geometries": 222,
+    "textures": 16,
+    "buildings": 158230,
+    "knownHeight": 1331,
+    "trees": 41544,
+    "particles": 160,
+    "mistLayers": 6,
+    "atmosphere": "full"
+  }
+}

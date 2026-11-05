@@ -1,3 +1,4 @@
+import {wheelScale,panUnits} from './input';
 import {sampleSequence,type CameraKeyframe} from './camera-sequence';
 import * as THREE from 'three';
 import { CAMERA_LIMITS, CAMERA_PRESETS, type CameraPose } from './config';
@@ -9,7 +10,7 @@ export interface CameraRigOptions {
  limits?:typeof CAMERA_LIMITS;
  boundTarget?:(target:[number,number,number])=>void;
  leftOrbit?:boolean;
- minimumCameraY?:(x:number,z:number)=>number;
+ minimumCameraY?:(x:number,z:number,distance:number)=>number;
 }
 export class CameraRig {
  pose=clonePose(CAMERA_PRESETS[0].pose);
@@ -30,13 +31,13 @@ export class CameraRig {
    const prev=this.pointers.get(e.pointerId);if(!prev)return;
    const dx=e.clientX-prev.x,dy=e.clientY-prev.y;
    this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
-   if(this.pointers.size===2){const p=[...this.pointers.values()];const d=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);if(this.lastPinch)this.zoom(this.lastPinch/d);this.lastPinch=d;return;}
+   if(this.pointers.size===2){const p=[...this.pointers.values()];const d=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);if(this.lastPinch)this.zoomAt(this.lastPinch/d,(p[0].x+p[1].x)/2,(p[0].y+p[1].y)/2);this.lastPinch=d;return;}
    if(this.dragMode==='orbit'?!e.shiftKey&&e.buttons!==2:e.buttons===2||e.shiftKey){this.desired.azimuth-=dx*0.003;this.desired.polar=clamp(this.desired.polar+dy*0.002,(this.options.limits??CAMERA_LIMITS).minPolar,(this.options.limits??CAMERA_LIMITS).maxPolar);}
-   else {const k=this.desired.distance*0.00075;this.pan(-dx*k,dy*k);}
+   else {const k=panUnits(this.desired.distance,this.camera.fov,this.canvas.clientHeight||900);this.pan(-dx*k,dy*k);}
   }) as EventListener);
   const up=((e:PointerEvent)=>{this.pointers.delete(e.pointerId);this.lastPinch=0;if(!this.pointers.size)canvas.style.cursor='grab';}) as EventListener;
   on('pointerup',up);on('pointercancel',up);on('lostpointercapture',up);
-  on('wheel',((e:WheelEvent)=>{e.preventDefault();this.cancel();this.onInteract();this.zoom(Math.exp(clamp(e.deltaY,-120,120)*0.0014));}) as EventListener,{passive:false});
+  on('wheel',((e:WheelEvent)=>{e.preventDefault();if(this.route||this.transition)this.cancel();this.onInteract();this.zoomAt(wheelScale(e.deltaY,e.deltaMode,this.canvas.clientHeight||900),e.clientX,e.clientY);}) as EventListener,{passive:false});
   on('contextmenu',((e:Event)=>e.preventDefault()) as EventListener);
   on('keydown',((e:KeyboardEvent)=>{
    if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-','=','Home'].includes(e.key))return;
@@ -64,6 +65,10 @@ export class CameraRig {
   this.desired.target[2]-=right*Math.sin(a)+forward*Math.cos(a);
   this.boundTarget();
  }
+ zoomAt(f:number,clientX:number,clientY:number){
+  if(!this.canvas.getBoundingClientRect){this.zoom(f);return;}const rect=this.canvas.getBoundingClientRect();if(!rect.width||!rect.height){this.zoom(f);return;}
+  const ray=new THREE.Raycaster();ray.setFromCamera(new THREE.Vector2((clientX-rect.left)/rect.width*2-1,1-(clientY-rect.top)/rect.height*2),this.camera);const anchor=ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),-this.pose.target[1]),new THREE.Vector3()),before=this.desired.distance;this.zoom(f);if(anchor){const factor=1-this.desired.distance/before;this.desired.target[0]+=(anchor.x-this.pose.target[0])*factor;this.desired.target[2]+=(anchor.z-this.pose.target[2])*factor;this.boundTarget();}
+ }
  zoom(f:number){this.desired.distance=clamp(this.desired.distance*f,(this.options.limits??CAMERA_LIMITS).minDistance,(this.options.limits??CAMERA_LIMITS).maxDistance);}
  orbit(delta:number){if(this.route||this.transition)this.cancel();this.desired.azimuth+=delta;}
  cancel(){this.route=null;this.transition=null;this.desired=clonePose(this.pose);}
@@ -86,7 +91,7 @@ export class CameraRig {
    this.pose={target:tr.from.target.map((v,i)=>THREE.MathUtils.lerp(v,tr.to.target[i],k)) as [number,number,number],distance:THREE.MathUtils.lerp(tr.from.distance,tr.to.distance,k),azimuth:THREE.MathUtils.lerp(tr.from.azimuth,tr.to.azimuth,k),polar:THREE.MathUtils.lerp(tr.from.polar,tr.to.polar,k)};
    if(t===1){this.transition=null;tr.done?.();}
   }else{
-   const k=1-Math.exp(-dt*7);
+   const k=1-Math.exp(-dt*12);
    this.pose.target.forEach((v,i)=>this.pose.target[i]=THREE.MathUtils.lerp(v,this.desired.target[i],k));
    this.pose.distance=THREE.MathUtils.lerp(this.pose.distance,this.desired.distance,k);
    this.pose.azimuth=THREE.MathUtils.lerp(this.pose.azimuth,this.desired.azimuth,k);
@@ -94,7 +99,7 @@ export class CameraRig {
   }
   const p=this.pose,d=p.distance;
   this.camera.position.set(p.target[0]+d*Math.sin(p.polar)*Math.sin(p.azimuth),p.target[1]+d*Math.cos(p.polar),p.target[2]+d*Math.sin(p.polar)*Math.cos(p.azimuth));
-  if(this.options.minimumCameraY)this.camera.position.y=Math.max(this.camera.position.y,this.options.minimumCameraY(this.camera.position.x,this.camera.position.z));
+  if(this.options.minimumCameraY)this.camera.position.y=Math.max(this.camera.position.y,this.options.minimumCameraY(this.camera.position.x,this.camera.position.z,d));
   this.camera.lookAt(...p.target);
   // Publish this pose before any DOM projection or picking, not only at render().
   this.camera.updateMatrixWorld();

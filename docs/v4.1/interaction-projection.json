@@ -1,0 +1,234 @@
+{
+  "base": "http://127.0.0.1:3021",
+  "checks": [
+    "Fresh browser defaults to day",
+    "Close/reopen preserves model, camera, step and graph; ratio hover highlights 4 actual home outlines; 8/4 -> 7/5 -> 8/4",
+    "All 12 deterministic home records queryable; exit guide preserves pose",
+    "Local reset and explicit global return are separate; 4 viewport panel layouts verified",
+    "Theme retained across routes; section axes differ; profile cursor / slope bins highlight actual 3D objects; threshold changes intersections; access route disconnects and reconnects"
+  ],
+  "projection": [
+    {
+      "name": "culture-society-commerce",
+      "samples": 1039,
+      "ids": [
+        "juzizhou",
+        "site-029",
+        "public-1",
+        "public-2",
+        "public-3",
+        "shop-1",
+        "shop-2",
+        "shop-3"
+      ],
+      "maximum": 0.00696525486297423,
+      "p95": 0.005868228897825244
+    },
+    {
+      "name": "resources-night",
+      "samples": 1042,
+      "ids": [
+        "juzizhou",
+        "site-029",
+        "public-1",
+        "public-2",
+        "public-3",
+        "shop-1",
+        "shop-2",
+        "shop-3"
+      ],
+      "maximum": 0.006953712184651808,
+      "p95": 0.006073643751467298
+    },
+    {
+      "name": "island-moving",
+      "samples": 977,
+      "ids": [
+        "home-1",
+        "home-2",
+        "home-3",
+        "home-4",
+        "home-5",
+        "home-6",
+        "home-7",
+        "home-8",
+        "home-9"
+      ],
+      "maximum": 0.006879406799400554,
+      "p95": 0.00620333249540163
+    },
+    {
+      "name": "island-resize-1280",
+      "samples": 916,
+      "ids": [
+        "home-7",
+        "home-8",
+        "home-9",
+        "home-10",
+        "home-11",
+        "home-12",
+        "home-6",
+        "home-5"
+      ],
+      "maximum": 0.007017340166715642,
+      "p95": 0.005885025491424968
+    },
+    {
+      "name": "island-resize-1440",
+      "samples": 1508,
+      "ids": [
+        "home-2",
+        "home-3",
+        "home-4",
+        "home-5",
+        "home-6",
+        "home-7",
+        "home-8",
+        "home-9",
+        "home-10",
+        "home-11",
+        "home-12",
+        "home-1"
+      ],
+      "maximum": 0.006900806713195621,
+      "p95": 0.005990579475420137
+    },
+    {
+      "name": "island-resize-1920",
+      "samples": 1278,
+      "ids": [
+        "home-1",
+        "home-2",
+        "home-3",
+        "home-4",
+        "home-5",
+        "home-6",
+        "home-7",
+        "home-8",
+        "home-9",
+        "home-10",
+        "home-11",
+        "home-12",
+        "service-b",
+        "service-a"
+      ],
+      "maximum": 0.006848512472479767,
+      "p95": 0.006125396946132834
+    },
+    {
+      "name": "quarry-moving",
+      "samples": 1182,
+      "ids": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
+      "maximum": 0.006922338425898209,
+      "p95": 0.005867134957578541
+    },
+    {
+      "name": "quarry-night",
+      "samples": 1379,
+      "ids": [
+        "west",
+        "north",
+        "junction",
+        "entry",
+        "p1",
+        "p2",
+        "p4",
+        "p5",
+        "q1",
+        "q2",
+        "q4",
+        "arrival",
+        "p3"
+      ],
+      "maximum": 0.007004394434421958,
+      "p95": 0.0058919484082303715
+    }
+  ],
+  "layouts": [
+    {
+      "x": 32,
+      "y": 128,
+      "headerBottom": 247.78125,
+      "footerTop": 466,
+      "bodyHeight": 174,
+      "scrollHeight": 1072,
+      "bottom": 560,
+      "viewport": 720,
+      "viewportSize": [
+        1280,
+        720
+      ],
+      "panelWidth": 390,
+      "panelHeight": 432
+    },
+    {
+      "x": 32,
+      "y": 128,
+      "headerBottom": 247.78125,
+      "footerTop": 646,
+      "bodyHeight": 354,
+      "scrollHeight": 1072,
+      "bottom": 740,
+      "viewport": 900,
+      "viewportSize": [
+        1440,
+        900
+      ],
+      "panelWidth": 390,
+      "panelHeight": 612
+    },
+    {
+      "x": 32,
+      "y": 128,
+      "headerBottom": 247.78125,
+      "footerTop": 826,
+      "bodyHeight": 534,
+      "scrollHeight": 1072,
+      "bottom": 920,
+      "viewport": 1080,
+      "viewportSize": [
+        1920,
+        1080
+      ],
+      "panelWidth": 390,
+      "panelHeight": 792
+    },
+    {
+      "x": 16,
+      "y": 254.8125,
+      "headerBottom": 362.390625,
+      "footerTop": 633,
+      "bodyHeight": 227,
+      "scrollHeight": 1097,
+      "bottom": 719,
+      "viewport": 844,
+      "viewportSize": [
+        390,
+        844
+      ],
+      "panelWidth": 358,
+      "panelHeight": 464.1875
+    }
+  ],
+  "errors": [],
+  "network": [],
+  "tourDistances": [
+    37.23513080000055,
+    11,
+    9.4,
+    8.2,
+    5.5,
+    5.5
+  ],
+  "layoutSchemaNote": "Viewport list from executed script:1280x720,1440x900,1920x1080,390x844. Original width/height fields described panel rect, now explicit."
+}

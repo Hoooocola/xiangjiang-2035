@@ -80,3 +80,8 @@
 .experience[data-place-research=true] .markers,.experience[data-place-research=true] .knowledgeMarkers,.experience[data-place-research=true] .mainNav{visibility:hidden;pointer-events:none}
 .experience[data-place-research=true] .headerActions{visibility:hidden;pointer-events:none}
 .experience[data-place-research=true] .cameraControls{z-index:15}
+/* Local study preserves global layer state while excluding unrelated anchors. */
+.experience[data-place-research=true] .markers,.experience[data-place-research=true] .knowledgeMarkers,.experience[data-place-research=true] .mainNav{display:none!important}
+
+.experience:has([data-side-panel][data-side=right]:not([hidden]):not([aria-hidden=true])) .mainNav{display:none!important}
+@media(max-width:759px){.experience:has([data-side-panel]:not([hidden]):not([aria-hidden=true])) .mainNav{display:none!important}}

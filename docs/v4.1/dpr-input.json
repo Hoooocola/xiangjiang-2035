@@ -1,0 +1,34 @@
+{
+  "dpr": 2,
+  "checks": [
+    "DPR2 and transformed Canvas/Overlay parent preserve CSS pixel world projections",
+    "Continuous pixel-mode trackpad-like burst accumulates then reverses; physical Mac hardware remains manual acceptance"
+  ],
+  "beforeScale": [
+    0.0052067863651202905,
+    0.0050175852517534685,
+    0.002379688807993015,
+    0.004426935291176906,
+    0.0034373164064142,
+    0.003706142030476517,
+    0.004053116191237651,
+    0.00505920661234088,
+    0.004657513340242322
+  ],
+  "afterCssScale": [
+    0.0803454643640755,
+    0.1214223011276354,
+    0.08297346013409988,
+    0.08029436589159714,
+    0.12391588053844668,
+    0.0602791733066483,
+    0.1292098770693184,
+    0.0711193166990119,
+    0.087324052920691
+  ],
+  "zoom": {
+    "before": 15,
+    "close": 12.379611137293848,
+    "restored": 14.999990215438636
+  }
+}
