@@ -1,0 +1,594 @@
+{
+  "date": "2026-11-06",
+  "scope": "V4.2 first-stage independent Visual Lab; aesthetic review pending",
+  "typecheck": "pass",
+  "lint": "0 errors; 2 pre-existing prototype-html warnings",
+  "build": "npm run build -- --webpack: pass (temporary shared node_modules workaround)",
+  "tests": {
+    "passed": 205,
+    "skipped": 26,
+    "skipReason": "RUN_DB_TESTS not enabled; no database/server/schema changes"
+  },
+  "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3, Unspecified Version)",
+  "mainComparison": [
+    {
+      "name": "V4.1",
+      "interactiveMs": 8243,
+      "metrics": {
+        "fps": 59,
+        "calls": 227,
+        "triangles": 3418355,
+        "geometries": 222,
+        "textures": 5,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      },
+      "loadedLab": false
+    },
+    {
+      "name": "V4.2 main",
+      "interactiveMs": 8107,
+      "metrics": {
+        "fps": 54,
+        "calls": 227,
+        "triangles": 3418355,
+        "geometries": 222,
+        "textures": 5,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      },
+      "loadedLab": false
+    }
+  ],
+  "samples": [
+    {
+      "name": "E-03 technical",
+      "fps": 60.22720785522636,
+      "p95": 16.700000000000728,
+      "heap": 61340817,
+      "metrics": {
+        "fps": 60,
+        "calls": 32,
+        "triangles": 423991,
+        "lines": 62696,
+        "geometries": 22,
+        "textures": 3,
+        "materials": 14,
+        "transparentLayers": 3,
+        "loadMs": 539.6999999284744,
+        "heap": 56188613
+      }
+    },
+    {
+      "name": "E-03 entity",
+      "fps": 60.271937842778804,
+      "p95": 16.700000000000728,
+      "heap": 38039075,
+      "metrics": {
+        "fps": 60,
+        "calls": 11,
+        "triangles": 419015,
+        "lines": 0,
+        "geometries": 22,
+        "textures": 4,
+        "materials": 13,
+        "transparentLayers": 0,
+        "loadMs": 539.6999999284744,
+        "heap": 39321555
+      }
+    },
+    {
+      "name": "E-03 reveal",
+      "fps": 60.23408506953007,
+      "p95": 16.799999999999272,
+      "heap": 39689612,
+      "metrics": {
+        "fps": 60,
+        "calls": 32,
+        "triangles": 423991,
+        "lines": 62696,
+        "geometries": 22,
+        "textures": 4,
+        "materials": 14,
+        "transparentLayers": 2,
+        "loadMs": 539.6999999284744,
+        "heap": 39120528
+      }
+    },
+    {
+      "name": "P-02 technical",
+      "fps": 60.22376983673938,
+      "p95": 16.799999999995634,
+      "heap": 56594647,
+      "metrics": {
+        "fps": 60,
+        "calls": 43,
+        "triangles": 71650,
+        "lines": 16788,
+        "geometries": 34,
+        "textures": 3,
+        "materials": 67,
+        "transparentLayers": 10,
+        "loadMs": 1053.1999999284744,
+        "heap": 55889843
+      }
+    },
+    {
+      "name": "P-02 entity",
+      "fps": 60.04553215627109,
+      "p95": 16.700000000004366,
+      "heap": 29279513,
+      "metrics": {
+        "fps": 60,
+        "calls": 5,
+        "triangles": 65890,
+        "lines": 0,
+        "geometries": 34,
+        "textures": 3,
+        "materials": 40,
+        "transparentLayers": 0,
+        "loadMs": 1053.1999999284744,
+        "heap": 59361248
+      }
+    },
+    {
+      "name": "P-02 reveal",
+      "fps": 60.29750561733835,
+      "p95": 16.700000000004366,
+      "heap": 29579277,
+      "metrics": {
+        "fps": 60,
+        "calls": 10,
+        "triangles": 66530,
+        "lines": 5392,
+        "geometries": 34,
+        "textures": 3,
+        "materials": 40,
+        "transparentLayers": 2,
+        "loadMs": 1053.1999999284744,
+        "heap": 30961019
+      }
+    },
+    {
+      "name": "P-03 technical",
+      "fps": 60.297505616111614,
+      "p95": 16.70000000001164,
+      "heap": 47547365,
+      "metrics": {
+        "fps": 60,
+        "calls": 15,
+        "triangles": 75346,
+        "lines": 33047,
+        "geometries": 16,
+        "textures": 3,
+        "materials": 49,
+        "transparentLayers": 3,
+        "loadMs": 1172.1000000238419,
+        "heap": 47739448
+      }
+    },
+    {
+      "name": "P-03 entity",
+      "fps": 60.110535011433456,
+      "p95": 16.79999999998836,
+      "heap": 47823958,
+      "metrics": {
+        "fps": 60,
+        "calls": 8,
+        "triangles": 522390,
+        "lines": 0,
+        "geometries": 16,
+        "textures": 3,
+        "materials": 22,
+        "transparentLayers": 0,
+        "loadMs": 1172.1000000238419,
+        "heap": 47823958
+      }
+    },
+    {
+      "name": "P-03 reveal",
+      "fps": 60.074594994325054,
+      "p95": 16.80000000000291,
+      "heap": 48461264,
+      "metrics": {
+        "fps": 60,
+        "calls": 18,
+        "triangles": 935496,
+        "lines": 24227,
+        "geometries": 16,
+        "textures": 3,
+        "materials": 22,
+        "transparentLayers": 2,
+        "loadMs": 1172.1000000238419,
+        "heap": 48799788
+      }
+    }
+  ],
+  "resourceCycles": [
+    {
+      "round": 0,
+      "id": "E-03",
+      "metrics": {
+        "fps": 53,
+        "calls": 32,
+        "triangles": 423991,
+        "lines": 62696,
+        "geometries": 22,
+        "textures": 4,
+        "materials": 14,
+        "transparentLayers": 2,
+        "loadMs": 564.7000000476837,
+        "heap": 93653403
+      }
+    },
+    {
+      "round": 0,
+      "id": "P-02",
+      "metrics": {
+        "fps": 60,
+        "calls": 10,
+        "triangles": 66530,
+        "lines": 5392,
+        "geometries": 9,
+        "textures": 3,
+        "materials": 40,
+        "transparentLayers": 2,
+        "loadMs": 1043.8000000715256,
+        "heap": 115900797
+      }
+    },
+    {
+      "round": 0,
+      "id": "P-03",
+      "metrics": {
+        "fps": 60,
+        "calls": 18,
+        "triangles": 935496,
+        "lines": 24227,
+        "geometries": 15,
+        "textures": 3,
+        "materials": 22,
+        "transparentLayers": 2,
+        "loadMs": 1185.1999999284744,
+        "heap": 145269601
+      }
+    },
+    {
+      "round": 1,
+      "id": "E-03",
+      "metrics": {
+        "fps": 60,
+        "calls": 32,
+        "triangles": 423991,
+        "lines": 62696,
+        "geometries": 22,
+        "textures": 4,
+        "materials": 14,
+        "transparentLayers": 2,
+        "loadMs": 506.10000002384186,
+        "heap": 115043115
+      }
+    },
+    {
+      "round": 1,
+      "id": "P-02",
+      "metrics": {
+        "fps": 60,
+        "calls": 10,
+        "triangles": 66530,
+        "lines": 5392,
+        "geometries": 9,
+        "textures": 3,
+        "materials": 40,
+        "transparentLayers": 2,
+        "loadMs": 1035.3999999761581,
+        "heap": 132417770
+      }
+    },
+    {
+      "round": 1,
+      "id": "P-03",
+      "metrics": {
+        "fps": 60,
+        "calls": 18,
+        "triangles": 935496,
+        "lines": 24227,
+        "geometries": 15,
+        "textures": 3,
+        "materials": 22,
+        "transparentLayers": 2,
+        "loadMs": 1140.8999999761581,
+        "heap": 136877301
+      }
+    },
+    {
+      "round": 2,
+      "id": "E-03",
+      "metrics": {
+        "fps": 60,
+        "calls": 32,
+        "triangles": 423991,
+        "lines": 62696,
+        "geometries": 22,
+        "textures": 4,
+        "materials": 14,
+        "transparentLayers": 2,
+        "loadMs": 489.2000000476837,
+        "heap": 115733035
+      }
+    },
+    {
+      "round": 2,
+      "id": "P-02",
+      "metrics": {
+        "fps": 60,
+        "calls": 10,
+        "triangles": 66530,
+        "lines": 5392,
+        "geometries": 9,
+        "textures": 3,
+        "materials": 40,
+        "transparentLayers": 2,
+        "loadMs": 1040.6000000238419,
+        "heap": 132624468
+      }
+    },
+    {
+      "round": 2,
+      "id": "P-03",
+      "metrics": {
+        "fps": 60,
+        "calls": 18,
+        "triangles": 935496,
+        "lines": 24227,
+        "geometries": 15,
+        "textures": 3,
+        "materials": 22,
+        "transparentLayers": 2,
+        "loadMs": 1173.2000000476837,
+        "heap": 136867041
+      }
+    }
+  ],
+  "interactionChecks": [
+    {
+      "scene": "E-03",
+      "mode": "technical",
+      "projection": [
+        {
+          "id": "service-b",
+          "visible": true,
+          "error": 0.002035273140242519
+        },
+        {
+          "id": "service-a",
+          "visible": false,
+          "error": 971.60387873899
+        },
+        {
+          "id": "pipe-home-8",
+          "visible": true,
+          "error": 0.004625533872844394
+        }
+      ]
+    },
+    {
+      "scene": "E-03",
+      "mode": "entity",
+      "projection": [
+        {
+          "id": "service-b",
+          "visible": true,
+          "error": 0.00345343563519384
+        },
+        {
+          "id": "service-a",
+          "visible": false,
+          "error": 1170.4316201249935
+        },
+        {
+          "id": "pipe-home-8",
+          "visible": true,
+          "error": 0.001842295063963573
+        }
+      ]
+    },
+    {
+      "scene": "E-03",
+      "mode": "reveal",
+      "projection": [
+        {
+          "id": "service-b",
+          "visible": true,
+          "error": 0.00345343563519384
+        },
+        {
+          "id": "service-a",
+          "visible": false,
+          "error": 1170.4316201249935
+        },
+        {
+          "id": "pipe-home-8",
+          "visible": true,
+          "error": 0.001842295063963573
+        }
+      ]
+    },
+    {
+      "scene": "P-02",
+      "mode": "technical",
+      "projection": [
+        {
+          "id": "section-high",
+          "visible": true,
+          "error": 0.0028818528894263935
+        },
+        {
+          "id": "section-water",
+          "visible": true,
+          "error": 0.003818081740183637
+        }
+      ]
+    },
+    {
+      "scene": "P-02",
+      "mode": "entity",
+      "projection": [
+        {
+          "id": "section-high",
+          "visible": true,
+          "error": 0.004872531484328688
+        },
+        {
+          "id": "section-water",
+          "visible": true,
+          "error": 0.004588309157697188
+        }
+      ]
+    },
+    {
+      "scene": "P-02",
+      "mode": "reveal",
+      "projection": [
+        {
+          "id": "section-high",
+          "visible": true,
+          "error": 0.004872531484328688
+        },
+        {
+          "id": "section-water",
+          "visible": true,
+          "error": 0.004588309157697188
+        }
+      ]
+    },
+    "section selection and 3D sample hover pass",
+    {
+      "scene": "P-03",
+      "mode": "technical",
+      "projection": [
+        {
+          "id": "eco-canopy",
+          "visible": true,
+          "error": 0.00481287711281067
+        },
+        {
+          "id": "eco-rock",
+          "visible": true,
+          "error": 0.00256518586664643
+        }
+      ]
+    },
+    {
+      "scene": "P-03",
+      "mode": "entity",
+      "projection": [
+        {
+          "id": "eco-canopy",
+          "visible": true,
+          "error": 0.002417726678588565
+        },
+        {
+          "id": "eco-rock",
+          "visible": false,
+          "error": 43.725271339243044
+        }
+      ]
+    },
+    {
+      "scene": "P-03",
+      "mode": "reveal",
+      "projection": [
+        {
+          "id": "eco-canopy",
+          "visible": true,
+          "error": 0.0024177266785306148
+        },
+        {
+          "id": "eco-rock",
+          "visible": false,
+          "error": 43.72527133924328
+        }
+      ]
+    }
+  ],
+  "viewportChecks": [
+    {
+      "scene": "E-03",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "scene": "P-02",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "scene": "P-03",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "scene": "E-03",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "scene": "P-02",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "scene": "P-03",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "scene": "E-03",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "scene": "P-02",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "scene": "P-03",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "scene": "E-03",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "scene": "P-02",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "scene": "P-03",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "browserErrors": [],
+  "notes": [
+    "Empty Next.js role=alert route announcer is not a product error; verification scoped to main.",
+    "QA cursor lookup originally matched hidden legacy cursor; actual lab cursor and chart pointer linked correctly.",
+    "1366x768 chart overlap fixed by valid media query spacing; all four size checks rerun.",
+    "FPS samples use one isolated headless Chrome browser, 1440x900 DPR1; not a universal hardware guarantee.",
+    "Semantic transparent layer budget is not per-pixel overlap measurement.",
+    "No production or main updates."
+  ]
+}
