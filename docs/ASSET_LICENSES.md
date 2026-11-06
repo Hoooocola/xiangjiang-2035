@@ -56,3 +56,7 @@ GitHub 大文件说明：https://docs.github.com/en/repositories/working-with-fi
 `.env.local`、`.data/`、`.next/`、node_modules、缓存、HAR、私钥、`.local-backups/` 永不作为代码共享。`.audit/` 为本地视觉工作文件；`exports/*.zip` 是已保留可编辑 SVG 文件的重复打包。均未删除。
 
 之前未跟踪的 66 个资产已打包到 `.local-backups/2026-10-28/previously-untracked-assets.tar.gz`，逐文件 SHA-256 验证通过。文件清单见 `github-asset-backup-inventory.json`。本地备份含可能受限资料，不允许把备份整个上传来绕过上述门槛。
+
+## V4.2 鹅洲原创派生模型（2026-11-06）
+
+用户在本任务中明确确认鹅洲 OBJ 模型为本人原创，并提供精细原模型目录供评估。V4.2 Visual Lab 使用自行离线简化、合并贴图的派生 `public/data/visual-lab/ezhou-owner.glb`。原始 OBJ/MTL/贴图与 1.92GB 原模型只保留本地；不上传缺失贴图的低模或错配贴图。来源、量化、顶点、纹理和坐标限制见 `public/data/visual-lab/asset-report.json` 与 `docs/v4.2/README.md`。模型不代表设施实测或测绘精度；DEMO 管网单独注明。没有复制 Masar / Celtis 商业资产或上传对标截图。
