@@ -590,5 +590,15 @@
     "FPS samples use one isolated headless Chrome browser, 1440x900 DPR1; not a universal hardware guarantee.",
     "Semantic transparent layer budget is not per-pixel overlap measurement.",
     "No production or main updates."
-  ]
+  ],
+  "finalLabelCheck": {
+    "viewport": "1440x900",
+    "scene": "P-03",
+    "visible": [
+      "eco-canopy",
+      "eco-rock"
+    ],
+    "clickSelection": "zone:rock-01",
+    "relatedTests": "4 passed after anchor-only correction"
+  }
 }
