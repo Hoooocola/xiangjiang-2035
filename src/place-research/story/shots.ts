@@ -3,9 +3,9 @@ import type {CameraPose} from '../../experience/config';
 const pose=(target:CameraPose['target'],distance:number,azimuth:number,polar:number):CameraPose=>({target,distance,azimuth,polar});
 const make=(shotId:string,phase:StoryShot['phase'],title:string,researchQuestion:string,camera:CameraPose,layers:string[],mode:StoryShot['analysisMode'],evidence:string,hold=false):StoryShot=>({shotId,phase,title,researchQuestion,cameraPosition:camera,cameraTarget:camera.target,subjectObjects:layers,dimmedObjects:['非当前研究对象'],visibleDataLayers:layers,analysisMode:mode,primaryMetrics:['当前研究尺度','参数计算结果'],annotations:['主体对象','空间约束'],interactionActions:['选择对象','自由移动','关闭侧栏','重置当前镜头','返回湘江全域'],transitionSettings:{duration:1400,hold},evidence});
 export const E_SHOTS:StoryShot[]=[
- make('E-01','context','鹅洲岛的区位联系与生态保护背景','鹅洲如何联系两岸、居民生活与生态保护背景？',pose([0,.1,0],27,.35,.87),['physical','river','roads'],'entity','2026-05 调研报道保护背景与设施不足；OSM 岸线和道路有来源，模型垂直基准待核实。'),
- make('E-02','resources','鹅洲岛居民生活与游憩活动的空间分布','模拟生活需求与活动节点分布在哪里？',pose([0,.08,-1.7],13,.65,.95),['physical','homes','visitors','roads'],'entity','12 个代表点、66 单元、3 个活动点均为既有 DEMO，不是人口或房屋统计。'),
- make('E-03','evidence','汛期水位变化与洲岛空间分区','江水连通与相对地形如何改变模拟受影响范围？',pose([0,.1,0],27,.55,.95),['physical','flood','homes'],'entity','2024-06 新闻记载低洼积水和露营基地关闭；当前使用原创模型低包络 10m 网格，非裸地 DTM 或水动力模型。'),
+ make('E-01','context','鹅洲岛的区位联系与生态保护背景','鹅洲如何联系两岸、居民生活与生态保护背景？',pose([0,.1,0],27,.35,.87),['physical','river','roads'],'reveal','2026-05 调研报道保护背景与设施不足；OSM 岸线和道路有来源，模型垂直基准待核实。'),
+ make('E-02','resources','鹅洲岛居民生活与游憩活动的空间分布','模拟生活需求与活动节点分布在哪里？',pose([0,.08,-1.7],13,.65,.95),['physical','homes','visitors','roads'],'reveal','12 个代表点、66 单元、3 个活动点均为既有 DEMO，不是人口或房屋统计。'),
+ make('E-03','evidence','汛期水位变化与洲岛空间分区','江水连通与相对地形如何改变模拟受影响范围？',pose([0,.1,0],27,.55,.95),['physical','flood','homes'],'reveal','2024-06 新闻记载低洼积水和露营基地关闭；当前使用原创模型低包络 10m 网格，非裸地 DTM 或水动力模型。'),
  make('E-04','findings','汛期约束下污水收集设施的空间布局','需求、路网与汛期分区如何共同约束候选设施？',pose([-.2,.07,.8],8,.6,1.02),['physical','flood','homes','roads','network','facilities'],'technical','设施位置、管径和埋深是 DEMO；路网距离可计算，OSM 连通不代表汛期可通行。选择设施进入局部剖切。'),
  make('E-05','proposal','污水治理方式的空间适配与组合情景比较','改变收集处理组织方式，会产生哪些空间权衡？',pose([-.2,.07,.8],8,.6,1.02),['physical','flood','homes','network','facilities','transport'],'technical','A 岛外纳管 / B 密闭收运 / C 岛内处理 / D 分区组合。计算几何关系，不计算虚构工程效益，不预设最优方案。',true),
 ];

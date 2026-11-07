@@ -1,3 +1,5 @@
+> 后续用户决策已更新：研究 UI 恢复为带边界面板，E01–E03 改局部显影，见 [当前修复说明](LOCAL_REVEAL_UI.md)。以下为上一轮历史验收记录。
+
 # V4.3 视觉质量修复验收
 
 基线：PR #19 `216384ea6e3a341116eef309752c02d9ddc7f37b`。修复分支 `codex/research-visual-repair-v43`，作为 #19 的后续 PR；未合并 main，未更新 Production。

@@ -10,7 +10,7 @@ import {ResourceMarkers,ResourceReading} from './resource-explorer';
 import {RESOURCE_NODES,focusedNode,stateAnalysis,type NodeKind} from '@/src/exploration/relations';
 
 import {useEffect,useRef,useState} from 'react';
-import {ArrowUpRight,ArrowRight,RotateCcw,X,Compass,Play,Pause,Info,MapPin,Layers,BookOpen,SlidersHorizontal,Lightbulb} from 'lucide-react';
+import {MapPinned,ArrowUpRight,ArrowRight,RotateCcw,X,Compass,Play,Pause,Info,MapPin,Layers,BookOpen,SlidersHorizontal,Lightbulb} from 'lucide-react';
 import {CAMERA_PRESETS,PLACES} from '@/src/experience/config';
 import {MINI_MAP,miniPoint,worldPoint} from '@/src/experience/minimap';
 import {project} from '@/src/experience/geo';
@@ -138,10 +138,10 @@ export default function Experience({initialPlace,studentShowcase:initialStudentS
   <header className={styles.header}>
    <button className={styles.wordmark} onClick={reset} aria-label="湘江 2035，返回核心河段" disabled={!loaded}><span>湘江 <b>2035</b></span><small>XIANGJIANG-2035</small></button>
    <nav className={styles.headerActions} aria-label="知识地图工具">
-    <button disabled={!loaded} aria-expanded={atlasPanel==='layers'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='layers'?null:'layers');}}><SlidersHorizontal size={16}/>图层 <small>{explorationActive.length}</small></button><button disabled={!loaded} aria-expanded={atlasPanel==='library'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='library'?null:'library');}}><BookOpen size={16}/>资料</button>
+    <button disabled={!loaded} aria-expanded={atlasPanel==='layers'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='layers'?null:'layers');}}><SlidersHorizontal size={16}/>图层</button><button disabled={!loaded} aria-expanded={atlasPanel==='library'} onClick={()=>{setStarted(true);setDrawer(null);setAtlasPanel(atlasPanel==='library'?null:'library');}}><BookOpen size={16}/>资料</button>
     <button disabled={!loaded} aria-expanded={proposalOpen} onClick={openDesign}><Lightbulb size={16}/>设计方案</button>
     {studentShowcase&&<button onClick={closeStudent}>退出课程成果</button>}
-    <button disabled={!loaded} aria-expanded={researchHub} onClick={()=>{setResearchPanelHidden(false);setResearchAutoEnter(false);setResearchHub(!researchHub);setAtlasPanel(null);setDrawer(null);setDetailOpen(false);setStarted(true);}}>地点研究</button>
+    <button disabled={!loaded} aria-expanded={researchHub} onClick={()=>{setResearchPanelHidden(false);setResearchAutoEnter(false);setResearchHub(!researchHub);setAtlasPanel(null);setDrawer(null);setDetailOpen(false);setStarted(true);}}><MapPinned size={16}/>地点研究</button>
     <a className={styles.platformLink} href="/create-research">研究平台 <ArrowUpRight size={16}/></a>
    </nav>
   </header>
