@@ -51,11 +51,11 @@
     "main": [
       {
         "port": 3022,
-        "readyMs": 5659,
+        "readyMs": 5309,
         "frames": {
-          "fps": 60.08143739937495,
-          "p95": 16.799999999999272,
-          "heap": 352709131
+          "fps": 60.11909849844715,
+          "p95": 16.700000000000728,
+          "heap": 353287202
         },
         "data": [
           {
@@ -64,7 +64,7 @@
             "transfer": 1197791,
             "encoded": 1197491,
             "decoded": 7129381,
-            "duration": 164.20000004768372
+            "duration": 148.5
           },
           {
             "file": "inland-water.geojson?v=266fa5f716de",
@@ -72,7 +72,7 @@
             "transfer": 31012,
             "encoded": 30712,
             "decoded": 116986,
-            "duration": 19.799999952316284
+            "duration": 12.5
           },
           {
             "file": "terrain.json?v=994c9dc16c2b",
@@ -80,7 +80,7 @@
             "transfer": 298863,
             "encoded": 298563,
             "decoded": 1725900,
-            "duration": 80
+            "duration": 71.79999995231628
           },
           {
             "file": "environment.json?v=3518daeda7a9",
@@ -88,7 +88,7 @@
             "transfer": 1485174,
             "encoded": 1484874,
             "decoded": 7921174,
-            "duration": 159.69999992847443
+            "duration": 142.79999995231628
           },
           {
             "file": "context.json?v=26eeb89d5347",
@@ -96,12 +96,12 @@
             "transfer": 1751996,
             "encoded": 1751696,
             "decoded": 5533814,
-            "duration": 287.1999999284744
+            "duration": 276.59999990463257
           }
         ],
         "parse": [],
         "headers": {
-          "environment.json?v=3518daeda7a9": {
+          "inland-water.geojson?v=266fa5f716de": {
             "encoding": "gzip",
             "cache": "public, max-age=31536000, immutable"
           },
@@ -109,7 +109,7 @@
             "encoding": "gzip",
             "cache": "public, max-age=31536000, immutable"
           },
-          "terrain.json?v=994c9dc16c2b": {
+          "environment.json?v=3518daeda7a9": {
             "encoding": "gzip",
             "cache": "public, max-age=31536000, immutable"
           },
@@ -117,7 +117,7 @@
             "encoding": "gzip",
             "cache": "public, max-age=31536000, immutable"
           },
-          "inland-water.geojson?v=266fa5f716de": {
+          "terrain.json?v=994c9dc16c2b": {
             "encoding": "gzip",
             "cache": "public, max-age=31536000, immutable"
           }
@@ -128,36 +128,28 @@
       },
       {
         "port": 3025,
-        "readyMs": 5282,
+        "readyMs": 5274,
         "frames": {
-          "fps": 60.29064641892753,
+          "fps": 60.095126883312915,
           "p95": 16.799999999999272,
-          "heap": 353626477
+          "heap": 350860105
         },
         "data": [
-          {
-            "file": "xiangjiang.geojson?v=1dc25e2244fe",
-            "url": "http://localhost:3025/data/xiangjiang.geojson?v=1dc25e2244fe",
-            "transfer": 1197791,
-            "encoded": 1197491,
-            "decoded": 7129381,
-            "duration": 126.29999995231628
-          },
           {
             "file": "terrain.json?v=994c9dc16c2b",
             "url": "http://localhost:3025/data/terrain.json?v=994c9dc16c2b",
             "transfer": 298863,
             "encoded": 298563,
             "decoded": 1725900,
-            "duration": 60.89999997615814
+            "duration": 65.79999995231628
           },
           {
-            "file": "context.json?v=26eeb89d5347",
-            "url": "http://localhost:3025/data/context.json?v=26eeb89d5347",
-            "transfer": 1751996,
-            "encoded": 1751696,
-            "decoded": 5533814,
-            "duration": 246.69999992847443
+            "file": "xiangjiang.geojson?v=1dc25e2244fe",
+            "url": "http://localhost:3025/data/xiangjiang.geojson?v=1dc25e2244fe",
+            "transfer": 1197791,
+            "encoded": 1197491,
+            "decoded": 7129381,
+            "duration": 129.59999990463257
           },
           {
             "file": "inland-water.geojson?v=266fa5f716de",
@@ -165,7 +157,7 @@
             "transfer": 31012,
             "encoded": 30712,
             "decoded": 116986,
-            "duration": 9.5
+            "duration": 10.5
           },
           {
             "file": "environment.json?v=3518daeda7a9",
@@ -173,24 +165,32 @@
             "transfer": 1485174,
             "encoded": 1484874,
             "decoded": 7921174,
-            "duration": 120.5
+            "duration": 124.90000009536743
+          },
+          {
+            "file": "context.json?v=26eeb89d5347",
+            "url": "http://localhost:3025/data/context.json?v=26eeb89d5347",
+            "transfer": 1751996,
+            "encoded": 1751696,
+            "decoded": 5533814,
+            "duration": 245.5
           }
         ],
         "parse": [],
         "headers": {
-          "environment.json?v=3518daeda7a9": {
-            "encoding": "gzip",
-            "cache": "public, max-age=31536000, immutable"
-          },
           "xiangjiang.geojson?v=1dc25e2244fe": {
             "encoding": "gzip",
             "cache": "public, max-age=31536000, immutable"
           },
-          "context.json?v=26eeb89d5347": {
+          "inland-water.geojson?v=266fa5f716de": {
             "encoding": "gzip",
             "cache": "public, max-age=31536000, immutable"
           },
-          "inland-water.geojson?v=266fa5f716de": {
+          "environment.json?v=3518daeda7a9": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          },
+          "context.json?v=26eeb89d5347": {
             "encoding": "gzip",
             "cache": "public, max-age=31536000, immutable"
           },
@@ -219,9 +219,9 @@
           "polar": 0.95
         },
         "frames": {
-          "fps": 60.28226958541641,
-          "p95": 16.700000000000728,
-          "heap": 29187645
+          "fps": 60.22205097468391,
+          "p95": 16.799999999999272,
+          "heap": 29287997
         },
         "metrics": {
           "fps": 60,
@@ -232,8 +232,8 @@
           "textures": 3,
           "materials": 14,
           "transparentLayers": 3,
-          "loadMs": 520.3999999761581,
-          "heap": 30857879
+          "loadMs": 541.3999999761581,
+          "heap": 27330907
         }
       },
       {
@@ -250,9 +250,9 @@
           "polar": 1.08
         },
         "frames": {
-          "fps": 60.16881487477731,
-          "p95": 16.799999999999272,
-          "heap": 21377218
+          "fps": 60.08657022358323,
+          "p95": 16.700000000000728,
+          "heap": 21373818
         },
         "metrics": {
           "fps": 60,
@@ -263,8 +263,8 @@
           "textures": 2,
           "materials": 67,
           "transparentLayers": 10,
-          "loadMs": 1047.7999999523163,
-          "heap": 30282405
+          "loadMs": 1055.8000000715256,
+          "heap": 30176873
         }
       },
       {
@@ -281,9 +281,9 @@
           "polar": 1
         },
         "frames": {
-          "fps": 60.266773298999254,
+          "fps": 60.21517650711006,
           "p95": 16.700000000000728,
-          "heap": 118893199
+          "heap": 118122663
         },
         "metrics": {
           "fps": 60,
@@ -294,8 +294,8 @@
           "textures": 2,
           "materials": 49,
           "transparentLayers": 3,
-          "loadMs": 1176.2000000476837,
-          "heap": 109418500
+          "loadMs": 1179.7000000476837,
+          "heap": 108621652
         }
       },
       {
@@ -312,21 +312,21 @@
           "polar": 0.95
         },
         "frames": {
-          "fps": 60.09170392650431,
+          "fps": 60.112247514315825,
           "p95": 16.700000000000728,
-          "heap": 32598437
+          "heap": 39518517
         },
         "metrics": {
           "fps": 60,
           "calls": 37,
-          "triangles": 458899,
-          "lines": 72743,
+          "triangles": 459411,
+          "lines": 72751,
           "geometries": 46,
           "textures": 4,
           "materials": 58,
           "transparentLayers": 3,
-          "loadMs": 596.3999999761581,
-          "heap": 38622027
+          "loadMs": 603.8999999761581,
+          "heap": 32280142
         },
         "calculations": 1
       },
@@ -344,9 +344,9 @@
           "polar": 1.08
         },
         "frames": {
-          "fps": 60.20143228052156,
-          "p95": 16.700000000000728,
-          "heap": 124112735
+          "fps": 60.21173986245471,
+          "p95": 16.799999999999272,
+          "heap": 123697758
         },
         "metrics": {
           "fps": 60,
@@ -357,8 +357,8 @@
           "textures": 3,
           "materials": 102,
           "transparentLayers": 3,
-          "loadMs": 1230.4000000953674,
-          "heap": 128050840
+          "loadMs": 1233.8000000715256,
+          "heap": 127736423
         },
         "calculations": 1
       },
@@ -376,9 +376,9 @@
           "polar": 1
         },
         "frames": {
-          "fps": 60.278825276290036,
-          "p95": 16.700000000000728,
-          "heap": 121020769
+          "fps": 60.112247514315825,
+          "p95": 16.799999999999272,
+          "heap": 120770358
         },
         "metrics": {
           "fps": 60,
@@ -389,8 +389,8 @@
           "textures": 3,
           "materials": 102,
           "transparentLayers": 3,
-          "loadMs": 1237.1000000238419,
-          "heap": 114182414
+          "loadMs": 1265.2000000476837,
+          "heap": 113578867
         },
         "calculations": 1
       }
@@ -406,10 +406,10 @@
           "lines": 9379,
           "geometries": 5,
           "textures": 4,
-          "materials": 55,
+          "materials": 57,
           "transparentLayers": 3,
-          "loadMs": 595.3999999761581,
-          "heap": 76723549
+          "loadMs": 621.3999999761581,
+          "heap": 76805935
         }
       },
       {
@@ -424,24 +424,24 @@
           "textures": 3,
           "materials": 75,
           "transparentLayers": 0,
-          "loadMs": 1274.3999999761581,
-          "heap": 136948910
+          "loadMs": 1276.1000000238419,
+          "heap": 137003894
         }
       },
       {
         "i": 2,
         "site": "ezhou",
         "metrics": {
-          "fps": 60,
+          "fps": 59,
           "calls": 5,
           "triangles": 414666,
           "lines": 9379,
           "geometries": 5,
           "textures": 4,
-          "materials": 55,
+          "materials": 57,
           "transparentLayers": 3,
-          "loadMs": 586,
-          "heap": 230048427
+          "loadMs": 622.3000000715256,
+          "heap": 231605597
         }
       },
       {
@@ -456,8 +456,8 @@
           "textures": 3,
           "materials": 75,
           "transparentLayers": 0,
-          "loadMs": 1240.0999999046326,
-          "heap": 313204894
+          "loadMs": 1219.6000000238419,
+          "heap": 339479876
         }
       },
       {
@@ -470,10 +470,10 @@
           "lines": 9379,
           "geometries": 5,
           "textures": 4,
-          "materials": 55,
+          "materials": 57,
           "transparentLayers": 3,
-          "loadMs": 583.4000000953674,
-          "heap": 118850941
+          "loadMs": 583.5,
+          "heap": 121279786
         }
       },
       {
@@ -488,8 +488,8 @@
           "textures": 3,
           "materials": 75,
           "transparentLayers": 0,
-          "loadMs": 1223.7000000476837,
-          "heap": 116324333
+          "loadMs": 1216,
+          "heap": 116293602
         }
       },
       {
@@ -502,10 +502,10 @@
           "lines": 9379,
           "geometries": 5,
           "textures": 4,
-          "materials": 55,
+          "materials": 57,
           "transparentLayers": 3,
-          "loadMs": 563.1000000238419,
-          "heap": 101879555
+          "loadMs": 578.0999999046326,
+          "heap": 102919256
         }
       },
       {
@@ -520,8 +520,8 @@
           "textures": 3,
           "materials": 75,
           "transparentLayers": 0,
-          "loadMs": 1226.6000000238419,
-          "heap": 77072212
+          "loadMs": 1215.6999999284744,
+          "heap": 72209939
         }
       }
     ]

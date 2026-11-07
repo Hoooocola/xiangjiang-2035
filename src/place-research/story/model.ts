@@ -46,6 +46,7 @@ async function islandStory():Promise<LabModel>{
   for(const connector of active.pipeConnectors)makePipe(connector,C.cyan)
   // Unique source segments preserve topology; transport has a separate blue raised structure.
   if(input.step===4||input.step===3)for(const e of active.transportEdges){const pts=e.points.map(p=>v(p,e.bridge?6:elevation(p)+1));ribs.push(...segments(pts));transportGeometries.push(new T.TubeGeometry(new T.CatmullRomCurve3(pts),4,.007,4,false))}
+  for(const points of active.transportConnectors){const pts=points.map(p=>v(p,elevation(p)+1));ribs.push(...segments(pts));transportGeometries.push(new T.TubeGeometry(new T.CatmullRomCurve3(pts),4,.007,4,false))}
   if(ribs.length){netRoot.add(lineObject(ribs,C.blue,.85));const geo=merge(transportGeometries),mesh=new T.Mesh(geo,new T.MeshBasicMaterial({color:C.blue,transparent:true,opacity:.25,depthWrite:false,side:T.DoubleSide,toneMapped:false}));netRoot.add(mesh)}if(pipeGeometries.length){const geo=merge(pipeGeometries),mesh=new T.Mesh(geo,new T.MeshBasicMaterial({color:C.cyan,transparent:true,opacity:.2,depthWrite:false,side:T.DoubleSide,toneMapped:false})),wire=new T.LineSegments(new T.EdgesGeometry(geo,20),new T.LineBasicMaterial({color:C.cyan,transparent:true,opacity:.85,depthWrite:false,toneMapped:false}));netRoot.add(mesh,wire)}
   if(input.scenario==='A'||input.scenario==='D'){const gate=roads.nodes[roads.gate];if(gate){const marker=volume([v(gate,4),v(gate,14)],C.gold,.035);marker.name='unverified-off-island-direction';netRoot.add(marker)}}
  }

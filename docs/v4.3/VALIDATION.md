@@ -15,12 +15,12 @@ Final production build. Chrome headless / Apple M3 Metal, 1440x900, DPR 1, ident
 
 |Version / sample|FPS|P95 ms|Calls|Triangles|GPU geometries|GPU textures|Site build ms|
 |---|---:|---:|---:|---:|---:|---:|---:|
-|V4.2 / E-03|60.3|16.7|32|423991|22|3|520|
-|V4.2 / P-02|60.2|16.8|43|71650|34|2|1048|
-|V4.2 / P-03|60.3|16.7|15|75346|13|2|1176|
-|V4.3 / E-03|60.1|16.7|37|458899|46|4|596|
-|V4.3 / P-02|60.2|16.7|43|71650|43|3|1230|
-|V4.3 / P-03|60.3|16.7|15|75346|25|3|1237|
+|V4.2 / E-03|60.2|16.8|32|423991|22|3|541|
+|V4.2 / P-02|60.1|16.7|43|71650|34|2|1056|
+|V4.2 / P-03|60.2|16.7|15|75346|13|2|1180|
+|V4.3 / E-03|60.1|16.7|37|459411|46|4|604|
+|V4.3 / P-02|60.2|16.8|43|71650|43|3|1234|
+|V4.3 / P-03|60.1|16.8|15|75346|25|3|1265|
 
 V4.3 E-03 benchmark corresponds to the new E04 technical overlay at exactly the baseline E03 camera. P02 uses nine curtains; P03 uses the same ecology close-up. Composite quarry prepares forest and sections once, increasing CPU residency/hidden materials. Heap readings are GC-dependent; raw readings are in validation.json.
 
@@ -30,8 +30,8 @@ Eight alternating site loads: Ezhou GPU geometries/textures return to 5/4; quarr
 
 |Version|Ready ms|Map-data transfer bytes|Decoded bytes|
 |---|---:|---:|---:|
-|V4.2|5659|4764836|22427255|
-|V4.3|5282|4764836|22427255|
+|V4.2|5309|4764836|22427255|
+|V4.3|5274|4764836|22427255|
 
 All five hashed map-data URLs use gzip and existing one-year immutable caching. No new compression configuration. No owner GLB, quarry or story JSON requested by the main first screen.
 
@@ -56,7 +56,7 @@ Additional on-demand resource requests (not a claim of new layer rendering). The
 
 - scripts/story/verify-browser.mjs: STORY_BASE_URL, STORY_QA_OUTPUT, PLAYWRIGHT_MODULE (existing installation), optional CHROME_PATH. Recording requires that Playwright installation's FFmpeg. No product dependency added.
 - scripts/story/benchmark-browser.mjs: BASELINE_BASE_URL, STORY_BASE_URL, STORY_PERF_OUTPUT, PLAYWRIGHT_MODULE, optional CHROME_PATH. Run baseline and new production servers, avoid other rendering/build loads.
-- New runtime JSON totals 141351 bytes, lazy-loaded. Existing 19.57MB owner-authorized GLB is reused, not duplicated.
+- New runtime JSON remains below 145KB, lazy-loaded. Existing 19.57MB owner-authorized GLB is reused, not duplicated.
 - Endpoints, selected-object screenshots, day/night screenshots, low-height/mobile checks and continuous recording are in the delivered evidence gallery, outside runtime assets.
 
 ## 已知限制与验收边界
