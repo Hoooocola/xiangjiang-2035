@@ -1,0 +1,19 @@
+{
+  "triangles": 414039,
+  "invalid": 0,
+  "outOfRange": 0,
+  "degenerate": 1442,
+  "longerThan10m": 2050,
+  "longerThan25m": 26,
+  "edgeLengthMeters": {
+    "p50": 2.8178005607210586,
+    "p95": 6.551335741663675,
+    "p99": 8.79261053385171,
+    "max": 38.587044457952445
+  },
+  "aspect": {
+    "p95": 11.830127181686372,
+    "p99": 31.668282271706357
+  },
+  "preparation": "2.5% target + 2.5% relative error + Permissive + 10cm quantization"
+}

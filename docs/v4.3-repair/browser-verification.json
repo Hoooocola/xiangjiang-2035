@@ -1,0 +1,94 @@
+{
+  "viewportSizes": [
+    [
+      1440,
+      900
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    "water scenarios",
+    "governance A/B/C/D",
+    "facility selection and reveal",
+    "section array and selection",
+    "route A/B and interruption",
+    "close panel pose unchanged",
+    "manual camera interrupts guide",
+    "save record",
+    "entity/technical day/night"
+  ],
+  "titles": [
+    {
+      "id": "E-01",
+      "title": "鹅洲岛的区位联系与生态保护背景",
+      "mode": "entity"
+    },
+    {
+      "id": "E-02",
+      "title": "鹅洲岛居民生活与游憩活动的空间分布",
+      "mode": "entity"
+    },
+    {
+      "id": "E-03",
+      "title": "汛期水位变化与洲岛空间分区",
+      "mode": "entity"
+    },
+    {
+      "id": "E-04",
+      "title": "汛期约束下污水收集设施的空间布局",
+      "mode": "reveal"
+    },
+    {
+      "id": "E-05",
+      "title": "污水治理方式的空间适配与组合情景比较",
+      "mode": "technical"
+    },
+    {
+      "id": "P-01",
+      "title": "坪塘矿坑的地貌特征与公共使用背景",
+      "mode": "technical"
+    },
+    {
+      "id": "P-02",
+      "title": "矿坑地形剖面与相对高差分析",
+      "mode": "reveal"
+    },
+    {
+      "id": "P-03",
+      "title": "裸露岩面与生态恢复研究区的空间分布",
+      "mode": "reveal"
+    },
+    {
+      "id": "P-04",
+      "title": "矿坑周边道路联系与场地可达性",
+      "mode": "technical"
+    },
+    {
+      "id": "P-05",
+      "title": "地形坡度、生态分区与活动路径的空间叠合关系",
+      "mode": "technical"
+    },
+    {
+      "id": "P-06",
+      "title": "公共活动路径的空间适配与方案比较",
+      "mode": "technical"
+    },
+    {
+      "id": "P-07",
+      "title": "空间分析发现与后续设计介入方向",
+      "mode": "reveal"
+    }
+  ],
+  "errors": []
+}
