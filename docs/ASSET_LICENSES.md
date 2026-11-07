@@ -60,3 +60,6 @@ GitHub 大文件说明：https://docs.github.com/en/repositories/working-with-fi
 ## V4.2 鹅洲原创派生模型（2026-11-06）
 
 用户在本任务中明确确认鹅洲 OBJ 模型为本人原创，并提供精细原模型目录供评估。V4.2 Visual Lab 使用自行离线简化、合并贴图的派生 `public/data/visual-lab/ezhou-owner.glb`。原始 OBJ/MTL/贴图与 1.92GB 原模型只保留本地；不上传缺失贴图的低模或错配贴图。来源、量化、顶点、纹理和坐标限制见 `public/data/visual-lab/asset-report.json` 与 `docs/v4.2/README.md`。模型不代表设施实测或测绘精度；DEMO 管网单独注明。没有复制 Masar / Celtis 商业资产或上传对标截图。
+## V4.3 视觉修复派生（2026-11-07）
+
+`public/data/visual-lab/ezhou-owner-clean.glb` 继续使用用户明确确认原创、允许共享的同一模型，采用更严格简化与量化，并保留旧 GLB。新单文件约 44.83MB，未启用付费服务或 LFS。来源与质量参数见 `clean-asset-report.json`、`docs/v4.3-repair/README.md`。`ezhou-bank-context.json` 仅裁取项目已许可的 Overture 建筑背景与现有 Mapzen/USGS 视觉地形，沿用原署名和 ODbL 来源；不代表新增实测。未复制 Masar / Celtis 素材或上传参考截图。
