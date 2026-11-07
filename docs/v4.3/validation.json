@@ -1,0 +1,662 @@
+{
+  "baseline": "4f3c8593986496407c0aaf2fb6395504ba68ef11",
+  "date": "2026-11-07",
+  "tests": {
+    "passed": 211,
+    "skippedDatabase": 26,
+    "typecheck": "pass",
+    "lint": "0 errors, 2 pre-existing prototype warnings",
+    "webpackBuild": "pass"
+  },
+  "browser": {
+    "errors": [],
+    "shotIds": [
+      "E-01",
+      "E-02",
+      "E-03",
+      "E-04",
+      "E-05",
+      "P-01",
+      "P-02",
+      "P-03",
+      "P-04",
+      "P-05",
+      "P-06",
+      "P-07"
+    ],
+    "checks": [
+      "Actual canvas ray-pick selects candidate-b",
+      "E04 to E05 keeps selected facility camera",
+      "Analysis counter stable during render frames",
+      "Original V4.2 route still runs",
+      "Video resolver exercised; status 302"
+    ],
+    "closePanelPoseUnchanged": true,
+    "manualInterruption": true,
+    "viewports": [
+      "1920x1080",
+      "1440x900",
+      "1366x768",
+      "390x844"
+    ]
+  },
+  "performance": {
+    "settings": {
+      "browser": "Chrome headless / Apple M3 Metal",
+      "viewport": "1440x900",
+      "dpr": 1,
+      "sampleMs": 3500,
+      "recording": false
+    },
+    "main": [
+      {
+        "port": 3022,
+        "readyMs": 5309,
+        "frames": {
+          "fps": 60.11909849844715,
+          "p95": 16.700000000000728,
+          "heap": 353287202
+        },
+        "data": [
+          {
+            "file": "xiangjiang.geojson?v=1dc25e2244fe",
+            "url": "http://localhost:3022/data/xiangjiang.geojson?v=1dc25e2244fe",
+            "transfer": 1197791,
+            "encoded": 1197491,
+            "decoded": 7129381,
+            "duration": 148.5
+          },
+          {
+            "file": "inland-water.geojson?v=266fa5f716de",
+            "url": "http://localhost:3022/data/inland-water.geojson?v=266fa5f716de",
+            "transfer": 31012,
+            "encoded": 30712,
+            "decoded": 116986,
+            "duration": 12.5
+          },
+          {
+            "file": "terrain.json?v=994c9dc16c2b",
+            "url": "http://localhost:3022/data/terrain.json?v=994c9dc16c2b",
+            "transfer": 298863,
+            "encoded": 298563,
+            "decoded": 1725900,
+            "duration": 71.79999995231628
+          },
+          {
+            "file": "environment.json?v=3518daeda7a9",
+            "url": "http://localhost:3022/data/environment.json?v=3518daeda7a9",
+            "transfer": 1485174,
+            "encoded": 1484874,
+            "decoded": 7921174,
+            "duration": 142.79999995231628
+          },
+          {
+            "file": "context.json?v=26eeb89d5347",
+            "url": "http://localhost:3022/data/context.json?v=26eeb89d5347",
+            "transfer": 1751996,
+            "encoded": 1751696,
+            "decoded": 5533814,
+            "duration": 276.59999990463257
+          }
+        ],
+        "parse": [],
+        "headers": {
+          "inland-water.geojson?v=266fa5f716de": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          },
+          "xiangjiang.geojson?v=1dc25e2244fe": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          },
+          "environment.json?v=3518daeda7a9": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          },
+          "context.json?v=26eeb89d5347": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          },
+          "terrain.json?v=994c9dc16c2b": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          }
+        },
+        "totalTransfer": 4764836,
+        "totalDecoded": 22427255,
+        "metrics": "{\"fps\":60,\"calls\":227,\"triangles\":3418355,\"geometries\":222,\"textures\":5,\"buildings\":158230,\"knownHeight\":1331,\"trees\":41544,\"particles\":160,\"mistLayers\":6,\"atmosphere\":\"full\"}"
+      },
+      {
+        "port": 3025,
+        "readyMs": 5274,
+        "frames": {
+          "fps": 60.095126883312915,
+          "p95": 16.799999999999272,
+          "heap": 350860105
+        },
+        "data": [
+          {
+            "file": "terrain.json?v=994c9dc16c2b",
+            "url": "http://localhost:3025/data/terrain.json?v=994c9dc16c2b",
+            "transfer": 298863,
+            "encoded": 298563,
+            "decoded": 1725900,
+            "duration": 65.79999995231628
+          },
+          {
+            "file": "xiangjiang.geojson?v=1dc25e2244fe",
+            "url": "http://localhost:3025/data/xiangjiang.geojson?v=1dc25e2244fe",
+            "transfer": 1197791,
+            "encoded": 1197491,
+            "decoded": 7129381,
+            "duration": 129.59999990463257
+          },
+          {
+            "file": "inland-water.geojson?v=266fa5f716de",
+            "url": "http://localhost:3025/data/inland-water.geojson?v=266fa5f716de",
+            "transfer": 31012,
+            "encoded": 30712,
+            "decoded": 116986,
+            "duration": 10.5
+          },
+          {
+            "file": "environment.json?v=3518daeda7a9",
+            "url": "http://localhost:3025/data/environment.json?v=3518daeda7a9",
+            "transfer": 1485174,
+            "encoded": 1484874,
+            "decoded": 7921174,
+            "duration": 124.90000009536743
+          },
+          {
+            "file": "context.json?v=26eeb89d5347",
+            "url": "http://localhost:3025/data/context.json?v=26eeb89d5347",
+            "transfer": 1751996,
+            "encoded": 1751696,
+            "decoded": 5533814,
+            "duration": 245.5
+          }
+        ],
+        "parse": [],
+        "headers": {
+          "xiangjiang.geojson?v=1dc25e2244fe": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          },
+          "inland-water.geojson?v=266fa5f716de": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          },
+          "environment.json?v=3518daeda7a9": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          },
+          "context.json?v=26eeb89d5347": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          },
+          "terrain.json?v=994c9dc16c2b": {
+            "encoding": "gzip",
+            "cache": "public, max-age=31536000, immutable"
+          }
+        },
+        "totalTransfer": 4764836,
+        "totalDecoded": 22427255,
+        "metrics": "{\"fps\":60,\"calls\":227,\"triangles\":3418355,\"geometries\":222,\"textures\":5,\"buildings\":158230,\"knownHeight\":1331,\"trees\":41544,\"particles\":160,\"mistLayers\":6,\"atmosphere\":\"full\"}"
+      }
+    ],
+    "scenes": [
+      {
+        "version": "V4.2",
+        "scene": "E-03",
+        "pose": {
+          "target": [
+            -0.7,
+            0.15,
+            2.1
+          ],
+          "distance": 3.8999999999999995,
+          "azimuth": 0.44999999999999996,
+          "polar": 0.95
+        },
+        "frames": {
+          "fps": 60.22205097468391,
+          "p95": 16.799999999999272,
+          "heap": 29287997
+        },
+        "metrics": {
+          "fps": 60,
+          "calls": 32,
+          "triangles": 423991,
+          "lines": 62696,
+          "geometries": 22,
+          "textures": 3,
+          "materials": 14,
+          "transparentLayers": 3,
+          "loadMs": 541.3999999761581,
+          "heap": 27330907
+        }
+      },
+      {
+        "version": "V4.2",
+        "scene": "P-02",
+        "pose": {
+          "target": [
+            -1.6,
+            0.12,
+            0
+          ],
+          "distance": 10.2,
+          "azimuth": -0.8500000000000001,
+          "polar": 1.08
+        },
+        "frames": {
+          "fps": 60.08657022358323,
+          "p95": 16.700000000000728,
+          "heap": 21373818
+        },
+        "metrics": {
+          "fps": 60,
+          "calls": 43,
+          "triangles": 71650,
+          "lines": 16788,
+          "geometries": 34,
+          "textures": 2,
+          "materials": 67,
+          "transparentLayers": 10,
+          "loadMs": 1055.8000000715256,
+          "heap": 30176873
+        }
+      },
+      {
+        "version": "V4.2",
+        "scene": "P-03",
+        "pose": {
+          "target": [
+            -2.9000000000000004,
+            0.38,
+            -2.5
+          ],
+          "distance": 4.8,
+          "azimuth": 0.44999999999999996,
+          "polar": 1
+        },
+        "frames": {
+          "fps": 60.21517650711006,
+          "p95": 16.700000000000728,
+          "heap": 118122663
+        },
+        "metrics": {
+          "fps": 60,
+          "calls": 15,
+          "triangles": 75346,
+          "lines": 33047,
+          "geometries": 13,
+          "textures": 2,
+          "materials": 49,
+          "transparentLayers": 3,
+          "loadMs": 1179.7000000476837,
+          "heap": 108621652
+        }
+      },
+      {
+        "version": "V4.3",
+        "scene": "E-03",
+        "pose": {
+          "target": [
+            -0.7,
+            0.15,
+            2.1
+          ],
+          "distance": 3.8999999999999995,
+          "azimuth": 0.44999999999999996,
+          "polar": 0.95
+        },
+        "frames": {
+          "fps": 60.112247514315825,
+          "p95": 16.700000000000728,
+          "heap": 39518517
+        },
+        "metrics": {
+          "fps": 60,
+          "calls": 37,
+          "triangles": 459411,
+          "lines": 72751,
+          "geometries": 46,
+          "textures": 4,
+          "materials": 58,
+          "transparentLayers": 3,
+          "loadMs": 603.8999999761581,
+          "heap": 32280142
+        },
+        "calculations": 1
+      },
+      {
+        "version": "V4.3",
+        "scene": "P-02",
+        "pose": {
+          "target": [
+            -1.6,
+            0.12,
+            0
+          ],
+          "distance": 10.2,
+          "azimuth": -0.8500000000000001,
+          "polar": 1.08
+        },
+        "frames": {
+          "fps": 60.21173986245471,
+          "p95": 16.799999999999272,
+          "heap": 123697758
+        },
+        "metrics": {
+          "fps": 60,
+          "calls": 43,
+          "triangles": 71650,
+          "lines": 16788,
+          "geometries": 43,
+          "textures": 3,
+          "materials": 102,
+          "transparentLayers": 3,
+          "loadMs": 1233.8000000715256,
+          "heap": 127736423
+        },
+        "calculations": 1
+      },
+      {
+        "version": "V4.3",
+        "scene": "P-03",
+        "pose": {
+          "target": [
+            -2.9000000000000004,
+            0.38,
+            -2.5
+          ],
+          "distance": 4.8,
+          "azimuth": 0.44999999999999996,
+          "polar": 1
+        },
+        "frames": {
+          "fps": 60.112247514315825,
+          "p95": 16.799999999999272,
+          "heap": 120770358
+        },
+        "metrics": {
+          "fps": 60,
+          "calls": 15,
+          "triangles": 75346,
+          "lines": 33047,
+          "geometries": 25,
+          "textures": 3,
+          "materials": 102,
+          "transparentLayers": 3,
+          "loadMs": 1265.2000000476837,
+          "heap": 113578867
+        },
+        "calculations": 1
+      }
+    ],
+    "switches": [
+      {
+        "i": 0,
+        "site": "ezhou",
+        "metrics": {
+          "fps": 60,
+          "calls": 5,
+          "triangles": 414666,
+          "lines": 9379,
+          "geometries": 5,
+          "textures": 4,
+          "materials": 57,
+          "transparentLayers": 3,
+          "loadMs": 621.3999999761581,
+          "heap": 76805935
+        }
+      },
+      {
+        "i": 1,
+        "site": "quarry",
+        "metrics": {
+          "fps": 60,
+          "calls": 18,
+          "triangles": 82750,
+          "lines": 7205,
+          "geometries": 14,
+          "textures": 3,
+          "materials": 75,
+          "transparentLayers": 0,
+          "loadMs": 1276.1000000238419,
+          "heap": 137003894
+        }
+      },
+      {
+        "i": 2,
+        "site": "ezhou",
+        "metrics": {
+          "fps": 59,
+          "calls": 5,
+          "triangles": 414666,
+          "lines": 9379,
+          "geometries": 5,
+          "textures": 4,
+          "materials": 57,
+          "transparentLayers": 3,
+          "loadMs": 622.3000000715256,
+          "heap": 231605597
+        }
+      },
+      {
+        "i": 3,
+        "site": "quarry",
+        "metrics": {
+          "fps": 60,
+          "calls": 18,
+          "triangles": 82750,
+          "lines": 7205,
+          "geometries": 14,
+          "textures": 3,
+          "materials": 75,
+          "transparentLayers": 0,
+          "loadMs": 1219.6000000238419,
+          "heap": 339479876
+        }
+      },
+      {
+        "i": 4,
+        "site": "ezhou",
+        "metrics": {
+          "fps": 60,
+          "calls": 5,
+          "triangles": 414666,
+          "lines": 9379,
+          "geometries": 5,
+          "textures": 4,
+          "materials": 57,
+          "transparentLayers": 3,
+          "loadMs": 583.5,
+          "heap": 121279786
+        }
+      },
+      {
+        "i": 5,
+        "site": "quarry",
+        "metrics": {
+          "fps": 60,
+          "calls": 18,
+          "triangles": 82750,
+          "lines": 7205,
+          "geometries": 14,
+          "textures": 3,
+          "materials": 75,
+          "transparentLayers": 0,
+          "loadMs": 1216,
+          "heap": 116293602
+        }
+      },
+      {
+        "i": 6,
+        "site": "ezhou",
+        "metrics": {
+          "fps": 60,
+          "calls": 5,
+          "triangles": 414666,
+          "lines": 9379,
+          "geometries": 5,
+          "textures": 4,
+          "materials": 57,
+          "transparentLayers": 3,
+          "loadMs": 578.0999999046326,
+          "heap": 102919256
+        }
+      },
+      {
+        "i": 7,
+        "site": "quarry",
+        "metrics": {
+          "fps": 60,
+          "calls": 18,
+          "triangles": 82750,
+          "lines": 7205,
+          "geometries": 14,
+          "textures": 3,
+          "materials": 75,
+          "transparentLayers": 0,
+          "loadMs": 1215.6999999284744,
+          "heap": 72209939
+        }
+      }
+    ]
+  },
+  "regression": {
+    "errors": [],
+    "checks": [
+      "V4.3 entries and legacy research coexist",
+      "Course mode opens",
+      "Course mode exits without removing main map",
+      {
+        "url": "/api/spatial-data?action=layers",
+        "status": 200
+      },
+      {
+        "url": "/api/spatial-data?action=analysis&studyAreaId=yanghu",
+        "status": 200
+      },
+      {
+        "url": "/student-works/pinwall-55730/pdf",
+        "status": 302,
+        "destination": "https://oss.pinwall.cn/pdf/XZn22b8HbTrKSYcEAzwE.pdf"
+      },
+      {
+        "url": "/student-works/pinwall-55734/cover",
+        "status": 302,
+        "destination": "https://oss.pinwall.cn/images/J5PjzKEAkFwHEcwSJKPM.png"
+      }
+    ],
+    "parsing": [
+      {
+        "file": "terrain.json",
+        "medianParseMs": 2.799999952316284
+      },
+      {
+        "file": "xiangjiang.geojson",
+        "medianParseMs": 18.5
+      },
+      {
+        "file": "context.json",
+        "medianParseMs": 12.800000071525574
+      },
+      {
+        "file": "inland-water.geojson",
+        "medianParseMs": 0.2999999523162842
+      },
+      {
+        "file": "environment.json",
+        "medianParseMs": 16.899999976158142
+      }
+    ],
+    "buttons": [
+      "湘江 2035XIANGJIANG-2035",
+      "图层 0",
+      "资料",
+      "设计方案",
+      "地点研究",
+      "橘子洲洲岛 / 公共空间",
+      "鹅洲洲岛 / 研究样板",
+      "铜官窑附近研究范围 / 北端",
+      "昭山附近山体 / 地形观察",
+      "月亮岛洲岛 / 北段生态",
+      "洋湖湿地生态自然 / 湿地",
+      "巴溪洲洲岛 / 南段生态",
+      "蔡家洲01 洲岛",
+      "傅家洲01 洲岛",
+      "汉长沙国考古遗址公园04 历史文化 / 景观",
+      "史家坡社区05 社区 / 街区",
+      "烈士陵园06 产业 / 公共设施 / 创新节点",
+      "开始探索START THE EXPERIENCE",
+      "",
+      "",
+      "长沙",
+      "铜官窑",
+      "昭山",
+      "氛围",
+      "",
+      "",
+      "",
+      "湘江全段THE RIVER CORRIDOR",
+      "地点探索EXPLORE THE PLACES",
+      "N",
+      ""
+    ]
+  },
+  "extra": {
+    "checks": [
+      "Actual canvas ray-pick selects candidate-b",
+      "E04 to E05 keeps selected facility camera",
+      "Analysis counter stable during render frames",
+      "Original V4.2 route still runs",
+      "Video resolver exercised; status 302"
+    ],
+    "errors": [],
+    "resources": [
+      {
+        "file": "worldcover-2021-core.bin",
+        "status": 200,
+        "encoding": null,
+        "cache": "public, max-age=0",
+        "transfer": 2937900,
+        "encoded": 2937600,
+        "decoded": 2937600
+      },
+      {
+        "file": "worldcover-2021-core.json",
+        "status": 200,
+        "encoding": "gzip",
+        "cache": "public, max-age=0",
+        "transfer": 344971,
+        "encoded": 344671,
+        "decoded": 8812911
+      },
+      {
+        "file": "gbif-core.geojson",
+        "status": 200,
+        "encoding": "gzip",
+        "cache": "public, max-age=0",
+        "transfer": 4711,
+        "encoded": 4411,
+        "decoded": 83647
+      },
+      {
+        "file": "water-quality-2025-11.json",
+        "status": 200,
+        "encoding": "gzip",
+        "cache": "public, max-age=0",
+        "transfer": 1404,
+        "encoded": 1104,
+        "decoded": 11207
+      }
+    ],
+    "video": {
+      "status": 302,
+      "destination": "/video/kaz7chwWd7pJcSQWPPHd.mp4"
+    }
+  }
+}

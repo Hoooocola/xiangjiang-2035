@@ -1,5 +1,8 @@
 # Deployment needs runtime assets and metadata, not offline preparation inputs.
-docs/
+docs/*
+!docs/v2.6/
+docs/v2.6/*
+!docs/v2.6/import-report.json
 exports/
 data/osm/
 data/terrain/
