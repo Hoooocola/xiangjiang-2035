@@ -1,0 +1,712 @@
+{
+  "settings": {
+    "viewport": [
+      1440,
+      900
+    ],
+    "dpr": 1,
+    "sampleMs": 3500,
+    "recording": false,
+    "browser": "Chrome headless on Apple M3"
+  },
+  "main": [
+    {
+      "port": 3025,
+      "readyMs": 5993,
+      "data": [
+        {
+          "file": "xiangjiang.geojson",
+          "transfer": 1197791,
+          "decoded": 7129381
+        },
+        {
+          "file": "inland-water.geojson",
+          "transfer": 31012,
+          "decoded": 116986
+        },
+        {
+          "file": "terrain.json",
+          "transfer": 298863,
+          "decoded": 1725900
+        },
+        {
+          "file": "environment.json",
+          "transfer": 1485174,
+          "decoded": 7921174
+        },
+        {
+          "file": "context.json",
+          "transfer": 1751996,
+          "decoded": 5533814
+        }
+      ],
+      "frames": {
+        "fps": 60.218613543268106,
+        "p95": 16.799999999999272,
+        "heap": 362664362
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 227,
+        "triangles": 3418355,
+        "geometries": 222,
+        "textures": 5,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "port": 3031,
+      "readyMs": 6042,
+      "data": [
+        {
+          "file": "xiangjiang.geojson",
+          "transfer": 1197791,
+          "decoded": 7129381
+        },
+        {
+          "file": "terrain.json",
+          "transfer": 298863,
+          "decoded": 1725900
+        },
+        {
+          "file": "environment.json",
+          "transfer": 1485174,
+          "decoded": 7921174
+        },
+        {
+          "file": "context.json",
+          "transfer": 1751996,
+          "decoded": 5533814
+        },
+        {
+          "file": "inland-water.geojson",
+          "transfer": 31012,
+          "decoded": 116986
+        }
+      ],
+      "frames": {
+        "fps": 60.228927012084604,
+        "p95": 16.799999999999272,
+        "heap": 363438589
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 227,
+        "triangles": 3418355,
+        "geometries": 222,
+        "textures": 5,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    }
+  ],
+  "scenes": [
+    {
+      "port": 3025,
+      "site": "ezhou",
+      "step": 0,
+      "loadMs": 873,
+      "mode": "entity",
+      "pose": {
+        "target": [
+          0,
+          0.1,
+          0
+        ],
+        "distance": 31,
+        "azimuth": 0.7,
+        "polar": 1.05
+      },
+      "frames": {
+        "fps": 60.08999259636193,
+        "p95": 16.700000000000728,
+        "heap": 32135294
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 5,
+        "triangles": 414666,
+        "lines": 9379,
+        "geometries": 5,
+        "textures": 4,
+        "materials": 57,
+        "transparentLayers": 3,
+        "loadMs": 601.1999999284744,
+        "heap": 31983118
+      }
+    },
+    {
+      "port": 3025,
+      "site": "ezhou",
+      "step": 1,
+      "loadMs": 873,
+      "mode": "reveal",
+      "pose": {
+        "target": [
+          0,
+          0.08,
+          -1.7
+        ],
+        "distance": 13,
+        "azimuth": 0.65,
+        "polar": 0.95
+      },
+      "frames": {
+        "fps": 60.17911128898375,
+        "p95": 16.799999999999272,
+        "heap": 41137899
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 32,
+        "triangles": 415131,
+        "lines": 67495,
+        "geometries": 36,
+        "textures": 4,
+        "materials": 64,
+        "transparentLayers": 3,
+        "loadMs": 601.1999999284744,
+        "heap": 39534471
+      }
+    },
+    {
+      "port": 3025,
+      "site": "ezhou",
+      "step": 2,
+      "loadMs": 873,
+      "mode": "entity",
+      "pose": {
+        "target": [
+          0,
+          0.1,
+          0
+        ],
+        "distance": 27,
+        "azimuth": 0.55,
+        "polar": 0.95
+      },
+      "frames": {
+        "fps": 60.10197396653056,
+        "p95": 16.799999999999272,
+        "heap": 36644660
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 30,
+        "triangles": 447031,
+        "lines": 2507,
+        "geometries": 34,
+        "textures": 4,
+        "materials": 57,
+        "transparentLayers": 3,
+        "loadMs": 601.1999999284744,
+        "heap": 36383036
+      }
+    },
+    {
+      "port": 3025,
+      "site": "ezhou",
+      "step": 3,
+      "loadMs": 873,
+      "mode": "technical",
+      "pose": {
+        "target": [
+          -0.2,
+          0.07,
+          0.8
+        ],
+        "distance": 8,
+        "azimuth": 0.6,
+        "polar": 1.02
+      },
+      "frames": {
+        "fps": 60.24612397649338,
+        "p95": 16.700000000000728,
+        "heap": 43003816
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 46,
+        "triangles": 459843,
+        "lines": 72799,
+        "geometries": 46,
+        "textures": 4,
+        "materials": 58,
+        "transparentLayers": 3,
+        "loadMs": 601.1999999284744,
+        "heap": 39573112
+      }
+    },
+    {
+      "port": 3025,
+      "site": "quarry",
+      "step": 0,
+      "loadMs": 1437,
+      "mode": "entity",
+      "pose": {
+        "target": [
+          0,
+          0.12,
+          0
+        ],
+        "distance": 17,
+        "azimuth": 0.65,
+        "polar": 1.03
+      },
+      "frames": {
+        "fps": 60.275381364836974,
+        "p95": 16.700000000000728,
+        "heap": 127584522
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 18,
+        "triangles": 82750,
+        "lines": 7205,
+        "geometries": 14,
+        "textures": 3,
+        "materials": 75,
+        "transparentLayers": 0,
+        "loadMs": 1240.8999999761581,
+        "heap": 126056914
+      }
+    },
+    {
+      "port": 3025,
+      "site": "quarry",
+      "step": 1,
+      "loadMs": 1437,
+      "mode": "reveal",
+      "pose": {
+        "target": [
+          -1.2,
+          0.12,
+          0
+        ],
+        "distance": 11,
+        "azimuth": -0.8499999999999999,
+        "polar": 1.08
+      },
+      "frames": {
+        "fps": 60.13451892548302,
+        "p95": 16.700000000000728,
+        "heap": 61714396
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 42,
+        "triangles": 71650,
+        "lines": 7968,
+        "geometries": 42,
+        "textures": 3,
+        "materials": 75,
+        "transparentLayers": 2,
+        "loadMs": 1240.8999999761581,
+        "heap": 61714396
+      }
+    },
+    {
+      "port": 3025,
+      "site": "quarry",
+      "step": 2,
+      "loadMs": 1437,
+      "mode": "reveal",
+      "pose": {
+        "target": [
+          -2.8999999999999995,
+          0.38,
+          -2.5
+        ],
+        "distance": 5.2,
+        "azimuth": 0.44999999999999996,
+        "polar": 1
+      },
+      "frames": {
+        "fps": 60.2702162313436,
+        "p95": 16.700000000000728,
+        "heap": 52908348
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 17,
+        "triangles": 935496,
+        "lines": 19157,
+        "geometries": 51,
+        "textures": 3,
+        "materials": 75,
+        "transparentLayers": 2,
+        "loadMs": 1240.8999999761581,
+        "heap": 51201980
+      }
+    },
+    {
+      "port": 3031,
+      "site": "ezhou",
+      "step": 0,
+      "loadMs": 1318,
+      "mode": "entity",
+      "pose": {
+        "target": [
+          0,
+          0.1,
+          0
+        ],
+        "distance": 31,
+        "azimuth": 0.7,
+        "polar": 1.05
+      },
+      "frames": {
+        "fps": 60.25644686948433,
+        "p95": 16.800000000000182,
+        "heap": 138248416
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 7,
+        "triangles": 1523389,
+        "lines": 9379,
+        "geometries": 7,
+        "textures": 4,
+        "materials": 59,
+        "transparentLayers": 3,
+        "loadMs": 1044.8000000715256,
+        "heap": 137959232
+      }
+    },
+    {
+      "port": 3031,
+      "site": "ezhou",
+      "step": 1,
+      "loadMs": 1318,
+      "mode": "entity",
+      "pose": {
+        "target": [
+          0,
+          0.08,
+          -1.7
+        ],
+        "distance": 13,
+        "azimuth": 0.65,
+        "polar": 0.95
+      },
+      "frames": {
+        "fps": 60.29236107324666,
+        "p95": 16.700000000000728,
+        "heap": 71171144
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 35,
+        "triangles": 1524097,
+        "lines": 9679,
+        "geometries": 37,
+        "textures": 4,
+        "materials": 65,
+        "transparentLayers": 3,
+        "loadMs": 1044.8000000715256,
+        "heap": 68653848
+      }
+    },
+    {
+      "port": 3031,
+      "site": "ezhou",
+      "step": 2,
+      "loadMs": 1318,
+      "mode": "entity",
+      "pose": {
+        "target": [
+          0,
+          0.1,
+          0
+        ],
+        "distance": 27,
+        "azimuth": 0.55,
+        "polar": 0.95
+      },
+      "frames": {
+        "fps": 60.127664426574235,
+        "p95": 16.799999999999272,
+        "heap": 85552043
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 34,
+        "triangles": 1527269,
+        "lines": 1654,
+        "geometries": 35,
+        "textures": 4,
+        "materials": 59,
+        "transparentLayers": 3,
+        "loadMs": 1044.8000000715256,
+        "heap": 84497203
+      }
+    },
+    {
+      "port": 3031,
+      "site": "ezhou",
+      "step": 3,
+      "loadMs": 1318,
+      "mode": "technical",
+      "pose": {
+        "target": [
+          -0.2,
+          0.07,
+          0.8
+        ],
+        "distance": 8,
+        "azimuth": 0.6,
+        "polar": 1.02
+      },
+      "frames": {
+        "fps": 60.05236794334217,
+        "p95": 16.700000000000728,
+        "heap": 75169311
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 46,
+        "triangles": 1487973,
+        "lines": 24154,
+        "geometries": 48,
+        "textures": 4,
+        "materials": 60,
+        "transparentLayers": 3,
+        "loadMs": 1044.8000000715256,
+        "heap": 74335927
+      }
+    },
+    {
+      "port": 3031,
+      "site": "quarry",
+      "step": 0,
+      "loadMs": 1507,
+      "mode": "technical",
+      "pose": {
+        "target": [
+          0,
+          0.12,
+          0
+        ],
+        "distance": 17,
+        "azimuth": 0.65,
+        "polar": 1.03
+      },
+      "frames": {
+        "fps": 60.06091486111071,
+        "p95": 16.800000000000182,
+        "heap": 136708259
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 21,
+        "triangles": 82750,
+        "lines": 73440,
+        "geometries": 17,
+        "textures": 2,
+        "materials": 104,
+        "transparentLayers": 3,
+        "loadMs": 1325.7999999523163,
+        "heap": 134897499
+      }
+    },
+    {
+      "port": 3031,
+      "site": "quarry",
+      "step": 1,
+      "loadMs": 1507,
+      "mode": "reveal",
+      "pose": {
+        "target": [
+          -1.2,
+          0.12,
+          0
+        ],
+        "distance": 11,
+        "azimuth": -0.8499999999999999,
+        "polar": 1.08
+      },
+      "frames": {
+        "fps": 60.14480360380479,
+        "p95": 16.700000000000728,
+        "heap": 55323411
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 42,
+        "triangles": 71650,
+        "lines": 7968,
+        "geometries": 44,
+        "textures": 3,
+        "materials": 77,
+        "transparentLayers": 2,
+        "loadMs": 1325.7999999523163,
+        "heap": 54081211
+      }
+    },
+    {
+      "port": 3031,
+      "site": "quarry",
+      "step": 2,
+      "loadMs": 1507,
+      "mode": "reveal",
+      "pose": {
+        "target": [
+          -2.8999999999999995,
+          0.38,
+          -2.5
+        ],
+        "distance": 5.2,
+        "azimuth": 0.44999999999999996,
+        "polar": 1
+      },
+      "frames": {
+        "fps": 60.148232611583275,
+        "p95": 16.799999999999272,
+        "heap": 48126398
+      },
+      "metrics": {
+        "fps": 60,
+        "calls": 17,
+        "triangles": 935496,
+        "lines": 19157,
+        "geometries": 53,
+        "textures": 3,
+        "materials": 77,
+        "transparentLayers": 2,
+        "loadMs": 1325.7999999523163,
+        "heap": 46257342
+      }
+    }
+  ],
+  "switches": [
+    {
+      "site": "ezhou",
+      "metrics": {
+        "fps": 60,
+        "calls": 7,
+        "triangles": 1523389,
+        "lines": 9379,
+        "geometries": 7,
+        "textures": 4,
+        "materials": 59,
+        "transparentLayers": 3,
+        "loadMs": 1094.5,
+        "heap": 133394097
+      }
+    },
+    {
+      "site": "quarry",
+      "metrics": {
+        "fps": 60,
+        "calls": 21,
+        "triangles": 82750,
+        "lines": 73440,
+        "geometries": 17,
+        "textures": 3,
+        "materials": 104,
+        "transparentLayers": 3,
+        "loadMs": 1355.3999999761581,
+        "heap": 168793943
+      }
+    },
+    {
+      "site": "ezhou",
+      "metrics": {
+        "fps": 47,
+        "calls": 7,
+        "triangles": 1523389,
+        "lines": 9379,
+        "geometries": 7,
+        "textures": 4,
+        "materials": 59,
+        "transparentLayers": 3,
+        "loadMs": 1054.6000000238419,
+        "heap": 286168902
+      }
+    },
+    {
+      "site": "quarry",
+      "metrics": {
+        "fps": 60,
+        "calls": 21,
+        "triangles": 82750,
+        "lines": 73440,
+        "geometries": 17,
+        "textures": 3,
+        "materials": 104,
+        "transparentLayers": 3,
+        "loadMs": 1310,
+        "heap": 93359092
+      }
+    },
+    {
+      "site": "ezhou",
+      "metrics": {
+        "fps": 48,
+        "calls": 7,
+        "triangles": 1523389,
+        "lines": 9379,
+        "geometries": 7,
+        "textures": 4,
+        "materials": 59,
+        "transparentLayers": 3,
+        "loadMs": 1019.9000000953674,
+        "heap": 160656535
+      }
+    },
+    {
+      "site": "quarry",
+      "metrics": {
+        "fps": 60,
+        "calls": 21,
+        "triangles": 82750,
+        "lines": 73440,
+        "geometries": 17,
+        "textures": 3,
+        "materials": 104,
+        "transparentLayers": 3,
+        "loadMs": 1328.1000000238419,
+        "heap": 175780188
+      }
+    },
+    {
+      "site": "ezhou",
+      "metrics": {
+        "fps": 49,
+        "calls": 7,
+        "triangles": 1523389,
+        "lines": 9379,
+        "geometries": 7,
+        "textures": 4,
+        "materials": 59,
+        "transparentLayers": 3,
+        "loadMs": 1017.3999999761581,
+        "heap": 155160247
+      }
+    },
+    {
+      "site": "quarry",
+      "metrics": {
+        "fps": 60,
+        "calls": 21,
+        "triangles": 82750,
+        "lines": 73440,
+        "geometries": 17,
+        "textures": 3,
+        "materials": 104,
+        "transparentLayers": 3,
+        "loadMs": 1330.3000000715256,
+        "heap": 175756944
+      }
+    }
+  ]
+}

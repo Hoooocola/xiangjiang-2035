@@ -2,10 +2,10 @@ import {MathUtils} from 'three';
 import {createAoiSampler} from './aoi';
 export interface TerrainGrid {
  width:number; height:number; x0:number; z0:number; dx:number; dz:number;
- elevations:number[]; riverDistance:number[]; water:number[]; forest?:number[];
+ elevations:number[]; riverDistance:number[]; water:number[]; forest?:ArrayLike<number>;
 }
 export function terrainSampler(grid:TerrainGrid) {
- const sample=(values:number[],x:number,z:number)=>{
+ const sample=(values:ArrayLike<number>,x:number,z:number)=>{
   const u=MathUtils.clamp((x-grid.x0)/grid.dx,0,grid.width-1.001);
   const v=MathUtils.clamp((z-grid.z0)/grid.dz,0,grid.height-1.001);
   const col=Math.floor(u),row=Math.floor(v),i=row*grid.width+col;

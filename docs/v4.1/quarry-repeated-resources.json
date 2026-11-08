@@ -1,0 +1,74 @@
+{
+  "rounds": [
+    {
+      "fps": 60,
+      "calls": 41,
+      "triangles": 317566,
+      "geometries": 41,
+      "textures": 3
+    },
+    {
+      "fps": 60,
+      "calls": 41,
+      "triangles": 317566,
+      "geometries": 41,
+      "textures": 3
+    }
+  ],
+  "samples": [
+    {
+      "round": 1,
+      "step": 1,
+      "fps": 60.23294509103626,
+      "p95": 16.700000000000728,
+      "metrics": {
+        "fps": 60,
+        "calls": 28,
+        "triangles": 310012,
+        "geometries": 28,
+        "textures": 3
+      }
+    },
+    {
+      "round": 1,
+      "step": 4,
+      "fps": 60.28711321128821,
+      "p95": 16.700000000000728,
+      "metrics": {
+        "fps": 60,
+        "calls": 41,
+        "triangles": 317566,
+        "geometries": 41,
+        "textures": 3
+      }
+    },
+    {
+      "round": 2,
+      "step": 1,
+      "fps": 60.18287614202171,
+      "p95": 16.799999999999272,
+      "metrics": {
+        "fps": 60,
+        "calls": 28,
+        "triangles": 310012,
+        "geometries": 41,
+        "textures": 3
+      }
+    },
+    {
+      "round": 2,
+      "step": 4,
+      "fps": 60.21891738981414,
+      "p95": 16.799999999999272,
+      "metrics": {
+        "fps": 60,
+        "calls": 41,
+        "triangles": 317566,
+        "geometries": 41,
+        "textures": 3
+      }
+    }
+  ],
+  "errors": [],
+  "schedulerCeiling": 60.12290317080209
+}

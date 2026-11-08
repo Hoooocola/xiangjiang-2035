@@ -1,0 +1,81 @@
+{
+  "base": "http://127.0.0.1:3021",
+  "sizes": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "checks": [
+        "2026:39/14/11; 44px targets; reserved dock space; elastic scroll region",
+        "2024/2025/2026 and explicit all-years switch update same dataset",
+        "all themes/search; square cover; list wheel does not zoom; last work reachable",
+        "Orange Isle6/Ezhou4; real marker and multi-place selection; per-work attachment indexes",
+        "11 unlocated works readable; actual three-PDF work; close retains search",
+        "compact menu: actual 160/48/0 render counts; outside/Escape close; day/night",
+        "no old demo/guide; brand exact; GIS/research preserved; independent course data consistent"
+      ],
+      "layout": {
+        "height": 588,
+        "scroll": 951,
+        "bottom": 794
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "checks": [
+        "2026:39/14/11; 44px targets; reserved dock space; elastic scroll region",
+        "2024/2025/2026 and explicit all-years switch update same dataset",
+        "all themes/search; square cover; list wheel does not zoom; last work reachable",
+        "Orange Isle6/Ezhou4; real marker and multi-place selection; per-work attachment indexes",
+        "11 unlocated works readable; actual three-PDF work; close retains search",
+        "compact menu: actual 160/48/0 render counts; outside/Escape close; day/night",
+        "no old demo/guide; brand exact; GIS/research preserved; independent course data consistent"
+      ],
+      "layout": {
+        "height": 448,
+        "scroll": 951,
+        "bottom": 654
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "checks": [
+        "2026:39/14/11; 44px targets; reserved dock space; elastic scroll region",
+        "2024/2025/2026 and explicit all-years switch update same dataset",
+        "all themes/search; square cover; list wheel does not zoom; last work reachable",
+        "Orange Isle6/Ezhou4; real marker and multi-place selection; per-work attachment indexes",
+        "11 unlocated works readable; actual three-PDF work; close retains search",
+        "compact menu: actual 160/48/0 render counts; outside/Escape close; day/night",
+        "no old demo/guide; brand exact; GIS/research preserved; independent course data consistent"
+      ],
+      "layout": {
+        "height": 316,
+        "scroll": 951,
+        "bottom": 522
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "checks": [
+        "2026:39/14/11; 44px targets; reserved dock space; elastic scroll region",
+        "2024/2025/2026 and explicit all-years switch update same dataset",
+        "all themes/search; square cover; list wheel does not zoom; last work reachable",
+        "Orange Isle6/Ezhou4; real marker and multi-place selection; per-work attachment indexes",
+        "11 unlocated works readable; actual three-PDF work; close retains search",
+        "compact menu: actual 160/48/0 render counts; outside/Escape close; day/night",
+        "no old demo/guide; brand exact; GIS/research preserved; independent course data consistent"
+      ],
+      "layout": {
+        "height": 336,
+        "scroll": 943,
+        "bottom": 596
+      }
+    }
+  ],
+  "errors": [],
+  "mediaWarnings": [],
+  "unexpectedNetwork": [],
+  "functionalChecks": 28
+}

@@ -32,7 +32,7 @@ export function createExploration(source:SceneData,relief:T.BufferGeometry,heigh
   float oldHit=1.-step(.5,abs(code-uOld)),hit=1.-step(.5,abs(code-uClass));float reveal=mix(oldHit,hit,uFade);
   float grain=step(.76,fract(sin(dot(floor(vWorld.xz*6.),vec2(12.9898,78.233)))*43758.5453));float stripe=step(.8,fract((vWorld.x+vWorld.z)*5.));float pattern=code<15.?grain:code<35.?grain*.65:code<45.?stripe:code<55.?stripe*.45:grain*.6;
   float day=1.-uNight,boundary=0.;if(day>.05&&reveal>.01&&inside<.99){float a=floor(texture2D(uCover,uv+vec2(uTexel.x,0.)).r*255.+.5),b=floor(texture2D(uCover,uv-vec2(uTexel.x,0.)).r*255.+.5),c=floor(texture2D(uCover,uv+vec2(0.,uTexel.y)).r*255.+.5),d=floor(texture2D(uCover,uv-vec2(0.,uTexel.y)).r*255.+.5);boundary=step(.5,max(max(abs(code-a),abs(code-b)),max(abs(code-c),abs(code-d))));}
-  float edge=min(min(uv.x,1.-uv.x),min(uv.y,1.-uv.y));float alpha=mix(reveal*(.045+day*.035+pattern*(.18+day*.10)+boundary*day*.18)*smoothstep(0.,.012,edge),.83,inside);if(alpha<.002)discard;
+  float edge=min(min(uv.x,1.-uv.x),min(uv.y,1.-uv.y));float alpha=mix(reveal*(.045+day*.09+pattern*(.18+day*.15)+boundary*day*.26)*smoothstep(0.,.012,edge),.83,inside);if(alpha<.002)discard;
   vec3 color=mix(tint(code),tint(code)*1.15+vec3(.04),uNight);color=mix(color,mix(tint(code),vec3(.22,.31,.35),.75),day*(1.-inside));gl_FragColor=vec4(color,alpha);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>

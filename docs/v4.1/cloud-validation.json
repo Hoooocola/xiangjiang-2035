@@ -1,0 +1,143 @@
+{
+  "base": "https://xiangjiang-2035-4y296o247-huo2.vercel.app",
+  "checks": [
+    "Cloud new day theme, land cover layer and 39 course works preserved",
+    "Cloud graph8/4->7/5, real outlines hover, close/reopen keeps camera/model/data",
+    "Cloud quarry theme retained, slope/model linkage and DEMO access disconnection correct"
+  ],
+  "errors": [],
+  "responses": [
+    {
+      "file": "inland-water.geojson?v=266fa5f716de",
+      "encoding": "br",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "terrain.json?v=994c9dc16c2b",
+      "encoding": "br",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "xiangjiang.geojson?v=1dc25e2244fe",
+      "encoding": "br",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "environment.json?v=3518daeda7a9",
+      "encoding": "br",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "context.json?v=26eeb89d5347",
+      "encoding": "br",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "xiangjiang.geojson?v=1dc25e2244fe",
+      "encoding": "br",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "terrain.json?v=994c9dc16c2b",
+      "encoding": "br",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "context.json?v=26eeb89d5347",
+      "encoding": "br",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "environment.json?v=3518daeda7a9",
+      "encoding": "br",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "inland-water.geojson?v=266fa5f716de",
+      "encoding": "br",
+      "cache": "public, max-age=31536000, immutable"
+    }
+  ],
+  "cold": {
+    "interactiveMs": 11774,
+    "resources": [
+      {
+        "file": "terrain.json?v=994c9dc16c2b",
+        "transfer": 268737,
+        "encoded": 268437,
+        "decoded": 1725900
+      },
+      {
+        "file": "xiangjiang.geojson?v=1dc25e2244fe",
+        "transfer": 1246429,
+        "encoded": 1246129,
+        "decoded": 7129381
+      },
+      {
+        "file": "context.json?v=26eeb89d5347",
+        "transfer": 1939552,
+        "encoded": 1939252,
+        "decoded": 5533814
+      },
+      {
+        "file": "inland-water.geojson?v=266fa5f716de",
+        "transfer": 31327,
+        "encoded": 31027,
+        "decoded": 116986
+      },
+      {
+        "file": "environment.json?v=3518daeda7a9",
+        "transfer": 1477049,
+        "encoded": 1476749,
+        "decoded": 7921174
+      }
+    ]
+  },
+  "warm": {
+    "interactiveMs": 5803,
+    "resources": [
+      {
+        "file": "xiangjiang.geojson?v=1dc25e2244fe",
+        "transfer": 0,
+        "encoded": 1246129,
+        "decoded": 7129381
+      },
+      {
+        "file": "terrain.json?v=994c9dc16c2b",
+        "transfer": 0,
+        "encoded": 268437,
+        "decoded": 1725900
+      },
+      {
+        "file": "inland-water.geojson?v=266fa5f716de",
+        "transfer": 0,
+        "encoded": 31027,
+        "decoded": 116986
+      },
+      {
+        "file": "context.json?v=26eeb89d5347",
+        "transfer": 0,
+        "encoded": 1939252,
+        "decoded": 5533814
+      },
+      {
+        "file": "environment.json?v=3518daeda7a9",
+        "transfer": 0,
+        "encoded": 1476749,
+        "decoded": 7921174
+      }
+    ]
+  },
+  "media": [
+    {
+      "kind": "pdf",
+      "status": 302,
+      "privateNoStore": true
+    },
+    {
+      "kind": "video",
+      "status": 302,
+      "privateNoStore": true
+    }
+  ]
+}

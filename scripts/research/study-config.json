@@ -1,0 +1,277 @@
+{
+  "homes": [
+    {
+      "serviceUnits": 4,
+      "spatialType": "沿路居住组团",
+      "roadReference": "way/1352284885",
+      "plannedServiceId": "service-a",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 6,
+      "spatialType": "耕作空间边缘组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-a",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 8,
+      "spatialType": "滨水生活组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-a",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 5,
+      "spatialType": "林缘居住组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-a",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 7,
+      "spatialType": "沿路居住组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-a",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 3,
+      "spatialType": "耕作空间边缘组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-a",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 6,
+      "spatialType": "滨水生活组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-b",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 8,
+      "spatialType": "林缘居住组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-b",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 4,
+      "spatialType": "沿路居住组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-b",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 5,
+      "spatialType": "耕作空间边缘组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-b",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 7,
+      "spatialType": "滨水生活组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-b",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    },
+    {
+      "serviceUnits": 3,
+      "spatialType": "林缘居住组团",
+      "roadReference": "way/390263632",
+      "plannedServiceId": "service-b",
+      "followUp": [
+        "实际建筑用途与服务单元数量",
+        "现状接入管线与设施运行记录",
+        "道路通达与住户使用访谈",
+        "水环境监测与运维责任"
+      ]
+    }
+  ],
+  "access": {
+    "state": "DEMO",
+    "entryId": "entry",
+    "source": "Road orientation reconstructed from published aerial context; unregistered local demonstration graph, not an existing access survey.",
+    "nodes": [
+      {
+        "id": "west",
+        "name": "外围道路示意 A",
+        "point": [
+          -460,
+          -300
+        ]
+      },
+      {
+        "id": "north",
+        "name": "外围道路示意 B",
+        "point": [
+          -230,
+          -430
+        ]
+      },
+      {
+        "id": "junction",
+        "name": "示意道路交点",
+        "point": [
+          -330,
+          -290
+        ]
+      },
+      {
+        "id": "entry",
+        "name": "模拟入口",
+        "point": [
+          -280,
+          -185
+        ]
+      },
+      {
+        "id": "arrival",
+        "name": "模拟到达空间",
+        "point": [
+          -245,
+          -160
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "access-west",
+        "from": "west",
+        "to": "junction",
+        "kind": "road",
+        "points": [
+          [
+            -460,
+            -300
+          ],
+          [
+            -395,
+            -310
+          ],
+          [
+            -330,
+            -290
+          ]
+        ]
+      },
+      {
+        "id": "access-north",
+        "from": "north",
+        "to": "junction",
+        "kind": "road",
+        "points": [
+          [
+            -230,
+            -430
+          ],
+          [
+            -290,
+            -390
+          ],
+          [
+            -330,
+            -290
+          ]
+        ]
+      },
+      {
+        "id": "access-entry",
+        "from": "junction",
+        "to": "entry",
+        "kind": "connector",
+        "points": [
+          [
+            -330,
+            -290
+          ],
+          [
+            -310,
+            -240
+          ],
+          [
+            -280,
+            -185
+          ]
+        ]
+      },
+      {
+        "id": "access-arrival",
+        "from": "entry",
+        "to": "arrival",
+        "kind": "walk",
+        "points": [
+          [
+            -280,
+            -185
+          ],
+          [
+            -260,
+            -175
+          ],
+          [
+            -245,
+            -160
+          ]
+        ]
+      }
+    ]
+  }
+}

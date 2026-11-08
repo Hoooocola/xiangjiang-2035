@@ -1,0 +1,338 @@
+{
+  "base": "http://127.0.0.1:3019",
+  "viewport": [
+    1440,
+    900
+  ],
+  "dpr": 1,
+  "checks": [
+    "Neither local research asset is downloaded by initial map",
+    "Two complete island tours; graph 8/4 -> 7/5 -> 8/4; free mode; camera interruption; day/night; same renderer and exact saved view; GPU geometry/texture and original asset counts restored",
+    "Two quarry tours; profile axes change; adjustable threshold changes actual intersections; no underwater depth invented; geometry/texture counts stable after repeated section and analysis changes"
+  ],
+  "samples": [
+    {
+      "name": "main-night",
+      "fps": 60.11491580447714,
+      "p95": 16.799999999999272,
+      "heap": 362131635,
+      "metrics": {
+        "fps": 60,
+        "calls": 141,
+        "triangles": 2351888,
+        "geometries": 222,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "main-orbit",
+      "fps": 60.26302646959776,
+      "p95": 16.700000000000728,
+      "heap": 360098194,
+      "metrics": {
+        "fps": 60,
+        "calls": 139,
+        "triangles": 2218060,
+        "geometries": 222,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "island-overview-1",
+      "fps": 60.16687165556441,
+      "p95": 16.700000000000728,
+      "heap": 178543756,
+      "metrics": {
+        "fps": 60,
+        "calls": 61,
+        "triangles": 1072282,
+        "geometries": 233,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "island-resources-1",
+      "fps": 60.33682535377373,
+      "p95": 16.700000000004366,
+      "heap": 195647413,
+      "metrics": {
+        "fps": 60,
+        "calls": 71,
+        "triangles": 1125510,
+        "geometries": 236,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "island-analysis-1",
+      "fps": 60.230940733129636,
+      "p95": 16.700000000004366,
+      "heap": 197114852,
+      "metrics": {
+        "fps": 60,
+        "calls": 84,
+        "triangles": 1125594,
+        "geometries": 258,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "returned-main-1",
+      "fps": 60.12689765044448,
+      "p95": 16.700000000004366,
+      "heap": 175078899,
+      "metrics": {
+        "fps": 60,
+        "calls": 141,
+        "triangles": 2351888,
+        "geometries": 222,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "island-overview-2",
+      "fps": 60.07301692665118,
+      "p95": 16.700000000004366,
+      "heap": 177541161,
+      "metrics": {
+        "fps": 60,
+        "calls": 61,
+        "triangles": 1072282,
+        "geometries": 233,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "island-resources-2",
+      "fps": 60.30117270741015,
+      "p95": 16.70000000001164,
+      "heap": 181177464,
+      "metrics": {
+        "fps": 60,
+        "calls": 71,
+        "triangles": 1125510,
+        "geometries": 236,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "island-analysis-2",
+      "fps": 60.246979329149475,
+      "p95": 16.70000000001164,
+      "heap": 179681711,
+      "metrics": {
+        "fps": 60,
+        "calls": 84,
+        "triangles": 1125594,
+        "geometries": 258,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "returned-main-2",
+      "fps": 60.295146405838636,
+      "p95": 16.70000000001164,
+      "heap": 184626996,
+      "metrics": {
+        "fps": 60,
+        "calls": 141,
+        "triangles": 2351888,
+        "geometries": 222,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "name": "quarry-overview",
+      "fps": 60.090966433950385,
+      "p95": 16.700000000000728,
+      "heap": 197211689,
+      "metrics": {
+        "fps": 60,
+        "calls": 14,
+        "triangles": 275396,
+        "geometries": 14,
+        "textures": 3
+      }
+    },
+    {
+      "name": "quarry-section-1",
+      "fps": 60.19888914613838,
+      "p95": 16.700000000000728,
+      "heap": 147051546,
+      "metrics": {
+        "fps": 60,
+        "calls": 23,
+        "triangles": 277018,
+        "geometries": 23,
+        "textures": 3
+      }
+    },
+    {
+      "name": "quarry-analysis-1",
+      "fps": 60.1888800193735,
+      "p95": 16.700000000000728,
+      "heap": 19769035,
+      "metrics": {
+        "fps": 60,
+        "calls": 27,
+        "triangles": 281974,
+        "geometries": 27,
+        "textures": 3
+      }
+    },
+    {
+      "name": "quarry-section-2",
+      "fps": 60.196887055529125,
+      "p95": 16.80000000000291,
+      "heap": 19675313,
+      "metrics": {
+        "fps": 60,
+        "calls": 23,
+        "triangles": 277018,
+        "geometries": 27,
+        "textures": 3
+      }
+    },
+    {
+      "name": "quarry-analysis-2",
+      "fps": 60.36484245439469,
+      "p95": 16.700000000004366,
+      "heap": 21411349,
+      "metrics": {
+        "fps": 60,
+        "calls": 27,
+        "triangles": 281974,
+        "geometries": 27,
+        "textures": 3
+      }
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "islandReadyMs": 2626,
+      "afterExit": {
+        "fps": 60,
+        "calls": 141,
+        "triangles": 2351888,
+        "geometries": 222,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "round": 2,
+      "islandReadyMs": 2595,
+      "afterExit": {
+        "fps": 60,
+        "calls": 141,
+        "triangles": 2351888,
+        "geometries": 222,
+        "textures": 16,
+        "buildings": 158230,
+        "knownHeight": 1331,
+        "trees": 41544,
+        "particles": 160,
+        "mistLayers": 6,
+        "atmosphere": "full"
+      }
+    },
+    {
+      "quarryRound": 1,
+      "metrics": {
+        "fps": 60,
+        "calls": 27,
+        "triangles": 281974,
+        "geometries": 27,
+        "textures": 3
+      }
+    },
+    {
+      "quarryRound": 2,
+      "metrics": {
+        "fps": 60,
+        "calls": 27,
+        "triangles": 281974,
+        "geometries": 27,
+        "textures": 3
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:3019/data/xiangjiang.geojson",
+    "http://127.0.0.1:3019/data/terrain.json",
+    "http://127.0.0.1:3019/data/context.json",
+    "http://127.0.0.1:3019/data/environment.json",
+    "http://127.0.0.1:3019/data/inland-water.geojson",
+    "http://127.0.0.1:3019/data/research/ezhou.json",
+    "http://127.0.0.1:3019/data/research/ezhou-study.json",
+    "http://127.0.0.1:3019/data/research/quarry.json"
+  ],
+  "quarryReadyMs": 328
+}

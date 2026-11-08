@@ -1,0 +1,67 @@
+{
+  "files": [
+    {
+      "file": "context.json",
+      "bytes": 5533814
+    },
+    {
+      "file": "environment.json",
+      "bytes": 7921174
+    },
+    {
+      "file": "inland-water.geojson",
+      "bytes": 116986
+    },
+    {
+      "file": "research/ezhou-study.json",
+      "bytes": 3982
+    },
+    {
+      "file": "research/ezhou.json",
+      "bytes": 76014
+    },
+    {
+      "file": "research/quarry.json",
+      "bytes": 1575
+    },
+    {
+      "file": "spatial/gbif-core.geojson",
+      "bytes": 83647
+    },
+    {
+      "file": "spatial/water-quality-2025-11.json",
+      "bytes": 11207
+    },
+    {
+      "file": "spatial/worldcover-2021-core.bin",
+      "bytes": 2937600
+    },
+    {
+      "file": "spatial/worldcover-2021-core.json",
+      "bytes": 8812911
+    },
+    {
+      "file": "spatial/worldcover-2021-core.tif",
+      "bytes": 289441
+    },
+    {
+      "file": "spatial/worldcover-2021-texture.json",
+      "bytes": 2026
+    },
+    {
+      "file": "spatial/yanghu-study-area.geojson",
+      "bytes": 17635
+    },
+    {
+      "file": "terrain.json",
+      "bytes": 1725900
+    },
+    {
+      "file": "xiangjiang.geojson",
+      "bytes": 7129381
+    }
+  ],
+  "totalBytes": 34663293,
+  "spatialBytes": 12154467,
+  "researchBytes": 81571
+}

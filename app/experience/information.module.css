@@ -30,3 +30,6 @@
 
 /* V3.1: only the layer directory; explanation, course and media UI retain their rules. */
 .directory{background:none;border:0;box-shadow:none;backdrop-filter:none}.directory>header,.directory>footer,.startExploration{flex-shrink:0}.directory>header button{min-width:44px;min-height:44px}.directoryBody{mask-image:linear-gradient(#000 0%,#000 calc(100% - 14px),transparent);padding-bottom:14px}.directory .layerSwitch{min-width:44px;min-height:44px}.startExploration{min-height:42px!important;text-align:left!important;color:var(--accent)!important;font-size:11px!important;margin-bottom:9px}.directorySubhead{max-width:245px}.directory footer small{font-size:9px;line-height:1.7}
+
+/* V4: stable contrast through the complete text column; fade begins outside it. */
+.directory::before{background:linear-gradient(90deg,rgba(var(--directory-rgb,var(--information-rgb)),.98) 0%,rgba(var(--directory-rgb,var(--information-rgb)),.97) 72%,rgba(var(--directory-rgb,var(--information-rgb)),.5) 87%,transparent)!important}

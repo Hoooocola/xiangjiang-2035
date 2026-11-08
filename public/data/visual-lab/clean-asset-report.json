@@ -1,0 +1,30 @@
+{
+  "sourceState": "USER ORIGINAL / owner confirmed 2026-11-06",
+  "crs": "EPSG:32649",
+  "origin": [
+    691705.5384125847,
+    3099870.7559988587,
+    93.7950000008142
+  ],
+  "sourceOriginWgs84": [
+    112.9497350000947,
+    28.01025648039647
+  ],
+  "sourceTriangles": 14523255,
+  "clippedTriangles": 14372378,
+  "outputTriangles": 1470353,
+  "removedDegenerate": 372,
+  "preparation": "6% triangle target; 0.08% relative simplification error; UV-aware; 5cm quantization with collapsed triangles removed",
+  "vertices": 1606358,
+  "wireSegments": 9741,
+  "textureSize": [
+    4090,
+    4090
+  ],
+  "textureBytes": 6069738,
+  "glbBytes": 44832532,
+  "approxGpuTextureBytes": 89216534,
+  "positionQuantizationMeters": 0.05,
+  "registration": "Metadata UTM49N to existing local-tangent approximation; vertical datum unverified; no survey claim",
+  "license": "Owner supplied asset, permission confirmed in task; original files retained locally"
+}
