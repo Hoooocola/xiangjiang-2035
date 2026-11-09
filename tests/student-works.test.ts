@@ -2,7 +2,7 @@ import {describe, expect, it} from 'vitest';
 import {MAP_PLACES} from '@/src/places/registry';
 import {SHOWCASE_PLACES, STUDENT_THEMES, BASE_STUDENT_WORKS as STUDENT_WORKS, showcaseStats, worksForTheme, worksForPlace} from '@/src/student-works/catalog';
 import {findPinwallPdf} from '@/src/student-works/pdf';
-import {workPlaceIds} from '@/src/student-works/relationships';
+import {workPlaceIds,isCorridorWork} from '@/src/student-works/relationships';
 
 describe('course showcase source and place relationships', () => {
   it('keeps all 24 source rows, author groups and stable project IDs', () => {
@@ -36,9 +36,9 @@ describe('course showcase source and place relationships', () => {
     for (const theme of ['all', ...STUDENT_THEMES] as const) {
       const stats = showcaseStats(theme);
       expect(stats.mapped + stats.pending).toBe(stats.total);
-      expect(stats.places).toBe(new Set(worksForTheme(theme).flatMap(workPlaceIds)).size);
+      expect(stats.places).toBe(new Set(worksForTheme(theme).flatMap(workPlaceIds)).size+Number(worksForTheme(theme).some(isCorridorWork)));
     }
-    expect(showcaseStats()).toMatchObject({total: 39, mapped: 28, places: 14, pending: 11, partiallyMapped:0});
+    expect(showcaseStats()).toMatchObject({total: 39, mapped: 29, places: 15, pending: 10, partiallyMapped:0});
     expect(worksForPlace('ezhou', '立体交通与网络系统')).toHaveLength(2);
   });
 

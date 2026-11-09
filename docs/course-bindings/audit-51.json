@@ -1,0 +1,1532 @@
+{
+  "source": {
+    "file": "社会创新课程-湘江作品.xlsx",
+    "sha256": "5e71688f11a2b453f64798a9b9541469086e4e1277eb606f15affa46d41e6e3b",
+    "sheet": "历年作业整理"
+  },
+  "rows": 51,
+  "years": {
+    "2024": 10,
+    "2025": 2,
+    "2026": 39
+  },
+  "uniqueIds": 51,
+  "missingWorks": 0,
+  "duplicates": 0,
+  "invalidPlaceIds": [],
+  "unlocatedWorks": 13,
+  "stats": {
+    "total": 51,
+    "mapped": 38,
+    "places": 15,
+    "pointPlaces": 14,
+    "corridor": 5,
+    "pending": 13,
+    "partiallyMapped": 0,
+    "pendingSites": 8,
+    "covers": 51,
+    "pdfs": 51
+  },
+  "rowsAudit": [
+    {
+      "sequence": 1,
+      "excelRow": "A7",
+      "year": 2024,
+      "title": "湘江2035 | 橘子洲大桥桥下空间改造——江上商业与文化廊道",
+      "pinwallId": "pinwall-55730",
+      "sourceSite": "橘子洲大桥",
+      "currentTitle": "湘江2035 | 橘子洲大桥桥下空间改造——江上商业与文化廊道",
+      "beforePlaceIds": [
+        "student-juzizhou-bridge"
+      ],
+      "beforePlaceNames": [
+        "橘子洲大桥"
+      ],
+      "placeId": "student-juzizhou-bridge",
+      "placeIds": [
+        "student-juzizhou-bridge"
+      ],
+      "placeNames": [
+        "橘子洲大桥"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 2,
+      "excelRow": "A8",
+      "year": 2024,
+      "title": "轻舟渡朱张，AR映湖湘-湘江",
+      "pinwallId": "pinwall-55734",
+      "sourceSite": "橘子洲",
+      "currentTitle": "轻舟渡朱张，AR映湖湘-湘江",
+      "beforePlaceIds": [
+        "juzizhou"
+      ],
+      "beforePlaceNames": [
+        "橘子洲"
+      ],
+      "placeId": "juzizhou",
+      "placeIds": [
+        "juzizhou"
+      ],
+      "placeNames": [
+        "橘子洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 3,
+      "excelRow": "A9",
+      "year": 2024,
+      "title": "蓝钓计划-湘江",
+      "pinwallId": "pinwall-55735",
+      "sourceSite": "湘江整体",
+      "currentTitle": "蓝钓计划-湘江",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "corridor",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "归入湘江整体，无点位，不计入未绑定",
+      "evidence": "原表选址为湘江整体；全域分类，无坐标。"
+    },
+    {
+      "sequence": 4,
+      "excelRow": "A10",
+      "year": 2024,
+      "title": "湘江-鳍迹-2035",
+      "pinwallId": "pinwall-55736",
+      "sourceSite": "橘子洲",
+      "currentTitle": "湘江-鳍迹-2035",
+      "beforePlaceIds": [
+        "juzizhou"
+      ],
+      "beforePlaceNames": [
+        "橘子洲"
+      ],
+      "placeId": "juzizhou",
+      "placeIds": [
+        "juzizhou"
+      ],
+      "placeNames": [
+        "橘子洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 5,
+      "excelRow": "A11",
+      "year": 2024,
+      "title": "生态保护背景下的设计驱动乡村振兴实践—兴马洲生态旅游创新探索",
+      "pinwallId": "pinwall-55750",
+      "sourceSite": "兴马洲",
+      "currentTitle": "生态保护背景下的设计驱动乡村振兴实践—兴马洲生态旅游创新探索",
+      "beforePlaceIds": [
+        "xingma"
+      ],
+      "beforePlaceNames": [
+        "兴马洲"
+      ],
+      "placeId": "xingma",
+      "placeIds": [
+        "xingma"
+      ],
+      "placeNames": [
+        "兴马洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 6,
+      "excelRow": "A12",
+      "year": 2024,
+      "title": "长沙柏家洲城市营区—湘江",
+      "pinwallId": "pinwall-55758",
+      "sourceSite": "柏家洲",
+      "currentTitle": "长沙柏家洲城市营区—湘江",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+    },
+    {
+      "sequence": 7,
+      "excelRow": "A13",
+      "year": 2024,
+      "title": "矿坑公园——湘江",
+      "pinwallId": "pinwall-55773",
+      "sourceSite": "大王山",
+      "currentTitle": "矿坑公园——湘江",
+      "beforePlaceIds": [
+        "site-025"
+      ],
+      "beforePlaceNames": [
+        "大王山（片区导航）"
+      ],
+      "placeId": "site-025",
+      "placeIds": [
+        "site-025"
+      ],
+      "placeNames": [
+        "大王山（片区导航）"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 8,
+      "excelRow": "A14",
+      "year": 2024,
+      "title": "湘江沿岸八景文旅策划",
+      "pinwallId": "pinwall-55784",
+      "sourceSite": "湘江整体",
+      "currentTitle": "湘江沿岸八景文旅策划",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "corridor",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "归入湘江整体，无点位，不计入未绑定",
+      "evidence": "原表选址为湘江整体；全域分类，无坐标。"
+    },
+    {
+      "sequence": 9,
+      "excelRow": "A15",
+      "year": 2024,
+      "title": "旧景新寻——湘江欢乐城再规划 - 湘江",
+      "pinwallId": "pinwall-55785",
+      "sourceSite": "湘江欢乐城",
+      "currentTitle": "旧景新寻——湘江欢乐城再规划 - 湘江",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+    },
+    {
+      "sequence": 10,
+      "excelRow": "A16",
+      "year": 2024,
+      "title": "星忆湘流",
+      "pinwallId": "pinwall-55792",
+      "sourceSite": "",
+      "currentTitle": "星忆湘流",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原选址为空，保留待核查，不补坐标",
+      "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+    },
+    {
+      "sequence": 11,
+      "excelRow": "A17",
+      "year": 2025,
+      "title": "湘江·长沙流域生态/人文/工业可视化大屏设计",
+      "pinwallId": "pinwall-60496",
+      "sourceSite": "湘江整体",
+      "currentTitle": "湘江·长沙流域生态/人文/工业可视化大屏设计",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "corridor",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "归入湘江整体，无点位，不计入未绑定",
+      "evidence": "原表选址为湘江整体；全域分类，无坐标。"
+    },
+    {
+      "sequence": 12,
+      "excelRow": "A18",
+      "year": 2025,
+      "title": "云游湘江——eVTOL湘江空中游览主题航线策划",
+      "pinwallId": "pinwall-60519",
+      "sourceSite": "湘江整体",
+      "currentTitle": "云游湘江——eVTOL湘江空中游览主题航线策划",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "corridor",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "归入湘江整体，无点位，不计入未绑定",
+      "evidence": "原表选址为湘江整体；全域分类，无坐标。"
+    },
+    {
+      "sequence": 13,
+      "excelRow": "A19",
+      "year": 2026,
+      "title": "湘江渡——记忆回流社区体验设计",
+      "pinwallId": "pinwall-62142",
+      "sourceSite": "渔人码头",
+      "currentTitle": "湘江渡——记忆回流社区体验设计",
+      "beforePlaceIds": [
+        "site-011"
+      ],
+      "beforePlaceNames": [
+        "渔人码头"
+      ],
+      "placeId": "site-011",
+      "placeIds": [
+        "site-011"
+      ],
+      "placeNames": [
+        "渔人码头"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 14,
+      "excelRow": "A20",
+      "year": 2026,
+      "title": "渡学湘江",
+      "pinwallId": "pinwall-62168",
+      "sourceSite": "城南书院和岳麓书院",
+      "currentTitle": "渡学湘江",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+    },
+    {
+      "sequence": 15,
+      "excelRow": "A21",
+      "year": 2026,
+      "title": "《橘子洲·1925》",
+      "pinwallId": "pinwall-62175",
+      "sourceSite": "橘子洲",
+      "currentTitle": "《橘子洲·1925》",
+      "beforePlaceIds": [
+        "juzizhou"
+      ],
+      "beforePlaceNames": [
+        "橘子洲"
+      ],
+      "placeId": "juzizhou",
+      "placeIds": [
+        "juzizhou"
+      ],
+      "placeNames": [
+        "橘子洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 16,
+      "excelRow": "A22",
+      "year": 2026,
+      "title": "关关雎鸠，载禾之洲：兴马洲的诗意栖居2035",
+      "pinwallId": "pinwall-62177",
+      "sourceSite": "兴马洲",
+      "currentTitle": "关关雎鸠，载禾之洲：兴马洲的诗意栖居2035",
+      "beforePlaceIds": [
+        "xingma"
+      ],
+      "beforePlaceNames": [
+        "兴马洲"
+      ],
+      "placeId": "xingma",
+      "placeIds": [
+        "xingma"
+      ],
+      "placeNames": [
+        "兴马洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 17,
+      "excelRow": "A23",
+      "year": 2026,
+      "title": "2035城南漂流计划",
+      "pinwallId": "pinwall-62179",
+      "sourceSite": "城南街区",
+      "currentTitle": "2035城南漂流计划",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+    },
+    {
+      "sequence": 18,
+      "excelRow": "A24",
+      "year": 2026,
+      "title": "城市回声：湘江声流捕获计划",
+      "pinwallId": "pinwall-62181",
+      "sourceSite": "湘江整体",
+      "currentTitle": "城市回声：湘江声流捕获计划",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "corridor",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "归入湘江整体，无点位，不计入未绑定",
+      "evidence": "原表选址为湘江整体；全域分类，无坐标。"
+    },
+    {
+      "sequence": 19,
+      "excelRow": "A25",
+      "year": 2026,
+      "title": "大王山“一线四水”的两栖观光系统",
+      "pinwallId": "pinwall-62185",
+      "sourceSite": "大王山",
+      "currentTitle": "大王山“一线四水”的两栖观光系统",
+      "beforePlaceIds": [
+        "site-025"
+      ],
+      "beforePlaceNames": [
+        "大王山（片区导航）"
+      ],
+      "placeId": "site-025",
+      "placeIds": [
+        "site-025"
+      ],
+      "placeNames": [
+        "大王山（片区导航）"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 20,
+      "excelRow": "A26",
+      "year": 2026,
+      "title": "织水未来—基于2035湘江生态文化的裕湘纱厂社会创新",
+      "pinwallId": "pinwall-62187",
+      "sourceSite": "裕湘纱厂",
+      "currentTitle": "织水未来—基于2035湘江生态文化的裕湘纱厂社会创新",
+      "beforePlaceIds": [
+        "student-yuxiang"
+      ],
+      "beforePlaceNames": [
+        "裕湘纱厂（入口参考）"
+      ],
+      "placeId": "student-yuxiang",
+      "placeIds": [
+        "student-yuxiang"
+      ],
+      "placeNames": [
+        "裕湘纱厂（入口参考）"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 21,
+      "excelRow": "A27",
+      "year": 2026,
+      "title": "解放“金三角”-基于霞凝港繁华回忆的社会创新设计",
+      "pinwallId": "pinwall-62188",
+      "sourceSite": "霞凝港",
+      "currentTitle": "解放“金三角”-基于霞凝港繁华回忆的社会创新设计",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+    },
+    {
+      "sequence": 22,
+      "excelRow": "A28",
+      "year": 2026,
+      "title": "湘江入焰梦——一代人的湘江烟花记忆与2035未来重生",
+      "pinwallId": "pinwall-62189",
+      "sourceSite": "橘子洲",
+      "currentTitle": "湘江入焰梦——一代人的湘江烟花记忆与2035未来重生",
+      "beforePlaceIds": [
+        "juzizhou"
+      ],
+      "beforePlaceNames": [
+        "橘子洲"
+      ],
+      "placeId": "juzizhou",
+      "placeIds": [
+        "juzizhou"
+      ],
+      "placeNames": [
+        "橘子洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 23,
+      "excelRow": "A29",
+      "year": 2026,
+      "title": "湘江新水娱乐新图景——变革理论指导下的湘江2035未来生态文旅构想",
+      "pinwallId": "pinwall-62191",
+      "sourceSite": "文津码头",
+      "currentTitle": "湘江新水娱乐新图景——变革理论指导下的湘江2035未来生态文旅构想",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+    },
+    {
+      "sequence": 24,
+      "excelRow": "A30",
+      "year": 2026,
+      "title": "“锌”火相传：锌厂人的共同回忆和情感联结",
+      "pinwallId": "pinwall-62192",
+      "sourceSite": "长沙锌厂",
+      "currentTitle": "“锌”火相传：锌厂人的共同回忆和情感联结",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+    },
+    {
+      "sequence": 25,
+      "excelRow": "A31",
+      "year": 2026,
+      "title": "顺水而居—霞凝港社会创新设计",
+      "pinwallId": "pinwall-62197",
+      "sourceSite": "霞凝港",
+      "currentTitle": "顺水而居—霞凝港社会创新设计",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+    },
+    {
+      "sequence": 26,
+      "excelRow": "A32",
+      "year": 2026,
+      "title": "「这里，有故事。」——从居民记忆出发的湘江地图",
+      "pinwallId": "pinwall-66166",
+      "sourceSite": "北辰三角洲",
+      "currentTitle": "「这里，有故事。」——从居民记忆出发的湘江地图",
+      "beforePlaceIds": [
+        "student-beichen"
+      ],
+      "beforePlaceNames": [
+        "北辰三角洲"
+      ],
+      "placeId": "student-beichen",
+      "placeIds": [
+        "student-beichen"
+      ],
+      "placeNames": [
+        "北辰三角洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 27,
+      "excelRow": "A33",
+      "year": 2026,
+      "title": "“油”点意思——长沙油脂厂改造计划",
+      "pinwallId": "pinwall-66168",
+      "sourceSite": "油脂厂",
+      "currentTitle": "“油”点意思——长沙油脂厂改造计划",
+      "beforePlaceIds": [
+        "student-oil1936"
+      ],
+      "beforePlaceNames": [
+        "油脂厂1936"
+      ],
+      "placeId": "student-oil1936",
+      "placeIds": [
+        "student-oil1936"
+      ],
+      "placeNames": [
+        "油脂厂1936"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留原表与已确认修订名称，不覆写既有记录",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 28,
+      "excelRow": "A34",
+      "year": 2026,
+      "title": "WEAVE WAVE",
+      "pinwallId": "pinwall-66170",
+      "sourceSite": "渔人码头",
+      "currentTitle": "WEAVE WAVE",
+      "beforePlaceIds": [
+        "site-011"
+      ],
+      "beforePlaceNames": [
+        "渔人码头"
+      ],
+      "placeId": "site-011",
+      "placeIds": [
+        "site-011"
+      ],
+      "placeNames": [
+        "渔人码头"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 29,
+      "excelRow": "A35",
+      "year": 2026,
+      "title": "湘江多元水岸交通系统设计",
+      "pinwallId": "pinwall-66171",
+      "sourceSite": "铜官窑",
+      "currentTitle": "湘江多元水岸交通系统设计",
+      "beforePlaceIds": [
+        "tongguan",
+        "juzizhou",
+        "ezhou"
+      ],
+      "beforePlaceNames": [
+        "铜官窑附近",
+        "橘子洲",
+        "鹅洲"
+      ],
+      "placeId": "tongguan",
+      "placeIds": [
+        "tongguan",
+        "juzizhou",
+        "ezhou"
+      ],
+      "placeNames": [
+        "铜官窑附近",
+        "橘子洲",
+        "鹅洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "作者项目介绍明确列出橘子洲、铜官窑、鹅洲岛三类枢纽码头；Excel 主选址铜官窑保持不变。"
+    },
+    {
+      "sequence": 30,
+      "excelRow": "A36",
+      "year": 2026,
+      "title": "江岸接力——橘洲文脉共编系统",
+      "pinwallId": "pinwall-66172",
+      "sourceSite": "橘子洲",
+      "currentTitle": "江岸接力——橘洲文脉共编系统",
+      "beforePlaceIds": [
+        "juzizhou"
+      ],
+      "beforePlaceNames": [
+        "橘子洲"
+      ],
+      "placeId": "juzizhou",
+      "placeIds": [
+        "juzizhou"
+      ],
+      "placeNames": [
+        "橘子洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 31,
+      "excelRow": "A37",
+      "year": 2026,
+      "title": "湘岸共赴：渔人码头滨水文化体验",
+      "pinwallId": "pinwall-66173",
+      "sourceSite": "渔人码头",
+      "currentTitle": "湘岸共赴：渔人码头滨水文化体验",
+      "beforePlaceIds": [
+        "site-011"
+      ],
+      "beforePlaceNames": [
+        "渔人码头"
+      ],
+      "placeId": "site-011",
+      "placeIds": [
+        "site-011"
+      ],
+      "placeNames": [
+        "渔人码头"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 32,
+      "excelRow": "A38",
+      "year": 2026,
+      "title": "大王山交通再规划",
+      "pinwallId": "pinwall-66174",
+      "sourceSite": "大王山",
+      "currentTitle": "大王山交通再规划",
+      "beforePlaceIds": [
+        "site-025"
+      ],
+      "beforePlaceNames": [
+        "大王山（片区导航）"
+      ],
+      "placeId": "site-025",
+      "placeIds": [
+        "site-025"
+      ],
+      "placeNames": [
+        "大王山（片区导航）"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用大王山标准地点ID，以旅游服务中心附近作片区近似导航；不代表完整交通研究范围。"
+    },
+    {
+      "sequence": 33,
+      "excelRow": "A39",
+      "year": 2026,
+      "title": "Reconnect江脉重连",
+      "pinwallId": "pinwall-66175",
+      "sourceSite": "城南街区",
+      "currentTitle": "Reconnect江脉重连",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "原选址尚无可靠坐标或范围；保留作品，暂不上图。"
+    },
+    {
+      "sequence": 34,
+      "excelRow": "A40",
+      "year": 2026,
+      "title": "洋湖叠境-漫游-",
+      "pinwallId": "pinwall-66176",
+      "sourceSite": "洋湖湿地",
+      "currentTitle": "洋湖叠境-漫游-",
+      "beforePlaceIds": [
+        "yanghu"
+      ],
+      "beforePlaceNames": [
+        "洋湖湿地"
+      ],
+      "placeId": "yanghu",
+      "placeIds": [
+        "yanghu"
+      ],
+      "placeNames": [
+        "洋湖湿地"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 35,
+      "excelRow": "A41",
+      "year": 2026,
+      "title": "洲有四季——巴溪洲“水位日历”社区共创计划",
+      "pinwallId": "pinwall-66178",
+      "sourceSite": "巴溪洲",
+      "currentTitle": "洲有四季——巴溪洲“水位日历”社区共创计划",
+      "beforePlaceIds": [
+        "baxi"
+      ],
+      "beforePlaceNames": [
+        "巴溪洲"
+      ],
+      "placeId": "baxi",
+      "placeIds": [
+        "baxi"
+      ],
+      "placeNames": [
+        "巴溪洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 36,
+      "excelRow": "A42",
+      "year": 2026,
+      "title": "栖亭·共栖之江",
+      "pinwallId": "pinwall-66179",
+      "sourceSite": "橘子洲",
+      "currentTitle": "栖亭·共栖之江",
+      "beforePlaceIds": [
+        "juzizhou"
+      ],
+      "beforePlaceNames": [
+        "橘子洲"
+      ],
+      "placeId": "juzizhou",
+      "placeIds": [
+        "juzizhou"
+      ],
+      "placeNames": [
+        "橘子洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 37,
+      "excelRow": "A43",
+      "year": 2026,
+      "title": "江边，逗留一会儿",
+      "pinwallId": "pinwall-66180",
+      "sourceSite": "猴子石大桥西岸",
+      "currentTitle": "江边，逗留一会儿",
+      "beforePlaceIds": [
+        "student-houzishi-west"
+      ],
+      "beforePlaceNames": [
+        "猴子石大桥西岸"
+      ],
+      "placeId": "student-houzishi-west",
+      "placeIds": [
+        "student-houzishi-west"
+      ],
+      "placeNames": [
+        "猴子石大桥西岸"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 38,
+      "excelRow": "A44",
+      "year": 2026,
+      "title": "流岸·2035",
+      "pinwallId": "pinwall-66181",
+      "sourceSite": "文津码头",
+      "currentTitle": "流岸·2035",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "原选址尚无可靠坐标或范围；保留作品，暂不上图。"
+    },
+    {
+      "sequence": 39,
+      "excelRow": "A45",
+      "year": 2026,
+      "title": "江边共话站",
+      "pinwallId": "pinwall-66183",
+      "sourceSite": "文津码头",
+      "currentTitle": "江边共话站",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "原选址尚无可靠坐标或范围；保留作品，暂不上图。"
+    },
+    {
+      "sequence": 40,
+      "excelRow": "A46",
+      "year": 2026,
+      "title": "记忆·川上转——文津码头*湘江生活档案共创企划",
+      "pinwallId": "pinwall-66184",
+      "sourceSite": "文津码头",
+      "currentTitle": "记忆·川上转——文津码头*湘江生活档案共创企划",
+      "beforePlaceIds": [],
+      "beforePlaceNames": [],
+      "placeId": null,
+      "placeIds": [],
+      "placeNames": [],
+      "scope": "pending",
+      "matched": false,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": true,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "原名称保留，缺有效地点 ID/核实坐标，待补来源",
+      "evidence": "原选址尚无可靠坐标或范围；保留作品，暂不上图。"
+    },
+    {
+      "sequence": 41,
+      "excelRow": "A47",
+      "year": 2026,
+      "title": "「洲野共生」2035巴溪洲全民户外生活岛计划",
+      "pinwallId": "pinwall-66185",
+      "sourceSite": "巴溪洲",
+      "currentTitle": "「洲野共生」2035巴溪洲全民户外生活岛计划",
+      "beforePlaceIds": [
+        "baxi"
+      ],
+      "beforePlaceNames": [
+        "巴溪洲"
+      ],
+      "placeId": "baxi",
+      "placeIds": [
+        "baxi"
+      ],
+      "placeNames": [
+        "巴溪洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "用户修订表明确选址巴溪洲；复用既有巴溪洲导航点，不修改坐标。"
+    },
+    {
+      "sequence": 42,
+      "excelRow": "A48",
+      "year": 2026,
+      "title": "岸间——湘江滨水公共空间 的弹性更新与日常营造",
+      "pinwallId": "pinwall-66187",
+      "sourceSite": "渔人码头到裕湘…",
+      "currentTitle": "岸间——湘江滨水公共空间 的弹性更新与日常营造",
+      "beforePlaceIds": [
+        "site-011",
+        "student-yuxiang"
+      ],
+      "beforePlaceNames": [
+        "渔人码头",
+        "裕湘纱厂（入口参考）"
+      ],
+      "placeId": "site-011",
+      "placeIds": [
+        "site-011",
+        "student-yuxiang"
+      ],
+      "placeNames": [
+        "渔人码头",
+        "裕湘纱厂（入口参考）"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "旧表端点截断；保留先前修订依据的双地点并披露版本差异，不推断完整走廊几何",
+      "evidence": "用户修订表第23行明确渔人码头和裕湘纱厂；后者已补入口近似导航点。 本次旧表原文为「渔人码头到裕湘…」，保留已有明确修订的双地点；不声称旧表已包含完整端点。"
+    },
+    {
+      "sequence": 43,
+      "excelRow": "A49",
+      "year": 2026,
+      "title": "潮间：潮宗街新旧文化共生界面系统",
+      "pinwallId": "pinwall-66188",
+      "sourceSite": "潮宗街",
+      "currentTitle": "潮间：潮宗街新旧文化共生界面系统",
+      "beforePlaceIds": [
+        "site-031"
+      ],
+      "beforePlaceNames": [
+        "潮宗街"
+      ],
+      "placeId": "site-031",
+      "placeIds": [
+        "site-031"
+      ],
+      "placeNames": [
+        "潮宗街"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 44,
+      "excelRow": "A50",
+      "year": 2026,
+      "title": "青年岛·文旅化改造",
+      "pinwallId": "pinwall-66189",
+      "sourceSite": "鹅洲岛",
+      "currentTitle": "青年岛·文旅化改造",
+      "beforePlaceIds": [
+        "ezhou"
+      ],
+      "beforePlaceNames": [
+        "鹅洲"
+      ],
+      "placeId": "ezhou",
+      "placeIds": [
+        "ezhou"
+      ],
+      "placeNames": [
+        "鹅洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 45,
+      "excelRow": "A51",
+      "year": 2026,
+      "title": "人人有泊位-渔人码头共泊计划",
+      "pinwallId": "pinwall-66190",
+      "sourceSite": "渔人码头",
+      "currentTitle": "人人有泊位-渔人码头共泊计划",
+      "beforePlaceIds": [
+        "site-011"
+      ],
+      "beforePlaceNames": [
+        "渔人码头"
+      ],
+      "placeId": "site-011",
+      "placeIds": [
+        "site-011"
+      ],
+      "placeNames": [
+        "渔人码头"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 46,
+      "excelRow": "A52",
+      "year": 2026,
+      "title": "橘子洲大桥桥面交通改进计划",
+      "pinwallId": "pinwall-66191",
+      "sourceSite": "橘子洲大桥",
+      "currentTitle": "橘子洲大桥桥面交通改进计划",
+      "beforePlaceIds": [
+        "student-juzizhou-bridge"
+      ],
+      "beforePlaceNames": [
+        "橘子洲大桥"
+      ],
+      "placeId": "student-juzizhou-bridge",
+      "placeIds": [
+        "student-juzizhou-bridge"
+      ],
+      "placeNames": [
+        "橘子洲大桥"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 47,
+      "excelRow": "A53",
+      "year": 2026,
+      "title": "「洲行 ZHOU LINK」鹅洲岛立体共运系统",
+      "pinwallId": "pinwall-66192",
+      "sourceSite": "鹅洲岛",
+      "currentTitle": "「洲行 ZHOU LINK」鹅洲岛立体共运系统",
+      "beforePlaceIds": [
+        "ezhou"
+      ],
+      "beforePlaceNames": [
+        "鹅洲"
+      ],
+      "placeId": "ezhou",
+      "placeIds": [
+        "ezhou"
+      ],
+      "placeNames": [
+        "鹅洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+    },
+    {
+      "sequence": 48,
+      "excelRow": "A54",
+      "year": 2026,
+      "title": "湘洲渡——湘江全域水上交通与文旅综合服务设计",
+      "pinwallId": "pinwall-66193",
+      "sourceSite": "鹅洲岛",
+      "currentTitle": "湘洲渡——湘江全域水上交通与文旅综合服务设计",
+      "beforePlaceIds": [
+        "ezhou"
+      ],
+      "beforePlaceNames": [
+        "鹅洲"
+      ],
+      "placeId": "ezhou",
+      "placeIds": [
+        "ezhou"
+      ],
+      "placeNames": [
+        "鹅洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实鹅洲岛关联；全域及其他具体地点需新的来源核实后再添加",
+      "evidence": "复用现有地点或有来源的近似导航点，非研究范围。 标题虽为全域，当前仅核实原表鹅洲岛；其他地点和全域空间关联待核查，不按标题补坐标。"
+    },
+    {
+      "sequence": 49,
+      "excelRow": "A55",
+      "year": 2026,
+      "title": "裕湘百年",
+      "pinwallId": "pinwall-66196",
+      "sourceSite": "裕湘纱厂",
+      "currentTitle": "裕湘百年",
+      "beforePlaceIds": [
+        "student-yuxiang"
+      ],
+      "beforePlaceNames": [
+        "裕湘纱厂（入口参考）"
+      ],
+      "placeId": "student-yuxiang",
+      "placeIds": [
+        "student-yuxiang"
+      ],
+      "placeNames": [
+        "裕湘纱厂（入口参考）"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "经地图检索核对裕湘纱厂别名与地址，使用厂内停车场作为近似入口参考，非厂区边界。"
+    },
+    {
+      "sequence": 50,
+      "excelRow": "A56",
+      "year": 2026,
+      "title": "湘圩・江物赶场",
+      "pinwallId": "pinwall-66198",
+      "sourceSite": "裕湘纱厂",
+      "currentTitle": "湘圩・江物赶场",
+      "beforePlaceIds": [
+        "student-yuxiang"
+      ],
+      "beforePlaceNames": [
+        "裕湘纱厂（入口参考）"
+      ],
+      "placeId": "student-yuxiang",
+      "placeIds": [
+        "student-yuxiang"
+      ],
+      "placeNames": [
+        "裕湘纱厂（入口参考）"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    },
+    {
+      "sequence": 51,
+      "excelRow": "A57",
+      "year": 2026,
+      "title": "江洲北叙——橘子洲北平战复合水上生态教育微循环方案",
+      "pinwallId": "pinwall-66200",
+      "sourceSite": "橘子洲",
+      "currentTitle": "江洲北叙——橘子洲北平战复合水上生态教育微循环方案",
+      "beforePlaceIds": [
+        "juzizhou"
+      ],
+      "beforePlaceNames": [
+        "橘子洲"
+      ],
+      "placeId": "juzizhou",
+      "placeIds": [
+        "juzizhou"
+      ],
+      "placeNames": [
+        "橘子洲"
+      ],
+      "scope": "places",
+      "matched": true,
+      "duplicate": false,
+      "missingWork": false,
+      "missingPlace": false,
+      "invalidPlaceIds": [],
+      "titleDiffers": false,
+      "yearMatches": true,
+      "action": "保留已核实 ID 关联",
+      "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+    }
+  ]
+}

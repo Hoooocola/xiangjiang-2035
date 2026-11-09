@@ -5,7 +5,7 @@ import {ArrowDown, ArrowLeft, ArrowUpRight, ChevronDown, Search, X} from 'lucide
 import {SHOWCASE_PLACES, type ThemeFilter} from '@/src/student-works/catalog';
 import {COURSE_OPTIONS, DEFAULT_COURSE, courseStats, courseWorks, type Course} from '@/src/student-works/courses';
 import type {StudentWork} from '@/src/student-works/types';
-import {workPlaceIds} from '@/src/student-works/relationships';
+import {workPlaceIds, isCorridorWork, isPendingWork} from '@/src/student-works/relationships';
 import {StudentWorkMediaLinks, StudentWorkReportLinks} from './student-work-media';
 import styles from './student-work-showcase.module.css';
 import {CourseSelector} from './course-selector';
@@ -23,17 +23,18 @@ export function WorkCover({work, eager = false}: {work: StudentWork; eager?: boo
   </div>;
 }
 
-export function StudentWorkShowcase({theme, query, view, expanded, selectedPlace, active, loaded, onTheme, onQuery, onView, onExpanded, onLocate, onWork, onClose, onOverview, integrated = false, course = DEFAULT_COURSE, onCourse, onLecture}: {
+export function StudentWorkShowcase({theme, query, view, expanded, selectedPlace, active, loaded, onTheme, onQuery, onView, onExpanded, onLocate, onWork, onClose, onOverview, integrated = false, course = DEFAULT_COURSE, onCourse}: {
   theme: ThemeFilter; query: string; view: CourseIndexView; expanded: boolean; selectedPlace: string | null;
   active: boolean; loaded: boolean; onTheme: (value: ThemeFilter) => void; onQuery: (value: string) => void;
   onView: (value: CourseIndexView) => void; onExpanded: (value: boolean) => void;
   onLocate: (id: string) => void; onWork: (id: string) => void; onClose: () => void; onOverview: () => void;
-  integrated?: boolean; course?: Course; onCourse?: (id: string) => void; onLecture?: () => void;
+  integrated?: boolean; course?: Course; onCourse?: (id: string) => void;
 }) {
   const stats = courseStats(course, theme, query);
   const visible = courseWorks(course, theme, query);
   const groups = SHOWCASE_PLACES.map(place => ({place, works: visible.filter(work => workPlaceIds(work).includes(place.id))})).filter(group => group.works.length);
-  const indexWorks = view === 'pending' ? visible.filter(work => !workPlaceIds(work).length) : visible;
+  const corridorWorks = visible.filter(isCorridorWork);
+  const indexWorks = view === 'pending' ? visible.filter(isPendingWork) : visible;
   const listRef=useRef<HTMLDivElement>(null),themeRef=useRef<HTMLDetailsElement>(null);
   useEffect(()=>{if(listRef.current)listRef.current.scrollTop=0;},[course.id,theme,query,view]);
   const chooseTheme=(value:ThemeFilter)=>{onTheme(value);if(themeRef.current)themeRef.current.open=false;};
@@ -55,10 +56,11 @@ export function StudentWorkShowcase({theme, query, view, expanded, selectedPlace
       <button className={styles.indexToggle} onClick={() => onExpanded(!expanded)} aria-label={expanded ? '收起成果目录' : '展开成果目录'} aria-expanded={expanded}><ArrowDown size={14}/></button>
     </div>
     {expanded && <div ref={listRef} className={styles.indexBody} data-panel-list aria-label="课程成果目录" role="region" tabIndex={0} onWheel={event=>event.stopPropagation()} onPointerDown={event=>event.stopPropagation()} onTouchMove={event=>event.stopPropagation()}>
-      {view === 'places' ? groups.map(({place, works}, index) => <button className={styles.placeRow} key={place.id} disabled={!loaded} aria-pressed={selectedPlace === place.id} onClick={() => onLocate(place.id)}><span className={styles.rowNumber}>{String(index + 1).padStart(2, '0')}</span><span>{place.name}</span><small>{String(works.length).padStart(2, '0')} 件</small><ArrowUpRight size={13}/></button>) : indexWorks.map(work => <button className={styles.workRow} key={work.id} disabled={!loaded && !!workPlaceIds(work).length} onClick={() => onWork(work.id)}><WorkCover work={work}/><span><strong>{work.title}</strong><small>{work.year} · {work.originalSite} · {work.theme}{!workPlaceIds(work).length ? ' · 待定位' : ''}</small></span><ArrowUpRight size={13}/></button>)}
-      {!(view === 'places' ? groups.length : indexWorks.length) && <p className={styles.hint}>没有匹配的{view === 'places' ? '地图地点' : '作品'}。{view === 'places' && stats.pending > 0 ? '可在未绑定地点目录中查看原作品。' : '请调整搜索或主题。'}</p>}
+      {view === 'places' && corridorWorks.length > 0 && <button className={styles.placeRow} onClick={() => onWork(corridorWorks[0].id)}><span className={styles.rowNumber}>全域</span><span>湘江整体</span><small>{corridorWorks.length} 件</small><ArrowUpRight size={13}/></button>}
+      {view === 'places' ? groups.map(({place, works}, index) => <button className={styles.placeRow} key={place.id} disabled={!loaded} aria-pressed={selectedPlace === place.id} onClick={() => onLocate(place.id)}><span className={styles.rowNumber}>{String(index + 1).padStart(2, '0')}</span><span>{place.name}</span><small>{String(works.length).padStart(2, '0')} 件</small><ArrowUpRight size={13}/></button>) : indexWorks.map(work => <button className={styles.workRow} key={work.id} disabled={!loaded && !!workPlaceIds(work).length} onClick={() => onWork(work.id)}><WorkCover work={work}/><span><strong>{work.title}</strong><small>{work.year} · {work.originalSite || '原选址为空'} · {work.theme}{isPendingWork(work) ? ' · 待定位' : ''}</small></span><ArrowUpRight size={13}/></button>)}
+      {!(view === 'places' ? groups.length + corridorWorks.length : indexWorks.length) && <p className={styles.hint}>没有匹配的{view === 'places' ? '地图地点' : '作品'}。{view === 'places' && stats.pending > 0 ? '可在未绑定地点目录中查看原作品。' : '请调整搜索或主题。'}</p>}
     </div>}
-    </div><footer className={styles.overviewFoot}><button onClick={onOverview} disabled={!loaded}>回到湘江全段 <ArrowUpRight size={12}/></button>{integrated && onLecture && <button onClick={onLecture}>独立课程演示 <ArrowUpRight size={12}/></button>}<span>课程设计 / 非实施项目</span></footer>
+    </div><footer className={styles.overviewFoot}><button onClick={onOverview} disabled={!loaded}>回到湘江全段 <ArrowUpRight size={12}/></button><span>课程设计 / 非实施项目</span></footer>
   </SidePanelShell>;
 }
 
@@ -72,7 +74,7 @@ export function StudentWorkExhibition({works, placeName, ready, onClose, onArchi
   const groupKey = placeName;
   useEffect(() => {if (ready) closeRef.current?.focus({preventScroll: true});}, [ready, groupKey]);
   return <SidePanelShell side="right" className={`${styles.exhibition} ${integrated ? styles.integratedExhibition : ''} ${!ready ? styles.exhibitionArriving : ''}`} aria-label={`${placeName}课程作品`} aria-busy={!ready} inert={!ready} data-information-panel>
-    <header className={styles.placeHeading}><div><p className={styles.kicker}>STUDENT WORK / 课程成果</p><h2>{placeName}</h2><p className={styles.placeCount}>{String(works.length).padStart(2, '0')} PROJECTS<span>{works[0]?.placeId ? '关联作品' : '未绑定地点 · 保留原选址'}</span></p></div><button ref={closeRef} className={styles.closeExhibition} onClick={onClose} aria-label="关闭作品并返回课程总览"><X size={20}/></button></header>
+    <header className={styles.placeHeading}><div><p className={styles.kicker}>STUDENT WORK / 课程成果</p><h2>{placeName}</h2><p className={styles.placeCount}>{String(works.length).padStart(2, '0')} PROJECTS<span>{isCorridorWork(works[0] ?? {}) ? '全域研究 · 不生成地图点位' : works[0] && !isPendingWork(works[0]) ? '关联作品' : '未绑定地点 · 保留原选址'}</span></p></div><button ref={closeRef} className={styles.closeExhibition} onClick={onClose} aria-label="关闭作品并返回课程总览"><X size={20}/></button></header>
     <div key={groupKey} className={styles.projectList} data-panel-body onWheel={event=>event.stopPropagation()} onPointerDown={event=>event.stopPropagation()} role="region" aria-label={`${placeName}全部作品列表`} tabIndex={0}>
       <ul>
         {works.map(work => <li className={styles.projectRow} key={work.id} data-work-id={work.id}>

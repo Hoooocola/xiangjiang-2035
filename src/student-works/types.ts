@@ -32,6 +32,8 @@ export interface StudentWork {
   placeId: string | null;
   /** Excel primary location remains placeId; only source-backed additional locations belong here. */
   placeIds?: readonly string[];
+  /** Corridor is a spatial category, never a fabricated navigation coordinate. */
+  spatialScope?: 'places' | 'corridor' | 'pending';
   /** Named locations confirmed by the teacher but still lacking a verified navigation point. */
   pendingLocationNames?: readonly string[];
   media?: readonly StudentWorkMedia[];

@@ -2,9 +2,9 @@ import source from './source.json';
 import archive from './archive-works.json';
 import locations from './locations.json';
 import assets from './assets.json';
-import locationReview from './location-review.json';
+import spatialBindings from './spatial-bindings.json';
 import videoSources from './media.json';
-import {workPlaceIds} from './relationships';
+import {workPlaceIds, isCorridorWork, isPendingWork} from './relationships';
 import {MAP_PLACES} from '@/src/places/registry';
 import type {Place} from '@/src/places/registry';
 import type {StudentTheme, StudentWork, StudentWorkMedia} from './types';
@@ -33,7 +33,8 @@ export const STUDENT_WORKS: readonly StudentWork[] = ([...source, ...archive] as
   ...work,
   courseId: work.courseId ?? 'social-innovation-design-2026',
   year: work.year ?? 2026,
-  placeIds: workPlaceIds({...work, placeIds: (locationReview as Record<string, {placeIds: string[]}>)[work.id]?.placeIds ?? work.placeIds}),
+  placeIds: (spatialBindings as Record<string, {placeIds: string[]}>)[work.id]?.placeIds ?? workPlaceIds(work),
+  spatialScope: (spatialBindings as Record<string, {scope: StudentWork['spatialScope']}>)[work.id]?.scope ?? 'pending',
   media: ([
     ...(videoMedia[work.id]?.pdfs?.length ? videoMedia[work.id].pdfs!.map((pdf, index) => ({...pdf, type:'pdf' as const, url:`/student-works/${work.id}/pdf?attachment=${encodeURIComponent(pdf.id)}`, label:pdf.title ?? `资料 ${index+1}`})) :
       media[work.id]?.hasPdf ? [{type:'pdf' as const, url:`/student-works/${work.id}/pdf`, label:'完整报告'}] : []),
@@ -59,7 +60,7 @@ const extraPlaces: Place[] = locations.filter(location=>!MAP_PLACES.some(place=>
   verificationStatus: 'approximate',
 }));
 
-/** New navigation points exist only while the explicit showcase mode is enabled. */
+/** Course navigation points supplement the unchanged geographic registry. */
 export const SHOWCASE_PLACES: readonly Place[] = [...MAP_PLACES, ...extraPlaces];
 export const BASE_STUDENT_WORKS = STUDENT_WORKS.filter(work => (source as SourceWork[]).some(row => row.id === work.id));
 export function worksForTheme(theme: ThemeFilter, courseId = 'social-innovation-design-2026'): StudentWork[] {
@@ -76,15 +77,17 @@ export function worksForPlace(placeId: string, theme: ThemeFilter = 'all', query
 export function showcaseStats(theme: ThemeFilter = 'all', query = '', courseId = 'social-innovation-design-2026') {
   return statsForWorks(visibleStudentWorks(theme, query, courseId));
 }
-/** Shared by the lecture showcase and the course-based design directory. */
+/** Every course count is derived from this same filtered dataset. */
 export function statsForWorks(works: readonly StudentWork[]) {
   return {
     total: works.length,
-    mapped: works.filter(work => workPlaceIds(work).length).length,
-    places: new Set(works.flatMap(workPlaceIds)).size,
-    pending: works.filter(work => !workPlaceIds(work).length).length,
+    mapped: works.filter(work => !isPendingWork(work)).length,
+    places: new Set(works.flatMap(workPlaceIds)).size + Number(works.some(isCorridorWork)),
+    pointPlaces: new Set(works.flatMap(workPlaceIds)).size,
+    corridor: works.filter(isCorridorWork).length,
+    pending: works.filter(isPendingWork).length,
     partiallyMapped: works.filter(work => workPlaceIds(work).length && work.pendingLocationNames?.length).length,
-    pendingSites: new Set(works.filter(work => !workPlaceIds(work).length).map(work => work.originalSite)).size,
+    pendingSites: new Set(works.filter(isPendingWork).map(work => work.originalSite)).size,
     covers: works.filter(work => work.coverImage && work.coverStatus === 'verified').length,
     pdfs: works.filter(work => work.pdfUrl).length,
   };

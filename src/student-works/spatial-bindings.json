@@ -1,0 +1,326 @@
+{
+  "pinwall-55730": {
+    "placeIds": [
+      "student-juzizhou-bridge"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-55734": {
+    "placeIds": [
+      "juzizhou"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-55735": {
+    "placeIds": [],
+    "scope": "corridor",
+    "evidence": "原表选址为湘江整体；全域分类，无坐标。"
+  },
+  "pinwall-55736": {
+    "placeIds": [
+      "juzizhou"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-55750": {
+    "placeIds": [
+      "xingma"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-55758": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+  },
+  "pinwall-55773": {
+    "placeIds": [
+      "site-025"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-55784": {
+    "placeIds": [],
+    "scope": "corridor",
+    "evidence": "原表选址为湘江整体；全域分类，无坐标。"
+  },
+  "pinwall-55785": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+  },
+  "pinwall-55792": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+  },
+  "pinwall-60496": {
+    "placeIds": [],
+    "scope": "corridor",
+    "evidence": "原表选址为湘江整体；全域分类，无坐标。"
+  },
+  "pinwall-60519": {
+    "placeIds": [],
+    "scope": "corridor",
+    "evidence": "原表选址为湘江整体；全域分类，无坐标。"
+  },
+  "pinwall-62142": {
+    "placeIds": [
+      "site-011"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-62168": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+  },
+  "pinwall-62175": {
+    "placeIds": [
+      "juzizhou"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-62177": {
+    "placeIds": [
+      "xingma"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-62179": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+  },
+  "pinwall-62181": {
+    "placeIds": [],
+    "scope": "corridor",
+    "evidence": "原表选址为湘江整体；全域分类，无坐标。"
+  },
+  "pinwall-62185": {
+    "placeIds": [
+      "site-025"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-62187": {
+    "placeIds": [
+      "student-yuxiang"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-62188": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+  },
+  "pinwall-62189": {
+    "placeIds": [
+      "juzizhou"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-62191": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+  },
+  "pinwall-62192": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+  },
+  "pinwall-62197": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "表格选址缺少已核验导航点或为宽泛范围；保持待定位，不推断坐标。"
+  },
+  "pinwall-66166": {
+    "placeIds": [
+      "student-beichen"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66168": {
+    "placeIds": [
+      "student-oil1936"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66170": {
+    "placeIds": [
+      "site-011"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66171": {
+    "placeIds": [
+      "tongguan",
+      "juzizhou",
+      "ezhou"
+    ],
+    "scope": "places",
+    "evidence": "作者项目介绍明确列出橘子洲、铜官窑、鹅洲岛三类枢纽码头；Excel 主选址铜官窑保持不变。"
+  },
+  "pinwall-66172": {
+    "placeIds": [
+      "juzizhou"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66173": {
+    "placeIds": [
+      "site-011"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66174": {
+    "placeIds": [
+      "site-025"
+    ],
+    "scope": "places",
+    "evidence": "复用大王山标准地点ID，以旅游服务中心附近作片区近似导航；不代表完整交通研究范围。"
+  },
+  "pinwall-66175": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "原选址尚无可靠坐标或范围；保留作品，暂不上图。"
+  },
+  "pinwall-66176": {
+    "placeIds": [
+      "yanghu"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66178": {
+    "placeIds": [
+      "baxi"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66179": {
+    "placeIds": [
+      "juzizhou"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66180": {
+    "placeIds": [
+      "student-houzishi-west"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66181": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "原选址尚无可靠坐标或范围；保留作品，暂不上图。"
+  },
+  "pinwall-66183": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "原选址尚无可靠坐标或范围；保留作品，暂不上图。"
+  },
+  "pinwall-66184": {
+    "placeIds": [],
+    "scope": "pending",
+    "evidence": "原选址尚无可靠坐标或范围；保留作品，暂不上图。"
+  },
+  "pinwall-66185": {
+    "placeIds": [
+      "baxi"
+    ],
+    "scope": "places",
+    "evidence": "用户修订表明确选址巴溪洲；复用既有巴溪洲导航点，不修改坐标。"
+  },
+  "pinwall-66187": {
+    "placeIds": [
+      "site-011",
+      "student-yuxiang"
+    ],
+    "scope": "places",
+    "evidence": "用户修订表第23行明确渔人码头和裕湘纱厂；后者已补入口近似导航点。 本次旧表原文为「渔人码头到裕湘…」，保留已有明确修订的双地点；不声称旧表已包含完整端点。"
+  },
+  "pinwall-66188": {
+    "placeIds": [
+      "site-031"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66189": {
+    "placeIds": [
+      "ezhou"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66190": {
+    "placeIds": [
+      "site-011"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66191": {
+    "placeIds": [
+      "student-juzizhou-bridge"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66192": {
+    "placeIds": [
+      "ezhou"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。"
+  },
+  "pinwall-66193": {
+    "placeIds": [
+      "ezhou"
+    ],
+    "scope": "places",
+    "evidence": "复用现有地点或有来源的近似导航点，非研究范围。 标题虽为全域，当前仅核实原表鹅洲岛；其他地点和全域空间关联待核查，不按标题补坐标。"
+  },
+  "pinwall-66196": {
+    "placeIds": [
+      "student-yuxiang"
+    ],
+    "scope": "places",
+    "evidence": "经地图检索核对裕湘纱厂别名与地址，使用厂内停车场作为近似入口参考，非厂区边界。"
+  },
+  "pinwall-66198": {
+    "placeIds": [
+      "student-yuxiang"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  },
+  "pinwall-66200": {
+    "placeIds": [
+      "juzizhou"
+    ],
+    "scope": "places",
+    "evidence": "按Excel明确地名匹配已有导航点；沿用原定位精度，不扩大场地边界。"
+  }
+}

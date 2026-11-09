@@ -15,15 +15,12 @@ describe('approved integration boundary',()=>{
   expect(html).not.toContain('退出课程成果');
   expect(html).toContain('aria-label="开始探索" aria-hidden="false"');
  });
- it('retains the independent course URL and its explicit close control',async()=>{
-  const element=await ExperiencePage({searchParams:Promise.resolve({showcase:'student-work'})});
-  const html=renderToStaticMarkup(element);
-  expect(html).toContain('退出课程成果');
-  expect(html).toContain('2026 社会创新设计');
-  expect(html).toContain('课程设计 / 非实施项目');
-  expect(html).toContain('aria-label="开始探索" aria-hidden="true"');
-  const normal=await ExperiencePage({searchParams:Promise.resolve({})});
-  expect(renderToStaticMarkup(normal)).not.toContain('退出课程成果');
+ it('redirects legacy course URLs to integrated design without a second mode',async()=>{
+  await expect(ExperiencePage({searchParams:Promise.resolve({showcase:'student-work'})})).rejects.toThrow('NEXT_REDIRECT');
+  const normal=await ExperiencePage({searchParams:Promise.resolve({design:'course'})});
+  const html=renderToStaticMarkup(normal);
+  expect(html).not.toContain('退出课程成果');expect(html).not.toContain('独立课程演示');
+  expect(html).toContain('设计方案目录');expect(html).toContain('2026 社会创新设计');
  });
  it('distinguishes data-only layers, unlocated observations and existing scene context',()=>{
   expect(SPATIAL_LAYERS.find(l=>l.layerId==='ecology.worldcover.2021')?.mapIntegration).toBe('data-only');
