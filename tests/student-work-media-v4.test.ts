@@ -23,7 +23,7 @@ describe('source-backed multi-location course selection', () => {
     expect(workPlaceIds(STUDENT_WORKS[0])).toEqual(['tongguan', 'juzizhou', 'ezhou']);
     expect(worksForPlace('juzizhou').map(w => w.id)).toContain(STUDENT_WORKS[0].id);
     expect(worksForPlace('ezhou')).toHaveLength(4);
-    expect(showcaseStats()).toMatchObject({total:39,mapped:28,pending:11,places:14,partiallyMapped:0});
+    expect(showcaseStats()).toMatchObject({total:39,mapped:29,pending:10,places:15,partiallyMapped:0});
     expect(worksForPlace('student-yuxiang')).toHaveLength(4);
     expect(worksForPlace('site-025')).toHaveLength(2);
   });

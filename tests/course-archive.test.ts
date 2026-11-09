@@ -11,7 +11,7 @@ describe('V2.6 workbook reconciliation',()=>{
  it('imports both source sheets without double counting and separates real course years',()=>{
   expect(report.sheets.map(s=>s.name)).toEqual(['历年作业整理','原始收集']);
   expect(STUDENT_WORKS).toHaveLength(51);expect(new Set(STUDENT_WORKS.map(w=>w.projectUrl)).size).toBe(51);
-  expect(COURSES.map(c=>courseStats(c).total)).toEqual([39,2,10]);expect(courseStats(ALL_COURSES)).toMatchObject({total:51,mapped:33,pending:18,places:14});
+  expect(COURSES.map(c=>courseStats(c).total)).toEqual([39,2,10]);expect(courseStats(ALL_COURSES)).toMatchObject({total:51,mapped:38,pending:13,places:15});
   for(const c of COURSES)expect(courseWorks(c).every(w=>w.year===c.year&&w.courseId===c.id)).toBe(true);
  });
  it('preserves all 24 earlier stable identities, authors, themes and reviewed site text',()=>{

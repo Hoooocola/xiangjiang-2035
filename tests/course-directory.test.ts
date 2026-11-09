@@ -16,7 +16,7 @@ describe('one course dataset for the design directory and lecture showcase', () 
     expect(DEFAULT_COURSE.themes).toEqual(STUDENT_THEMES);
     expect(new Set(DEFAULT_COURSE.studentWorkIds).size).toBe(39);
     expect(DEFAULT_COURSE.studentWorkIds.some(id => DESIGN_PROPOSALS.some(p => p.id === id))).toBe(false);
-    expect(courseStats()).toMatchObject({total:39, places:14, pending:11});
+    expect(courseStats()).toMatchObject({total:39, places:15, pending:10});
   });
   it.each(['all', ...STUDENT_THEMES] as const)('keeps %s totals and search identical across both entry points', theme => {
     for (const query of ['', '橘子洲', '王子轩', '不存在的搜索词']) {
